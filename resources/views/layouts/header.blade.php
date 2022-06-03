@@ -94,14 +94,12 @@
             <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 @guest
                     <a href="">
-                        <button type="button" class="bg-groovy hover:bg-yellow-300 text-groovb px-8 py-2 rounded-md
-                        text-sm font-bold mr-3">
+                        <button type="button" class="button-green mr-4">
                             JOIN US
                         </button>
                     </a>
                     <a href="">
-                        <button type="button" class="bg-red-900 hover:bg-red-600 text-white px-3 py-2 rounded-md text-sm
-                            font-medium">
+                        <button type="button" class="button-red">
                             Login
                         </button>
                     </a>
