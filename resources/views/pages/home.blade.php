@@ -6,7 +6,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-wrap items-center py-48">
             <div class="w-full md:w-1/2 p-4 rounded-lg" style="background-color: rgba(213, 208, 136, 0.95)">
                 <h1 class="text-5xl fancy mb-4">Welcome to Kerry Mental Health & Welbeing Fest 2022</h1>
-                <h4 class="font-normal mb-4">Held between Saturday, 8th – 15th October 2022 the Fest aims to raise awareness of the available supports and services in the county as well as empower people to engage with the ‘Five Ways to Wellbeing’ through offering a dynamic and interactive programme of events.</h4>
+                <h4 class="font-semibold mb-4">Held between Saturday, 8th – 15th October 2022 the Fest aims to raise awareness of the available supports and services in the county as well as empower people to engage with the ‘Five Ways to Wellbeing’ through offering a dynamic and interactive programme of events.</h4>
                 <button class="button-primary">Browse events</button>
             </div>
         </div>

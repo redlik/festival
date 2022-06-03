@@ -95,7 +95,7 @@
                 @guest
                     <a href="">
                         <button type="button" class="button-green mr-4">
-                            JOIN US
+                            Registration
                         </button>
                     </a>
                     <a href="">
