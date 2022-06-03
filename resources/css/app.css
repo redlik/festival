@@ -31,4 +31,56 @@
     h4 {
         @apply text-lg;
     }
+
+}
+
+@layer components {
+    .button {
+        @apply px-4 py-1 bg-red-600 text-white rounded shadow cursor-pointer
+    }
+
+    .button-primary {
+        @apply px-4 py-2 bg-olive-600 text-white rounded font-bold  shadow cursor-pointer uppercase
+    }
+
+    .button-primary:hover {
+        @apply bg-olive-300 rounded shadow cursor-pointer
+    }
+
+    .button-secondary {
+        @apply px-4 py-2 bg-groovy text-groovb rounded shadow cursor-pointer
+    }
+
+    .button-secondary:hover {
+        @apply bg-yellow-300 rounded shadow cursor-pointer
+    }
+
+    .button:hover {
+        @apply bg-red-900 text-yellow-100
+    }
+    .button-green {
+        @apply px-4 py-1 bg-green-600 text-white rounded shadow font-medium cursor-pointer
+    }
+
+    .button-green:hover {
+        @apply bg-green-900 text-yellow-100
+    }
+
+    .button-blue {
+        @apply px-4 py-2 bg-indigo-600 text-white rounded shadow
+    }
+
+    .toggle-checkbox:checked {
+        @apply: right-0 border-green-400;
+        right: 0;
+        border-color: #68D391;
+    }
+    .toggle-checkbox:checked + .toggle-label {
+        @apply: bg-green-400;
+        background-color: #68D391;
+    }
+
+    .button-blue:hover {
+        @apply bg-indigo-900 text-yellow-100;
+    }
 }

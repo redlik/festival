@@ -12,6 +12,22 @@ module.exports = {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
+            colors:
+                {
+                    'olive': {
+                        DEFAULT: '#34372E',
+                        '50': '#B9BEB1',
+                        '100': '#AFB4A6',
+                        '200': '#9CA28F',
+                        '300': '#888F79',
+                        '400': '#737A66',
+                        '500': '#5E6353',
+                        '600': '#494D41',
+                        '700': '#34372E',
+                        '800': '#171814',
+                        '900': '#000000'
+                    },
+                }
         },
     },
 

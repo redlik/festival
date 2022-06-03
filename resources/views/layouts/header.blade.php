@@ -1,7 +1,7 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
-<nav x-data="{ open: false }" class="bg-groovb">
+<nav x-data="{ open: false }" class="bg-yellow-300">
     <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-        <div class="relative flex items-center justify-between h-24">
+        <div class="relative flex items-top justify-between h-24">
             <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 <!-- Mobile menu button-->
                 <button @click="open = ! open" type="button" class="inline-flex items-center justify-center p-2
@@ -30,28 +30,28 @@
                 </button>
             </div>
             <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-                <div class="flex-shrink-0 flex items-center">
+                <div class="flex-shrink-0 flex items-top">
                     <a href="/">
                         <img class="block lg:hidden h-12 w-auto" src="{{ asset('img/logo-header.svg') }}">
-                        <img class="hidden lg:block w-16 object-contain" src="{{ asset('img/logo-header.svg') }}">
+                        <img class="hidden lg:block w-24 bg-white p-3 shadow-lg object-contain" src="{{ asset('img/logo-header.svg') }}">
                     </a>
                 </div>
                 <div class="hidden sm:block sm:ml-6 sm:py-4">
-                    <div class="flex space-x-4" x-data="{ admin: false }">
-                            <a href="/" class="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md
-                        text-sm font-medium">Home</a>
+                    <div class="flex space-x-4 items-center h-full" x-data="{ admin: false }">
+                            <a href="/" class="text-black hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md
+                        font-semibold">Home</a>
 
-                        <a href="" class="text-groovy hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md
-                        text-sm font-medium">Events</a>
+                        <a href="" class="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md
+                        font-medium">Events</a>
 
-                        <a href="" class="text-groovy hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md
-                        text-sm font-medium">About</a>
+                        <a href="" class="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md
+                        font-medium">About</a>
 
-                        <a href="" class="text-groovy hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md
-                        text-sm font-medium">Contact</a>
+                        <a href="" class="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md
+                        font-medium">Contact</a>
 
                         @auth
-                            <a href="" class="text-groovy hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md
+                            <a href="" class="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md
                     text-sm font-bold">My Events</a>
                         @endauth
 
