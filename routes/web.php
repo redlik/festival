@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('pages.home');
 });
 
+Route::get('/join-us', function () {
+    return view('pages.registration');
+})->name('pages.join-us');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
