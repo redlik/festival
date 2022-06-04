@@ -14,9 +14,8 @@
             <div class="font-bold text-gray-200 mb-4 mt-8 md:mt-0">Navigation</div>
             <ul class="text-sm list-disc pl-4">
                 <li class="mb-2"><a href="">Events</a></li>
-                <li class="mb-2"><a href="">Artists</a></li>
                 <li class="mb-2"><a href="">Log in</a></li>
-                <li class="mb-2"><a href="">Register</a></li>
+                <li class="mb-2"><a href="">Organiser Registration</a></li>
             </ul>
         </div>
         <div class="w-full md:w-1/3 px-4">
