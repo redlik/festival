@@ -38,10 +38,10 @@
                         <div class="mt-6 sm:mt-5 space-y-6 sm:space-y-5" x-data="{ hear: '' }">
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                                 <label for="name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                                    Name
+                                    Organiser's Name
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                    <input type="text" name="name" id="name" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
+                                    <input type="text" name="name" id="name" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md" required>
                                 </div>
                             </div>
 
@@ -92,7 +92,7 @@
                                     Event(s) details <br/><span class="block lg:w-2/3 italic">Please provide brief information about each event you wish to organise.</span>
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                    <textarea id="about" name="about" rows="3" class="max-w-lg shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md"></textarea>
+                                    <textarea id="about" name="about" rows="3" class="max-w-lg shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md" required></textarea>
                                     <p class="mt-2 text-sm text-gray-700 font-semibold">This will be used to describe the events to the public in promotional material - please provide two to three sentences.</p>
                                 </div>
                             </div>
@@ -221,7 +221,7 @@
                             </div>
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                                 <label for="instagram" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                                    Twitter
+                                    Instagram
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
                                     <input type="url" name="instagram" id="instagram" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md">
@@ -243,7 +243,7 @@
         <div class="bg-gray-100 p-6 rounded my-8">
             <h2 id="guidelines">Guidelines</h2>
             <h5 class="my-4">Guidelines for organisations and qualified individuals hosting events:</h5>
-            <ul class="list-decimal ml-3">
+            <ul class="list-decimal list-inside">
                 <li>In order to ensure the Fest is accessible and inclusive for all, we ask that all events are free. In the spirit of this, we also ask that events are not used to raise funds or collect donations.</li>
                 <li>The programme of events for 2021 can be found <a href="https://www.healthykerry.ie/wp-content/uploads/2021/09/KerryWellfest-A5Brochure64673_WEB.pdf" target="_blank" class="underline text-olive-600 font-bold">here</a> – we would be delighted to facilitate events of a similar nature as well as events that will bring something new and different to the Fest.</li>
                 <li>It is the sole responsibility of the event host to ensure the provision of adequate insurance for all activities undertaken in the delivery of event/s</li>
