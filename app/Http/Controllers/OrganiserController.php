@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Organiser;
 use App\Models\User;
+use App\Notifications\AccountApproved;
 use App\Notifications\ApplicationSubmitted;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -126,6 +127,8 @@ class OrganiserController extends Controller
         $organiser->update(['status' => 'approved']);
 
         $request->session()->flash('approved', $organiser->name . ' successfully approved.');
+
+        $organiser->notify(new AccountApproved($organiser));
 
         return redirect()->route('organiser.index');
     }

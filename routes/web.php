@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\OrganiserController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,5 +35,6 @@ Route::resource('organiser', OrganiserController::class);
 
 Route::get('approved/organiser/{organiser}', [OrganiserController::class, 'approved'])->name('approved.organiser');
 Route::get('disabled/organiser/{organiser}', [OrganiserController::class, 'disabled'])->name('approved.disabled');
+Route::get('activate', [UserController::class, 'activate'])->name('account.activate');
 
 require __DIR__.'/auth.php';
