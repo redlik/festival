@@ -23,18 +23,18 @@
                 </ul>
                 <h5 class="mt-4">Please <a href="#guidelines" class="underline text-olive-600 font-bold">read the guidelines</a> for event organisers here before filling the form below.</h5>
             </div>
-            <form class="space-y-8 divide-y divide-gray-200">
+            <div>
+                <h3 class="leading-6 text-2xl mb-2">
+                    Registration form
+                </h3>
+                <p class="mt-1 max-w-2xl text-sm text-gray-700">
+                    Please provide as much details so we can quickly verify your application.
+                </p>
+            </div>
+            <form class="space-y-8 divide-y divide-gray-200" method="POST" action="{{ route('organiser.store') }}" id="organiser-registration">
                 <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
                     <div>
-                        <div>
-                            <h3 class="leading-6 text-2xl mb-2">
-                                Registration form
-                            </h3>
-                            <p class="mt-1 max-w-2xl text-sm text-gray-700">
-                                Please provide as much details so we can quickly verify your application.
-                            </p>
-                        </div>
-
+                        @csrf
                         <div class="mt-6 sm:mt-5 space-y-6 sm:space-y-5" x-data="{ hear: '' }">
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                                 <label for="name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
@@ -51,6 +51,15 @@
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
                                     <input id="email" name="email" type="email" autocomplete="email" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md">
+                                </div>
+                            </div>
+
+                            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                                <label for="phone" class="block text-sm font-medium sm:mt-px sm:pt-2">
+                                    Phone number <span class="text-red-700">*</span>
+                                </label>
+                                <div class="mt-1 sm:mt-0 sm:col-span-2">
+                                    <input id="phone" name="phone" type="text" autocomplete="email" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md">
                                 </div>
                             </div>
 
@@ -79,7 +88,7 @@
                                 </div>
                             </div>
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="org" class="block text-sm font-medium sm:mt-px sm:pt-2">
+                                <label for="other" class="block text-sm font-medium sm:mt-px sm:pt-2">
                                     Other
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
@@ -88,11 +97,11 @@
                             </div>
 
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="about" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                                <label for="events" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                                     Event(s) details <br/><span class="block lg:w-2/3 italic">Please provide brief information about each event you wish to organise.</span>
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                    <textarea id="about" name="about" rows="3" class="max-w-lg shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md" required></textarea>
+                                    <textarea id="events" name="events" rows="3" class="max-w-lg shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md" required></textarea>
                                     <p class="mt-2 text-sm text-gray-700 font-semibold">This will be used to describe the events to the public in promotional material - please provide two to three sentences.</p>
                                 </div>
                             </div>
@@ -131,29 +140,29 @@
                             </div>
 
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="city" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                                <label for="town" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                                     City / Town
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                    <input type="text" name="city" id="city" class="block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
+                                    <input type="text" name="town" id="town" class="block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
                                 </div>
                             </div>
 
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="postal-code" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                                <label for="eircode" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                                     EIRCODE
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                    <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code" class="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
+                                    <input type="text" name="eircode" id="eircode" autocomplete="eircode" class="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
                                 </div>
                             </div>
 
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="country" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                                <label for="county" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                                     County
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                    <select id="country" name="country" autocomplete="country-name" class="max-w-lg block focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
+                                    <select id="county" name="county" autocomplete="county" class="max-w-lg block focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
                                         <option value="" disabled selected>Select from the list</option>
                                         <option value="Carlow">Co. Carlow</option>
                                         <option value="Cavan">Co. Cavan</option>
@@ -196,11 +205,11 @@
                         </div>
                         <div class="space-y-6 sm:space-y-5 divide-y divide-gray-200">
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="web" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                                <label for="website" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                                     Website
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                    <input type="url" name="web" id="web" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md">
+                                    <input type="url" name="website" id="website" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md">
                                 </div>
                             </div>
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">

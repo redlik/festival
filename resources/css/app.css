@@ -91,4 +91,12 @@
     .button-blue:hover {
         @apply bg-indigo-900 text-yellow-100;
     }
+
+    .text-link {
+        @apply font-bold text-olive-400
+    }
+
+    .text-link:hover {
+        @apply underline
+    }
 }

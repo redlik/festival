@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Organiser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class OrganiserController extends Controller
 {
@@ -14,7 +16,7 @@ class OrganiserController extends Controller
      */
     public function index()
     {
-        //
+        $organisers = Organiser::all();
     }
 
     /**
@@ -35,7 +37,35 @@ class OrganiserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->input('hear') == 'Other') {
+            $hear = $request->input('other');
+        } else {
+            $hear = $request->input('hear_about');
+        }
+
+        $slug = rand(1001,9999)."-".Str::of($request->input('name'))->slug('-');
+        $organiser = Organiser::create([
+            'name' => $request->input('name'),
+            'slug' => $slug,
+            'email' => $request->input('email'),
+            'org' => $request->input('org'),
+            'phone' => $request->input('phone'),
+            'hear_about' => $hear,
+            'address1' => $request->input('address1'),
+            'street' => $request->input('street'),
+            'town' => $request->input('town'),
+            'county' => $request->input('county'),
+            'eircode' => strtoupper($request->input('eircode')),
+            'website' => $request->input('website'),
+            'facebook' => $request->input('facebook'),
+            'twitter' => $request->input('twitter'),
+            'instagram' => $request->input('instagram'),
+            'events' => $request->input('events'),
+        ]);
+
+
+        return view('organiser.submitted');
+
     }
 
     /**
