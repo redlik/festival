@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Organiser;
+use App\Models\User;
+use App\Notifications\ApplicationSubmitted;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
 class OrganiserController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -65,6 +68,9 @@ class OrganiserController extends Controller
             'events' => $request->input('events'),
         ]);
 
+        $admin = User::where('email', 'admin@kerryfest.com')->first();
+
+        $admin->notify(new ApplicationSubmitted($organiser));
 
         return view('organiser.submitted');
 
@@ -115,11 +121,13 @@ class OrganiserController extends Controller
         //
     }
 
-    public function approved(Organiser $organiser)
+    public function approved(Organiser $organiser, Request $request)
     {
         $organiser->update(['status' => 'approved']);
 
-        return back();
+        $request->session()->flash('approved', $organiser->name . ' successfully approved.');
+
+        return redirect()->route('organiser.index');
     }
 
     public function disabled(Organiser $organiser)
