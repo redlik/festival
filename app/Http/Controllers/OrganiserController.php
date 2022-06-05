@@ -17,6 +17,8 @@ class OrganiserController extends Controller
     public function index()
     {
         $organisers = Organiser::all();
+
+        return view('organiser.index', compact('organisers'));
     }
 
     /**
@@ -37,7 +39,7 @@ class OrganiserController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->input('hear') == 'Other') {
+        if($request->input('hear_about') == 'Other') {
             $hear = $request->input('other');
         } else {
             $hear = $request->input('hear_about');
@@ -76,7 +78,7 @@ class OrganiserController extends Controller
      */
     public function show(Organiser $organiser)
     {
-        //
+        return view('organiser.show', compact('organiser'));
     }
 
     /**
@@ -111,5 +113,19 @@ class OrganiserController extends Controller
     public function destroy(Organiser $organiser)
     {
         //
+    }
+
+    public function approved(Organiser $organiser)
+    {
+        $organiser->update(['status' => 'approved']);
+
+        return back();
+    }
+
+    public function disabled(Organiser $organiser)
+    {
+        $organiser->update(['status' => 'disabled']);
+
+        return back();
     }
 }

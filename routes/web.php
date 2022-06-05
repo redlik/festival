@@ -32,4 +32,7 @@ Route::get('/dashboard', function () {
 
 Route::resource('organiser', OrganiserController::class);
 
+Route::get('approved/organiser/{organiser}', [OrganiserController::class, 'approved'])->name('approved.organiser');
+Route::get('disabled/organiser/{organiser}', [OrganiserController::class, 'disabled'])->name('approved.disabled');
+
 require __DIR__.'/auth.php';
