@@ -98,7 +98,7 @@
                             Registration
                         </button>
                     </a>
-                    <a href="">
+                    <a href="{{ route('login') }}">
                         <button type="button" class="button-red">
                             Login
                         </button>
