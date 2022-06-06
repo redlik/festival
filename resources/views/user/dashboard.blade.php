@@ -80,7 +80,12 @@
                         <tbody class="divide-y divide-gray-200 bg-white">
                         @forelse($events as $event)
                             <tr>
-                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8">{{ $event->name }}</td>
+                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8">
+                                    <a href="{{ route('event.show', $event) }}" class="hover:underline">
+                                        {{ $event->name }}
+
+                                    </a>
+                                </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     <div>{{ $event->start_date }}</div>
                                     <div>{{ $event->start_time }} - {{ $event->end_time }}</div>

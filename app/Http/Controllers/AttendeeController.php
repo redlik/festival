@@ -35,7 +35,15 @@ class AttendeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attendee = Attendee::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'phone' => $request->input('phone'),
+            'opt_in' => $request->input('opt_in'),
+            'event_id' => $request->input('event'),
+        ]);
+
+        return redirect()->back();
     }
 
     /**

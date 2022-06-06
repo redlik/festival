@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttendeeController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\OrganiserController;
 use App\Http\Controllers\UserController;
@@ -32,6 +33,7 @@ Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard'
 
 Route::resource('organiser', OrganiserController::class);
 Route::resource('event', EventController::class);
+Route::resource('attendee', AttendeeController::class);
 
 Route::get('approved/organiser/{organiser}', [OrganiserController::class, 'approved'])->name('approved.organiser');
 Route::get('disabled/organiser/{organiser}', [OrganiserController::class, 'disabled'])->name('approved.disabled');
