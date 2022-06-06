@@ -11,4 +11,9 @@ class Organiser extends Model
     use HasFactory, Notifiable;
 
     protected $guarded = [];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
