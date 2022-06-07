@@ -23,15 +23,44 @@
             @endif
         </div>
     </div>
-    <div style="background-color:#f6f5e9">
+    <div style="bg-white">
         <div class="max-w-7xl mx-auto px-6 lg:px-8 py-8">
             <div class="">
                 <h3 class="font-bold text-2xl mb-4">Upcoming events</h3>
             </div>
-            <div class="flex overflow-x-scroll hide-scroll-bar">
-                <div class="flex flex-nowrap gap-2">
+            <div class="flex">
+                <div class="bg-gray-200 w-48 min-w-32 mr-4">
+                    <h5>Filters go here</h5>
                 </div>
-
+                <div>
+                    <ul role="list" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-3 ">
+                        @foreach($events as $event)
+                            <li class="relative">
+                                <div class="group block w-full h-max-32 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
+                                    <a href="{{ route('event.show', $event) }}">
+                                        <img src="https://source.unsplash.com/400x300/?nature" alt="" class="object-cover pointer-events-none group-hover:opacity-75">
+                                        <button type="button" class="absolute inset-0 focus:outline-none">
+                                            <span class="sr-only">View details for IMG_4985.HEIC</span>
+                                        </button>
+                                    </a>
+                                </div>
+                                <div class="flex items-center py-2">
+                                    <div class="mr-6">
+                                        <div class="font-light text-center">{{ \Carbon\Carbon::parse($event->start_date)->format('M') }}</div>
+                                        <div class="text-2xl text-black font-bold text-center">{{ \Carbon\Carbon::parse($event->start_date)->format('d') }}</div>
+                                    </div>
+                                    <div>
+                                        <div>{{ \Carbon\Carbon::parse($event->start_time)->format('H:i') }} - {{ \Carbon\Carbon::parse($event->end_time)->format('H:i') }}</div>
+                                        <a href="{{ route('event.show', $event) }}">
+                                            <p class="text-lg block text-sm font-bold text-gray-900 truncate pointer-events-none">{{ $event->name }}</p>
+                                            <p class="block text-sm font-medium text-gray-500 pointer-events-none">{{ $event->venue->name }}</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AttendeeController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\OrganiserController;
+use App\Http\Controllers\PagesController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,9 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.home');
-});
+Route::get('/', [PagesController::class, 'home'])->name('home');
 
 Route::get('/join-us', function () {
     return view('pages.registration');

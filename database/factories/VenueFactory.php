@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,6 +17,8 @@ class VenueFactory extends Factory
      */
     public function definition()
     {
+        $user = User::where('email', 'organiser@kerryfest.com')->first();
+
         return [
             'name' => $this->faker->unique()->company,
             'address1' => $this->faker->secondaryAddress,
@@ -24,7 +27,7 @@ class VenueFactory extends Factory
             'county' => 'Kerry',
             'eircode' => $this->faker->postcode,
             'website' => $this->faker->url,
-            'user_id' => 5,
+            'user_id' => $user->id,
         ];
     }
 }

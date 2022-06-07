@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('type');
             $table->string('covid')->default('no');
             $table->json('target')->nullable();
-            $table->json('categories')->nullable();
+            $table->string('category')->nullable();
             $table->boolean('limited')->default(false);
             $table->integer('attendees')->default(0);
             $table->foreignId('user_id')->constrained();

@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
-            $table->string('phone');
-            $table->boolean('opt_in')->default(false);
+            $table->string('phone')->nullable();
+            $table->boolean('opt_in')->default(false)->nullable();
             $table->foreignId('event_id')->constrained();
             $table->timestamps();
         });
