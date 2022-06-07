@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attendee;
 use App\Models\Event;
 use App\Models\Organiser;
 use App\Models\Venue;
@@ -22,9 +23,10 @@ class UserController extends Controller
     public function dashboard()
     {
         $venues = Venue::where('user_id', Auth::id())->withCount('event')->get();
-        $events = Event::where('user_id', Auth::id())->orderBy('name', 'asc')->withCount('attendee')->get();
+        $events = Event::where('user_id', Auth::id())->orderBy('name', 'asc')->withCount('attendee')->with('attendee', 'venue', 'user.organiser')->get();
+        $attendees = Auth::user()->attendees()->with('event')->get();
 
-        return view('user.dashboard', compact('events', 'venues'));
+        return view('user.dashboard', compact('events', 'venues', 'attendees'));
     }
 
 

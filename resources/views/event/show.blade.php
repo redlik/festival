@@ -31,13 +31,13 @@
                             <div class="flex items-start">
                                 <div class="grow mr-4">
                                     <div class="mt-1">
-                                        <input type="email" name="name" id="name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="First & Last Name">
+                                        <input type="text" name="name" id="name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="First & Last Name">
                                     </div>
                                     <label for="name" class="block text-sm font-medium text-gray-700 ml-3 mt-1">Name</label>
                                 </div>
                                 <div class="grow mr-4">
                                     <div class="mt-1">
-                                        <input type="email" name="phone" id="phone" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="066 888 8888">
+                                        <input type="tel" name="phone" id="phone" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="066 888 8888">
                                     </div>
                                     <label for="phone" class="block text-sm font-medium text-gray-700 ml-3 mt-1">Phone</label>
                                 </div>

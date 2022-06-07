@@ -167,7 +167,42 @@
                     </table>
                 </div>
                 <div class="p-6 border border-gray-200 rounded-lg mt-6" id="attendees">
-                    <h2 class="text-olive-300">Attendees</h2>
+                    <h2 class="text-olive-300 mb-6">Attendees</h2>
+                    <table class="min-w-full divide-y divide-gray-300">
+                        <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8">Name</th>
+                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Event</th>
+                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Registered on</th>
+                            <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6 lg:pr-8">Edit
+                                <span class="sr-only">Edit</span>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 bg-white">
+                        @forelse($attendees as $attendee)
+                            <tr>
+                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8">
+                                    <div>{{ $attendee->name }}</div>
+                                    <div>E: {{ $attendee->email }}   T: {{ $attendee->phone }}</div>
+
+                                </td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                    {{ $attendee->event->name }}
+                                </td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $attendee->created_at->format('d M Y H:i') }}</td>
+                                <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-semibold sm:pr-6 lg:pr-8">
+                                    <a href="#" class="text-indigo-600 hover:text-indigo-900 mr-2">Edit</a>
+                                    <a href="#" class="text-red-600 hover:text-red-900">Delete</a>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr colspan="4">
+                                <td><h4>No venues created</h4></td>
+                            </tr>
+                    @endforelse
+                        </tbody>
+                    </table>
                 </div>
                 <div class="p-6 border border-gray-200 rounded-lg mt-6" id="other">
                     <h2>Other</h2>

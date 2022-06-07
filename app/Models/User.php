@@ -52,4 +52,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Event::class);
     }
+
+    public function attendees(){
+        return $this->hasManyThrough(Attendee::class, Event::class);
+    }
 }

@@ -51,8 +51,8 @@
                         font-medium">Contact</a>
 
                         @auth
-                            <a href="" class="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md
-                    text-sm font-bold">My Events</a>
+                            <a href="{{ route('dashboard') }}" class="hover:bg-indigo-600 hover:text-white hover:bg-olive-600 px-3 py-2 rounded-md
+                    text-sm font-bold">Dashboard</a>
                         @endauth
 
                         <div class="relative flex">
