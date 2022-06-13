@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AttendeeController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\OrganiserController;
 use App\Http\Controllers\PagesController;
@@ -44,5 +45,7 @@ Route::resource('attendee', AttendeeController::class);
 Route::get('approved/organiser/{organiser}', [OrganiserController::class, 'approved'])->name('approved.organiser');
 Route::get('disabled/organiser/{organiser}', [OrganiserController::class, 'disabled'])->name('approved.disabled');
 Route::get('activate', [UserController::class, 'activate'])->name('account.activate');
+
+Route::post('/register-admin', [RegisteredUserController::class, 'storeAdmin'])->name('register.admin');
 
 require __DIR__.'/auth.php';
