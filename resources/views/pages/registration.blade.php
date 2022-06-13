@@ -18,7 +18,8 @@
                 <ul class="list-disc ml-3">
                     <li><strong>Step 1</strong> – Register as an event organiser by filling in the short form below.
                         <span class="underline">This needs to be completed by Friday 15th July.</span></li>
-                    <li><strong>Step 2</strong> Once approved, you will be sent a link to create your event(s).
+                    <li><strong>Step 2</strong> - Activate your account and create a password.</li>
+                    <li><strong>Step 3</strong> - Once approved, you will be sent a link to create your event(s).
                         <span class="underline">All events need to be upload by Friday 29th July to be considered.</span></li>
                 </ul>
                 <h5 class="mt-4">Please <a href="#guidelines" class="underline text-olive-600 font-bold">read the guidelines</a> for event organisers here before filling the form below.</h5>
