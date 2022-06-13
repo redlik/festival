@@ -23,6 +23,24 @@
             @endif
         </div>
     </div>
+    <div class="mb-6 bg-gray-200">
+            <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:py-8 lg:px-8 lg:flex lg:items-center lg:justify-between">
+
+                <div>
+                    <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 md:text-4xl">
+                        <span class="block">Organising a event?</span>
+                    </h2>
+                    <span class="block text-2xl text-olive-600">Fill out the application form</span>
+                </div>
+                <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
+                    <div class="inline-flex rounded-md shadow">
+                        <a href="/join-us" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-semibold rounded-md text-white bg-olive-600 hover:bg-olive-700 uppercase">
+                            Organiser registration
+                        </a>
+                    </div>
+                </div>
+            </div>
+    </div>
     <div style="bg-white">
         <div class="max-w-7xl mx-auto px-6 lg:px-8 py-8">
             <div class="">

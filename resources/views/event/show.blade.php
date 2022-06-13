@@ -16,11 +16,19 @@
                     <h4>Details</h4>
                     <div>Date & time: {{ $event->start_date }} @ {{ $event->start_time }} - {{ $event->end_time }}</div>
                     <div>Venue: {{ $event->venue->name }}</div>
+                    <div>Target:
+                    @foreach($event->target as $target_item)
+                        <div class="gray-pillow mr-1">
+                            {{ ucfirst($target_item) }}
+                        </div>
+
+                    @endforeach
+                    </div>
                 </div>
             </div>
             @if($event->limited != 0)
                 <div class="bg-gray-100 rounded border border-gray-300 p-6">
-                    <h4 class="text-gray-600">This event has limited access</h4>
+                    <h4 class="text-gray-600">Please fill in your details below to register for this event.</h4>
                     <div>
                         {{ $event->attendees - $event->attendees_count }} places left
                     </div>
@@ -28,28 +36,28 @@
                         <form action="{{ route('attendee.store') }}" class='' method="POST">
                             @csrf
                             <input type="hidden" name="event" value="{{ $event->id }}">
-                            <div class="flex items-start">
-                                <div class="grow mr-4">
+                            <div class="lg:flex items-start">
+                                <div class="grow mr-4 mb-4 md:mb-0">
                                     <div class="mt-1">
                                         <input type="text" name="name" id="name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="First & Last Name">
                                     </div>
                                     <label for="name" class="block text-sm font-medium text-gray-700 ml-3 mt-1">Name</label>
                                 </div>
-                                <div class="grow mr-4">
+                                <div class="grow mr-4 mb-4 md:mb-0">
                                     <div class="mt-1">
                                         <input type="tel" name="phone" id="phone" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="066 888 8888">
                                     </div>
                                     <label for="phone" class="block text-sm font-medium text-gray-700 ml-3 mt-1">Phone</label>
                                 </div>
-                                <div class="grow mr-4">
+                                <div class="grow mr-4 mb-4 md:mb-0">
                                     <div class="mt-1">
                                         <input type="email" name="email" id="email" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="you@example.com">
                                     </div>
                                     <label for="email" class="block text-sm font-medium text-gray-700 ml-3 mt-1">Email</label>
                                 </div>
                                 <div class="pt-1">
-                                    <button type="submit" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                        Sign me up!
+                                    <button type="submit" class="button-primary">
+                                        REGISTER
                                     </button>
                                 </div>
                             </div>

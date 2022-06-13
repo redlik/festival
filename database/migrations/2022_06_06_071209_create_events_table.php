@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('start_date');
             $table->time('start_time');
             $table->date('end_date');
-            $table->time('end_time');
+            $table->time('end_time')->nullable();
             $table->longText('description');
             $table->string('type');
             $table->string('covid')->default('no');

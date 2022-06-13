@@ -6,6 +6,8 @@ use App\Models\Event;
 use App\Models\Venue;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class EventController extends Controller
 {
@@ -26,9 +28,8 @@ class EventController extends Controller
      */
     public function create()
     {
-        $venues = Venue::where('user_id', Auth::id())->orderBy('name', 'asc')->get();
 
-        return view('event.create', compact('venues'));
+        return view('event.create');
     }
 
     /**
@@ -39,27 +40,47 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+            'target' => 'required',
+            'venue' => 'required',
+            'start_time' => 'required',
+            'end_time' => 'nullable|after:start_time',
+        ],[
+            'end_time.after' => 'The end time should be after the start time',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/event/create')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         if(! $request->input('attendees')) {
             $attendees = 0;
         } else {
             $attendees = $request->input('attendees');
         }
 
+        $slug = rand(1001,9999)."-".Str::of($request->input('name'))->slug('-');
+
         $event = Event::create([
             'name' => $request->input('name'),
+            'slug' => $slug,
             'start_date' => $request->input('start_date'),
             'start_time' => $request->input('start_time'),
-            'end_date' => $request->input('start_date'),
             'end_time' => $request->input('end_time'),
             'description' => $request->input('description'),
             'type' => $request->input('type'),
             'target' => json_encode($request->input('target')),
-            'categories' => json_encode($request->input('categories')),
             'limited' => $request->input('limited'),
             'attendees' => $attendees,
             'venue_id' => $request->input('venue'),
             'user_id' => Auth::id(),
             'covid' => $request->input('covid'),
+            'leader_name' => $request->input('leader_name'),
+            'leader_phone' => $request->input('leader_phone'),
+            'leader_email' => $request->input('leader_email'),
         ]);
 
         return redirect()->route('dashboard');

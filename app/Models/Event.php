@@ -11,6 +11,10 @@ class Event extends Model
 
     protected $guarded = [];
 
+    protected $casts = [
+        'target' => 'array'
+    ];
+
     public function venue()
     {
         return $this->belongsTo(Venue::class);
