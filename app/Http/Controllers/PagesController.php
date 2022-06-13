@@ -13,8 +13,16 @@ class PagesController extends Controller
     public function home()
     {
         $events = Event::with('venue')->orderBy('start_date', 'asc')->get();
+        $towns = Venue::has('event')->select('id', 'town')->get();
+        $target = [
+            'teens' => "Teens",
+            'young' => "Young adults",
+            'older' => "Older adults",
+            'family' => "Family",
+            'workplace' => "Workplace",
+        ];
 
-        return view('pages.home', compact('events'));
+        return view('pages.home', compact('events', 'towns', 'target'));
     }
 
     public function adminDashboard()
