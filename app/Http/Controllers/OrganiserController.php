@@ -72,6 +72,9 @@ class OrganiserController extends Controller
 
         $organiser->notify(new AccountActivation($organiser));
 
+        $admin = User::where('email', 'admin@kerrymentalhealthandwellbeingfest.com')->first();
+        $admin->notify(new ApplicationSubmitted($organiser));
+
         return view('organiser.submitted', compact('organiser'));
 
     }
@@ -123,11 +126,11 @@ class OrganiserController extends Controller
 
     public function approved(Organiser $organiser, Request $request)
     {
-        $organiser->update(['status' => 'approved']);
+        $organiser->update(['status' => 'activated']);
 
         $request->session()->flash('approved', $organiser->name . ' successfully approved.');
 
-        $organiser->notify(new AccountApproved($organiser));
+//        $organiser->notify(new AccountApproved($organiser));
 
         return redirect()->route('organiser.index');
     }

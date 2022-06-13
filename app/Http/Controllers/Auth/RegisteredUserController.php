@@ -49,7 +49,10 @@ class RegisteredUserController extends Controller
         $user->assignRole('organiser');
 
         $organiser = Organiser::where('email', $user->email)->first();
-        $organiser->update(['user_id' => $user->id]);
+        $organiser->update([
+            'user_id' => $user->id,
+            'status' => 'activated'
+        ]);
 
         event(new Registered($user));
 

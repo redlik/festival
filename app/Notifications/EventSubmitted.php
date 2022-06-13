@@ -2,13 +2,13 @@
 
 namespace App\Notifications;
 
-use App\Models\Organiser;
+use App\Models\Event;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ApplicationSubmitted extends Notification
+class EventSubmitted extends Notification
 {
     use Queueable;
 
@@ -17,9 +17,9 @@ class ApplicationSubmitted extends Notification
      *
      * @return void
      */
-    public function __construct(Organiser $organiser)
+    public function __construct(Event $event)
     {
-        $this->organiser = $organiser;
+        $this->event = $event;
     }
 
     /**
@@ -41,13 +41,11 @@ class ApplicationSubmitted extends Notification
      */
     public function toMail($notifiable)
     {
-        $organiser = $this->organiser;
-
         return (new MailMessage)
             ->greeting('Hello admins,')
-            ->line('New organiser application has been submitted, you can view the details below')
-            ->action('New organiser', url(route('organiser.show', ['organiser' => $organiser->id])))
-            ->line('They will star submitting events once they activate the account.');
+            ->line('New event has been submitted.')
+            ->action('View details', url(route('admin.event.show', $this->event)))
+            ->line('Once approved the event will be added to public list.');
     }
 
     /**

@@ -97,11 +97,6 @@
                                 </div>
                             </dl>
                         </div>
-                        @if($organiser->status != 'approved')
-                            <div class="my-8 ml-4">
-                                <a href="{{ route('approved.organiser', $organiser) }}" class="button-primary">Approve organiser</a>
-                            </div>
-                        @endif
                     </div>
             </div>
         </div>

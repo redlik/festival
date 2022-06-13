@@ -87,7 +87,7 @@
                                                 @if($organiser->status == 'pending')
                                                 <a href="{{ route('approved.organiser', $organiser) }}" class="text-green-600 hover:text-green-900 font-bold mr-2">Approve</a>
                                                 @endif
-                                                @if($organiser->status == 'approved')
+                                                @if($organiser->status == 'activated')
                                                     <a href="{{ route('approved.disabled', $organiser) }}" class="text-green-600 hover:text-green-900 font-bold mr-2">Disable</a>
                                                 @endif
                                                 @if($organiser->status == 'disabled')
