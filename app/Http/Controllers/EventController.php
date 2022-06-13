@@ -109,9 +109,11 @@ class EventController extends Controller
         return view('event.show', compact('event'));
     }
 
-    public function showAdmin(Event $event)
+    public function showAdmin($event_id)
     {
-        return view('event.show', compact('event'));
+        $event = Event::find($event_id);
+
+        return view('event.show-admin', compact('event'));
     }
 
     /**
@@ -123,6 +125,20 @@ class EventController extends Controller
     public function edit(Event $event)
     {
         //
+    }
+
+    public function adminApproval($event_id)
+    {
+        $event = Event::find($event_id)->update(['status' => 'published']);
+
+        return redirect()->back()->with('approved', 'Event has been approved.');
+    }
+
+    public function adminUnpublish($event_id)
+    {
+        $event = Event::find($event_id)->update(['status' => 'pending']);
+
+        return redirect()->back()->with('pending', 'This event has been un-published.');
     }
 
     /**

@@ -39,7 +39,7 @@ return [
         'covers' => [
             'driver' => 'local',
             'root' => public_path('img/covers'),
-            'url' => env('APP_URL').'/covers',
+            'url' => env('APP_URL').'/img/covers',
         ],
 
         'public' => [
