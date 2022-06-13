@@ -30,7 +30,7 @@ class EventList extends Component
         $this->events = Event::when($this->selected_town != '', function ($query) {
             $query->where('venue_id', $this->selected_town);
         })
-            ->when($this->group != '', function ($query) {
+            ->when($this->group, function ($query) {
                 $query->whereJsonContains('target', $this->group);
             })
             ->approved()

@@ -1,5 +1,5 @@
 <div class="flex" id="event-list">
-    <div class="bg-gray-200 w-64 min-w-48 w-48 mr-4 p-2">
+    <div class="bg-gray-200 w-auto min-w-64 mr-4 p-2 block rounded-t">
         <h5 class="mb-4">Filter by</h5>
         <div class="mb-6">
             <label for="town" class="mb-2">Town events take place</label>
@@ -18,7 +18,6 @@
                     <label for="{{ $key }}" class="font-medium text-gray-700">{{ $value }}</label>
                 </div>
             @endforeach
-            @json($group)
         </div>
     </div>
     <div>
@@ -27,7 +26,7 @@
                 <li class="relative">
                     <div class="group block w-full h-max-32 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
                         <a href="{{ route('event.show', $event) }}">
-                            <img src="https://source.unsplash.com/400x300/?nature" alt="" class="object-cover pointer-events-none group-hover:opacity-75">
+                            <img src="{{ $event->getFirstMediaUrl('cover') }}" alt="" class="object-cover pointer-events-none group-hover:opacity-75">
                             <button type="button" class="absolute inset-0 focus:outline-none">
                                 <span class="sr-only">View details for IMG_4985.HEIC</span>
                             </button>
