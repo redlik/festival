@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\User;
 use App\Models\Venue;
+use App\Notifications\EventSubmitted;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -42,7 +44,6 @@ class EventController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
-            'target' => 'required',
             'venue' => 'required',
             'start_time' => 'required',
             'end_time' => 'nullable|after:start_time',
@@ -81,9 +82,19 @@ class EventController extends Controller
             'leader_name' => $request->input('leader_name'),
             'leader_phone' => $request->input('leader_phone'),
             'leader_email' => $request->input('leader_email'),
+            'status' => 'pending',
         ]);
 
-        return redirect()->route('dashboard');
+        if($request->hasFile('file-upload')) {
+            $event->addMediaFromRequest('file-upload')
+                ->toMediaCollection('cover');;
+        }
+
+        $admin = User::where('email', 'admin@kerryfest.com')->first();
+
+        $admin->notify(new EventSubmitted($event));
+
+        return redirect()->route('dashboard')->with('event_submitted', 'Event submitted');
 
     }
 
@@ -94,6 +105,11 @@ class EventController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Event $event)
+    {
+        return view('event.show', compact('event'));
+    }
+
+    public function showAdmin(Event $event)
     {
         return view('event.show', compact('event'));
     }

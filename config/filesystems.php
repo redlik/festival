@@ -36,6 +36,12 @@ return [
             'throw' => false,
         ],
 
+        'covers' => [
+            'driver' => 'local',
+            'root' => public_path('img/covers'),
+            'url' => env('APP_URL').'/covers',
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
