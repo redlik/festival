@@ -90,7 +90,7 @@ class EventController extends Controller
                 ->toMediaCollection('cover');;
         }
 
-        $admin = User::where('email', 'admin@kerryfest.com')->first();
+        $admin = User::where('email', 'admin@kerrymentalhealthandwellbeingfest.com')->first();
 
         $admin->notify(new EventSubmitted($event));
 
