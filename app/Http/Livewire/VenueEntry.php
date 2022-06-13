@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Venue;
+use Auth;
 use Livewire\Component;
 
 class VenueEntry extends Component
@@ -46,7 +47,7 @@ class VenueEntry extends Component
             'county' => 'Kerry',
             'eircode' => $this->venue_eircode,
             'website' => $this->venue_website,
-            'user_id' => 5,
+            'user_id' => Auth::id(),
         ]);
 
         $this->selected = $newVenue->id;
