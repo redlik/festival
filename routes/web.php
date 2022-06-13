@@ -25,6 +25,8 @@ Route::get('/join-us', function () {
     return view('pages.registration');
 })->name('pages.join-us');
 
+Route::get('/events', [PagesController::class, 'events'])->name('events');
+
 Route::get('/organiser-submitted', function () {
     return view('organiser.submitted');
 })->name('organiser.submitted');

@@ -35,4 +35,9 @@ class PagesController extends Controller
 
         return view('admin.dashboard', compact('events',  'venues', 'attendees', 'organisers_count'));
     }
+
+    public function events()
+    {
+        return view('pages.events');
+    }
 }

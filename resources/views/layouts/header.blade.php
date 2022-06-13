@@ -41,7 +41,7 @@
                             <a href="/" class="text-black hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md
                         font-semibold">Home</a>
 
-                        <a href="" class="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md
+                        <a href="{{ route('events') }}" class="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md
                         font-medium">Events</a>
 
                         <a href="" class="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md
@@ -133,11 +133,9 @@
                     w-48 rounded-md shadow-lg py-1 bg-white
                     ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                         <!-- Active: "bg-gray-100", Not Active: "" -->
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="0"
-                               id="user-menu-item-0">Your Profile</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="1" id="user-menu-item-1">Settings</a>
-                            <a href="" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="1" id="user-menu-item-1">My bookings</a>
-                            <a href="" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="1" id="user-menu-item-1">My events</a>
+                            @role('organiser')
+                            <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="1" id="user-menu-item-1">Dashboard</a>
+                            @endrole
                             <a href="{{ route('logout') }}"
                                class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="2"
                                id="user-menu-item-2"
