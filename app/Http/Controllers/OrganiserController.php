@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Organiser;
 use App\Models\User;
+use App\Notifications\AccountActivation;
 use App\Notifications\AccountApproved;
 use App\Notifications\ApplicationSubmitted;
 use Illuminate\Http\Request;
@@ -69,11 +70,9 @@ class OrganiserController extends Controller
             'events' => $request->input('events'),
         ]);
 
-        $admin = User::where('email', 'admin@kerryfest.com')->first();
+        $organiser->notify(new AccountActivation($organiser));
 
-        $admin->notify(new ApplicationSubmitted($organiser));
-
-        return view('organiser.submitted');
+        return view('organiser.submitted', compact('organiser'));
 
     }
 
