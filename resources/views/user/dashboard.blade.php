@@ -16,6 +16,16 @@
                             <button class="button-primary">+ Add new event</button>
                         </a>
                     </div>
+
+                    @if (\Session::has('event_submitted'))
+                        <div class="bg-gray-100 border border-gray-400 shadow rounded p-2 my-4">
+                            Thank you for submitting your event. We will review it shortly and either;
+                            <ul class="list-decimal list-inside">
+                                <li><strong>Approve and publish it</strong> on the website or</li>
+                                <li>Come back to you for further details or clarification.</li>
+                            </ul>
+                        </div>
+                    @endif
                     <table class="min-w-full divide-y divide-gray-300">
                         <thead class="bg-gray-50">
                         <tr>
@@ -24,6 +34,7 @@
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Organiser</th>
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Venue</th>
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Attendees</th>
+                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Status</th>
                             <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6 lg:pr-8">Edit
                                 <span class="sr-only">Edit</span>
                             </th>
@@ -60,6 +71,9 @@
                                     @else
                                     <div>No limit</div>
                                     @endif
+                                </td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                    {{ ucfirst($event->status) }}
                                 </td>
                                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-semibold sm:pr-6 lg:pr-8">
                                     <a href="#" class="text-indigo-600 hover:text-indigo-900 mr-2">Edit</a>
