@@ -24,39 +24,42 @@
         <h5>Add new venue</h5>
         <form wire:submit.prevent="save">
             <div class="flex items-center mb-2">
-                <label for="venue-name" class="w-48 block">Name:</label>
-                <input type="text" name="venue-name" id="venue-name"
+                <label for="venue_name" class="w-48 block">Name: <span class="text-red-700">*</span></label>
+                <input type="text" name="venue_name" id="venue_name"
                        class="lg:ml-4 lg:w-64 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
                 wire:model.defer="venue_name">
             </div>
+            @error('venue_name') <div class="text-xs text-red-600 mb-4">{{ $message }}</div> @enderror
             <div class="flex items-center mb-2">
-                <label for="venue-address-1" class="w-48 block">Address:</label>
-                <input type="text" name="venue-address-1" id="venue-address-1" class="lg:ml-4 lg:w-64 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" wire:model="venue_address1">
+                <label for="venue_address1" class="w-48 block">Address:</label>
+                <input type="text" name="venue_address1" id="venue_address1" class="lg:ml-4 lg:w-64 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" wire:model="venue_address1">
             </div>
             <div class="flex items-center mb-2">
-                <label for="venue-street" class="w-48 block">Street:</label>
-                <input type="text" name="venue-street" id="venue-street"
+                <label for="venue_street" class="w-48 block">Street:</label>
+                <input type="text" name="venue_street" id="venue_street"
                        class="lg:ml-4 lg:w-64 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
                        wire:model="venue_street">
             </div>
             <div class="flex items-center mb-2">
-                <label for="venue-name" class="w-48 block">Town:</label>
-                <input type="text" name="venue-name" id="venue-name"
+                <label for="venue_town" class="w-48 block">Town: <span class="text-red-700">*</span></label>
+                <input type="text" name="venue_town" id="venue_town"
                        class="lg:ml-4 lg:w-64 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
                        wire:model="venue_town">
             </div>
+            @error('venue_town') <div class="text-xs text-red-600 mb-4">{{ $message }}</div> @enderror
             <div class="flex items-center mb-2">
-                <label for="venue-eircode" class="w-48 block">EIRCODE:</label>
-                <input type="text" name="venue-eircode" id="venue-eircode" class="lg:ml-4 lg:w-64 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
+                <label for="venue_eircode" class="w-48 block">EIRCODE: <span class="text-red-700">*</span></label>
+                <input type="text" name="venue_eircode" id="venue_eircode" class="lg:ml-4 lg:w-64 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
                        wire:model="venue_eircode" maxlength="7">
             </div>
+            @error('venue_eircode') <div class="text-xs text-red-600 mb-4">{{ $message }}</div> @enderror
             <div class="flex items-center mb-2">
                 <label for="venue-name" class="w-48 block">Website:</label>
-                <input type="url" name="venue-name" id="venue-name" class="lg:ml-4 lg:w-64 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
+                <input type="url" name="venue_website" id="venue_website" class="lg:ml-4 lg:w-64 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
                        wire:model="venue_website">
             </div>
             <div class="text-gray-600 my-2 mb-4 text-sm">Once the venue is created it will be selected for you on the dropdown above</div>
-            <button type="button" wire:click="save()" class="bg-olive-400 rounded px-2 py-1 hover:bg-olive-700 text-white" @click="newVenue = ! newVenue">+ Add new venue</button>
+            <button type="button" wire:click="save()" class="bg-olive-400 rounded px-2 py-1 hover:bg-olive-700 text-white">+ Add new venue</button>
         </form>
     </div>
 </div>

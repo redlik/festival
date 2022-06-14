@@ -21,12 +21,12 @@ class VenueEntry extends Component
     protected $listeners = ['venueAdded'=> 'getVenues'];
 
     protected $rules = [
-        'venue_name' => 'required|string|min:6',
-        'venue_address1' => 'string|max:500',
-        'venue_town' => 'string|max:500',
-        'venue_street' => 'string|max:500',
-        'venue_eircode' => 'string|max:6',
-        'venue_website' => 'url|string|max:500',
+        'venue_name' => 'required|string',
+        'venue_address1' => 'nullable|string|max:50',
+        'venue_town' => 'required|string|max:50',
+        'venue_street' => 'nullable|string|max:50',
+        'venue_eircode' => 'required|string|max:7',
+        'venue_website' => 'nullable|url|string|max:50',
         ];
 
     public function mount()
