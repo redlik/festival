@@ -40,6 +40,7 @@ return [
             'driver' => 'local',
             'root' => public_path('media'),
             'url' => env('APP_URL').'/media',
+            'visibility' => 'public',
             'permissions' => [
                 'file' => [
                     'public' => 0774,
@@ -56,6 +57,7 @@ return [
             'driver' => 'local',
             'root' => public_path('covers'),
             'url' => env('APP_URL').'/covers',
+            'visibility' => 'public',
             'permissions' => [
                 'file' => [
                     'public' => 0774,
