@@ -15,9 +15,9 @@ class Event extends Model implements hasMedia
 
     protected $guarded = [];
 
-    protected $casts = [
-        'target' => 'array'
-    ];
+//    protected $casts = [
+//        'target' => 'array'
+//    ];
 
     public function venue()
     {

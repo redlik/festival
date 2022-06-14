@@ -17,7 +17,7 @@
                     <div>Date & time: {{ $event->start_date }} @ {{ $event->start_time }} - {{ $event->end_time }}</div>
                     <div>Venue: {{ $event->venue->name }}</div>
                     <div>Target:
-                    @foreach($event->target as $target_item)
+                    @foreach(json_decode($event->target) as $target_item)
                         <div class="gray-pillow mr-1">
                             {{ ucfirst($target_item) }}
                         </div>

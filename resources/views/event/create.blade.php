@@ -114,23 +114,23 @@
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2 flex">
                                     <div class="flex items-center h-5 mr-8">
-                                        <input id="teens" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="Teens">
+                                        <input id="teens" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="teens">
                                         <label for="teens" class="font-medium text-gray-700">Teens</label>
                                     </div>
                                     <div class="flex items-center h-5 mr-8">
-                                        <input id="young" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="Young adults">
+                                        <input id="young" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="young-adults">
                                         <label for="young" class="font-medium text-gray-700">Young adults</label>
                                     </div>
                                     <div class="flex items-center h-5 mr-8">
-                                        <input id="older" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="Older adults">
+                                        <input id="older" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="older-adults">
                                         <label for="older" class="font-medium text-gray-700">Older adults</label>
                                     </div>
                                     <div class="flex items-center h-5 mr-8">
-                                        <input id="family" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="Family">
+                                        <input id="family" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="family">
                                         <label for="family" class="font-medium text-gray-700">Family</label>
                                     </div>
                                     <div class="flex items-center h-5">
-                                        <input id="workplace" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="Workplace">
+                                        <input id="workplace" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="workplace">
                                         <label for="workplace" class="font-medium text-gray-700">Workplace</label>
                                     </div>
                                 </div>

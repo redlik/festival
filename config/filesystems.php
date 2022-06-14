@@ -36,10 +36,16 @@ return [
             'throw' => false,
         ],
 
+        'media' => [
+            'driver' => 'local',
+            'root' => public_path('media'),
+            'url' => env('APP_URL').'/media',
+        ],
+
         'covers' => [
             'driver' => 'local',
-            'root' => public_path('img/covers'),
-            'url' => env('APP_URL').'/img/covers',
+            'root' => public_path('covers'),
+            'url' => env('APP_URL').'/covers',
         ],
 
         'public' => [
