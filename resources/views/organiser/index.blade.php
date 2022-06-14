@@ -75,7 +75,7 @@
                                                 @if($organiser->status == 'pending')
                                                 <span class="gray-pillow">{{ ucfirst($organiser->status) }}</span>
                                                 @endif
-                                                @if($organiser->status == 'approved')
+                                                @if($organiser->status == 'activated')
                                                     <span class="green-pillow">{{ ucfirst($organiser->status) }}</span>
                                                 @endif
                                                 @if($organiser->status == 'disabled')
