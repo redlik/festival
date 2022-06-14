@@ -8,9 +8,6 @@
     <div class="py-0 md:py-12">
         <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 bg-white rounded-lg shadow-lg scroll-smooth" x-data="{ limit: '0' }">
             <div>
-                <h4>Intro text?</h4>
-            </div>
-            <div>
                 <h3 class="leading-6 text-2xl mb-2">
                     Event registration form
                 </h3>
@@ -237,6 +234,10 @@
                         </div>
                     </div>
             </form>
+
+        </div>
+        <div class="mt-4 rounded bg-gray-100 p-2">
+            <p>Each event requires individual submission. If you are organising multiple events, please use this form for each one separately.</p>
         </div>
     </div>
 </x-app-layout>

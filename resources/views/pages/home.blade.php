@@ -28,7 +28,7 @@
 
                 <div>
                     <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 md:text-4xl">
-                        <span class="block">Organising a event?</span>
+                        <span class="block">Organising an event?</span>
                     </h2>
                     <span class="block text-2xl text-olive-600">Fill out the application form</span>
                 </div>
