@@ -174,7 +174,7 @@
                             </tr>
                         @empty
                             <tr colspan="4">
-                                <td><h4 class="text-center">No attendees registered yet</h4></td>
+                                <td><h4>No attendees registered yet</h4></td>
                             </tr>
                         @endforelse
                         </tbody>
