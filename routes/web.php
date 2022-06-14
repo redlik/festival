@@ -31,7 +31,7 @@ Route::get('/organiser-submitted', function () {
     return view('organiser.submitted');
 })->name('organiser.submitted');
 
-Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
+Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin'], function () {
     Route::get('dashboard', [PagesController::class, 'adminDashboard'])->name('admin.dashboard');
     Route::get('event/{id}', [EventController::class, 'showAdmin'])->name('admin.event.show');
     Route::get('event/approval/{id}', [EventController::class, 'adminApproval'])->name('admin.event.approve');

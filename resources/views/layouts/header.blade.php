@@ -50,42 +50,16 @@
                         <a href="" class="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md
                         font-medium">Contact</a>
 
-                        @auth
+                        @role('organiser')
                             <a href="{{ route('dashboard') }}" class="hover:bg-indigo-600 hover:text-white hover:bg-olive-600 px-3 py-2 rounded-md
                     text-sm font-bold">Dashboard</a>
-                        @endauth
+                        @endrole
 
-                        <div class="relative flex">
-                            @role('admin')
-                            @if(Route::is('admin.*') )
-                                <a href="#" @click="admin = ! admin" class="bg-gray-900 hover:bg-gray-700 text-white
-                                px-3 py-2 rounded-md
-                                text-sm
-                            font-medium place-self-center" aria-current="page">Admin</a>
-                            @else
-                                <a href="#" @click="admin = ! admin" class="text-gray-300 hover:bg-gray-700
-                                hover:text-white px-3 py-2 rounded-md
-                            text-sm font-medium place-self-center">Admin</a>
-                            @endif
-                            @endrole
-                            <div :class="{'block': admin, 'hidden': ! admin}" class="origin-top-left absolute top-0
-                            mt-12 w-48
-                            rounded-md
-                            shadow-lg
-                        py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu"
-                                 aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-                                <!-- Active: "bg-gray-100", Not Active: "" -->
-                                <a href="" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200"
-                                   role="menuitem"
-                                   tabindex="-1" id="user-menu-item-0">Users</a>
-                                <a href="" class="block px-4 py-2 text-sm text-gray-700
-                                hover:bg-gray-200" role="menuitem"
-                                   tabindex="-1" id="user-menu-item-1">Events</a>
-                                <a href="" class="block px-4 py-2 text-sm text-gray-700
-                                hover:bg-gray-200" role="menuitem"
-                                   tabindex="-1" id="user-menu-item-2">Stats</a>
-                            </div>
-                        </div>
+                        @role('admin')
+                        <a href="{{ route('admin.dashboard') }}" class="hover:text-white hover:bg-olive-600 px-3 py-2 rounded-md
+                    text-sm font-bold">Dashboard</a>
+                        @endrole
+
 
 
                     </div>
@@ -135,6 +109,10 @@
                         <!-- Active: "bg-gray-100", Not Active: "" -->
                             @role('organiser')
                             <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="1" id="user-menu-item-1">Dashboard</a>
+                            @endrole
+                            @role('admin')
+                            <a href="{{ route('admin.dashboard') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="1" id="user-menu-item-1">Admin Dashboard</a>
+                            <a href="{{ route('organiser.index') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="1" id="user-menu-item-1">Organisers</a>
                             @endrole
                             <a href="{{ route('logout') }}"
                                class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="2"

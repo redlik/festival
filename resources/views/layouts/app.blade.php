@@ -32,7 +32,7 @@
 
     <!-- Page Heading -->
         @if(! Request::is('/'))
-            <header class="bg-white shadow" id="white-header z-50">
+            <header class="bg-white shadow-lg z-50" id="white-header">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     {{ $header }}
                 </div>

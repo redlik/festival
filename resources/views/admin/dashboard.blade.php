@@ -5,14 +5,14 @@
         </h2>
     </x-slot>
 
-    <div class="px-4 sm:px-6 lg:px-8 py-6 bg-white z-10">
+    <div class="px-4 sm:px-6 lg:px-8 py-6 bg-gray-100 z-10">
         <div class="max-w-7xl mx-auto">
             <div>
                 <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
 
                     <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
-                        <dt class="text-sm font-medium text-gray-500 truncate">
-                            Organisers registered
+                        <dt class="text-sm font-semibold truncate">
+                            <a href="{{ route('organiser.index') }}"><span class="text-gray-500 hover:text-indigo-500 hover:underline">Organisers registered</span> </a>
                         </dt>
                         <dd class="mt-1 text-3xl font-semibold text-gray-900">
                             {{ $organisers_count }}
@@ -20,7 +20,7 @@
                     </div>
 
                     <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
-                        <dt class="text-sm font-medium text-gray-500 truncate">
+                        <dt class="text-sm font-semibold text-gray-500 truncate">
                             Events added
                         </dt>
                         <dd class="mt-1 text-3xl font-semibold text-gray-900">
@@ -29,8 +29,8 @@
                     </div>
 
                     <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
-                        <dt class="text-sm font-medium text-gray-500 truncate">
-                            Attendees registered
+                        <dt class="text-sm font-semibold text-gray-500 truncate">
+                            <a href="#attendees" class="hover:underline hover:text-indigo-500">Attendees registered</a>
                         </dt>
                         <dd class="mt-1 text-3xl font-semibold text-gray-900">
                             {{ $attendees->count() }}
@@ -40,7 +40,7 @@
                 </dl>
             </div>
             <div>
-                <div class="p-6 border border-gray-200 rounded-lg mt-6" id="events">
+                <div class="p-6 border border-gray-200 rounded-lg mt-6 p-4 bg-white shadow-lg" id="events">
                     <div class="flex justify-between">
                         <h2 class="text-green-600">Events</h2>
                     </div>
@@ -52,6 +52,7 @@
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Organiser</th>
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Venue</th>
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Attendees</th>
+                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Status</th>
                             <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6 lg:pr-8">Edit
                                 <span class="sr-only">Edit</span>
                             </th>
@@ -89,6 +90,9 @@
                                         <div>No limit</div>
                                     @endif
                                 </td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                    {{ ucfirst($event->status) }}
+                                </td>
                                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-semibold sm:pr-6 lg:pr-8">
                                     <a href="{{ route('admin.event.show', $event) }}" class="text-indigo-600 hover:text-indigo-900 mr-2">Show details</a>
                                     <a href="#" class="text-red-600 hover:text-red-900">Delete ?</a>
@@ -104,7 +108,7 @@
                     </table>
 
                 </div>
-                <div class="p-6 border border-gray-200 rounded-lg mt-6" id="venues">
+                <div class="p-6 border border-gray-200 rounded-lg mt-6 p-4 bg-white shadow-lg" id="venues">
                     <div class="flex justify-between">
                         <h2 class="text-purple-600 mb-6">Venues</h2>
                         <button class="text-olive-400 font-semibold px-2 py-0 bg-gray-100 rounded hover:bg-gray-200">+ Add new venue</button>
@@ -146,7 +150,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="p-6 border border-gray-200 rounded-lg mt-6" id="attendees">
+                <div class="p-6 border border-gray-200 rounded-lg mt-6 p-4 bg-white shadow-lg" id="attendees">
                     <h2 class="text-olive-300 mb-6">Attendees</h2>
                     <table class="min-w-full divide-y divide-gray-300">
                         <thead class="bg-gray-50">
@@ -171,7 +175,7 @@
                             </tr>
                         @empty
                             <tr colspan="4">
-                                <td><h4>No venues created</h4></td>
+                                <td><h4>No attendees registered yes</h4></td>
                             </tr>
                         @endforelse
                         </tbody>
