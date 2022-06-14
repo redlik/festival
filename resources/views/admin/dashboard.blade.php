@@ -111,7 +111,6 @@
                 <div class="p-6 border border-gray-200 rounded-lg mt-6 p-4 bg-white shadow-lg" id="venues">
                     <div class="flex justify-between">
                         <h2 class="text-purple-600 mb-6">Venues</h2>
-                        <button class="text-olive-400 font-semibold px-2 py-0 bg-gray-100 rounded hover:bg-gray-200">+ Add new venue</button>
                     </div>
                     <table class="min-w-full divide-y divide-gray-300">
                         <thead class="bg-gray-50">
@@ -175,7 +174,7 @@
                             </tr>
                         @empty
                             <tr colspan="4">
-                                <td><h4>No attendees registered yes</h4></td>
+                                <td><h4 class="text-center">No attendees registered yet</h4></td>
                             </tr>
                         @endforelse
                         </tbody>
