@@ -1,5 +1,5 @@
 <div class="flex" id="event-list">
-    <div class="bg-gray-200 mr-4 p-2 block rounded-t" style="width: 280px">
+    <div class="bg-gray-200 mr-4 p-2 rounded-t" style="width: 280px">
         <h5 class="mb-4">Filter by</h5>
         <div class="mb-6">
             <label for="town" class="mb-2">Town events take place</label>
