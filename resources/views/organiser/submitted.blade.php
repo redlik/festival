@@ -10,6 +10,7 @@
             <div>
                 <h2>Thank you!</h2>
                 <p>Your application has been submitted. We've sent an activation email to <strong>{{ $organiser->email }}</strong> so make sure you open it and follow the process.</p>
+                <p>In rare occassions the activation email may end up in your junk/spam folder so please check it as well.</p>
                 <p>In the meantime you can view all the events that are happening at the festival here:
                     <a href="#" class="text-link">View all events</a></p>
             </div>

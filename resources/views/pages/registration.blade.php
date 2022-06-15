@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
-            {{ __('Ograniser registration form') }}
+            {{ __('Organiser Registration Form') }}
         </h2>
     </x-slot>
 
@@ -13,7 +13,7 @@
                     <strong>(Connect | Give | Take Notice | Keep Learning | Be Active)</strong> as well as raising awareness of the available supports and services in the county.</p>
                 <p>The Fest has a wide reach across Kerry and we want to continue to build on its success in 2022, which we can’t do without you! We would be delighted for you to get involved and show your support for promoting mental health and wellbeing in Kerry. You can do this by hosting an event or events that promote the Five Ways to Wellbeing. Anyone is welcome to host an event – educational bodies, organisations, agencies, businesses, sports clubs, community groups or qualified individuals!</p>
             </div>
-            <div class="my-8 p-4 rounded bg-gray-100">
+            <div class="my-8 p-4 rounded bg-gray-50">
                 <h2 class="mb-4">All you need to do is:</h2>
                 <ul class="list-disc ml-3">
                     <li><strong>Step 1</strong> – Register as an event organiser by filling in the short form below.
@@ -22,7 +22,9 @@
                     <li><strong>Step 3</strong> - Once approved, you will be sent a link to create your event(s).
                         <span class="underline">All events need to be upload by Friday 29th July to be considered.</span></li>
                 </ul>
-                <h5 class="mt-4">Please <a href="#guidelines" class="underline text-olive-600 font-bold">read the guidelines</a> for event organisers here before filling the form below.</h5>
+                <div class="mt-4 rounded p-2 bg-yellow-200 text-black"> <h5>Please
+                        <a href="#guidelines" class="underline text-olive-600 font-bold">read the guidelines</a> for event organisers here before filling the form below.
+                    </h5></div>
             </div>
             <div>
                 <h3 class="leading-6 text-2xl mb-2">
