@@ -5,8 +5,8 @@
             <label for="town" class="mb-2">Town events take place</label>
             <select name="town" id="town" class="focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md" wire:model="selected_town">
                 <option value="" selected>All towns</option>
-                @foreach($towns as $town)
-                    <option value="{{ $town->id }}">{{ $town->town }}</option>
+                @foreach($unique_towns as $town)
+                    <option value="{{ $town->town }}">{{ $town->town }}</option>
                 @endforeach
             </select>
         </div>

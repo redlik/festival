@@ -12,9 +12,10 @@ class EventList extends Component
     public $selected_town = '';
     public $group = [];
 
+    public $unique_towns = [];
+
     public function mount()
     {
-        $this->towns = Venue::has('event')->select('id', 'town')->orderBy('town', 'asc')->get();
         $this->events = $events = Event::with('venue')->approved()->get();
         $this->target = [
             'teens' => "Teens",
@@ -27,8 +28,15 @@ class EventList extends Component
 
     public function render()
     {
+        $this->towns = Venue::whereHas('event', function ($q) {
+            $q->where('status', 'published');
+        })->select('town')->orderBy('town', 'asc')->get();
+        $this->unique_towns = $this->towns->unique('town');
+
         $this->events = Event::when($this->selected_town != '', function ($query) {
-            $query->where('venue_id', $this->selected_town);
+            $query->whereHas('Venue', function ($q) {
+                $q->where('town', $this->selected_town);
+});
         })
             ->when($this->group, function ($query) {
                 $query->whereJsonContains('target', $this->group);
