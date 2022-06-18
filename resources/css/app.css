@@ -40,11 +40,11 @@
     }
 
     .button-primary {
-        @apply px-4 py-2 bg-olive-600 text-white rounded font-bold  shadow cursor-pointer uppercase tracking-wide
+        @apply px-4 py-2 bg-olive-600 text-white rounded font-bold shadow cursor-pointer uppercase tracking-wide
     }
 
     .button-red {
-        @apply px-4 py-2 bg-red-700 text-white rounded font-bold  shadow cursor-pointer uppercase tracking-wide
+        @apply px-4 py-2 bg-red-700 text-white rounded font-bold shadow cursor-pointer uppercase tracking-wide
     }
 
     .button-red:hover {
@@ -56,11 +56,11 @@
     }
 
     .button-secondary {
-        @apply px-4 py-2 bg-groovy text-groovb rounded shadow cursor-pointer
+        @apply px-4 py-2 bg-yellow-400 text-olive-400 rounded shadow cursor-pointer font-bold shadow cursor-pointer uppercase tracking-wide
     }
 
     .button-secondary:hover {
-        @apply bg-yellow-300 rounded shadow cursor-pointer
+        @apply bg-yellow-500 text-white
     }
 
     .button:hover {

@@ -26,6 +26,10 @@ Route::get('/join-us', function () {
 })->name('pages.join-us');
 
 Route::get('/events', [PagesController::class, 'events'])->name('events');
+Route::get('/contact', function () {
+    return view('pages.contact');
+})->name('pages.contact');
+Route::post('/contact', [\App\Http\Controllers\ContactController::class, 'contactFormSent'])->name('contact-form-sent');
 
 Route::get('/organiser-submitted', function () {
     return view('organiser.submitted');
@@ -41,6 +45,7 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin'], func
 Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
 
 Route::resource('organiser', OrganiserController::class);
+Route::post('event/save-draft', [EventController::class, 'saveDraft'])->name('event.save-draft');
 Route::resource('event', EventController::class);
 Route::resource('attendee', AttendeeController::class);
 
