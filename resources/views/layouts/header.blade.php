@@ -32,7 +32,7 @@
             <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 <div class="flex-shrink-0 flex items-top">
                     <a href="/">
-                        <img class="block lg:hidden h-12 w-auto" src="{{ asset('img/logo-header.svg') }}">
+                        <img class="block lg:hidden h-20 w-auto" src="{{ asset('img/logo-header.svg') }}">
                         <img class="hidden lg:block w-24 bg-white p-3 shadow-lg object-contain" src="{{ asset('img/logo-header.svg') }}">
                     </a>
                 </div>
@@ -44,10 +44,10 @@
                         <a href="{{ route('events') }}" class="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md
                         font-medium">Events</a>
 
-                        <a href="" class="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md
+                        <a href="{{ route('pages.about') }}" class="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md
                         font-medium">About</a>
 
-                        <a href="" class="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md
+                        <a href="{{ route('pages.contact') }}" class="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md
                         font-medium">Contact</a>
 
                         @role('organiser')
@@ -57,7 +57,7 @@
 
                         @role('admin')
                         <a href="{{ route('admin.dashboard') }}" class="hover:text-white hover:bg-olive-600 px-3 py-2 rounded-md
-                    text-sm font-bold">Dashboard</a>
+                    text-sm font-bold">Admin Dashboard</a>
                         @endrole
 
 
@@ -65,7 +65,7 @@
                     </div>
                 </div>
             </div>
-            <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+            <div class="absolute inset-y-0 right-0 hidden md:flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 @guest
                     <a href="{{ route('pages.join-us') }}">
                         <button type="button" class="button-green mr-4">
@@ -133,13 +133,17 @@
     <div :class="{'block': open, 'hidden': ! open}" class="sm:hidden" id="mobile-menu">
         <div class="px-2 pt-2 pb-3 space-y-1">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a href="/" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Home</a>
+            <a href="/" class="text-gray-700 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Home</a>
 
-            <a href="/events" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Events</a>
+            <a href="/events" class="text-gray-700 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Events</a>
 
-            <a href="/about" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</a>
+            <a href="/about" class="text-gray-700 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</a>
 
-            <a href="/contact-us" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contact us</a>
+            <a href="/contact" class="text-gray-700 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contact us</a>
+
+            <a href="/login" class="text-green-700 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-bold uppercase">Login</a>
+
+            <a href="/join-us" class="text-red-700 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-bold uppercase">Registration</a>
         </div>
     </div>
 </nav>
