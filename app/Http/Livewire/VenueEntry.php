@@ -14,6 +14,8 @@ class VenueEntry extends Component
 
     public $venues;
 
+    public $edit_venue;
+
     public $selected;
 
     public $showVenue = false;
@@ -29,10 +31,11 @@ class VenueEntry extends Component
         'venue_website' => 'nullable|url|string|max:50',
         ];
 
-    public function mount()
+    public function mount($edit_venue = NULL)
     {
        $this->venues = Venue::select('id', 'name', 'town')->orderBy('name', 'asc')->get();
        $this->selected = 0;
+       $this->edit_venue = $edit_venue;
     }
 
     public function save()

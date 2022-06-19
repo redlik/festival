@@ -1,12 +1,17 @@
 <div class="mt-1 sm:mt-0 sm:col-span-2 livewired" x-data="{ newVenue: @entangle('showVenue').defer }">
-    <select id="venue" name="venue" class="max-w-lg block focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
+    <select id="venue" name="venue_id" class="max-w-lg block focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
         <option value="" disabled
-                @if($selected == 0)
-                    selected
-                @endif
+                    @if($selected == 0 || empty($edit_venue))
+                        selected
+                    @endif
         >Select venue from the list</option>
         @foreach($venues as $venue)
             <option value="{{ $venue->id }}"
+            @isset($edit_venue)
+                @if($edit_venue == $venue->id)
+                    selected
+                @endif
+            @endisset
             @if($selected == $venue->id)
                 selected
             @endif

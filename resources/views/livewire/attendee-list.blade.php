@@ -39,7 +39,6 @@
                 </td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $attendee->created_at->format('d M Y H:i') }}</td>
                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-semibold sm:pr-6 lg:pr-8">
-                    <a href="#" class="text-indigo-600 hover:text-indigo-900 mr-2">Edit</a>
                     <a href="#" class="text-red-600 hover:text-red-900">Delete</a>
                 </td>
             </tr>

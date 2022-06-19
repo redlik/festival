@@ -42,20 +42,26 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'venue' => 'required',
             'start_time' => 'required',
             'end_time' => 'nullable|after:start_time',
         ],[
-            'end_time.after' => 'The end time should be after the start time',
+            'end_time.after' => 'The end time should be set after the start time',
         ]);
 
         if ($validator->fails()) {
             return redirect('/event/create')
                 ->withErrors($validator)
                 ->withInput();
+        }
+
+        if($request->input('target') == ''){
+            $target = [];
+        } else
+        {
+            $target = json_encode($request->input('target'));
         }
 
         if(! $request->input('attendees')) {
@@ -74,7 +80,7 @@ class EventController extends Controller
             'end_time' => $request->input('end_time'),
             'description' => $request->input('description'),
             'type' => $request->input('type'),
-            'target' => json_encode($request->input('target')),
+            'target' => $target,
             'limited' => $request->input('limited'),
             'attendees' => $attendees,
             'venue_id' => $request->input('venue'),
@@ -97,6 +103,66 @@ class EventController extends Controller
 
         return redirect()->route('dashboard')->with('event_submitted', 'Event submitted');
 
+    }
+
+    public function saveDraft(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+            'venue' => 'required',
+            'start_time' => 'required',
+            'end_time' => 'nullable|after:start_time',
+        ],[
+            'end_time.after' => 'The end time should be set after the start time',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/event/create')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        if($request->input('target') == ''){
+            $target = [];
+        } else
+        {
+            $target = json_encode($request->input('target'));
+        }
+
+        if(! $request->input('attendees')) {
+            $attendees = 0;
+        } else {
+            $attendees = $request->input('attendees');
+        }
+
+        $slug = rand(1001,9999)."-".Str::of($request->input('name'))->slug('-');
+
+        $event = Event::create([
+            'name' => $request->input('name'),
+            'slug' => $slug,
+            'start_date' => $request->input('start_date'),
+            'start_time' => $request->input('start_time'),
+            'end_time' => $request->input('end_time'),
+            'description' => $request->input('description'),
+            'type' => $request->input('type'),
+            'target' => $target,
+            'limited' => $request->input('limited'),
+            'attendees' => $attendees,
+            'venue_id' => $request->input('venue_id'),
+            'user_id' => Auth::id(),
+            'covid' => $request->input('covid'),
+            'leader_name' => $request->input('leader_name'),
+            'leader_phone' => $request->input('leader_phone'),
+            'leader_email' => $request->input('leader_email'),
+            'status' => 'draft',
+        ]);
+
+        if($request->hasFile('file-upload')) {
+            $event->addMediaFromRequest('file-upload')
+                ->toMediaCollection('cover');;
+        }
+
+        return redirect()->route('dashboard')->with('event_saved', 'Event saved');
     }
 
     /**
@@ -125,7 +191,7 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        //
+        return view('event.edit', compact('event'));
     }
 
     public function adminApproval($event_id)
@@ -147,11 +213,85 @@ class EventController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Event  $event
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Event $event)
     {
-        //
+        if(! $request->input('attendees')) {
+            $attendees = 0;
+        } else {
+            $attendees = $request->input('attendees');
+        }
+
+        if($request->input('target') == ''){
+            $target = [];
+        } else
+        {
+            $target = json_encode($request->input('target'));
+        }
+
+        if($request->input('name') != $event->name) {
+            $slug = rand(1001,9999)."-".Str::of($request->input('name'))->slug('-');
+        } else {
+            $slug = $event->slug;
+        }
+
+        $event->update([
+            'name' => $request->input('name'),
+            'slug' => $slug,
+            'start_date' => $request->input('start_date'),
+            'start_time' => $request->input('start_time'),
+            'end_time' => $request->input('end_time'),
+            'venue_id' => $request->input('venue_id'),
+            'description' => $request->input('description'),
+            'type' => $request->input('type'),
+            'target' => $target,
+            'limited' => $request->input('limited'),
+            'attendees' => $attendees,
+            'leader_name' => $request->input('leader_name'),
+            'leader_phone' => $request->input('leader_phone'),
+            'leader_email' => $request->input('leader_email'),
+        ]);
+
+        return back()->with('saved', 'Record Successfully Updated!');
+    }
+
+    public function updateAndSubmit(Request $request, Event $event)
+    {
+        if(! $request->input('attendees')) {
+            $attendees = 0;
+        } else {
+            $attendees = $request->input('attendees');
+        }
+
+        if($request->input('target') == ''){
+            $target = [];
+        } else
+        {
+            $target = json_encode($request->input('target'));
+        }
+
+        $event->update([
+            'name' => $request->input('name'),
+            'start_date' => $request->input('start_date'),
+            'start_time' => $request->input('start_time'),
+            'end_time' => $request->input('end_time'),
+            'venue_id' => $request->input('venue_id'),
+            'description' => $request->input('description'),
+            'type' => $request->input('type'),
+            'target' => $target,
+            'limited' => $request->input('limited'),
+            'attendees' => $attendees,
+            'leader_name' => $request->input('leader_name'),
+            'leader_phone' => $request->input('leader_phone'),
+            'leader_email' => $request->input('leader_email'),
+        ]);
+
+        $admin = User::where('email', 'admin@kerrymentalhealthandwellbeingfest.com')->first();
+
+        $admin->notify(new EventSubmitted($event));
+
+        return back()->with('submitted', 'Record Successfully Submitted!');
     }
 
     /**
@@ -162,6 +302,9 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        //
+        $message = 'Event '.$event->name.' has been deleted';
+        $event->delete();
+
+        return back()->with('deleted', $message);
     }
 }

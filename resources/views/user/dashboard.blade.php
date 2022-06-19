@@ -26,10 +26,19 @@
                             </ul>
                         </div>
                     @endif
+                    @if (\Session::has('event_saved'))
+                        <div class="bg-gray-100 border border-gray-400 shadow rounded p-2 my-4">
+                            Event has been saved. Once you have all the information in place don't forget to submit it.
+                        </div>
+                    @endif
+                    @if (Session::has('deleted'))
+                        <div class="bg-red-100 border border-red-700 shadow rounded p-2 my-4 text-red-600">{{ Session::get('deleted') }}</div>
+                    @endif
                     <table class="min-w-full divide-y divide-gray-300">
                         <thead class="bg-gray-50">
                         <tr>
-                            <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8">Name</th>
+                            <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8">#</th>
+                            <th scope="col" class="py-3.5 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8">Name</th>
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Date & Time</th>
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Organiser</th>
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Venue</th>
@@ -44,6 +53,9 @@
                         @forelse($events as $event)
                             <tr>
                                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8">
+                                    {{ $loop->iteration }}
+                                </td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-900">
                                     <a href="{{ route('event.show', $event) }}" class="hover:underline">
                                         {{ $event->name }}
 
@@ -51,7 +63,7 @@
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     <div>{{ $event->start_date }}</div>
-                                    <div>{{ $event->start_time }} - {{ $event->end_time }}</div>
+                                    <div>{{ \Carbon\Carbon::parse($event->start_time)->format('H:i') }} - {{ \Carbon\Carbon::parse($event->end_time)->format('H:i') }}</div>
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     <div>
@@ -76,8 +88,17 @@
                                     {{ ucfirst($event->status) }}
                                 </td>
                                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-semibold sm:pr-6 lg:pr-8">
-                                    <a href="#" class="text-indigo-600 hover:text-indigo-900 mr-2">Edit</a>
-                                    <a href="#" class="text-red-600 hover:text-red-900">Delete</a>
+                                    <a href="{{ route('event.edit', $event) }}" class="text-indigo-600 hover:text-indigo-900 mr-2">Edit</a>
+                                    @if($event->attendee_count > 0)
+                                        <div class="text-gray-500 inline-block" title="Event has attendees, cannot be deleted">Delete</div>
+                                    @else
+                                        <form method="POST" action="{{ route('event.destroy', $event) }}" class="inline-block">
+                                            @csrf
+                                            @method("DELETE")
+                                            <button type="submit" class="text-red-600 hover:text-red-900 hover:underline">Delete</button>
+                                        </form>
+                                    @endif
+
                                 </td>
                             </tr>
                         @empty
