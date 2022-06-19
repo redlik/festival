@@ -29,6 +29,9 @@ Route::get('/events', [PagesController::class, 'events'])->name('events');
 Route::get('/contact', function () {
     return view('pages.contact');
 })->name('pages.contact');
+Route::get('/about', function () {
+    return view('pages.about');
+})->name('pages.about');
 Route::post('/contact', [\App\Http\Controllers\ContactController::class, 'contactFormSent'])->name('contact-form-sent');
 
 Route::get('/organiser-submitted', function () {
