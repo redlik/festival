@@ -1063,6 +1063,9 @@ tr:nth-child(even) {
 .h-\[500px\] {
   height: 500px;
 }
+.h-\[225px\] {
+  height: 225px;
+}
 .max-h-full {
   max-height: 100%;
 }
@@ -1562,6 +1565,10 @@ tr:nth-child(even) {
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
+}
+.object-center {
+  -o-object-position: center;
+     object-position: center;
 }
 .p-4 {
   padding: 1rem;

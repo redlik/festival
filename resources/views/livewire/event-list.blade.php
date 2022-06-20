@@ -24,9 +24,9 @@
         <ul role="list" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-3 ">
             @forelse($events as $event)
                 <li class="relative">
-                    <div class="group block w-full h-max-32 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
+                    <div class="group block w-full h-[225px] rounded-lg bg-white focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
                         <a href="{{ route('event.show', $event) }}">
-                            <img src="{{ $event->getFirstMediaUrl('cover') }}" alt="" class="object-cover pointer-events-none group-hover:opacity-75">
+                            <img src="{{ $event->getFirstMediaUrl('cover') }}" alt="" class="object-cover object-center pointer-events-none bg-white w-full h-full group-hover:opacity-75">
                             <button type="button" class="absolute inset-0 focus:outline-none">
                                 <span class="sr-only">View details for IMG_4985.HEIC</span>
                             </button>

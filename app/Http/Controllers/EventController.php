@@ -330,6 +330,11 @@ class EventController extends Controller
             'leader_email' => $request->input('leader_email'),
         ]);
 
+        if($request->hasFile('file-upload')) {
+            $event->addMediaFromRequest('file-upload')
+                ->toMediaCollection('cover');;
+        }
+
         return back()->with('saved', 'Record Successfully Updated!');
     }
 
@@ -365,6 +370,11 @@ class EventController extends Controller
             'leader_email' => $request->input('leader_email'),
             'status' => 'pending',
         ]);
+
+        if($request->hasFile('file-upload')) {
+            $event->addMediaFromRequest('file-upload')
+                ->toMediaCollection('cover');;
+        }
 
         $admin = User::where('email', 'admin@kerrymentalhealthandwellbeingfest.com')->first();
         $admin->notify(new EventSubmitted($event));

@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 bg-white rounded-lg shadow-lg scroll-smooth">
             <div class="grid grid-cols-5 gap-4">
                 <div class="col-span-2">
-                    <img src="https://source.unsplash.com/1600x900/?nature" alt="">
+                    <img src="{{ $event->getFirstMediaUrl('cover') }}" alt="">
                 </div>
                 <div class="col-span-3">
                     <h4 class="font-bold text-xl">{{ $event->name }}</h4>
