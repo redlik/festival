@@ -15,7 +15,7 @@
             <form class="space-y-8 divide-y divide-gray-200" method="POST" action="{{ route('event.store') }}" id="event-registration" enctype="multipart/form-data">
                 <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
                     @if ($errors->any())
-                        <div class="bg-red-200 rounded border border-red-400">
+                        <div class="bg-red-200 rounded border border-red-400 pl-2">
                             <ul class="list-disc list-inside">
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
@@ -41,9 +41,9 @@
                                     <div class="text-xs">If your event doesn't have the end time set, leave the field blank</div>
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                    <input id="start_date" name="start_date" type="date" class="lg:w-48 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" min="<?php echo date("Y-m-d"); ?>" required>
-                                    <input id="start_time" name="start_time" type="time" class="lg:ml-4 lg:w-48 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" required>
-                                    <input id="end_time" name="end_time" type="time" class="lg:ml-4 lg:w-48 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md">
+                                    <input id="start_date" name="start_date" type="date" class="lg:w-48 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" min="<?php echo date("Y-m-d"); ?>" required value="{{ old('start_date') }}">
+                                    <input id="start_time" name="start_time" type="time" class="lg:ml-4 lg:w-48 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" required value="{{ old('start_time') }}">
+                                    <input id="end_time" name="end_time" type="time" class="lg:ml-4 lg:w-48 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" value="{{ old('end_time') }}">
                                 </div>
                             </div>
 
@@ -60,7 +60,7 @@
                                     Event(s) details <span class="text-red-700">*</span>
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                    <textarea id="description" name="description" rows="3" class="max-w-lg shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md" required></textarea>
+                                    <textarea id="description" name="description" rows="3" class="max-w-lg shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md" required>{{ old('description') }}</textarea>
                                     <p class="mt-2 text-sm text-gray-700 font-semibold">This will be used to describe the events to the public in promotional material - please provide two to three sentences.</p>
                                 </div>
                             </div>
@@ -98,9 +98,9 @@
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
                                     <select id="type" name="type" class="max-w-lg block focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md" required>
                                         <option value="" disabled selected>Select from the list</option>
-                                        <option value="indoor">Indoor</option>
-                                        <option value="outdoor">Outdoor</option>
-                                        <option value="online">Online</option>
+                                        <option value="indoor" @selected(old('type') == 'indoor')>Indoor</option>
+                                        <option value="outdoor" @selected(old('type') == 'outdoor')>Outdoor</option>
+                                        <option value="online" @selected(old('type') == 'online')>Online</option>
                                     </select>
                                 </div>
                             </div>
@@ -111,23 +111,24 @@
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2 flex">
                                     <div class="flex items-center h-5 mr-8">
-                                        <input id="teens" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="teens">
+                                        <input id="teens" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="teens"
+                                       @checked(is_array(old('target')) && in_array('teens', old('target')))
                                         <label for="teens" class="font-medium text-gray-700">Teens</label>
                                     </div>
                                     <div class="flex items-center h-5 mr-8">
-                                        <input id="young" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="young-adults">
+                                        <input id="young" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="young-adults" @checked(is_array(old('target')) && in_array('young-adults', old('target')))>
                                         <label for="young" class="font-medium text-gray-700">Young adults</label>
                                     </div>
                                     <div class="flex items-center h-5 mr-8">
-                                        <input id="older" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="older-adults">
+                                        <input id="older" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="older-adults" @checked(is_array(old('target')) && in_array('older-adults', old('target')))>
                                         <label for="older" class="font-medium text-gray-700">Older adults</label>
                                     </div>
                                     <div class="flex items-center h-5 mr-8">
-                                        <input id="family" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="family">
+                                        <input id="family" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="family" @checked(is_array(old('target')) && in_array('family', old('target')))>
                                         <label for="family" class="font-medium text-gray-700">Family</label>
                                     </div>
                                     <div class="flex items-center h-5">
-                                        <input id="workplace" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="workplace">
+                                        <input id="workplace" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="workplace" @checked(is_array(old('target')) && in_array('workplace', old('target')))>
                                         <label for="workplace" class="font-medium text-gray-700">Workplace</label>
                                     </div>
                                 </div>
@@ -141,11 +142,11 @@
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2 flex">
                                     <div class="flex items-center h-5 mr-8">
-                                        <input x-model="limit" id="yes" name="limited" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="1">
+                                        <input x-model="limit" id="yes" name="limited" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="1" @checked(old('limited', 1))>
                                         <label for="yes" class="font-medium text-gray-700">Yes</label>
                                     </div>
                                     <div class="flex items-center h-5 mr-8">
-                                        <input x-model="limit" id="no" name="limited" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="0" checked>
+                                        <input x-model="limit" id="no" name="limited" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="0" checked @checked(old('limited', 0))>
                                         <label for="no" class="font-medium text-gray-700">No</label>
                                     </div>
                                 </div>
@@ -158,7 +159,7 @@
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
                                     <input type="number" name="attendees" id="attendees"
                                            x-bind:disabled="(limit == '1') ? false : true" x-bind:required="(limit == '1') ? true : false"
-                                           class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md" min="0" value="0" placeholder="0">
+                                           class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md" min="0" value="{{ old('attendees') ?? 0 }}" placeholder="0">
                                 </div>
                             </div>
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
@@ -169,16 +170,16 @@
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2 flex">
                                     <div class="flex items-center h-5 mr-8">
-                                        <input id="yes" name="covid" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="1">
-                                        <label for="yes" class="font-medium text-gray-700">Yes</label>
+                                        <input id="yes" name="covid" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="yes" @checked( old('covid', 'yes') )>
+                                        <label for="yes" class="font-medium text-gray-700" >Yes</label>
                                     </div>
                                     <div class="flex items-center h-5 mr-8">
-                                        <input id="no" name="covid" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="0" checked>
+                                        <input id="no" name="covid" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="no" checked @checked( old('covid', 'no') )>
                                         <label for="no" class="font-medium text-gray-700">No</label>
                                     </div>
                                     <div class="flex items-center h-5 mr-8">
-                                        <input id="no" name="covid" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="0">
-                                        <label for="no" class="font-medium text-gray-700">Doesn't apply</label>
+                                        <input id="na" name="covid" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="na" @checked( old('covid', 'na') )>
+                                        <label for="na" class="font-medium text-gray-700">Doesn't apply</label>
                                     </div>
                                 </div>
                             </div>
@@ -188,20 +189,20 @@
                     <div class="pt-8 space-y-6 sm:pt-10 sm:space-y-5">
                         <div>
                             <h3 class="text-lg leading-6 font-medium text-gray-900">
-                                Event leader
+                                Event facilitator
                             </h3>
                             <p class="mt-1 max-w-2xl text-sm text-gray-700">
-                                Please enter details of the event leader if the details are different to the event organiser's
+                                Please enter details of the event facilitator if the details are different to the event organiser's
                             </p>
                         </div>
                         <div class="space-y-6 sm:space-y-5">
 
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                                 <label for="leader_name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                                    Leader's name
+                                    Facilitator's name
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                    <input type="text" name="leader_name" id="leader_name" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md">
+                                    <input type="text" name="leader_name" id="leader_name" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" value="{{ old('leader_name') }}">
                                 </div>
                             </div>
 
@@ -210,33 +211,36 @@
                                     Phone
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                    <input type="text" name="leader_phone" id="leader_phone" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md">
+                                    <input type="text" name="leader_phone" id="leader_phone" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" value="{{ old('leader_phone') }}">
                                 </div>
                             </div>
 
-                            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="leader_email" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                                    Email
-                                </label>
-                                <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                    <input type="text" name="leader_email" id="leader_email" class="block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
+                            <div class=" sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                                    <label for="leader_email" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                                        Email
+                                    </label>
+                                    <div class="mt-1 sm:mt-0 sm:col-span-2">
+                                        <input type="text" name="leader_email" id="leader_email" class="block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md" value="{{ old('leader_email') }}">
                                 </div>
                             </div>
 
                         </div>
                     </div>
 
-                    <div class="pt-5">
-                        <div class="flex justify-start">
-                            <button type="submit" class="button-primary">
-                                Submit event
-                            </button>
-                        </div>
-                    </div>
+                    <div class=" pt-5">
+                                        <div class="flex justify-start">
+                                            <button type="submit" class="button-primary" name="submit">
+                                                Submit event
+                                            </button>
+                                            <button formaction="{{ route('event.save-draft') }}" class="button-secondary ml-8" name="save">
+                                                Save draft
+                                            </button>
+                                        </div>
+                                    </div>
             </form>
 
         </div>
-        <div class="mt-4 rounded bg-gray-100 p-2">
+        <div class="mt-4 rounded bg-yellow-100 p-2">
             <p>Each event requires individual submission. If you are organising multiple events, please use this form for each one separately.</p>
         </div>
     </div>

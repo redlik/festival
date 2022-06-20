@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class VenueEntry extends Component
 {
-    public $venue, $venue_name, $venue_address1, $venue_street, $venue_town, $venue_eircode, $venue_county, $venue_website;
+    public $venue_id, $venue_name, $venue_address1, $venue_street, $venue_town, $venue_eircode, $venue_county, $venue_website;
 
     public Venue $newVenue;
 

@@ -6,7 +6,7 @@
                     @endif
         >Select venue from the list</option>
         @foreach($venues as $venue)
-            <option value="{{ $venue->id }}"
+            <option value="{{ $venue->id }}" @selected(old('venue_id' == $venue->id))
             @isset($edit_venue)
                 @if($edit_venue == $venue->id)
                     selected

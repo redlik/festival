@@ -23,9 +23,8 @@ class UserController extends Controller
     public function dashboard()
     {
         $events = Event::where('user_id', Auth::id())->orderBy('start_date', 'asc')->withCount('attendee')->with('attendee', 'venue', 'user.organiser')->get();
-        $attendees = Auth::user()->attendees()->with('event')->get();
 
-        return view('user.dashboard', compact('events',  'attendees'));
+        return view('user.dashboard', compact('events'));
     }
 
 

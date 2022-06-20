@@ -31,6 +31,7 @@
                             </ul>
                         </div>
                     @endif
+                        <input type="hidden" name="event_number" value="{{ $event->id }}">
                     <div>
                         @csrf
                         @method('PATCH')
@@ -251,7 +252,7 @@
                     <div class=" pt-5">
                         <div class="flex justify-start">
                             @if($event->status != 'published')
-                                <button type="submit" class="button-primary" name="submit">
+                                <button formaction="{{ route('event.update-and-submit', $event) }}" class="button-primary" name="submit">
                                     Save changes and submit
                                 </button>
 

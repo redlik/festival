@@ -44,7 +44,7 @@ class EventController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
-            'venue' => 'required',
+            'venue_id' => 'required',
             'start_time' => 'required',
             'end_time' => 'nullable|after:start_time',
         ],[
@@ -83,7 +83,7 @@ class EventController extends Controller
             'target' => $target,
             'limited' => $request->input('limited'),
             'attendees' => $attendees,
-            'venue_id' => $request->input('venue'),
+            'venue_id' => $request->input('venue_id'),
             'user_id' => Auth::id(),
             'covid' => $request->input('covid'),
             'leader_name' => $request->input('leader_name'),
@@ -109,11 +109,12 @@ class EventController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
-            'venue' => 'required',
+            'venue_id' => 'required',
             'start_time' => 'required',
             'end_time' => 'nullable|after:start_time',
         ],[
             'end_time.after' => 'The end time should be set after the start time',
+            'venue_id.required' => "Don't forget to select a venue"
         ]);
 
         if ($validator->fails()) {
@@ -165,6 +166,70 @@ class EventController extends Controller
         return redirect()->route('dashboard')->with('event_saved', 'Event saved');
     }
 
+    public function saveAndSubmit(Request $request, Event $event)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+            'venue_id' => 'required',
+            'start_time' => 'required',
+            'end_time' => 'nullable|after:start_time',
+        ],[
+            'end_time.after' => 'The end time should be set after the start time',
+            'venue_id.required' => "Don't forget to select a venue"
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/event/create')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        if($request->input('target') == ''){
+            $target = [];
+        } else
+        {
+            $target = json_encode($request->input('target'));
+        }
+
+        if(! $request->input('attendees')) {
+            $attendees = 0;
+        } else {
+            $attendees = $request->input('attendees');
+        }
+
+        $slug = rand(1001,9999)."-".Str::of($request->input('name'))->slug('-');
+
+        $event = Event::create([
+            'name' => $request->input('name'),
+            'slug' => $slug,
+            'start_date' => $request->input('start_date'),
+            'start_time' => $request->input('start_time'),
+            'end_time' => $request->input('end_time'),
+            'description' => $request->input('description'),
+            'type' => $request->input('type'),
+            'target' => $target,
+            'limited' => $request->input('limited'),
+            'attendees' => $attendees,
+            'venue_id' => $request->input('venue_id'),
+            'user_id' => Auth::id(),
+            'covid' => $request->input('covid'),
+            'leader_name' => $request->input('leader_name'),
+            'leader_phone' => $request->input('leader_phone'),
+            'leader_email' => $request->input('leader_email'),
+            'status' => 'draft',
+        ]);
+
+        if($request->hasFile('file-upload')) {
+            $event->addMediaFromRequest('file-upload')
+                ->toMediaCollection('cover');;
+        }
+
+        $admin = User::where('email', 'admin@kerrymentalhealthandwellbeingfest.com')->first();
+        $admin->notify(new EventSubmitted($event));
+
+        return redirect()->route('dashboard')->with('event_submitted', 'Event submitted');
+    }
+
     /**
      * Display the specified resource.
      *
@@ -206,6 +271,18 @@ class EventController extends Controller
         $event = Event::find($event_id)->update(['status' => 'pending']);
 
         return redirect()->back()->with('pending', 'This event has been un-published.');
+    }
+
+    public function cancel($id)
+    {
+        $event = Event::findOrFail($id);
+
+        $event->update([
+            'status' => 'cancelled'
+        ]);
+        $message = 'Event '.$event->name.' has been cancelled';
+
+        return redirect()->back()->with('cancelled', $message);
     }
 
     /**
@@ -256,8 +333,9 @@ class EventController extends Controller
         return back()->with('saved', 'Record Successfully Updated!');
     }
 
-    public function updateAndSubmit(Request $request, Event $event)
+    public function updateAndSubmit(Request $request, Event $event_not)
     {
+
         if(! $request->input('attendees')) {
             $attendees = 0;
         } else {
@@ -270,7 +348,7 @@ class EventController extends Controller
         {
             $target = json_encode($request->input('target'));
         }
-
+        $event = Event::find($request->input('event_number'));
         $event->update([
             'name' => $request->input('name'),
             'start_date' => $request->input('start_date'),
@@ -285,13 +363,13 @@ class EventController extends Controller
             'leader_name' => $request->input('leader_name'),
             'leader_phone' => $request->input('leader_phone'),
             'leader_email' => $request->input('leader_email'),
+            'status' => 'pending',
         ]);
 
         $admin = User::where('email', 'admin@kerrymentalhealthandwellbeingfest.com')->first();
-
         $admin->notify(new EventSubmitted($event));
 
-        return back()->with('submitted', 'Record Successfully Submitted!');
+        return redirect()->route('dashboard')->with('event_submitted', 'Event submitted');
     }
 
     /**
