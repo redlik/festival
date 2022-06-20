@@ -13,7 +13,7 @@ class ContactController extends Controller
 
             $m->from($request->email, $request->name);
 
-            $m->to('redlich.rafal@gmail.com', 'Kerry Fest Admins')
+            $m->to('admin@kerrymentalhealthandwellbeingfest.com', 'Kerry Fest Admins')
                 ->subject('Contact form query');
 
         });
