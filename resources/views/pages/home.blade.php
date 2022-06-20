@@ -5,8 +5,8 @@
     <div id="hero" style="background-image: url('{{ asset('img/home-hero.jpg') }}');background-size: cover" class="bg-center">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-wrap items-center py-48">
             <div class="w-full md:w-1/2 p-4 rounded-lg" style="background-color: rgba(213, 208, 136, 0.95)">
-                <h1 class="text-5xl fancy mb-4">Welcome to Kerry Mental Health & Welbeing Fest 2022</h1>
-                <h4 class="font-semibold mb-4">Held between Saturday, 8th – 15th October 2022 the Fest aims to raise awareness of the available supports and services in the county as well as empower people to engage with the ‘Five Ways to Wellbeing’ through offering a dynamic and interactive programme of events.</h4>
+                <h1 class="text-4xl mb-4 fancy font-semibold">Welcome to Kerry Mental Health & Welbeing Fest 2022</h1>
+                <div class="font-semibold text-gray-800 mb-4">Held between Saturday, 8th – 15th October 2022 the Fest aims to raise awareness of the available supports and services in the county as well as empower people to engage with the ‘Five Ways to Wellbeing’ through offering a dynamic and interactive programme of events.</div>
                 <a href="{{ route('events') }}">
                     <button class="button-primary">Browse events</button>
                 </a>
@@ -29,7 +29,7 @@
             <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:py-8 lg:px-8 lg:flex lg:items-center lg:justify-between">
 
                 <div>
-                    <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 md:text-4xl">
+                    <h2 class="text-2xl tracking-tight uppercase text-gray-700 md:text-4xl">
                         <span class="block">Organising an event?</span>
                     </h2>
                     <span class="block text-2xl text-olive-600">Fill out the application form</span>
@@ -46,7 +46,7 @@
     <div class="bg-white">
         <div class="max-w-7xl mx-auto px-6 lg:px-8 py-8">
             <div class="">
-                <h3 class="font-bold text-2xl mb-4">Upcoming events</h3>
+                <h3 class="uppercase text-2xl mb-4">Upcoming events</h3>
             </div>
             @livewire('event-list')
         </div>
