@@ -73,7 +73,9 @@
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     <div>
+                                        <a href="{{ route('organiser.show', $event->user->organiser->id ) }}" class="font-semibold hover:text-indigo-500 hover:underline">
                                         {{ $event->user->organiser->name }}
+                                        </a>
                                     </div>
                                     <div>
                                         {{ $event->user->organiser->org }}

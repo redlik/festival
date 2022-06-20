@@ -14,7 +14,9 @@
                             <p class="mt-2 text-sm text-gray-700">A list of all the organisers submitted via registration form.</p>
                         </div>
                         <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                            <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Add new organiser</button>
+                            <a href="{{ route('organiser.create') }}">
+                                <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Add new organiser</button>
+                            </a>
                         </div>
                     </div>
                     @if (session('approved'))
@@ -82,19 +84,16 @@
                                                     <span class="gray-pillow">{{ ucfirst($organiser->status) }}</span>
                                                 @endif
                                             </td>
-                                            <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                                <a href="{{ route('organiser.show', $organiser) }}" class="text-indigo-600 hover:text-indigo-900 font-bold mr-2">View details</a>
-                                                @if($organiser->status == 'pending')
-                                                <a href="{{ route('approved.organiser', $organiser) }}" class="text-green-600 hover:text-green-900 font-bold mr-2">Approve</a>
-                                                @endif
+                                            <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-semibold sm:pr-6">
+                                                <a href="{{ route('organiser.show', $organiser) }}" class="text-indigo-600 hover:text-indigo-900 mr-2">View details</a>
                                                 @if($organiser->status == 'activated')
-                                                    <a href="{{ route('approved.disabled', $organiser) }}" class="text-green-600 hover:text-green-900 font-bold mr-2">Disable</a>
+                                                    <a href="{{ route('approved.disabled', $organiser) }}" class="text-green-600 hover:text-green-900 mr-2">Disable</a>
                                                 @endif
                                                 @if($organiser->status == 'disabled')
-                                                    <a href="{{ route('approved.organiser', $organiser) }}" class="text-green-600 hover:text-green-900 font-bold mr-2">Enable</a>
+                                                    <a href="{{ route('approved.organiser', $organiser) }}" class="text-green-600 hover:text-green-900 mr-2">Enable</a>
                                                 @endif
 
-                                                    <a href="#" class="text-red-600 hover:text-red-900 font-bold">Delete</a>
+                                                    <a href="#" class="text-red-600 hover:text-red-900">Delete</a>
                                             </td>
                                         </tr>
                                         @empty

@@ -33,7 +33,7 @@ class OrganiserController extends Controller
      */
     public function create()
     {
-        //
+        return view('organiser.create');
     }
 
     /**
