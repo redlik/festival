@@ -49,7 +49,7 @@ Route::get('/dashboard', [UserController::class, 'dashboard'])->middleware('auth
 
 Route::resource('organiser', OrganiserController::class);
 Route::post('event-save-draft', [EventController::class, 'saveDraft'])->name('event.save-draft');
-Route::post('event-update-and-submit', [EventController::class, 'updateAndSubmit'])->name('event.update-and-submit');
+Route::patch('event-update-and-submit', [EventController::class, 'updateAndSubmit'])->name('event.update-and-submit');
 Route::get('event-cancel/{id}', [EventController::class, 'cancel'])->name('event.cancel');
 Route::resource('event', EventController::class);
 Route::resource('attendee', AttendeeController::class);
