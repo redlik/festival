@@ -7,31 +7,38 @@
 
     <div class="py-0 md:py-12">
         <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 bg-white rounded-lg shadow-lg scroll-smooth">
-            <img src="https://source.unsplash.com/1600x900/?nature" alt="">
-            <div class="flex my-6">
-                <div class="w-2/3">
-                    {{ $event->description }}
+            <div class="grid grid-cols-5 gap-4">
+                <div class="col-span-2">
+                    <img src="https://source.unsplash.com/1600x900/?nature" alt="">
                 </div>
-                <div class="w-1/3">
-                    <h4>Details</h4>
-                    <div>Date & time: {{ $event->start_date }} @ {{ $event->start_time }} - {{ $event->end_time }}</div>
-                    <div>Venue: {{ $event->venue->name }}</div>
-                    <div>Target:
-                    @foreach(json_decode($event->target) as $target_item)
-                        <div class="gray-pillow mr-1">
-                            {{ ucfirst($target_item) }}
-                        </div>
+                <div class="col-span-3">
+                    <h4 class="font-bold text-xl">{{ $event->name }}</h4>
+                    <div>
+                        {{ $event->description }}
+                    </div>
+                    <div class="my-4">
+                        <h5 class="uppercase underline mb-2">Details:</h5>
+                        <div class="mb-2"><strong>Date & time:</strong> {{ \Carbon\Carbon::parse($event->start_date)->format('d M') }} @ {{ \Carbon\Carbon::parse($event->start_time)->format('H:i') }} : {{ \Carbon\Carbon::parse($event->end_time)->format('H:i') }}</div>
+                        <div class="mb-2"><strong>Venue:</strong> {{ $event->venue->name }}</div>
+                        <div class="mb-2"><strong>Organiser:</strong> {{ $event->user->organiser->name }}</div>
+                        <div class="mb-2"><strong>Target:</strong>
+                            @foreach(json_decode($event->target) as $target_item)
+                                <div class="gray-pillow mr-1">
+                                    {{ ucfirst($target_item) }}
+                                </div>
 
-                    @endforeach
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
-            @if($event->limited != 0)
-                <div class="bg-gray-100 rounded border border-gray-300 p-6">
+                <div class="bg-gray-100 rounded border border-gray-300 p-6 mt-8">
                     <h4 class="text-gray-600">Please fill in your details below to register for this event.</h4>
+                    @if($event->limited != 0)
                     <div>
                         {{ $event->attendees - $event->attendees_count }} places left
                     </div>
+                    @endif
                     <div class="my-6">
                         <form action="{{ route('attendee.store') }}" class='' method="POST">
                             @csrf
@@ -71,7 +78,6 @@
                         </div>
                     </div>
                 </div>
-            @endif
         </div>
     </div>
 </x-app-layout>
