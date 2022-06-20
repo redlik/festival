@@ -19,8 +19,8 @@
                     <li><strong>Step 1</strong> – Register as an event organiser by filling in the short form below.
                         <span class="underline">This needs to be completed by Friday 15th July.</span></li>
                     <li><strong>Step 2</strong> - Activate your account and create a password.</li>
-                    <li><strong>Step 3</strong> - Once approved, you will be sent a link to create your event(s).
-                        <span class="underline">All events need to be upload by Friday 29th July to be considered.</span></li>
+                    <li><strong>Step 3</strong> - Once activated, your account will be ready to create events.
+                        <span class="underline">All events need to be uploaded by Friday 29th July to be considered.</span></li>
                 </ul>
                 <div class="mt-4 rounded p-2 bg-yellow-200 text-black"> <h5>Please
                         <a href="#guidelines" class="underline text-olive-600 font-bold">read the guidelines</a> for event organisers here before filling the form below.
@@ -30,9 +30,6 @@
                 <h3 class="leading-6 text-2xl mb-2">
                     Registration form
                 </h3>
-                <p class="mt-1 max-w-2xl text-sm text-gray-700">
-                    Please provide as much details so we can quickly verify your application.
-                </p>
             </div>
             <form class="space-y-8 divide-y divide-gray-200" method="POST" action="{{ route('organiser.store') }}" id="organiser-registration">
                 <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
