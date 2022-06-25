@@ -1696,6 +1696,15 @@ tr:nth-child(even) {
 .pb-1 {
   padding-bottom: 0.25rem;
 }
+.pt-48 {
+  padding-top: 12rem;
+}
+.pb-12 {
+  padding-bottom: 3rem;
+}
+.pt-64 {
+  padding-top: 16rem;
+}
 .text-left {
   text-align: left;
 }
@@ -1739,6 +1748,10 @@ tr:nth-child(even) {
   font-size: 1.5rem;
   line-height: 2rem;
 }
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
+}
 .text-4xl {
   font-size: 2.25rem;
   line-height: 2.5rem;
@@ -1757,9 +1770,6 @@ tr:nth-child(even) {
 }
 .font-light {
   font-weight: 300;
-}
-.font-normal {
-  font-weight: 400;
 }
 .uppercase {
   text-transform: uppercase;
@@ -2640,6 +2650,14 @@ tr:nth-child(even) {
     padding-right: 0px;
   }
 
+  .sm\:pt-12 {
+    padding-top: 3rem;
+  }
+
+  .sm\:pb-2 {
+    padding-bottom: 0.5rem;
+  }
+
   .sm\:text-left {
     text-align: left;
   }
@@ -2811,12 +2829,35 @@ tr:nth-child(even) {
     padding-bottom: 2rem;
   }
 
+  .lg\:py-48 {
+    padding-top: 12rem;
+    padding-bottom: 12rem;
+  }
+
   .lg\:pl-8 {
     padding-left: 2rem;
   }
 
   .lg\:pr-8 {
     padding-right: 2rem;
+  }
+
+  .lg\:pt-8 {
+    padding-top: 2rem;
+  }
+
+  .lg\:pb-8 {
+    padding-bottom: 2rem;
+  }
+
+  .lg\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
+  .lg\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
   }
 }
 

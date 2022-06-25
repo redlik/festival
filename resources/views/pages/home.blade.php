@@ -3,10 +3,10 @@
     </x-slot>
 
     <div id="hero" style="background-image: url('{{ asset('img/home-hero.jpg') }}');background-size: cover" class="bg-center">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-wrap items-center py-48">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-wrap items-center pt-64 pb-12 lg:py-48">
             <div class="w-full md:w-1/2 p-4 rounded-lg" style="background-color: rgba(213, 208, 136, 0.95)">
-                <h1 class="text-4xl mb-4 fancy font-semibold">Welcome to Kerry Mental Health & Welbeing Fest 2022</h1>
-                <div class="font-semibold text-gray-800 mb-4">Held between Saturday, 8th – 15th October 2022 the Fest aims to raise awareness of the available supports and services in the county as well as empower people to engage with the ‘Five Ways to Wellbeing’ through offering a dynamic and interactive programme of events.</div>
+                <h1 class="text-2xl lg:text-4xl mb-4 fancy font-semibold">Welcome to Kerry Mental Health & Welbeing Fest 2022</h1>
+                <div class="font-semibold lg:text-lg text-gray-800 mb-4">Held between Saturday, 8th – 15th October 2022 the Fest aims to raise awareness of the available supports and services in the county as well as empower people to engage with the ‘Five Ways to Wellbeing’ through offering a dynamic and interactive programme of events.</div>
                 <a href="{{ route('events') }}">
                     <button class="button-primary">Browse events</button>
                 </a>
