@@ -1548,6 +1548,10 @@ tr:nth-child(even) {
   -o-object-fit: cover;
      object-fit: cover;
 }
+.object-scale-down {
+  -o-object-fit: scale-down;
+     object-fit: scale-down;
+}
 .object-center {
   -o-object-position: center;
      object-position: center;
