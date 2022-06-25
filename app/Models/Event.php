@@ -19,6 +19,16 @@ class Event extends Model implements hasMedia
 //        'target' => 'array'
 //    ];
 
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
     public function venue()
     {
         return $this->belongsTo(Venue::class);
