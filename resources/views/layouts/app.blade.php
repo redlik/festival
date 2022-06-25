@@ -51,20 +51,22 @@
             {{ $slot }}
         </main>
     </div>
-    {{--    Logos --}}
-    <div class="flex flex-wrap justify-center lg:justify-between bg-white py-4 px-6">
-        <img src="{{ asset('img/logos/mental-health.jpg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="">
-        <img src="{{ asset('img/logos/connecting-for-life.jpg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="">
-        <img src="{{ asset('img/logos/hse.jpg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="">
-        <img src="{{ asset('img/logos/cork-kerry.jpg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="">
-        <img src="{{ asset('img/logos/jigsaw.jpg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="">
-        <img src="{{ asset('img/logos/kerry-sports-partnership.jpg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="">
-        <img src="{{ asset('img/logos/kerry-volunteer.png') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="">
-        <img src="{{ asset('img/logos/newkd.jpg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="">
-        <img src="{{ asset('img/logos/sicap.jpg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="">
-        <img src="{{ asset('img/logos/skdp.jpg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="">
-    </div>
-    <footer class="w-full">
+
+
+    <footer class="w-full mt-8">
+        {{--  Logos --}}
+        <div class="flex flex-wrap justify-center lg:justify-between bg-white py-4 px-6">
+            <img src="{{ asset('img/logos/mental-health.jpg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="">
+            <img src="{{ asset('img/logos/connecting-for-life.jpg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="">
+            <img src="{{ asset('img/logos/hse.jpg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="">
+            <img src="{{ asset('img/logos/cork-kerry.jpg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="">
+            <img src="{{ asset('img/logos/jigsaw.jpg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="">
+            <img src="{{ asset('img/logos/kerry-sports-partnership.jpg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="">
+            <img src="{{ asset('img/logos/kerry-volunteer.png') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="">
+            <img src="{{ asset('img/logos/newkd.jpg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="">
+            <img src="{{ asset('img/logos/sicap.jpg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="">
+            <img src="{{ asset('img/logos/skdp.jpg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="">
+        </div>
         @include('layouts.footer')
     </footer>
 </div>
