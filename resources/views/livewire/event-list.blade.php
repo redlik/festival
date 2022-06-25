@@ -1,29 +1,39 @@
-<div class="flex" id="event-list">
-    <div class="bg-gray-200 mr-4 p-2 rounded-t shrink-0 w-[280px]" >
-        <h5 class="mb-4">Filter by</h5>
-        <div class="mb-6">
-            <label for="town" class="mb-2">Town events take place</label>
-            <select name="town" id="town" class="focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md" wire:model="selected_town">
-                <option value="" selected>All towns</option>
-                @foreach($unique_towns as $town)
-                    <option value="{{ $town->town }}">{{ $town->town }}</option>
-                @endforeach
-            </select>
+<div class="lg:flex mt-6 lg:mt-0" id="event-list" x-data="{ filterShow : true }">
+    <div class="bg-gray-200 mr-4 p-2 rounded-t w-full lg:w-auto mb-6">
+        <div class="lg:hidden flex justify-between">
+            <div><h5>Filter events</h5></div>
+            <div>
+                <button @click="filterShow = ! filterShow">
+                    <i class="fas fa-sort-down"></i>
+                </button>
+            </div>
         </div>
-        <div class="mb-4">
-            <div class="mb-2 font-semibold">Target group</div>
-            @foreach($target as $key => $value)
-                <div class="flex items-center h-5 mb-2">
-                    <input id="{{ $key }}" name="{{ $key }}" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="{{ $key }}" wire:model="group">
-                    <label for="{{ $key }}" class="font-medium text-gray-700">{{ $value }}</label>
-                </div>
-            @endforeach
+        <div x-cloak :class="filterShow ? 'hidden lg:block' : 'block'" >
+            <h5 class="hidden lg:block">Filter by</h5>
+            <div class="my-6">
+                <label for="town" class="mb-2">Town events take place</label>
+                <select name="town" id="town" class="focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md" wire:model="selected_town">
+                    <option value="" selected>All towns</option>
+                    @foreach($unique_towns as $town)
+                        <option value="{{ $town->town }}">{{ $town->town }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-4">
+                <div class="mb-2 font-semibold">Target group</div>
+                @foreach($target as $key => $value)
+                    <div class="flex items-center h-5 mb-2">
+                        <input id="{{ $key }}" name="{{ $key }}" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="{{ $key }}" wire:model="group">
+                        <label for="{{ $key }}" class="font-medium text-gray-700">{{ $value }}</label>
+                    </div>
+                @endforeach
+            </div>
         </div>
     </div>
-    <div>
-        <ul role="list" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-3 ">
+    <div class="w-full">
+        <ul role="list" class="grid gap-x-4 gap-y-8 sm:grid-cols-1 lg:grid-cols-3">
             @forelse($events as $event)
-                <li class="relative">
+                <li class="relative col-span-1">
                     <div class="group block w-full h-[225px] rounded-lg bg-white focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
                         <a href="{{ route('event.show', $event) }}">
                             <img src="{{ $event->getFirstMediaUrl('cover') }}" alt="" class="object-cover object-center pointer-events-none bg-white w-full h-full group-hover:opacity-75">
