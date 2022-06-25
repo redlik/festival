@@ -9,21 +9,21 @@
         <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 bg-white rounded-lg shadow-lg scroll-smooth">
             <div>
                 <p> Kerry Mental Health and Wellbeing Fest will take place from
-                    <strong>8th – 15th October 2022</strong>. We would be delighted for you to get involved and show your support for promoting mental health and wellbeing in Kerry. Since the Fest’s beginning in 2018, the key focus has been on creating awareness of, and scheduling events that empower people to engage with the Five Ways to Wellbeing
+                    <strong>8th – 15th October 2022</strong>. The key focus of the Fest is scheduling events that empower people to engage with the Five Ways to Wellbeing
                     <strong>(Connect | Give | Take Notice | Keep Learning | Be Active)</strong> as well as raising awareness of the available supports and services in the county.</p>
-                <p>The Fest has a wide reach across Kerry and we want to continue to build on its success in 2022, which we can’t do without you! We would be delighted for you to get involved and show your support for promoting mental health and wellbeing in Kerry. You can do this by hosting an event or events that promote the Five Ways to Wellbeing. Anyone is welcome to host an event – educational bodies, organisations, agencies, businesses, sports clubs, community groups or qualified individuals!</p>
+                <p>We aim to ensure the Fest has free events for people of all ages, backgrounds and abilities across the county. We would be delighted for you to get involved by hosting a free event(s) that promote the Five Ways to Wellbeing - whether you’re an educational body, organisation, agency, business, sports club, community group or qualified individual. </p>
             </div>
             <div class="my-8 p-4 rounded bg-gray-50">
                 <h2 class="mb-4">All you need to do is:</h2>
                 <ul class="list-disc ml-3">
                     <li><strong>Step 1</strong> – Register as an event organiser by filling in the short form below.
-                        <span class="underline">This needs to be completed by Friday 15th July.</span></li>
+                        <span class="underline">This needs to be completed by Friday 22nd July.</span></li>
                     <li><strong>Step 2</strong> - Activate your account and create a password.</li>
                     <li><strong>Step 3</strong> - Once activated, your account will be ready to create events.
-                        <span class="underline">All events need to be uploaded by Friday 29th July to be considered.</span></li>
+                        <span class="underline">All events need to be uploaded by Friday 5th August to be considered.</span></li>
                 </ul>
                 <div class="mt-4 rounded p-2 bg-yellow-200 text-black"> <h5>Please
-                        <a href="#guidelines" class="underline text-olive-600 font-bold">read the guidelines</a> for event organisers here before filling the form below.
+                        <a href="#guidelines" class="underline text-olive-600 font-bold">read the guidelines</a> for event organisers below before filling the form.
                     </h5></div>
             </div>
             <div>
@@ -255,13 +255,13 @@
             <ul class="list-decimal list-inside">
                 <li>In order to ensure the Fest is accessible and inclusive for all, we ask that all events are free. In the spirit of this, we also ask that events are not used to raise funds or collect donations.</li>
                 <li>The programme of events for 2021 can be found <a href="https://www.healthykerry.ie/wp-content/uploads/2021/09/KerryWellfest-A5Brochure64673_WEB.pdf" target="_blank" class="underline text-olive-600 font-bold">here</a> – we would be delighted to facilitate events of a similar nature as well as events that will bring something new and different to the Fest.</li>
-                <li>It is the sole responsibility of the event host to ensure the provision of adequate insurance for all activities undertaken in the delivery of event/s</li>
-                <li>If you are registering as a qualified practitioner and this is your first time participating in the Fest, we ask that you share a copy of your qualification/s and your professional indemnity insurance with us when registering your event.</li>
-                <li>Event host are responsible for ensuring Garda Vetting is in place and is up-to-date to host all event (s) with children and/or vulnerable adults.</li>
+                <li>It is the sole responsibility of the event host to ensure the provision of adequate insurance for all activities undertaken in the delivery of event(s).</li>
+                <li>If you are registering as a qualified practitioner and this is your first time participating in the Fest, we ask that you share a copy of your qualification(s) and your professional indemnity insurance with us when registering your event.</li>
+                <li>Event host are responsible for ensuring Garda Vetting is in place and is up-to-date to host all event(s) with children and/or vulnerable adults.</li>
                 <li>The steering group cannot provide funding to cover costs such as venues or facilitators. However, we may be able to support in identifying free options for these kinds of expenses, depending on the location, so please get in touch with us at
                     <a href="mailto:kerrymhwfest20@gmail.com" class="underline text-olive-600 font-bold">kerrymhwfest20@gmail.com</a></li>
                 <li>The management of registration for each event is the responsibility of the agency or individual hosting. Unfortunately, the steering group does not have the capacity to manage registrations on behalf of hosts.</li>
-                <li>The steering group will however promote the Fest, and your event/s extensively in the weeks leading up to the Fest using a host of mediums.</li>
+                <li>The steering group will however promote the Fest, and your event(s) extensively in the weeks leading up to the Fest using a host of mediums.</li>
                 <li>Please consider how you can make the event as accessible as possible for people of all abilities, considering where necessary those who are hearing or visually impaired, wheelchair users and neuro-diverse people.</li>
             </ul>
         </div>
