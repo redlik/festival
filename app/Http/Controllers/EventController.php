@@ -241,6 +241,13 @@ class EventController extends Controller
         return view('event.show', compact('event'));
     }
 
+    public function showBySlug($slug)
+    {
+        $event = Event::where('slug', $slug)->first();
+        return view('event.show', compact('event'));
+
+    }
+
     public function showAdmin($event_id)
     {
         $event = Event::find($event_id);
