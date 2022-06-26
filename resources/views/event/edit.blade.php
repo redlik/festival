@@ -6,13 +6,21 @@
     </x-slot>
 
     <div class="py-0 md:py-12">
-        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 bg-white rounded-lg shadow-lg scroll-smooth" x-data="{ limit: {{ $event->limited }} }">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 bg-white rounded-lg shadow-lg scroll-smooth" x-data="{ limit: {{ $event->limited }}, date : true }">
             <div>
                 @if($event->status == 'published')
                     <div class="border border-gray-200 bg-yellow-50 rounded p-2">
-                        <strong>PLEASE NOTE:</strong> If this event is already listed on the main page and you are making significant changes, such as changing the date, time or the location, please make sure to inform the organisers of the Festival and the registered attendees about it.
+                        <strong>PLEASE NOTE:</strong> If this event is already listed on the main page, and you are making significant changes, such as changing the date, time or the location, please make sure to inform the organisers of the Festival and the registered attendees about it.
                     </div>
                 @endif
+            </div>
+            <div class="p-2 rounded bg-gray-100 border border-gray-500 flex justify-between" x-show="date">
+                <div>Please note that edits to events can be made up to the <strong>19 August 2022</strong></div>
+                <div>
+                    <button @click="date = ! date">
+                        <i class="fas fa-times-circle"></i>
+                    </button>
+                </div>
             </div>
             <form class="space-y-8 divide-y divide-gray-200" method="POST" action="{{ route('event.update', $event) }}" id="event-registration" enctype="multipart/form-data">
                 <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
@@ -31,7 +39,7 @@
                             </ul>
                         </div>
                     @endif
-                        <input type="hidden" name="event_number" value="{{ $event->id }}">
+                    <input type="hidden" name="event_number" value="{{ $event->id }}">
                     <div>
                         @csrf
                         @method('PATCH')
@@ -121,7 +129,7 @@
                                     <div class="flex items-center h-5 mr-8">
                                         <input id="teens" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="teens"
                                                @if(in_array('teens', json_decode($event->target)))
-                                               checked
+                                                   checked
                                             @endif
                                         >
                                         <label for="teens" class="font-medium text-gray-700">Teens</label>
@@ -129,30 +137,30 @@
                                     <div class="flex items-center h-5 mr-8">
                                         <input id="young" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="young-adults"
                                                @if(in_array('young-adults', json_decode($event->target)))
-                                               checked
+                                                   checked
                                             @endif
                                         >
                                         <label for="young" class="font-medium text-gray-700">Young adults</label>
                                     </div>
                                     <div class="flex items-center h-5 mr-8">
                                         <input id="older" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="older-adults"
-                                           @if(in_array('older-adults', json_decode($event->target)))
-                                           checked
-                                        @endif
+                                               @if(in_array('older-adults', json_decode($event->target)))
+                                                   checked
+                                            @endif
                                         >
                                         <label for="older" class="font-medium text-gray-700">Older adults</label>
                                     </div>
                                     <div class="flex items-center h-5 mr-8">
                                         <input id="family" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="family"
                                                @if(in_array('family', json_decode($event->target)))
-                                               checked
+                                                   checked
                                             @endif>
                                         <label for="family" class="font-medium text-gray-700">Family</label>
                                     </div>
                                     <div class="flex items-center h-5">
                                         <input id="workplace" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="workplace"
                                                @if(in_array('workplace', json_decode($event->target)))
-                                               checked
+                                                   checked
                                             @endif>
                                         <label for="workplace" class="font-medium text-gray-700">Workplace</label>
                                     </div>

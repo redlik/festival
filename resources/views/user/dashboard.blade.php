@@ -55,7 +55,7 @@
                                     {{ $loop->iteration }}
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-900">
-                                    <a href="{{ route('event.show', $event) }}" class="hover:underline">
+                                    <a href="{{ route('event.show-by-slug', $event->slug) }}" class="hover:underline">
                                         {{ $event->name }}
 
                                     </a>
