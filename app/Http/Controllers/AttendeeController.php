@@ -84,10 +84,13 @@ class AttendeeController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Attendee  $attendee
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Attendee $attendee)
     {
-        //
+        $message = 'Attendee '.$attendee->name.' has been unregistered from the event';
+        $attendee->delete();
+
+        return redirect()->to(url()->previous() . '#attendees')->with('unregister', $message);
     }
 }

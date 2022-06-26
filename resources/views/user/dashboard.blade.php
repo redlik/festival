@@ -86,7 +86,8 @@
                                         >{{ ucfirst($event->status) }}</div>
                                    @endif
                                 </td>
-                                <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-semibold">
+                                <td>
+                                @if($event->status != 'cancelled')
                                     <a href="{{ route('event.edit', $event) }}" class="text-indigo-600 hover:text-indigo-900 mr-2">Edit</a>
                                     @if($event->attendee_count > 0)
                                         <div class="text-gray-500 inline-block cursor-not-allowed" title="Event has attendees, cannot be deleted">Delete</div>
@@ -99,8 +100,10 @@
                                     @endif
                                     @if($event->status == 'published')
                                         <a @click="cancelModal = true, eventName = '{{ $event->name }}', eventID = {{ $event->id }}" class="text-purple-600 cursor-pointer ml-2">Cancel</a>
-                                    @endif
-
+                                        @endif
+                                @else
+                                    <div class="text-gray-600 text-sm">Event has been cancelled</div>
+                                @endif
                                 </td>
                             </tr>
                         @empty

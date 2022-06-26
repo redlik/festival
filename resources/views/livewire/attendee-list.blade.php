@@ -1,4 +1,4 @@
-<div>
+<div id="attendees">
     <h2 class="text-olive-300 mb-6 uppercase">Attendees</h2>
     <div class="flex mb-4 items-center">
         <div class="mr-6">
@@ -15,6 +15,11 @@
                 <i class="fas fa-file-excel mr-2"></i> Export list</button>
         </div>
     </div>
+    @if (\Session::has('unregister'))
+        <div class="bg-red-100 border border-red-500 text-red-500 shadow rounded p-2 my-4">
+            {{ Session::get('unregister') }}
+        </div>
+    @endif
     <table class="min-w-full divide-y divide-gray-300">
         <thead class="bg-gray-50">
         <tr>
@@ -39,7 +44,11 @@
                 </td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $attendee->created_at->format('d M Y H:i') }}</td>
                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-semibold sm:pr-6 lg:pr-8">
-                    <a href="#" class="text-red-600 hover:text-red-900">Delete</a>
+                    <form action="{{ route('attendee.destroy', $attendee) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="text-red-600 hover:text-red-900">Unregister</button>
+                    </form>
                 </td>
             </tr>
         @empty
