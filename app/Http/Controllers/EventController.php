@@ -252,10 +252,18 @@ class EventController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Event  $event
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit(Event $event)
     {
+        if(Auth::user()->hasRole('admin')) {
+            return view('event.edit', compact('event'));
+        }
+
+        if (Auth::id() != $event->user_id) {
+            return abort(403);
+        }
+
         return view('event.edit', compact('event'));
     }
 
@@ -275,7 +283,12 @@ class EventController extends Controller
 
     public function cancel($id)
     {
+
         $event = Event::findOrFail($id);
+
+        if (Auth::id() != $event->user_id) {
+            return abort(403);
+        }
 
         $event->update([
             'status' => 'cancelled'
@@ -386,10 +399,11 @@ class EventController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Event  $event
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Event $event)
     {
+
         $message = 'Event '.$event->name.' has been deleted';
         $event->delete();
 
