@@ -35,7 +35,7 @@
             @forelse($events as $event)
                 <li class="relative col-span-1">
                     <div class="group block w-full h-[225px] rounded-lg bg-white focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
-                        <a href="{{ route('event.show', $event->slug) }}">
+                        <a href="{{ route('event.show-by-slug', $event->slug) }}">
                             <img src="{{ $event->getFirstMediaUrl('cover') }}" alt="" class="object-scale-down object-center pointer-events-none bg-white w-full h-full group-hover:opacity-75">
                             <button type="button" class="absolute inset-0 focus:outline-none">
                                 <span class="sr-only">View details for IMG_4985.HEIC</span>
@@ -49,7 +49,7 @@
                         </div>
                         <div>
                             <div>{{ \Carbon\Carbon::parse($event->start_time)->format('H:i') }} - {{ \Carbon\Carbon::parse($event->end_time)->format('H:i') }}</div>
-                            <a href="{{ route('event.show', $event) }}">
+                            <a href="{{ route('event.show-by-slug', $event->slug) }}">
                                 <p class="text-lg block text-sm font-bold text-gray-900 truncate pointer-events-none">{{ $event->name }}</p>
                                 <p class="block text-sm font-medium text-gray-500 pointer-events-none">{{ $event->venue->name }}, {{ $event->venue->town }}</p>
                             </a>
