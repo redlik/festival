@@ -20,7 +20,10 @@
                         <h5 class="uppercase underline mb-2">Details:</h5>
                         <div class="mb-2"><strong>Date & time:</strong> {{ \Carbon\Carbon::parse($event->start_date)->format('d M') }} @ {{ \Carbon\Carbon::parse($event->start_time)->format('H:i') }} : {{ \Carbon\Carbon::parse($event->end_time)->format('H:i') }}</div>
                         <div class="mb-2"><strong>Venue:</strong> {{ $event->venue->name }}</div>
-                        <div class="mb-2"><strong>Organiser:</strong> {{ $event->user->organiser->name }}</div>
+                        <div class="mb-2"><strong>Organiser:</strong> {{ $event->user->organiser->org }}</div>
+                        @if($event->leader_name)
+                            <div class="mb-2"><strong>Facilitator:</strong> {{ $event->leader_name }}</div>
+                        @endif
                         <div class="mb-2"><strong>Target:</strong>
                             @foreach(json_decode($event->target) as $target_item)
                                 <div class="gray-pillow mr-1">
