@@ -4,7 +4,7 @@
 
     <div id="hero" class="bg-center bg-gray-100 md:bg-[url('/img/home-hero.jpg')] bg-cover">
         <div class="max-w-7xl mx-auto px-0 lg:px-8 flex flex-wrap items-center pt-0 pb-0 lg:py-48">
-            <div class="w-full md:hidden">
+            <div class="w-full lg:hidden">
                 <img src="{{ asset('img/home-hero.jpg') }}" class="object-cover object-bottom h-full w-full" alt="">
             </div>
             <div class="w-full lg:w-1/2 p-4 lg:rounded-lg backdrop-blur" style="background-color: rgba(213, 208, 136, 0.95)">
