@@ -3,8 +3,8 @@
         <div class="lg:hidden flex justify-between">
             <div><h5>Filter events</h5></div>
             <div>
-                <button @click="filterShow = ! filterShow">
-                    <i class="fas fa-sort-down"></i>
+                <button @click="filterShow = ! filterShow" class="w-16 text-center">
+                    <i class="fas fa-sort-down w-16"></i>
                 </button>
             </div>
         </div>
