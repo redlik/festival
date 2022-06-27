@@ -45,7 +45,7 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin'], func
     Route::get('event/unpublish/{id}', [EventController::class, 'adminUnpublish'])->name('admin.event.unpublish');
 });
 
-Route::get('/dashboard', [UserController::class, 'dashboard'])->middleware('auth', 'role:organiser')->name('dashboard');
+Route::get('/dashboard', [UserController::class, 'dashboard'])->middleware('auth', 'role:organiser', 'disabled')->name('dashboard');
 
 Route::resource('organiser', OrganiserController::class);
 Route::post('event-save-draft', [EventController::class, 'saveDraft'])->name('event.save-draft');

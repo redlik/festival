@@ -17,13 +17,18 @@
         </div>
     </div>
     <div>
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" >
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" id="messages">
             @if (Session::has('message'))
                 <div class="bg-red-200 p-2 rounded shadow my-8">{{ Session::get('message') }}</div>
             @endif
             @if (\Session::has('login'))
                 <div class="alert-box my-4">
                     <strong>You are logged in now</strong><br/>
+                </div>
+            @endif
+            @if (\Session::has('disabled'))
+                <div class="bg-red-100 text-red-500 rounded border border-red-500 p-3 my-4">
+                    <strong>Your account has been disabled.</strong>
                 </div>
             @endif
         </div>
