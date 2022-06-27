@@ -18,8 +18,8 @@
         <div class="w-full md:w-1/3 px-4">
             <div class="font-bold text-gray-200 mb-4 mt-8 md:mt-0">Customer service</div>
             <ul class="text-sm list-disc pl-4">
-                <li class="mb-2"><a href="">Contact us</a></li>
-                <li class="mb-2"><a href="">About</a></li>
+                <li class="mb-2"><a href="{{ route('pages.contact') }}">Contact us</a></li>
+                <li class="mb-2"><a href="{{ route('pages.about') }}">About</a></li>
                 <li class="mb-2"><a href="">Terms & Conditions</a></li>
                 <li class="mb-2"><a href="">Privacy Policy</a></li>
             </ul>
