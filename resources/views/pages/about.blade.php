@@ -84,13 +84,13 @@
                 <div class="grid grid-col-1 lg:grid-cols-3 gap-4 lg:h-[270px]">
 
                     <a @click="$dispatch('img-modal', {  imgModalSrc: '{{ asset('img/kerry-mental-health-4.jpg') }}', imgModalDesc: 'Picture 1' })" class="cursor-pointer">
-                        <img src="{{ asset('img/olympians-mental-health-11.jpg') }}" class="col-span-1 object-cover h-full" alt="">
+                        <img src="{{ asset('img/olympians-mental-health-11.jpg') }}" class="col-span-1 object-cover lg:h-full" alt="">
                     </a>
                     <a @click="$dispatch('img-modal', {  imgModalSrc: '{{ asset('img/kerry-mental-health-4.jpg') }}', imgModalDesc: 'Picture 1' })" class="cursor-pointer">
-                        <img src="{{ asset('img/kerry-mental-health-4.jpg') }}" class="col-span-1 object-cover h-full" alt="">
+                        <img src="{{ asset('img/kerry-mental-health-4.jpg') }}" class="col-span-1 object-cover lg:h-full" alt="">
                     </a>
                     <a @click="$dispatch('img-modal', {  imgModalSrc: '{{ asset('img/olympians-mental-health-004.jpg') }}', imgModalDesc: 'Picture 1' })" class="cursor-pointer">
-                        <img src="{{ asset('img/olympians-mental-health-004.jpg') }}" class="col-span-1 object-cover h-full" alt="">
+                        <img src="{{ asset('img/olympians-mental-health-004.jpg') }}" class="col-span-1 object-cover lg:h-full" alt="">
                     </a>
                 </div>
 
