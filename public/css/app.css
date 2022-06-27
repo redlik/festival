@@ -2739,6 +2739,10 @@ tr:nth-child(even) {
     border-left-width: 1px;
   }
 
+  .md\:bg-\[url\(\'\/img\/home-hero\.jpg\'\)\] {
+    background-image: url('/img/home-hero.jpg');
+  }
+
   .md\:py-12 {
     padding-top: 3rem;
     padding-bottom: 3rem;
@@ -2812,6 +2816,10 @@ tr:nth-child(even) {
 
   .lg\:w-2\/3 {
     width: 66.666667%;
+  }
+
+  .lg\:w-1\/2 {
+    width: 50%;
   }
 
   .lg\:flex-shrink-0 {
