@@ -17,7 +17,7 @@
         </div>
     </div>
     <div>
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" >
             @if (Session::has('message'))
                 <div class="bg-red-200 p-2 rounded shadow my-8">{{ Session::get('message') }}</div>
             @endif
