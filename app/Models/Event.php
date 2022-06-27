@@ -24,10 +24,10 @@ class Event extends Model implements hasMedia
      *
      * @return string
      */
-    public function getRouteKeyName(): string
-    {
-        return 'slug';
-    }
+//    public function getRouteKeyName(): string
+//    {
+//        return 'slug';
+//    }
 
     public function venue()
     {

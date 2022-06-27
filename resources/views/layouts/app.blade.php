@@ -33,7 +33,7 @@
 
 </head>
 <body class="font-sans antialiased">
-<div class="flex flex-col justify-between min-h-screen bg-gray-100">
+<div class="flex flex-col justify-between min-h-screen bg-gray-100" id="main-box">
     <div>
     @include('layouts.header')
 

@@ -2527,6 +2527,14 @@ tr:nth-child(even) {
     max-width: 28rem;
   }
 
+  .sm\:max-w-4xl {
+    max-width: 56rem;
+  }
+
+  .sm\:max-w-2xl {
+    max-width: 42rem;
+  }
+
   .sm\:flex-1 {
     flex: 1 1 0%;
   }
