@@ -58,7 +58,7 @@ class VenueEntry extends Component
         $this->resetInputFields();
         $this->emit('venueAdded');
 
-//        $this->showVenue = false;
+        $this->showVenue = false;
     }
 
     public function getVenues()
