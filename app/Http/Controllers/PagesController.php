@@ -29,7 +29,7 @@ class PagesController extends Controller
     {
         $events = Event::orderBy('start_date', 'asc')->withCount('attendee')->with('attendee', 'venue', 'user.organiser')->get();
         $attendees = Attendee::with('event')->get();
-        $venues = Venue::all();
+        $venues = Venue::withCount('event')->get();
 
         $organisers_count = Organiser::all()->count();
 
