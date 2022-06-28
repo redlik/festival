@@ -20,7 +20,21 @@
                         <h5 class="uppercase underline mb-2">Details:</h5>
                         <div class="mb-2"><strong>Date & time:</strong> {{ \Carbon\Carbon::parse($event->start_date)->format('d M') }} @ {{ \Carbon\Carbon::parse($event->start_time)->format('H:i') }} : {{ \Carbon\Carbon::parse($event->end_time)->format('H:i') }}</div>
                         <div class="mb-2"><strong>Venue:</strong> {{ $event->venue->name }}</div>
-                        <div class="mb-2"><strong>Organiser:</strong> {{ $event->user->organiser->org }}</div>
+                        <div class=""><strong>Organiser:</strong> {{ $event->user->organiser->org }}</div>
+                        <div class="flex mb-2 mt-1">
+                            @if($event->user->organiser->website)
+                                <a href="{{ $event->user->organiser->website }}" target="_blank" title="Visit our website"><i class="fa-solid fa-globe mr-4 text-green-600 text-xl"></i></a>
+                            @endif
+                            @if($event->user->organiser->facebook)
+                                <a href="{{ $event->user->organiser->facebook }}" target="_blank" title="Visit our Facebook page"><i class="fa-brands fa-facebook-square mr-4 text-indigo-600 text-xl"></i></a>
+                            @endif
+                            @if($event->user->organiser->twitter)
+                                <a href="{{ $event->user->organiser->twitter }}" target="_blank" title="Check our Twitter"><i class="fa-brands fa-twitter-square mr-4 text-blue-500 text-xl"></i></a>
+                            @endif
+                            @if($event->user->organiser->instagram)
+                                <a href="{{ $event->user->organiser->instagram }}" target="_blank" title="Check our Instagram"><i class="fa-brands fa-instagram-square text-orange-600 text-xl"></i></a>
+                            @endif
+                        </div>
                         @if($event->leader_name)
                             <div class="mb-2"><strong>Facilitator:</strong> {{ $event->leader_name }}</div>
                         @endif
