@@ -13,6 +13,11 @@ use Illuminate\Support\Str;
 
 class OrganiserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->only('show', 'index', 'edit', 'update', 'destroy');
+    }
+
 
     /**
      * Display a listing of the resource.
