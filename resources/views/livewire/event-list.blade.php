@@ -1,10 +1,11 @@
 <div class="lg:flex mt-6 lg:mt-0" id="event-list" x-data="{ filterShow : true }">
     <div class="bg-gray-200 mr-4 p-2 rounded-t w-full lg:w-auto mb-6">
-        <div class="lg:hidden flex justify-between">
+        <div class="lg:hidden flex justify-between content-center">
             <div><h5>Filter events</h5></div>
             <div>
                 <button @click="filterShow = ! filterShow" class="w-16 text-center">
-                    <i class="fas fa-sort-down w-16"></i>
+                    <span :class="filterShow ? '' : 'hidden'"><i class="fas fa-caret-down w-16 text-xl"></i></span>
+                    <span :class="filterShow ? 'hidden' : ''"><i class="fas fa-caret-up w-16 text-xl"></i></span>
                 </button>
             </div>
         </div>
