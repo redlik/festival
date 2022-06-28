@@ -53,11 +53,13 @@ class VenueController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Venue  $venue
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit(Venue $venue)
     {
-        //
+        // TODO Add Venue fields
+
+        return view('venue.edit', compact('venue'));
     }
 
     /**
@@ -65,21 +67,29 @@ class VenueController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Venue  $venue
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Venue $venue)
     {
-        //
+        // TODO update venue data
+        $venue->update($request->all());
+
+        return back()->with('saved', 'Venue saved');
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Venue  $venue
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Venue $venue)
     {
-        //
+        $message = 'Venue '. $venue->name .' has been deleted';
+
+        $venue->delete();
+
+        return redirect()->to(url()->previous() . '#venues')->with('venue_deleted', $message);
     }
 }

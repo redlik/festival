@@ -44,6 +44,9 @@
                     <div class="flex justify-between">
                         <h2 class="text-green-600">Events</h2>
                     </div>
+                    @if (Session::has('deleted'))
+                        <div class="bg-red-100 border border-red-700 shadow rounded p-2 my-4 text-red-600">{{ Session::get('deleted') }}</div>
+                    @endif
                     <table class="min-w-full divide-y divide-gray-300">
                         <thead class="bg-gray-50">
                         <tr>
@@ -83,7 +86,7 @@
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     <div>{{ $event->venue->name }}</div>
-                                    <div>{{ $event->venue->address1 }} | {{ $event->venue->street }} | {{ $event->venue->town }}</div>
+                                    <div>{{ $event->venue->town }}</div>
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     @if($event->limited == 1)
@@ -96,8 +99,17 @@
                                     {{ ucfirst($event->status) }}
                                 </td>
                                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-semibold sm:pr-6 lg:pr-8">
-                                    <a href="{{ route('admin.event.show', $event) }}" class="text-indigo-600 hover:text-indigo-900 mr-2">Show details</a>
-                                    <a href="#" class="text-red-600 hover:text-red-900">Delete ?</a>
+                                    <a href="{{ route('admin.event.show', $event) }}" class="text-indigo-600 hover:text-indigo-900 mr-2">Details</a>
+                                    @if($event->attendee_count > 0)
+                                        <div class="text-gray-500 inline-block cursor-not-allowed" title="Event has attendees, cannot be deleted">Delete</div>
+                                    @else
+                                        <form method="POST" action="{{ route('event.destroy', $event) }}" class="inline-block"
+                                              onsubmit="return confirm('Do you wish to delete the event completely?');">
+                                            @csrf
+                                            @method("DELETE")
+                                            <button type="submit" class="text-red-600 hover:text-red-900 hover:underline">Delete</button>
+                                        </form>
+                                    @endif
                                 </td>
                             </tr>
                         @empty
@@ -114,6 +126,11 @@
                     <div class="flex justify-between">
                         <h2 class="text-purple-600 mb-6">Venues</h2>
                     </div>
+                    @if(\Session::has('venue_deleted'))
+                        <div class="bg-red-100 border border-red-500 text-red-500 p-2 rounded mb-4">
+                            {{ \Session::get('venue_deleted') }}
+                        </div>
+                    @endif
                     <table class="min-w-full divide-y divide-gray-300">
                         <thead class="bg-gray-50">
                         <tr>
@@ -138,8 +155,18 @@
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $venue->event_count }}</td>
                                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-semibold sm:pr-6 lg:pr-8">
-                                    <a href="#" class="text-indigo-600 hover:text-indigo-900 mr-2">Edit</a>
-                                    <a href="#" class="text-red-600 hover:text-red-900">Delete</a>
+                                    <a href="{{ route('venue.edit', $venue) }}" class="text-indigo-600 hover:text-indigo-900 mr-2">Edit</a>
+                                    @if($venue->event_count == 0)
+                                        <form method="POST" action="{{ route('venue.delete', $venue) }}" class="inline-block"
+                                              onsubmit="return confirm('Do you wish to delete the venue completely?');">
+                                            @csrf
+                                            @method("DELETE")
+                                            <button type="submit" class="text-red-600 font-semibold hover:text-red-900 hover:underline">Delete</button>
+                                        </form>
+                                    @else
+                                        <div class="text-gray-500 inline-block cursor-not-allowed" title="Venue has events assigned, cannot delete">Delete</div>
+                                    @endif
+
                                 </td>
                             </tr>
                         @empty

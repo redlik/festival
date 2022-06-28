@@ -6,6 +6,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\OrganiserController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VenueController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,6 +44,12 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin'], func
     Route::get('event/{id}', [EventController::class, 'showAdmin'])->name('admin.event.show');
     Route::get('event/approval/{id}', [EventController::class, 'adminApproval'])->name('admin.event.approve');
     Route::get('event/unpublish/{id}', [EventController::class, 'adminUnpublish'])->name('admin.event.unpublish');
+});
+
+Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'venue'], function () {
+    Route::get('edit/{venue}', [VenueController::class, 'edit'])->name('venue.edit');
+    Route::match(array('put','patch'),'update/{venue}', [VenueController::class, 'update'])->name('venue.update');
+    Route::delete('delete/{venue}', [VenueController::class, 'destroy'])->name('venue.delete');
 });
 
 Route::get('/dashboard', [UserController::class, 'dashboard'])->middleware('auth', 'role:organiser', 'disabled')->name('dashboard');
