@@ -92,4 +92,14 @@
             <strong>PLEASE NOTE:</strong> If the venue is used as a location of an event, make sure the attendees are notified of the changes.
         </div>
     </div>
+    @push("footer_styles")
+        <script type="text/javascript">
+            document.addEventListener('keypress', function (e) {
+                if (e.keyCode === 13 || e.which === 13) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+        </script>
+    @endpush
 </x-app-layout>

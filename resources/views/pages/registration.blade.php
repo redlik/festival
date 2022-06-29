@@ -201,6 +201,7 @@
                             </h3>
                             <p class="mt-1 max-w-2xl text-sm text-gray-700">
                                 Please provide details including your website and social media accounts.
+                                <span class="underline"> One link per box only.</span>
                             </p>
                         </div>
                         <div class="space-y-6 sm:space-y-5 divide-y divide-gray-200">
@@ -267,4 +268,14 @@
         </div>
         </div>
     </div>
+    @push("footer_styles")
+        <script type="text/javascript">
+            document.addEventListener('keypress', function (e) {
+                if (e.keyCode === 13 || e.which === 13) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+        </script>
+    @endpush
 </x-app-layout>

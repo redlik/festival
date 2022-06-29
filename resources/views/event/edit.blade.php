@@ -281,4 +281,14 @@
             <strong>PLEASE NOTE:</strong> If this event is already listed on the main page and you are making significant changes, such as changing the date, time or the location, please make sure to inform the organisers of the Festival and the registered attendees about it.
         </div>
     </div>
+    @push("footer_styles")
+        <script type="text/javascript">
+            document.addEventListener('keypress', function (e) {
+                if (e.keyCode === 13 || e.which === 13) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+        </script>
+    @endpush
 </x-app-layout>

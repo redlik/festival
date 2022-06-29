@@ -244,4 +244,14 @@
             <p>Each event requires individual submission. If you are organising multiple events, please use this form for each one separately.</p>
         </div>
     </div>
+    @push("footer_styles")
+        <script type="text/javascript">
+            document.addEventListener('keypress', function (e) {
+                if (e.keyCode === 13 || e.which === 13) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+        </script>
+    @endpush
 </x-app-layout>

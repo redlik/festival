@@ -105,17 +105,17 @@
                         <div :class="{'block': profile, 'hidden': ! profile}" class="origin-top-right absolute
                     right-0 mt-2
                     w-48 rounded-md shadow-lg py-1 bg-white
-                    ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+                    ring-1 ring-black ring-opacity-5 focus:outline-none z-50" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                         <!-- Active: "bg-gray-100", Not Active: "" -->
                             @role('organiser')
-                            <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="1" id="user-menu-item-1">Dashboard</a>
+                            <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" role="menuitem" tabindex="1" id="user-menu-item-1">Dashboard</a>
                             @endrole
                             @role('admin')
-                            <a href="{{ route('admin.dashboard') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="1" id="user-menu-item-1">Admin Dashboard</a>
-                            <a href="{{ route('organiser.index') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="1" id="user-menu-item-1">Organisers</a>
+                            <a href="{{ route('admin.dashboard') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" role="menuitem" tabindex="1" id="user-menu-item-1">Admin Dashboard</a>
+                            <a href="{{ route('organiser.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" role="menuitem" tabindex="1" id="user-menu-item-1">Organisers</a>
                             @endrole
                             <a href="{{ route('logout') }}"
-                               class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="2"
+                               class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" role="menuitem" tabindex="2"
                                id="user-menu-item-2"
                                onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
