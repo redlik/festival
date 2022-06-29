@@ -1,8 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
-            Organiser Dashboard
-        </h2>
+        <div class="relative">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
+                Organiser Dashboard
+            </h2>
+            <div class="hidden lg:block absolute right-0 top-0">
+                <a href="{{ route('organiser.edit', $organiser) }}">
+                    <span class="text-sm text-gray-600 font-semibold hover:text-gray-400"><i class="fa-solid fa-pen-to-square mr-2"></i> Edit profile</span></a>
+            </div>
+        </div>
     </x-slot>
 
     <div class="px-4 sm:px-6 lg:px-8 py-6 bg-gray-100 z-10">

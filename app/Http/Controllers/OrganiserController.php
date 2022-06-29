@@ -99,11 +99,11 @@ class OrganiserController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Organiser  $organiser
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit(Organiser $organiser)
     {
-        //
+        return view('organiser.edit', compact('organiser'));
     }
 
     /**
@@ -111,11 +111,13 @@ class OrganiserController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Organiser  $organiser
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Organiser $organiser)
     {
-        //
+        $organiser->update($request->all());
+
+        return back()->with('profile_updated', 'Your profile information has been updated');
     }
 
     /**

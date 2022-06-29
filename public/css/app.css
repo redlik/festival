@@ -2660,6 +2660,11 @@ tr:nth-child(even) {
     padding-bottom: 1rem;
   }
 
+  .sm\:py-5 {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
+
   .sm\:pl-6 {
     padding-left: 1.5rem;
   }
@@ -2786,6 +2791,10 @@ tr:nth-child(even) {
 }
 
 @media (min-width: 1024px) {
+
+  .lg\:absolute {
+    position: absolute;
+  }
 
   .lg\:-mx-8 {
     margin-left: -2rem;
