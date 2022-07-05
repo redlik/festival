@@ -128,7 +128,10 @@ class OrganiserController extends Controller
      */
     public function destroy(Organiser $organiser)
     {
-        //
+        $message = 'Organiser '.$organiser->org.' has been deleted';
+        $organiser->delete();
+
+        return back()->with('deleted', $message);
     }
 
     public function approved(Organiser $organiser, Request $request)
