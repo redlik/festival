@@ -32,7 +32,10 @@
                                 <a href="{{ $event->user->organiser->twitter }}" target="_blank" title="Check our Twitter"><i class="fa-brands fa-twitter-square mr-4 text-blue-500 text-xl"></i></a>
                             @endif
                             @if($event->user->organiser->instagram)
-                                <a href="{{ $event->user->organiser->instagram }}" target="_blank" title="Check our Instagram"><i class="fa-brands fa-instagram-square text-orange-600 text-xl"></i></a>
+                                <a href="{{ $event->user->organiser->instagram }}" target="_blank" title="Check our Instagram"><i class="fa-brands fa-instagram-square text-orange-600 text-xl mr-4"></i></a>
+                            @endif
+                            @if($event->user->organiser->linkedin)
+                                <a href="{{ $event->user->organiser->linkedin }}" target="_blank" title="Check our LinkedIn"><i class="fa-brands fa-linkedin text-blue-700 text-xl"></i></a>
                             @endif
                         </div>
                         @if($event->leader_name)
