@@ -69,13 +69,17 @@
                                                 @if($organiser->status == 'disabled')
                                                     <a href="{{ route('approved.organiser', $organiser) }}" class="text-green-600 hover:text-green-900 mr-2">Enable</a>
                                                 @endif
-
+                                                @if($organiser->status == 'pending')
                                                 <form method="POST" action="{{ route('organiser.destroy', $organiser) }}" class="inline-block"
                                                       onsubmit="return confirm('Do you wish to delete the organiser completely?');">
                                                     @csrf
                                                     @method("DELETE")
                                                     <button type="submit" class="text-red-600 hover:text-red-900 hover:underline">Delete</button>
                                                 </form>
+                                                @else
+                                                    <div class="text-gray-500 inline-block cursor-not-allowed" title="Organiser is already activated, cannot delete">Delete</div>
+
+                                                @endif
                                             </td>
                                         </tr>
                                         @empty
