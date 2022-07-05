@@ -6,6 +6,9 @@
     </x-slot>
 
     <div class="py-0 md:py-12">
+        @php
+            $full = false;
+        @endphp
         <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 bg-white rounded-lg shadow-lg scroll-smooth">
             <div class="grid grid-cols-5 gap-4">
                 <div class="col-span-5 md:col-span-2">
@@ -55,11 +58,36 @@
                 <div class="bg-gray-100 rounded border border-gray-300 p-6 mt-8">
                     <h4 class="text-gray-600">Please fill in your details below to register for this event.</h4>
                     @if($event->limited != 0)
-                    <div>
-                        {{ $event->attendees - $event->attendees_count }} places left
-                    </div>
+                        @if($event->attendees === $event->attendees_count)
+                            <div>
+                                {{ $event->attendees - $event->attendees_count }} places left
+                                @php
+                                    $full = true;
+                                @endphp
+                            </div>
+                        @else
+                        <div>
+                            {{ $event->attendees - $event->attendees_count }} places left
+                        </div>
+                        @endif
                     @endif
+
+                    @if(\Session::has('registered'))
+                        <div class="bg-gray-700 border border-gray-300 text-gray-100 p-2 rounded mt-4">
+                            Thank you for registering to the event!
+                        </div>
+                    @endif
+
                     <div class="my-6">
+                        @if ($errors->any())
+                            <div class="bg-red-200 rounded border border-red-400 px-4 py-2 my-2">
+                                <ul class="list-none list-inside">
+                                    @foreach ($errors->all() as $error)
+                                        <li class="text-red-700 font-semibold">{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <form action="{{ route('attendee.store') }}" class='' method="POST">
                             @csrf
                             <input type="hidden" name="event" value="{{ $event->id }}">
@@ -83,15 +111,23 @@
                                     <label for="email" class="block text-sm font-medium text-gray-700 ml-3 mt-1">Email</label>
                                 </div>
                                 <div class="pt-1">
-                                    <button type="submit" class="button-primary">
-                                        REGISTER
-                                    </button>
+                                    @if($full)
+                                        <button type="submit" class="button-primary">
+                                            ADD TO WAITING LIST
+                                        </button>
+                                    @else
+                                        <button type="submit" class="button-primary">
+                                            REGISTER
+                                        </button>
+                                    @endif
+
                                 </div>
                             </div>
                             <div class="mt-6 bg-gray-200 rounded p-2">
                                 <input type="checkbox" name="opt_in" value="1" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2">
                                 <label for="opt_in" class="font-medium text-gray-700">I agree to be contacted in future about the upcoming events.</label>
                             </div>
+                            {{ $full }}
                         </form>
                         <div class="text-gray-500 text-sm mt-4">
                             Your personal details won't be shared with anyone unauthorised. We only use it if the organiser of the event make some changes, like changing times, cancelling etc.

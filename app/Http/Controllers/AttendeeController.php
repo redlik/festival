@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Attendee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class AttendeeController extends Controller
 {
@@ -31,10 +33,23 @@ class AttendeeController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|unique:attendees,email,NULL,id,event_id,'.$request->input('event'),
+        ],[
+            'email.unique' => "Looks like you've already registered for this event",
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+
         $attendee = Attendee::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
@@ -43,7 +58,16 @@ class AttendeeController extends Controller
             'event_id' => $request->input('event'),
         ]);
 
-        return redirect()->back();
+        Mail::send('email.event-registration', ['attendee' => $attendee], function ($m) use ($attendee) {
+
+            $m->from('admin@kerrymentalhealthandwellbeingfest.com', 'Kerry Fest Admins');
+
+            $m->to($attendee->email, $attendee->name)
+                ->subject('Event registration');
+
+        });
+
+        return redirect()->back()->with('registered', "Thank you for registering to the event");
     }
 
     /**
