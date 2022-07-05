@@ -31,6 +31,15 @@
                     Registration form
                 </h3>
             </div>
+            @if ($errors->any())
+                <div class="bg-red-200 rounded border border-red-400 pl-2 my-4">
+                    <ul class="list-disc list-inside">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <form class="space-y-8 divide-y divide-gray-200" method="POST" action="{{ route('organiser.store') }}" id="organiser-registration">
                 <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
                     <div>
@@ -41,7 +50,7 @@
                                     Organiser's Name
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                    <input type="text" name="name" id="name" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md" required>
+                                    <input type="text" name="name" id="name" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md" required value="{{ old('name') }}">
                                 </div>
                             </div>
 
@@ -59,7 +68,7 @@
                                     Phone number <span class="text-red-700">*</span>
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                    <input id="phone" name="phone" type="text" autocomplete="email" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md">
+                                    <input id="phone" name="phone" type="text" autocomplete="phone" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" value="{{ old('phone') }}">
                                 </div>
                             </div>
 
@@ -68,7 +77,7 @@
                                     Company / Organisation <span class="text-red-700">*</span>
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                    <input id="org" name="org" type="text" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" required>
+                                    <input id="org" name="org" type="text" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" required value="{{ old('org') }}">
                                 </div>
                             </div>
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
@@ -77,13 +86,15 @@
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
                                     <select x-model="hear" id="hear_about" name="hear_about" class="max-w-lg block focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
+                                        @if(old('hear_about') === null)
                                         <option value="" disabled selected>Select from the list</option>
-                                        <option value="Social media">Social media</option>
-                                        <option value="Radio">Radio</option>
-                                        <option value="Newspaper">Newspaper</option>
-                                        <option value="Other event organiser">Other event organiser</option>
-                                        <option value="Committee member">Committee member</option>
-                                        <option value="Other">Other (please specify in the box below)</option>
+                                        @endif
+                                        <option value="Social media" @selected(old('hear_about') == 'Social media')>Social media</option>
+                                        <option value="Radio" @selected(old('hear_about') == 'Radio')>Radio</option>
+                                        <option value="Newspaper" @selected(old('hear_about') == 'Newspaper')>Newspaper</option>
+                                        <option value="Other event organiser" @selected(old('ear_about') == 'Other event organiser')>Other event organiser</option>
+                                        <option value="Committee member" @selected(old('ear_about') == 'Committee member')>Committee member</option>
+                                        <option value="Other" @selected(old('hear_about') == 'Other')>Other (please specify in the box below)</option>
                                     </select>
                                 </div>
                             </div>
@@ -92,7 +103,7 @@
                                     Other
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                    <input id="other" name="other" x-bind:disabled="(hear == 'Other') ? false : true" x-bind:required="(hear == 'Other') ? true : false" type="text" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" required>
+                                    <input id="other" name="other" x-bind:disabled="(hear == 'Other') ? false : true" x-bind:required="(hear == 'Other') ? true : false" type="text" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" required value="{{ old('other') }}">
                                 </div>
                             </div>
 
@@ -101,7 +112,7 @@
                                     Event(s) details <br/><span class="block lg:w-2/3 italic">Please provide brief information about each event you wish to organise.</span>
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                    <textarea id="events" name="events" rows="3" class="max-w-lg shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md" required></textarea>
+                                    <textarea id="events" name="events" rows="3" class="max-w-lg shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md" required>{{ old('events') }}</textarea>
                                     <p class="mt-2 text-sm text-gray-700 font-semibold">This will be used to describe the events to the public in promotional material - please provide two to three sentences.</p>
                                 </div>
                             </div>
@@ -126,7 +137,7 @@
                                     Address Line 1
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                    <input type="text" name="address1" id="address1" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md">
+                                    <input type="text" name="address1" id="address1" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" value="{{ old('address1') }}">
                                 </div>
                             </div>
 
@@ -135,7 +146,7 @@
                                     Street
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                    <input type="text" name="street" id="street" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md">
+                                    <input type="text" name="street" id="street" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" value="{{ old('street') }}">
                                 </div>
                             </div>
 
@@ -144,7 +155,7 @@
                                     City / Town
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                    <input type="text" name="town" id="town" class="block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
+                                    <input type="text" name="town" id="town" class="block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md" value="{{ old('town') }}">
                                 </div>
                             </div>
 
@@ -153,7 +164,7 @@
                                     EIRCODE
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                    <input type="text" name="eircode" id="eircode" autocomplete="eircode" class="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
+                                    <input type="text" name="eircode" id="eircode" autocomplete="eircode" class="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md uppercase" value="{{ old('eircode') }}">
                                 </div>
                             </div>
 
@@ -163,31 +174,33 @@
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
                                     <select id="county" name="county" autocomplete="county" class="max-w-lg block focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
+                                        @if(old('county') === null)
                                         <option value="" disabled selected>Select from the list</option>
-                                        <option value="Carlow">Co. Carlow</option>
-                                        <option value="Cavan">Co. Cavan</option>
-                                        <option value="Clare">Co. Clare</option>
-                                        <option value="Cork">Co. Cork</option>
-                                        <option value="Donegal">Co. Donegal</option>
-                                        <option value="Dublin">Co. Dublin</option>
-                                        <option value="Galway">Co. Galway</option>
-                                        <option value="Kerry">Co. Kerry</option>
-                                        <option value="Kildare">Co. Kildare</option>
-                                        <option value="Kilkenny">Co. Kilkenny</option>
-                                        <option value="Laois">Co. Laois</option>
-                                        <option value="Leitrim">Co. Leitrim</option>
-                                        <option value="Limerick">Co. Limerick</option>
-                                        <option value="Louth">Co. Louth</option>
-                                        <option value="Mayo">Co. Mayo</option>
-                                        <option value="Meath">Co. Meath</option>
-                                        <option value="Monaghan">Co. Monaghan</option>
-                                        <option value="Offaly">Co. Offaly</option>
-                                        <option value="Roscommon">Co. Roscommon</option>
-                                        <option value="Sligo">Co. Sligo</option>
-                                        <option value="Tipperary">Co. Tipperary</option>
-                                        <option value="Waterford">Co. Waterford</option>
-                                        <option value="Wexford">Co. Wexford</option>
-                                        <option value="Wicklow">Co. Wicklow</option>
+                                        @endif
+                                        <option value="Carlow" @selected(old('county') == 'Carlow')>Co. Carlow</option>
+                                        <option value="Cavan" @selected(old('county') == 'Cavan')>Co. Cavan</option>
+                                        <option value="Clare" @selected(old('county') == 'Clare')>Co. Clare</option>
+                                        <option value="Cork" @selected(old('county') == 'Cork')>Co. Cork</option>
+                                        <option value="Donegal" @selected(old('county') == 'Donegal')>Co. Donegal</option>
+                                        <option value="Dublin" @selected(old('county') == 'Dublin')>Co. Dublin</option>
+                                        <option value="Galway" @selected(old('county') == 'Galway')>Co. Galway</option>
+                                        <option value="Kerry" @selected(old('county') == 'Kerry')>Co. Kerry</option>
+                                        <option value="Kildare" @selected(old('county') == 'Kildare')>Co. Kildare</option>
+                                        <option value="Kilkenny" @selected(old('county') == 'Kilkenny')>Co. Kilkenny</option>
+                                        <option value="Laois" @selected(old('county') == 'Laois')>Co. Laois</option>
+                                        <option value="Leitrim" @selected(old('county') == 'Leitrim')>Co. Leitrim</option>
+                                        <option value="Limerick" @selected(old('county') == 'Limerick')>Co. Limerick</option>
+                                        <option value="Louth" @selected(old('county') == 'Louth')>Co. Louth</option>
+                                        <option value="Mayo" @selected(old('county') == 'Mayo')>Co. Mayo</option>
+                                        <option value="Meath" @selected(old('county') == 'Meath')>Co. Meath</option>
+                                        <option value="Monaghan" @selected(old('county') == 'Monaghan')>Co. Monaghan</option>
+                                        <option value="Offaly" @selected(old('county') == 'Offaly')>Co. Offaly</option>
+                                        <option value="Roscommon" @selected(old('county') == 'Roscommon')>Co. Roscommon</option>
+                                        <option value="Sligo" @selected(old('county') == 'Sligo')>Co. Sligo</option>
+                                        <option value="Tipperary" @selected(old('county') == 'Tipperary')>Co. Tipperary</option>
+                                        <option value="Waterford" @selected(old('county') == 'Waterford')>Co. Waterford</option>
+                                        <option value="Wexford" @selected(old('county') == 'Wexford')>Co. Wexford</option>
+                                        <option value="Wicklow" @selected(old('county') == 'Wicklow')>Co. Wicklow</option>
                                     </select>
                                 </div>
                             </div>
@@ -210,7 +223,7 @@
                                     Website
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                    <input type="url" name="website" id="website" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md placeholder-gray-400" placeholder="https://www.mywebsite.com">
+                                    <input type="url" name="website" id="website" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md placeholder-gray-400" placeholder="https://www.mywebsite.com" value="{{ old('website') }}">
                                 </div>
                             </div>
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
@@ -218,7 +231,7 @@
                                     Facebook page
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                    <input type="url" name="facebook" id="facebook" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md placeholder-gray-400" placeholder="https://www.facebook.com/my_page">
+                                    <input type="url" name="facebook" id="facebook" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md placeholder-gray-400" placeholder="https://www.facebook.com/my_page" value="{{ old('facebook') }}">
                                 </div>
                             </div>
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
@@ -226,7 +239,7 @@
                                     Twitter
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                    <input type="url" name="twitter" id="twitter" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md placeholder-gray-400" placeholder="https://www.twitter.com/my_account">
+                                    <input type="url" name="twitter" id="twitter" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md placeholder-gray-400" placeholder="https://www.twitter.com/my_account" value="{{ old('twitter') }}">
                                 </div>
                             </div>
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
@@ -234,7 +247,15 @@
                                     Instagram
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                    <input type="url" name="instagram" id="instagram" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md placeholder-gray-400" placeholder="https://www.instagram.com/my_account">
+                                    <input type="url" name="instagram" id="instagram" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md placeholder-gray-400" placeholder="https://www.instagram.com/my_account" value="{{ old('instagram') }}">
+                                </div>
+                            </div>
+                            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                                <label for="linkedin" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                                    LinkedIn
+                                </label>
+                                <div class="mt-1 sm:mt-0 sm:col-span-2">
+                                    <input type="url" name="linkedin" id="linkedin" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md placeholder-gray-400" placeholder="https://www.linkedin.com/my_account" value="{{ old('linkedin') }}">
                                 </div>
                             </div>
 

@@ -9,6 +9,7 @@ use App\Notifications\AccountApproved;
 use App\Notifications\ApplicationSubmitted;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class OrganiserController extends Controller
@@ -45,10 +46,23 @@ class OrganiserController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+            'email' => 'required|unique:organisers',
+        ],[
+            'email.unique' => 'Organiser with this email already exists',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/join-us')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         if($request->input('hear_about') == 'Other') {
             $hear = $request->input('other');
         } else {
@@ -72,6 +86,7 @@ class OrganiserController extends Controller
             'facebook' => $request->input('facebook'),
             'twitter' => $request->input('twitter'),
             'instagram' => $request->input('instagram'),
+            'linkedin' => $request->input('linkedin'),
             'events' => $request->input('events'),
         ]);
 
