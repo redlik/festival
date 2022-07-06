@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Attendee;
+use App\Models\User;
+use App\Notifications\NewAttendeeNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -57,6 +59,9 @@ class AttendeeController extends Controller
             'opt_in' => $request->input('opt_in'),
             'event_id' => $request->input('event'),
         ]);
+
+        $organiser = User::where('id', $attendee->event->user_id)->first();
+        $organiser->notify(new NewAttendeeNotification($attendee));
 
         Mail::send('email.event-registration', ['attendee' => $attendee], function ($m) use ($attendee) {
 
