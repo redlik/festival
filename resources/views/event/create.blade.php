@@ -41,7 +41,8 @@
                                     <div class="text-xs">If your event doesn't have the end time set, leave the field blank</div>
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                    <input id="start_date" name="start_date" type="date" class="lg:w-48 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" min="<?php echo date("Y-m-d"); ?>" required value="{{ old('start_date') }}">
+                                    <input id="start_date" name="start_date" type="date" class="lg:w-48 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" min="2022-10-06" max="2022-10-17" required
+                                           value="{{ old('start_date') }}">
                                     <input id="start_time" name="start_time" type="time" class="lg:ml-4 lg:w-48 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" required value="{{ old('start_time') }}">
                                     <input id="end_time" name="end_time" type="time" class="lg:ml-4 lg:w-48 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" value="{{ old('end_time') }}">
                                 </div>
@@ -106,24 +107,29 @@
                             </div>
 
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="target" class="block text-sm font-medium sm:mt-px sm:pt-2">
+                                <label for="target" class="block text-sm font-medium sm:mt-px sm:pt-2 mb-4 md:mb-0">
                                     Target group
                                 </label>
-                                <div class="mt-1 sm:mt-0 sm:col-span-2 flex">
-                                    <div class="flex items-center h-5 mr-8">
+                                <div class="mt-1 sm:mt-0 sm:col-span-2 md:flex">
+                                    <div class="flex items-center h-5 mr-8 mb-4 md:mb-0">
+                                        <input id="everyone" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="everyone"
+                                        @checked(is_array(old('target')) && in_array('everyone', old('target')))
+                                        <label for="teens" class="font-medium text-gray-700">Everyone</label>
+                                    </div>
+                                    <div class="flex items-center h-5 mr-8 mb-4 md:mb-0">
                                         <input id="teens" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="teens"
-                                       @checked(is_array(old('target')) && in_array('teens', old('target')))
+                                        @checked(is_array(old('target')) && in_array('teens', old('target')))
                                         <label for="teens" class="font-medium text-gray-700">Teens</label>
                                     </div>
-                                    <div class="flex items-center h-5 mr-8">
+                                    <div class="flex items-center h-5 mr-8 mb-4 md:mb-0">
                                         <input id="young" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="young-adults" @checked(is_array(old('target')) && in_array('young-adults', old('target')))>
                                         <label for="young" class="font-medium text-gray-700">Young adults</label>
                                     </div>
-                                    <div class="flex items-center h-5 mr-8">
+                                    <div class="flex items-center h-5 mr-8 mb-4 md:mb-0">
                                         <input id="older" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="older-adults" @checked(is_array(old('target')) && in_array('older-adults', old('target')))>
                                         <label for="older" class="font-medium text-gray-700">Older adults</label>
                                     </div>
-                                    <div class="flex items-center h-5 mr-8">
+                                    <div class="flex items-center h-5 mr-8 mb-4 md:mb-0">
                                         <input id="family" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="family" @checked(is_array(old('target')) && in_array('family', old('target')))>
                                         <label for="family" class="font-medium text-gray-700">Family</label>
                                     </div>
@@ -171,7 +177,7 @@
                                 <div class="mt-1 sm:mt-0 sm:col-span-2 flex">
                                     <div class="flex items-center h-5 mr-8">
                                         <input id="yes" name="covid" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="yes" @checked( old('covid', 'yes') )>
-                                        <label for="yes" class="font-medium text-gray-700" >Yes</label>
+                                        <label for="yes" class="font-medium text-gray-700">Yes</label>
                                     </div>
                                     <div class="flex items-center h-5 mr-8">
                                         <input id="no" name="covid" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="no" checked @checked( old('covid', 'no') )>
@@ -216,11 +222,11 @@
                             </div>
 
                             <div class=" sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                    <label for="leader_email" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                                        Email
-                                    </label>
-                                    <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                        <input type="text" name="leader_email" id="leader_email" class="block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md" value="{{ old('leader_email') }}">
+                                <label for="leader_email" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                                    Email
+                                </label>
+                                <div class="mt-1 sm:mt-0 sm:col-span-2">
+                                    <input type="text" name="leader_email" id="leader_email" class="block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md" value="{{ old('leader_email') }}">
                                 </div>
                             </div>
 
@@ -228,15 +234,15 @@
                     </div>
 
                     <div class=" pt-5">
-                                        <div class="flex justify-start">
-                                            <button type="submit" class="button-primary" name="submit">
-                                                Submit event
-                                            </button>
-                                            <button formaction="{{ route('event.save-draft') }}" class="button-secondary ml-8" name="save">
-                                                Save draft
-                                            </button>
-                                        </div>
-                                    </div>
+                        <div class="flex justify-start">
+                            <button type="submit" class="button-primary" name="submit">
+                                Submit event
+                            </button>
+                            <button formaction="{{ route('event.save-draft') }}" class="button-secondary ml-8" name="save">
+                                Save draft
+                            </button>
+                        </div>
+                    </div>
             </form>
 
         </div>
