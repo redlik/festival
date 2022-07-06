@@ -18,7 +18,7 @@ class ContactController extends Controller
 
         });
 
-        $request->session()->flash('status', 'Thank you for contacting us, we will respond to the eqnuiry as soon as we can!');
+        $request->session()->flash('status', 'Thank you for contacting us, we will respond to the enquiry as soon as we can!');
 
         return back();
     }
