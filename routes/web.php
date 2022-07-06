@@ -44,6 +44,7 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin'], func
     Route::get('event/{id}', [EventController::class, 'showAdmin'])->name('admin.event.show');
     Route::get('event/approval/{id}', [EventController::class, 'adminApproval'])->name('admin.event.approve');
     Route::get('event/unpublish/{id}', [EventController::class, 'adminUnpublish'])->name('admin.event.unpublish');
+    Route::get('resend-activation/{organiser}', [OrganiserController::class, 'resendActivation'])->name('admin.resend-activation');
 });
 
 Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'venue'], function () {

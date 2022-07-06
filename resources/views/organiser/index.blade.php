@@ -22,6 +22,9 @@
                     @if (Session::has('deleted'))
                         <div class="bg-red-100 border border-red-700 shadow rounded p-2 my-4 text-red-600">{{ Session::get('deleted') }}</div>
                     @endif
+                    @if (Session::has('resend'))
+                        <div class="bg-green-100 border border-green-700 shadow-lg rounded p-2 my-4 text-green-700">{{ Session::get('resend') }}</div>
+                    @endif
 
                     <div class="mt-8 flex flex-col">
                         <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -53,6 +56,8 @@
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                 @if($organiser->status == 'pending')
                                                 <span class="gray-pillow">{{ ucfirst($organiser->status) }}</span>
+                                                <a href="{{ route('admin.resend-activation', $organiser) }}" title="Re-send activation email"><i class="fa-solid fa-rotate text-indigo-600 ml-2"></i></a>
+
                                                 @endif
                                                 @if($organiser->status == 'activated')
                                                     <span class="green-pillow">{{ ucfirst($organiser->status) }}</span>

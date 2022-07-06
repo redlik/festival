@@ -166,4 +166,12 @@ class OrganiserController extends Controller
 
         return back();
     }
+
+    public function resendActivation(Organiser $organiser)
+    {
+        $organiser->notify(new AccountActivation($organiser));
+        $message = 'Activation email sent to '.$organiser->email;
+
+        return back()->with('resend', $message);
+    }
 }
