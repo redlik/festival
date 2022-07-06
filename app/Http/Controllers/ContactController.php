@@ -11,7 +11,7 @@ class ContactController extends Controller
     {
         Mail::send('email.contact', ['request' => $request], function ($m) use ($request) {
 
-            $m->from($request->email, $request->name);
+            $m->from('admin@kerrymentalhealthandwellbeingfest.com', $request->name);
 
             $m->to('admin@kerrymentalhealthandwellbeingfest.com', 'Kerry Fest Admins')
                 ->subject('Contact form query');
