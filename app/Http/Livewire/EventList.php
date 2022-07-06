@@ -18,6 +18,7 @@ class EventList extends Component
     {
         $this->events = $events = Event::with('venue')->approved()->get();
         $this->target = [
+            'everyone' => "Everyone",
             'teens' => "Teens",
             'young-adults' => "Young adults",
             'older-adults' => "Older adults",

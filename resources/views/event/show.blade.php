@@ -25,6 +25,7 @@
                         <div class="mb-2"><strong>Venue:</strong> {{ $event->venue->name }}</div>
                         <div class=""><strong>Organiser:</strong> {{ $event->user->organiser->org }}</div>
                         <div class="flex mb-2 mt-1">
+                            <a href="mailto:{{ $event->user->email }}?subject=Question about {{ $event->name }} event" title="Contact organiser"><i class="fa-solid fa-envelope mr-4 text-purple-500 text-xl"></i></a>
                             @if($event->user->organiser->website)
                                 <a href="{{ $event->user->organiser->website }}" target="_blank" title="Visit our website"><i class="fa-solid fa-globe mr-4 text-green-600 text-xl"></i></a>
                             @endif
