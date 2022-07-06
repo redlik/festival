@@ -10,17 +10,17 @@
             <div>
                 <p> Kerry Mental Health and Wellbeing Fest will take place from
                     <strong>8th – 15th October 2022</strong>. The key focus of the Fest is scheduling events that empower people to engage with the Five Ways to Wellbeing
-                    <strong>(Connect | Give | Take Notice | Keep Learning | Be Active)</strong> as well as raising awareness of the available supports and services in the county.</p>
-                <p>We aim to ensure the Fest has free events for people of all ages, backgrounds and abilities across the county. We would be delighted for you to get involved by hosting a free event(s) that promote the Five Ways to Wellbeing - whether you’re an educational body, organisation, agency, business, sports club, community group or qualified individual. </p>
+                    <strong>(Connect | Give | Take Notice | Keep Learning | Be Active)</strong> as well as raising awareness of the available supports and services in the county. We aim to ensure the Fest has free events for people of all ages, backgrounds and abilities across the county. We would be delighted for you to get involved by hosting a free event(s) that promote the Five Ways to Wellbeing - whether you’re an educational body, organisation, agency, business, sports club, community group or qualified individual. </p>
             </div>
             <div class="my-8 p-4 rounded bg-gray-50">
                 <h2 class="mb-4">All you need to do is:</h2>
-                <ul class="list-disc ml-3">
-                    <li><strong>Step 1</strong> – Register as an event organiser by filling in the short form below.
-                        <span class="underline">This needs to be completed by Friday 22nd July.</span></li>
-                    <li><strong>Step 2</strong> - Activate your account and create a password.</li>
-                    <li><strong>Step 3</strong> - Once activated, your account will be ready to create events.
-                        <span class="underline">All events need to be uploaded by Friday 5th August to be considered.</span></li>
+                <ul class="list-disc list-inside">
+                    <li><strong>Step 1</strong> – Register as an event organiser by filling in the short form below.</li>
+                    <li><strong>Step 2</strong> - Activate your account by clicking on the link in the activation email that you will receive.</li>
+                    <li><strong>Step 3</strong> - Create a password and then you are ready to add an event(s).
+                        <span class="underline">All events need to be submitted by Friday, 5th August to be considered.</span></li>
+                    <li><strong>Step 4</strong> - The Fest Committee will review your event(s) prior to publishing them on the website.</li>
+
                 </ul>
                 <div class="mt-4 rounded p-2 bg-yellow-200 text-black"> <h5>Please
                         <a href="#guidelines" class="underline text-olive-600 font-bold">read the guidelines</a> for event organisers below before filling the form.
@@ -57,6 +57,7 @@
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                                 <label for="email" class="block text-sm font-medium sm:mt-px sm:pt-2">
                                     Email address <span class="text-red-700">*</span>
+                                    <div class="text-xs text-red-600"><strong>Please note.</strong> This email will be used on the event pages to allow visitors to contact you directly.</div>
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
                                     <input id="email" name="email" type="email" autocomplete="email" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md">
