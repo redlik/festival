@@ -27,6 +27,15 @@ class OrganiserController extends Controller
      */
     public function index()
     {
+        return abort(403);
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function adminIndex()
+    {
         $organisers = Organiser::all();
 
         return view('organiser.index', compact('organisers'));

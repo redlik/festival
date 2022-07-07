@@ -12,7 +12,7 @@
 
                     <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
                         <dt class="text-sm font-semibold truncate">
-                            <a href="{{ route('organiser.index') }}"><span class="text-gray-500 hover:text-indigo-500 hover:underline">Organisers registered</span> </a>
+                            <a href="{{ route('admin.organisers') }}"><span class="text-gray-500 hover:text-indigo-500 hover:underline">Organisers registered</span> </a>
                         </dt>
                         <dd class="mt-1 text-3xl font-semibold text-gray-900">
                             {{ $organisers_count }}
