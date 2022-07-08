@@ -71,8 +71,15 @@
                                     <div>{{ \Carbon\Carbon::parse($event->start_time)->format('H:i') }} - {{ \Carbon\Carbon::parse($event->end_time)->format('H:i') }}</div>
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    <div>{{ $event->venue->name }}</div>
-                                    <div>{{ $event->venue->town }}</div>
+                                    @if($event->venue_id == 0)
+                                        <div class="text-indigo-600"><i class="fa-solid fa-video mr-2"></i> Online event</div>
+                                    @else
+                                        <div>
+                                            <div>{{ $event->venue->name }}</div>
+                                            <div>{{ $event->venue->town }}</div>
+                                        </div>
+                                    @endif
+
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     @if($event->limited == 1)

@@ -44,7 +44,7 @@ class EventController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
-            'venue_id' => 'required',
+            'venue_id' => 'required_if:type,indoor,outdoor',
             'start_time' => 'required',
             'end_time' => 'nullable|after:start_time',
         ],[
@@ -70,6 +70,12 @@ class EventController extends Controller
             $attendees = $request->input('attendees');
         }
 
+        if($request->input('venue_id') == 0) {
+            $is_online = true;
+        } else {
+            $is_online = false;
+        }
+
         $slug = rand(1001,9999)."-".Str::of($request->input('name'))->slug('-');
 
         $event = Event::create([
@@ -84,6 +90,7 @@ class EventController extends Controller
             'limited' => $request->input('limited'),
             'attendees' => $attendees,
             'venue_id' => $request->input('venue_id'),
+            'is_online' => $is_online,
             'user_id' => Auth::id(),
             'covid' => $request->input('covid'),
             'leader_name' => $request->input('leader_name'),
@@ -109,12 +116,12 @@ class EventController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
-            'venue_id' => 'required',
+            'venue_id' => 'required_if:type,indoor,outdoor',
             'start_time' => 'required',
             'end_time' => 'nullable|after:start_time',
         ],[
             'end_time.after' => 'The end time should be set after the start time',
-            'venue_id.required' => "Don't forget to select a venue"
+            'venue_id.required_if' => "Don't forget to select a venue"
         ]);
 
         if ($validator->fails()) {
@@ -136,6 +143,12 @@ class EventController extends Controller
             $attendees = $request->input('attendees');
         }
 
+        if($request->input('venue_id') == 0) {
+            $is_online = true;
+        } else {
+            $is_online = false;
+        }
+
         $slug = rand(1001,9999)."-".Str::of($request->input('name'))->slug('-');
 
         $event = Event::create([
@@ -150,6 +163,7 @@ class EventController extends Controller
             'limited' => $request->input('limited'),
             'attendees' => $attendees,
             'venue_id' => $request->input('venue_id'),
+            'is_online' => $is_online,
             'user_id' => Auth::id(),
             'covid' => $request->input('covid'),
             'leader_name' => $request->input('leader_name'),

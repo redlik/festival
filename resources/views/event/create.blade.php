@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="py-0 md:py-12">
-        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 bg-white rounded-lg shadow-lg scroll-smooth" x-data="{ limit: '0' }">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 bg-white rounded-lg shadow-lg scroll-smooth" x-data="{ limit: '0', type: '' }">
             <div>
                 <h3 class="leading-6 text-2xl mb-2">
                     Event registration form
@@ -45,6 +45,20 @@
                                            value="{{ old('start_date') }}">
                                     <input id="start_time" name="start_time" type="time" class="lg:ml-4 lg:w-48 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" required value="{{ old('start_time') }}">
                                     <input id="end_time" name="end_time" type="time" class="lg:ml-4 lg:w-48 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" value="{{ old('end_time') }}">
+                                </div>
+                            </div>
+
+                            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                                <label for="type" class="block text-sm font-medium sm:mt-px sm:pt-2">
+                                    Environment <span class="text-red-700">*</span>
+                                </label>
+                                <div class="mt-1 sm:mt-0 sm:col-span-2">
+                                    <select id="type" name="type" class="max-w-lg block focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md" required x-model="type">
+                                        <option value="" disabled selected>Select from the list</option>
+                                        <option value="indoor" @selected(old('type') === 'indoor') >Indoor</option>
+                                        <option value="outdoor" @selected(old('type') === 'outdoor')>Outdoor</option>
+                                        <option value="online" @selected(old('type') === 'online')>Online</option>
+                                    </select>
                                 </div>
                             </div>
 
@@ -89,20 +103,6 @@
                                             </p>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="type" class="block text-sm font-medium sm:mt-px sm:pt-2">
-                                    Environment <span class="text-red-700">*</span>
-                                </label>
-                                <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                    <select id="type" name="type" class="max-w-lg block focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md" required>
-                                        <option value="" disabled selected>Select from the list</option>
-                                        <option value="indoor" @selected(old('type') == 'indoor')>Indoor</option>
-                                        <option value="outdoor" @selected(old('type') == 'outdoor')>Outdoor</option>
-                                        <option value="online" @selected(old('type') == 'online')>Online</option>
-                                    </select>
                                 </div>
                             </div>
 
