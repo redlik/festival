@@ -13,7 +13,7 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
-                <x-application-logo class="w-auto h-28 fill-current text-gray-500" />
+                <x-application-logo class="w-auto h-28 fill-current text-gray-500" alt="kerry fest logo"/>
             </a>
         </x-slot>
 
