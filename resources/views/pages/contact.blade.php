@@ -47,6 +47,7 @@
                 </div>
                 <form action="{{ route('contact-form-sent') }}" method="POST" class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
                     @csrf
+                    @honeypot
                     <div class="sm:col-span-2">
                         <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
                         <div class="mt-1">
@@ -84,17 +85,13 @@
                                 <p class="text-base text-gray-500">
                                     By selecting this, you agree to the
                                     <!-- space -->
-                                    <a href="#" class="font-medium text-gray-700 underline">Privacy Policy</a>
-                                    <!-- space -->
-                                    and
-                                    <!-- space -->
-                                    <a href="#" class="font-medium text-gray-700 underline">Cookie Policy</a>.
+                                    <a href="#" class="font-medium text-gray-700 underline">Privacy Policy</a>.
                                 </p>
                             </div>
                         </div>
                     </div>
                     <div class="sm:col-span-2">
-                        <button type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-olive-400 hover:bg-olive-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        <button type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-olive-400 hover:bg-olive-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" aria-label="Send message">
                             Send message
                         </button>
                     </div>
