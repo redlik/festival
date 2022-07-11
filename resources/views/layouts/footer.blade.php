@@ -1,7 +1,7 @@
 <div class="bg-gray-700 py-8">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-wrap items-top text-gray-100">
         <div class="w-full md:w-1/3 px-4">
-            <img class="block h-24 w-auto mb-2" src="{{ asset('img/logo-white.svg') }}">
+            <img class="block h-24 w-auto mb-2" src="{{ asset('img/logo-white.svg') }}" alt="kerry fest footer logo">
             <ul class="text-gray-200 text-sm mt-2">
                 <li class="mb-2"><span class="inline-block w-16 font-bold">Email:</span>
                     <a href="mailto:kerrymhwfest20@gmail.com ">kerrymhwfest20@gmail.com </a></li>
