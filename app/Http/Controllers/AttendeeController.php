@@ -8,9 +8,15 @@ use App\Notifications\NewAttendeeNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Honeypot\ProtectAgainstSpam;
 
 class AttendeeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(ProtectAgainstSpam::class)->only('store');
+    }
+
     /**
      * Display a listing of the resource.
      *

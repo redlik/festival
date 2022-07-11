@@ -97,6 +97,7 @@
                         @endif
                         <form action="{{ route('attendee.store') }}" class='' method="POST">
                             @csrf
+                            @honeypot
                             <input type="hidden" name="event" value="{{ $event->id }}">
                             <div class="lg:flex items-start">
                                 <div class="grow mr-4 mb-4 md:mb-0">
@@ -119,11 +120,11 @@
                                 </div>
                                 <div class="pt-1">
                                     @if($full)
-                                        <button type="submit" class="button-primary">
+                                        <button type="submit" class="button-primary" aria-label="Add to waiting list">
                                             ADD TO WAITING LIST
                                         </button>
                                     @else
-                                        <button type="submit" class="button-primary">
+                                        <button type="submit" class="button-primary" aria-label="Register as participant">
                                             REGISTER
                                         </button>
                                     @endif
