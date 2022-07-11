@@ -13,7 +13,7 @@
         </style>
     @endpush
     <div class="max-w-7xl mx-auto h-1/3 shadow-lg bg-white">
-        <img src="{{ asset('img/about-hero.jpg') }}" class="shadow-lg lg:h-[500px] object-cover w-full" alt="">
+        <img src="{{ asset('img/about-hero.jpg') }}" class="shadow-lg lg:h-[500px] object-cover w-full" alt="Kerry Mental Health & Wellbeing Fest 2022 Organisers">
     </div>
     <div class="bg-white py-8 px-4 overflow-hidden sm:px-6 lg:px-8 lg:py-8">
 
@@ -69,7 +69,7 @@
                             Since beginning in 2018 the Fest has been run annually every October and the key focus has been on creating awareness of, and scheduling events that empower people to engage with the ‘Five Ways to Wellbeing’
                             <strong>(Connect | Give | Take Notice | Keep Learning | Be Active)</strong> as well as raising awareness of the available supports and services in the county.
                         </p>
-                        <img src="{{ asset('img/nef-5-ways-to-wellbeing.jpg') }}" alt="" class="my-6 w-full">
+                        <img src="{{ asset('img/nef-5-ways-to-wellbeing.jpg') }}" alt="5 Ways to Wellbeing - Connect, Give, Take Notice, Keep Learning, Be Active" class="my-6 w-full">
                         <p class="mb-4">
                             An aim of the Fest is that there is something for everyone – from runs to walks, arts & crafts to indoor bowls, coffee mornings to movie nights, workplace wellbeing to parenting information, mindfulness to volunteering information sessions, wellbeing workshops to seminars on grief and loss. The Fest has continued to grow to over 60 free events county-wide and has received very positive feedback from participants and event organisers year-on-year.
                         </p>
@@ -84,13 +84,13 @@
                 <div class="grid grid-col-1 lg:grid-cols-3 gap-4 lg:h-[270px]">
 
                     <a @click="$dispatch('img-modal', {  imgModalSrc: '{{ asset('img/kerry-mental-health-4.jpg') }}', imgModalDesc: 'Picture 1' })" class="cursor-pointer">
-                        <img src="{{ asset('img/olympians-mental-health-11.jpg') }}" class="col-span-1 object-cover lg:h-full" alt="">
+                        <img src="{{ asset('img/olympians-mental-health-11.jpg') }}" class="col-span-1 object-cover lg:h-full" alt="Kerry Mental Health & Wellbeing Fest 2022 supporters">
                     </a>
                     <a @click="$dispatch('img-modal', {  imgModalSrc: '{{ asset('img/kerry-mental-health-4.jpg') }}', imgModalDesc: 'Picture 1' })" class="cursor-pointer">
-                        <img src="{{ asset('img/kerry-mental-health-4.jpg') }}" class="col-span-1 object-cover lg:h-full" alt="">
+                        <img src="{{ asset('img/kerry-mental-health-4.jpg') }}" class="col-span-1 object-cover lg:h-full" alt="Kerry Mental Health & Wellbeing Fest 2022 organisers jumping with banners">
                     </a>
                     <a @click="$dispatch('img-modal', {  imgModalSrc: '{{ asset('img/olympians-mental-health-004.jpg') }}', imgModalDesc: 'Picture 1' })" class="cursor-pointer">
-                        <img src="{{ asset('img/olympians-mental-health-004.jpg') }}" class="col-span-1 object-cover lg:h-full" alt="">
+                        <img src="{{ asset('img/olympians-mental-health-004.jpg') }}" class="col-span-1 object-cover lg:h-full" alt="Kerry Mental Health & Wellbeing Fest 2022 supporters with wellbeing banner">
                     </a>
                 </div>
 

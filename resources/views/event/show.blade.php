@@ -12,7 +12,7 @@
         <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 bg-white rounded-lg shadow-lg scroll-smooth">
             <div class="grid grid-cols-5 gap-4">
                 <div class="col-span-5 md:col-span-2">
-                    <img src="{{ $event->getFirstMediaUrl('cover') }}" alt="">
+                    <img src="{{ $event->getFirstMediaUrl('cover') }}" alt="{{ $event->name }} event at Kerry Mental Health & Wellbeing Fest 2022">
                 </div>
                 <div class="col-span-5 md:col-span-3">
                     <h4 class="font-bold text-xl">{{ $event->name }}</h4>
@@ -22,7 +22,13 @@
                     <div class="my-4">
                         <h5 class="uppercase underline mb-2">Details:</h5>
                         <div class="mb-2"><strong>Date & time:</strong> {{ \Carbon\Carbon::parse($event->start_date)->format('d M') }} @ {{ \Carbon\Carbon::parse($event->start_time)->format('H:i') }} : {{ \Carbon\Carbon::parse($event->end_time)->format('H:i') }}</div>
-                        <div class="mb-2"><strong>Venue:</strong> {{ $event->venue->name }}</div>
+                        <div class="mb-2"><strong>Venue:</strong>
+                            @if($event->is_online)
+                                <span class="text-indigo-500 ml-4"><i class="fa-solid fa-video mr-1"></i> Online event</span>
+                            @else
+                                {{ $event->venue->name }}, {{ $event->venue->town }}
+                            @endif
+                        </div>
                         <div class=""><strong>Organiser:</strong> {{ $event->user->organiser->org }}</div>
                         <div class="flex mb-2 mt-1">
                             <a href="mailto:{{ $event->user->email }}?subject=Question about {{ $event->name }} event" title="Contact organiser"><i class="fa-solid fa-envelope mr-4 text-purple-500 text-xl"></i></a>
