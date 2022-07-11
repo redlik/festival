@@ -6,16 +6,16 @@
     </x-slot>
 
     <div class="py-0 md:py-12">
-        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 bg-white rounded-lg shadow-lg scroll-smooth" x-data="{ limit: {{ $event->limited }}, date : true }">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 bg-white rounded-lg shadow-lg scroll-smooth" x-data="{ limit: {{ $event->limited }}, date : true, type: '{{ $event->type }}'}">
             <div>
                 @if($event->status == 'published')
-                    <div class="border border-gray-200 bg-yellow-50 rounded p-2">
+                    <div class="border border-gray-200 bg-yellow-50 rounded p-2 mb-4">
                         <strong>PLEASE NOTE:</strong> If this event is already listed on the main page, and you are making significant changes, such as changing the date, time or the location, please make sure to inform the organisers of the Festival and the registered attendees about it.
                     </div>
                 @endif
             </div>
             <div class="p-2 rounded bg-gray-100 border border-gray-500 flex justify-between" x-show="date">
-                <div>Please note that edits to events can be made up to the <strong>19 August 2022</strong></div>
+                <div><strong>PLEASE NOTE</strong> that edits to events can be made up to the <strong>19th August 2022.</strong></div>
                 <div>
                     <button @click="date = ! date">
                         <i class="fas fa-times-circle"></i>
@@ -65,6 +65,20 @@
                                 </div>
                             </div>
 
+                            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                                <label for="type" class="block text-sm font-medium sm:mt-px sm:pt-2">
+                                    Environment <span class="text-red-700">*</span>
+                                </label>
+                                <div class="mt-1 sm:mt-0 sm:col-span-2">
+                                    <select id="type" name="type" class="max-w-lg block focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md" required x-model="type">
+                                        <option value="indoor" @selected($event->type === 'indoor')>Indoor</option>
+                                        <option value="outdoor" @selected($event->type === 'outdoor')>Outdoor</option>
+                                        <option value="online" @selected($event->type === 'online')>Online</option>
+                                    </select>
+                                    <div>{{ $event->type }}</div>
+                                </div>
+                            </div>
+
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5
                                         @if ($errors->has('venue')) bg-red-100 @endif">
                                 <label for="venue" class="block text-sm font-medium sm:mt-px sm:pt-2">
@@ -105,19 +119,6 @@
                                             </p>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="type" class="block text-sm font-medium sm:mt-px sm:pt-2">
-                                    Environment <span class="text-red-700">*</span>
-                                </label>
-                                <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                    <select id="type" name="type" class="max-w-lg block focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md" required>
-                                        <option value="indoor" @selected($event->type == 'indoor')>Indoor</option>
-                                        <option value="outdoor" @selected($event->type == 'outdoor')>Outdoor</option>
-                                        <option value="online" @selected($event->type == 'online')>Online</option>
-                                    </select>
                                 </div>
                             </div>
 
