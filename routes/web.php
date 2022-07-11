@@ -2,12 +2,14 @@
 
 use App\Http\Controllers\AttendeeController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\OrganiserController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VenueController;
 use Illuminate\Support\Facades\Route;
+use Spatie\Honeypot\ProtectAgainstSpam;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +35,7 @@ Route::get('/contact', function () {
 Route::get('/about', function () {
     return view('pages.about');
 })->name('pages.about');
-Route::post('/contact', [\App\Http\Controllers\ContactController::class, 'contactFormSent'])->name('contact-form-sent');
+Route::post('/contact', [ContactController::class, 'contactFormSent'])->middleware(ProtectAgainstSpam::class)->name('contact-form-sent');
 
 Route::get('/organiser-submitted', function () {
     return view('organiser.submitted');
@@ -56,7 +58,7 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'venue'], func
 
 Route::get('/dashboard', [UserController::class, 'dashboard'])->middleware('auth', 'role:organiser', 'disabled')->name('dashboard');
 
-Route::resource('organiser', OrganiserController::class);
+Route::resource('organiser', OrganiserController::class)->middleware('auth');
 Route::post('event-save-draft', [EventController::class, 'saveDraft'])->name('event.save-draft');
 Route::patch('event-update-and-submit', [EventController::class, 'updateAndSubmit'])->name('event.update-and-submit');
 Route::get('event-cancel/{id}', [EventController::class, 'cancel'])->name('event.cancel');
