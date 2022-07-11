@@ -32,8 +32,8 @@
             <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 <div class="flex-shrink-0 flex items-top">
                     <a href="/">
-                        <img class="block lg:hidden h-20 w-auto" src="{{ asset('img/logo-header.svg') }}">
-                        <img class="hidden lg:block w-24 bg-white p-3 shadow-lg object-contain" src="{{ asset('img/logo-header.svg') }}">
+                        <img class="block lg:hidden h-20 w-auto" src="{{ asset('img/logo-header.svg') }}" alt="kerry fest mobile logo">
+                        <img class="hidden lg:block w-24 bg-white p-3 shadow-lg object-contain" src="{{ asset('img/logo-header.svg') }}" alt="kerry fest desktop logo">
                     </a>
                 </div>
                 <div class="hidden sm:block sm:ml-6 sm:py-4">
