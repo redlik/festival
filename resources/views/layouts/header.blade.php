@@ -88,7 +88,7 @@
                         rounded-full
                         focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                 <span class="sr-only">Open user menu</span>
-                                <img class="h-8 w-8 rounded-full" src="{{ Avatar::create(Auth::user()->name)->toBase64() }}" alt="">
+                                <img class="h-8 w-8 rounded-full" src="{{ Avatar::create(Auth::user()->name)->toBase64() }}" alt="Auth::user()->name">
                             </button>
                         </div>
 
