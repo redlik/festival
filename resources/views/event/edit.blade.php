@@ -75,7 +75,6 @@
                                         <option value="outdoor" @selected($event->type === 'outdoor')>Outdoor</option>
                                         <option value="online" @selected($event->type === 'online')>Online</option>
                                     </select>
-                                    <div>{{ $event->type }}</div>
                                 </div>
                             </div>
 

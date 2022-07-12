@@ -70,12 +70,6 @@ class EventController extends Controller
             $attendees = $request->input('attendees');
         }
 
-        if($request->input('venue_id') == 0) {
-            $is_online = true;
-        } else {
-            $is_online = false;
-        }
-
         $slug = rand(1001,9999)."-".Str::of($request->input('name'))->slug('-');
 
         $event = Event::create([
@@ -90,7 +84,6 @@ class EventController extends Controller
             'limited' => $request->input('limited'),
             'attendees' => $attendees,
             'venue_id' => $request->input('venue_id'),
-            'is_online' => $is_online,
             'user_id' => Auth::id(),
             'covid' => $request->input('covid'),
             'leader_name' => $request->input('leader_name'),
@@ -143,12 +136,6 @@ class EventController extends Controller
             $attendees = $request->input('attendees');
         }
 
-        if($request->input('venue_id') == 0) {
-            $is_online = true;
-        } else {
-            $is_online = false;
-        }
-
         $slug = rand(1001,9999)."-".Str::of($request->input('name'))->slug('-');
 
         $event = Event::create([
@@ -163,7 +150,6 @@ class EventController extends Controller
             'limited' => $request->input('limited'),
             'attendees' => $attendees,
             'venue_id' => $request->input('venue_id'),
-            'is_online' => $is_online,
             'user_id' => Auth::id(),
             'covid' => $request->input('covid'),
             'leader_name' => $request->input('leader_name'),
@@ -379,6 +365,12 @@ class EventController extends Controller
             $attendees = 0;
         } else {
             $attendees = $request->input('attendees');
+        }
+
+        if($request->input('type') == 'online') {
+            $is_online = true;
+        } else {
+            $is_online = false;
         }
 
         if($request->input('target') == ''){
