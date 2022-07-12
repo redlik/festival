@@ -49,7 +49,7 @@
                             <div>{{ \Carbon\Carbon::parse($event->start_time)->format('H:i') }} - {{ \Carbon\Carbon::parse($event->end_time)->format('H:i') }}</div>
                             <a href="{{ route('event.show-by-slug', $event->slug) }}">
                                 <p class="text-lg block text-sm font-bold text-gray-900 truncate pointer-events-none">{{ $event->name }}</p>
-                                @if($event->is_online)
+                                @if($event->type === 'online')
                                     <p class="block text-sm font-medium text-indigo-500 pointer-events-none"><i class="fa-solid fa-video mr-1"></i> Online event</p>
                                 @else
                                     <p class="block text-sm font-medium text-gray-500 pointer-events-none">{{ $event->venue->name }}, {{ $event->venue->town }}</p>
