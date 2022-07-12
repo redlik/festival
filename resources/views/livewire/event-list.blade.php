@@ -9,7 +9,7 @@
                 </button>
             </div>
         </div>
-        <div x-cloak :class="filterShow ? 'hidden lg:block' : 'block'" >
+        <div x-cloak :class="filterShow ? 'hidden lg:block' : 'block'">
             <h5 class="hidden lg:block">Filter by</h5>
             <div class="my-6">
                 <label for="town" class="mb-2">Town events take place</label>
@@ -46,11 +46,14 @@
                             <div class="text-2xl text-black font-bold text-center">{{ \Carbon\Carbon::parse($event->start_date)->format('d') }}</div>
                         </div>
                         <div>
-                            <div>{{ \Carbon\Carbon::parse($event->start_time)->format('H:i') }} - {{ \Carbon\Carbon::parse($event->end_time)->format('H:i') }}</div>
+                            <div>{{ \Carbon\Carbon::parse($event->start_time)->format('H:i') }} @if($event->end_time)
+                                    - {{ \Carbon\Carbon::parse($event->end_time)->format('H:i') }}
+                                @endif</div>
                             <a href="{{ route('event.show-by-slug', $event->slug) }}">
                                 <p class="text-lg block text-sm font-bold text-gray-900 truncate pointer-events-none">{{ $event->name }}</p>
                                 @if($event->type === 'online')
-                                    <p class="block text-sm font-medium text-indigo-500 pointer-events-none"><i class="fa-solid fa-video mr-1"></i> Online event</p>
+                                    <p class="block text-sm font-medium text-indigo-500 pointer-events-none">
+                                        <i class="fa-solid fa-video mr-1"></i> Online event</p>
                                 @else
                                     <p class="block text-sm font-medium text-gray-500 pointer-events-none">{{ $event->venue->name }}, {{ $event->venue->town }}</p>
                                 @endif

@@ -21,7 +21,10 @@
                     </div>
                     <div class="my-4">
                         <h5 class="uppercase underline mb-2">Details:</h5>
-                        <div class="mb-2"><strong>Date & time:</strong> {{ \Carbon\Carbon::parse($event->start_date)->format('d M') }} @ {{ \Carbon\Carbon::parse($event->start_time)->format('H:i') }} : {{ \Carbon\Carbon::parse($event->end_time)->format('H:i') }}</div>
+                        <div class="mb-2"><strong>Date & time:</strong> {{ \Carbon\Carbon::parse($event->start_date)->format('d M') }} @ {{ \Carbon\Carbon::parse($event->start_time)->format('H:i') }}
+                            @if($event->end_time)
+                            - {{ \Carbon\Carbon::parse($event->end_time)->format('H:i') }}
+                            @endif</div>
                         <div class="mb-2"><strong>Venue:</strong>
                             @if($event->type === 'online')
                                 <span class="text-indigo-500 ml-4"><i class="fa-solid fa-video mr-1"></i> Online event</span>
