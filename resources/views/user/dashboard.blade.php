@@ -105,7 +105,8 @@
                                     @if($event->attendee_count > 0)
                                         <div class="text-gray-500 inline-block cursor-not-allowed" title="Event has attendees, cannot be deleted">Delete</div>
                                     @else
-                                        <form method="POST" action="{{ route('event.destroy', $event) }}" class="inline-block">
+                                        <form method="POST" action="{{ route('event.destroy', $event) }}" class="inline-block"
+                                              onsubmit="return confirm('Do you wish to delete the event completely?');">
                                             @csrf
                                             @method("DELETE")
                                             <button type="submit" class="text-red-600 hover:text-red-900 hover:underline">Delete</button>
