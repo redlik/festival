@@ -63,6 +63,7 @@ Route::post('event-save-draft', [EventController::class, 'saveDraft'])->name('ev
 Route::patch('event-update-and-submit', [EventController::class, 'updateAndSubmit'])->name('event.update-and-submit')->middleware('auth');
 Route::get('event-cancel/{id}', [EventController::class, 'cancel'])->name('event.cancel')->middleware('auth');
 Route::get('fest-event/{slug}', [EventController::class, 'showBySlug'])->name('event.show-by-slug');
+Route::get('event-preview/{slug}', [EventController::class, 'preview'])->middleware('auth')->name('event.preview');
 Route::resource('event', EventController::class)->middleware('auth');
 Route::resource('attendee', AttendeeController::class)->middleware('auth');
 

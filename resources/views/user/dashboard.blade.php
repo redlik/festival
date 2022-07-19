@@ -60,10 +60,9 @@
                                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8">
                                     {{ $loop->iteration }}
                                 </td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-900">
-                                    <a href="{{ route('event.show-by-slug', $event->slug) }}" class="hover:underline">
-                                        {{ $event->name }}
-
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-700 font-bold">
+                                    <a href="{{ route('event.preview', $event->slug) }}" class="hover:underline" title="Preview event page" target="_blank">
+                                        {{ $event->name }} <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs text-gray-400"></i>
                                     </a>
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -82,10 +81,16 @@
 
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    @if($event->limited == 1)
-                                    {{ $event->attendee_count ?? '0' }} / {{ $event->attendees }}
+                                    @if($event->is_private)
+                                        <span class="text-olive-400 bg-gray-100 rounded px-3 py-1 font-semibold"><i class="fa-solid fa-lock mr-1"></i> Private event</span>
                                     @else
-                                    <div>No limit</div>
+                                        @if($event->limited == 1)
+                                            <div class="font-semibold">
+                                                {{ $event->attendee_count ?? '0' }} / {{ $event->attendees }}
+                                            </div>
+                                        @else
+                                            <span class="text-green-600 bg-gray-100 rounded px-3 py-1 font-semibold"><i class="fa-solid fa-people-group mr-1"></i> No Limit</span>
+                                        @endif
                                     @endif
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm">
