@@ -27,7 +27,7 @@
                         @csrf
                         <div class="mt-6 sm:mt-5 space-y-6 sm:space-y-5">
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                                <label for="name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2 font-bold">
                                     Event Name (title)
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
@@ -37,8 +37,9 @@
 
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                                 <label for="start_date" class="block text-sm font-medium sm:mt-px sm:pt-2">
-                                    Event date, start and end time <span class="text-red-700">*</span>
-                                    <div class="text-xs">If your event doesn't have the end time set, leave the field blank</div>
+                                    <div class="font-bold">Event date, start and end time
+                                        <span class="text-red-700">*</span></div>
+                                    <div class="text-xs font-normal">If your event doesn't have the end time set, leave the field blank</div>
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
                                     <input id="start_date" name="start_date" type="date" class="lg:w-48 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" min="2022-10-06" max="2022-10-17" required
@@ -49,7 +50,7 @@
                             </div>
 
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="type" class="block text-sm font-medium sm:mt-px sm:pt-2">
+                                <label for="type" class="block text-sm font-medium sm:mt-px sm:pt-2 font-bold">
                                     Environment <span class="text-red-700">*</span>
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
@@ -64,14 +65,14 @@
 
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5
                                         @if ($errors->has('venue')) bg-red-100 @endif">
-                                <label for="venue" class="block text-sm font-medium sm:mt-px sm:pt-2">
+                                <label for="venue" class="block text-sm font-medium sm:mt-px sm:pt-2 font-bold">
                                     Venue <span class="text-red-700">*</span>
                                 </label>
                                 @livewire('venue-entry')
                             </div>
 
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="description" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                                <label for="description" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2 font-bold">
                                     Event(s) details <span class="text-red-700">*</span>
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
@@ -82,7 +83,7 @@
 
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                                 <label for="cover-photo" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                                    <div>Cover photo <span class="text-red-700">*</span></div>
+                                    <div class="font-bold">Cover photo <span class="text-red-700">*</span></div>
                                     <div class="text-xs text-gray-500">Please add your logo if you do not have an image available</div>
                                     <div class="text-xs text-gray-500 mb-4 md:mb-0">If you are uploading images with recognisable people, by clicking submit you are indicting you have their permission to use.</div>
                                 </label>
@@ -107,7 +108,7 @@
                             </div>
 
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="target" class="block text-sm font-medium sm:mt-px sm:pt-2 mb-4 md:mb-0">
+                                <label for="target" class="block text-sm font-medium sm:mt-px sm:pt-2 mb-4 md:mb-0 font-bold">
                                     Target group
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2 md:flex">
@@ -140,9 +141,23 @@
                                 </div>
                             </div>
 
+                            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start content-center sm:border-t sm:border-gray-200 sm:pt-5">
+                                <label for="target" class="block text-sm font-medium sm:mt-px sm:pt-2">
+                                    <div class="font-bold">Private event</div>
+                                    <div class="text-sm text-gray-600">Events marked as private will be listed on the site but won't have the attendee registration form available. The 2 boxes below won't have any functionality enabled also.</div>
+
+                                </label>
+                                <div class="mt-1 sm:mt-0 sm:col-span-2 flex items-center h-full">
+                                    <div class="flex items-center h-5 mr-8 mb-4 md:mb-0">
+                                        <input id="is_private" aria-describedby="comments-description" name="is_private" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" @checked(old('is_private'))>
+                                        <label for="is_private" class="font-medium text-gray-700">Private event</label>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                                 <label for="target" class="block text-sm font-medium sm:mt-px sm:pt-2">
-                                    <div>Limited spaces</div>
+                                    <div class="font-bold">Limited spaces</div>
                                     <div class="text-sm text-gray-600">If this event has limited number of spaces, select YES and enter the limit in the box below</div>
 
                                 </label>
@@ -159,7 +174,7 @@
                             </div>
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                                 <label for="attendees" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                                    <div>Number of attendees</div>
+                                    <div class="font-bold">Number of attendees</div>
                                     <div class="text-sm text-gray-500">If you selected YES above please enter the maximum number of attendees this event can accept.</div>
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
@@ -170,7 +185,7 @@
                             </div>
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                                 <label for="target" class="block text-sm font-medium sm:mt-px sm:pt-2">
-                                    <div>COVID-19 Restrictions</div>
+                                    <div class="font-bold">COVID-19 Restrictions</div>
                                     <div class="text-sm text-gray-600">Should Covid 19 restrictions change and you are currently planning an in-door event, is it possible for your event to be moved online or outdoors?</div>
 
                                 </label>
@@ -204,7 +219,7 @@
                         <div class="space-y-6 sm:space-y-5">
 
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="leader_name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                                <label for="leader_name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2 font-bold">
                                     Facilitator's name
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
@@ -213,7 +228,7 @@
                             </div>
 
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="leader_phone" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                                <label for="leader_phone" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2 font-bold">
                                     Phone
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
@@ -222,7 +237,7 @@
                             </div>
 
                             <div class=" sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="leader_email" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                                <label for="leader_email" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2 font-bold">
                                     Email
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
