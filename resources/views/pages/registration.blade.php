@@ -276,16 +276,17 @@
             <h2 id="guidelines">Guidelines</h2>
             <h5 class="my-4">Guidelines for organisations and qualified individuals hosting events:</h5>
             <ul class="list-decimal list-inside">
-                <li>In order to ensure the Fest is accessible and inclusive for all, we ask that all events are free. In the spirit of this, we also ask that events are not used to raise funds or collect donations.</li>
-                <li>The programme of events for 2021 can be found <a href="https://www.healthykerry.ie/wp-content/uploads/2021/09/KerryWellfest-A5Brochure64673_WEB.pdf" target="_blank" class="underline text-olive-600 font-bold">here</a> – we would be delighted to facilitate events of a similar nature as well as events that will bring something new and different to the Fest.</li>
-                <li>It is the sole responsibility of the event host to ensure the provision of adequate insurance for all activities undertaken in the delivery of event(s).</li>
-                <li>If you are registering as a qualified practitioner and this is your first time participating in the Fest, we ask that you share a copy of your qualification(s) and your professional indemnity insurance with us when registering your event.</li>
-                <li>Event host are responsible for ensuring Garda Vetting is in place and is up-to-date to host all event(s) with children and/or vulnerable adults.</li>
-                <li>The steering group cannot provide funding to cover costs such as venues or facilitators. However, we may be able to support in identifying free options for these kinds of expenses, depending on the location, so please get in touch with us at
-                    <a href="mailto:kerrymhwfest20@gmail.com" class="underline text-olive-600 font-bold">kerrymhwfest20@gmail.com</a></li>
-                <li>The management of registration for each event is the responsibility of the agency or individual hosting. Unfortunately, the steering group does not have the capacity to manage registrations on behalf of hosts.</li>
-                <li>The steering group will however promote the Fest, and your event(s) extensively in the weeks leading up to the Fest using a host of mediums.</li>
-                <li>Please consider how you can make the event as accessible as possible for people of all abilities, considering where necessary those who are hearing or visually impaired, wheelchair users and neuro-diverse people.</li>
+                <li class="mb-2">In order to ensure the Fest is accessible and inclusive for all, we ask that all events are free. In the spirit of this, we also ask that events are not used to raise funds or collect donations.</li>
+                <li class="mb-2">The Fest Committee cannot provide funding to cover costs such as venues or facilitators. However, we may be able to support in identifying free options for these kinds of expenses, depending on the location, so please get in touch with us at
+                    <a href="mailto:kerrymhwfest20@gmail.com">kerrymhwfest20@gmail.com</a></li>
+                <li class="mb-2">The Fest Committee will promote the Fest, and your event(s) extensively in the weeks leading up to the Fest using a host of mediums.</li>
+                <li class="mb-2">The programme of events for 2021 can be found <a href="https://www.healthykerry.ie/wp-content/uploads/2021/09/KerryWellfest-A5Brochure64673_WEB.pdf" class="text-indigo-600 hover:underline font-bold">here</a> – we would be delighted to facilitate events of a similar nature as well as events that will bring something new and different to the Fest.</li>
+                <li class="mb-2">It is the sole responsibility of the event host to ensure the provision of adequate insurance for all activities undertaken in the delivery of event(s).</li>
+                <li class="mb-2">If you are registering as a qualified practitioner and this is your first time participating in the Fest, we ask that you share a copy of your qualification(s) and your professional indemnity insurance with us when registering your event.</li>
+                <li class="mb-2">Event hosts are responsible for ensuring Garda Vetting is in place and is up-to-date for all event(s) that will engage children and/or vulnerable adults.</li>
+                <li class="mb-2">The management of registration for each event is the responsibility of the agency or individual hosting. Unfortunately, the Fest Committee does not have the capacity to manage registrations on behalf of hosts.</li>
+                <li class="mb-2">Please consider how you can make the event as accessible as possible for people of all abilities, considering where necessary those who are hearing or visually impaired, wheelchair users and neuro-diverse people.</li>
+
             </ul>
         </div>
         </div>
