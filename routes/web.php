@@ -58,7 +58,7 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'venue'], func
 
 Route::get('/dashboard', [UserController::class, 'dashboard'])->middleware('auth', 'role:organiser', 'disabled')->name('dashboard');
 
-Route::resource('organiser', OrganiserController::class)->middleware('auth');
+Route::resource('organiser', OrganiserController::class);
 Route::post('event-save-draft', [EventController::class, 'saveDraft'])->name('event.save-draft')->middleware('auth');
 Route::patch('event-update-and-submit', [EventController::class, 'updateAndSubmit'])->name('event.update-and-submit')->middleware('auth');
 Route::get('event-cancel/{id}', [EventController::class, 'cancel'])->name('event.cancel')->middleware('auth');
