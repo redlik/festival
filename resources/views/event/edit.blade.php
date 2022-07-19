@@ -167,6 +167,20 @@
                                 </div>
                             </div>
 
+                            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start content-center sm:border-t sm:border-gray-200 sm:pt-5">
+                                <label for="target" class="block text-sm font-medium sm:mt-px sm:pt-2">
+                                    <div class="font-bold">Private event</div>
+                                    <div class="text-sm text-gray-600">Events marked as private will be listed on the site but won't have the attendee registration form available. The 2 boxes below won't have any functionality enabled also.</div>
+
+                                </label>
+                                <div class="mt-1 sm:mt-0 sm:col-span-2 flex items-center h-full">
+                                    <div class="flex items-center h-5 mr-8 mb-4 md:mb-0">
+                                        <input id="is_private" aria-describedby="comments-description" name="is_private" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="{{ $event->is_private }}" {{ $event->is_private == 1 ? 'checked' : '' }}>
+                                        <label for="is_private" class="font-medium text-gray-700">Private event</label>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                                 <label for="target" class="block text-sm font-medium sm:mt-px sm:pt-2">
                                     <div>Limited spaces</div>
