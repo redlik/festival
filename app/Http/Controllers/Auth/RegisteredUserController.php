@@ -51,7 +51,7 @@ class RegisteredUserController extends Controller
         $organiser = Organiser::where('email', $user->email)->first();
         $organiser->update([
             'user_id' => $user->id,
-            'status' => 'activated'
+            'status' => 'activated',
         ]);
 
         event(new Registered($user));

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\User;
-use App\Models\Venue;
 use App\Notifications\EventSubmitted;
 use Auth;
 use Illuminate\Http\Request;
@@ -30,7 +29,6 @@ class EventController extends Controller
      */
     public function create()
     {
-
         return view('event.create');
     }
 
@@ -47,7 +45,7 @@ class EventController extends Controller
             'venue_id' => 'required_if:type,indoor,outdoor',
             'start_time' => 'required',
             'end_time' => 'nullable|after:start_time',
-        ],[
+        ], [
             'end_time.after' => 'The end time should be set after the start time',
         ]);
 
@@ -57,20 +55,19 @@ class EventController extends Controller
                 ->withInput();
         }
 
-        if($request->input('target') == ''){
+        if ($request->input('target') == '') {
             $target = [];
-        } else
-        {
+        } else {
             $target = json_encode($request->input('target'));
         }
 
-        if(! $request->input('attendees')) {
+        if (! $request->input('attendees')) {
             $attendees = 0;
         } else {
             $attendees = $request->input('attendees');
         }
 
-        $slug = rand(1001,9999)."-".Str::of($request->input('name'))->slug('-');
+        $slug = rand(1001, 9999).'-'.Str::of($request->input('name'))->slug('-');
 
         $event = Event::create([
             'name' => $request->input('name'),
@@ -92,9 +89,9 @@ class EventController extends Controller
             'status' => 'pending',
         ]);
 
-        if($request->hasFile('file-upload')) {
+        if ($request->hasFile('file-upload')) {
             $event->addMediaFromRequest('file-upload')
-                ->toMediaCollection('cover');;
+                ->toMediaCollection('cover');
         }
 
         $admin = User::where('email', 'admin@kerrymentalhealthandwellbeingfest.com')->first();
@@ -102,7 +99,6 @@ class EventController extends Controller
         $admin->notify(new EventSubmitted($event));
 
         return redirect()->route('dashboard')->with('event_submitted', 'Event submitted');
-
     }
 
     public function saveDraft(Request $request)
@@ -112,9 +108,9 @@ class EventController extends Controller
             'venue_id' => 'required_if:type,indoor,outdoor',
             'start_time' => 'required',
             'end_time' => 'nullable|after:start_time',
-        ],[
+        ], [
             'end_time.after' => 'The end time should be set after the start time',
-            'venue_id.required_if' => "Don't forget to select a venue"
+            'venue_id.required_if' => "Don't forget to select a venue",
         ]);
 
         if ($validator->fails()) {
@@ -123,20 +119,19 @@ class EventController extends Controller
                 ->withInput();
         }
 
-        if($request->input('target') == ''){
+        if ($request->input('target') == '') {
             $target = [];
-        } else
-        {
+        } else {
             $target = json_encode($request->input('target'));
         }
 
-        if(! $request->input('attendees')) {
+        if (! $request->input('attendees')) {
             $attendees = 0;
         } else {
             $attendees = $request->input('attendees');
         }
 
-        $slug = rand(1001,9999)."-".Str::of($request->input('name'))->slug('-');
+        $slug = rand(1001, 9999).'-'.Str::of($request->input('name'))->slug('-');
 
         $event = Event::create([
             'name' => $request->input('name'),
@@ -158,9 +153,9 @@ class EventController extends Controller
             'status' => 'draft',
         ]);
 
-        if($request->hasFile('file-upload')) {
+        if ($request->hasFile('file-upload')) {
             $event->addMediaFromRequest('file-upload')
-                ->toMediaCollection('cover');;
+                ->toMediaCollection('cover');
         }
 
         return redirect()->route('dashboard')->with('event_saved', 'Event saved');
@@ -173,9 +168,9 @@ class EventController extends Controller
             'venue_id' => 'required',
             'start_time' => 'required',
             'end_time' => 'nullable|after:start_time',
-        ],[
+        ], [
             'end_time.after' => 'The end time should be set after the start time',
-            'venue_id.required' => "Don't forget to select a venue"
+            'venue_id.required' => "Don't forget to select a venue",
         ]);
 
         if ($validator->fails()) {
@@ -184,20 +179,19 @@ class EventController extends Controller
                 ->withInput();
         }
 
-        if($request->input('target') == ''){
+        if ($request->input('target') == '') {
             $target = [];
-        } else
-        {
+        } else {
             $target = json_encode($request->input('target'));
         }
 
-        if(! $request->input('attendees')) {
+        if (! $request->input('attendees')) {
             $attendees = 0;
         } else {
             $attendees = $request->input('attendees');
         }
 
-        $slug = rand(1001,9999)."-".Str::of($request->input('name'))->slug('-');
+        $slug = rand(1001, 9999).'-'.Str::of($request->input('name'))->slug('-');
 
         $event = Event::create([
             'name' => $request->input('name'),
@@ -219,9 +213,9 @@ class EventController extends Controller
             'status' => 'draft',
         ]);
 
-        if($request->hasFile('file-upload')) {
+        if ($request->hasFile('file-upload')) {
             $event->addMediaFromRequest('file-upload')
-                ->toMediaCollection('cover');;
+                ->toMediaCollection('cover');
         }
 
         $admin = User::where('email', 'admin@kerrymentalhealthandwellbeingfest.com')->first();
@@ -244,8 +238,8 @@ class EventController extends Controller
     public function showBySlug($slug)
     {
         $event = Event::where('slug', $slug)->first();
-        return view('event.show', compact('event'));
 
+        return view('event.show', compact('event'));
     }
 
     public function showAdmin($event_id)
@@ -263,7 +257,7 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        if(Auth::user()->hasRole('admin')) {
+        if (Auth::user()->hasRole('admin')) {
             return view('event.edit', compact('event'));
         }
 
@@ -290,7 +284,6 @@ class EventController extends Controller
 
     public function cancel($id)
     {
-
         $event = Event::findOrFail($id);
 
         if (Auth::id() != $event->user_id) {
@@ -298,7 +291,7 @@ class EventController extends Controller
         }
 
         $event->update([
-            'status' => 'cancelled'
+            'status' => 'cancelled',
         ]);
         $message = 'Event '.$event->name.' has been cancelled';
 
@@ -314,21 +307,20 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event)
     {
-        if(! $request->input('attendees')) {
+        if (! $request->input('attendees')) {
             $attendees = 0;
         } else {
             $attendees = $request->input('attendees');
         }
 
-        if($request->input('target') == ''){
+        if ($request->input('target') == '') {
             $target = [];
-        } else
-        {
+        } else {
             $target = json_encode($request->input('target'));
         }
 
-        if($request->input('name') != $event->name) {
-            $slug = rand(1001,9999)."-".Str::of($request->input('name'))->slug('-');
+        if ($request->input('name') != $event->name) {
+            $slug = rand(1001, 9999).'-'.Str::of($request->input('name'))->slug('-');
         } else {
             $slug = $event->slug;
         }
@@ -350,9 +342,9 @@ class EventController extends Controller
             'leader_email' => $request->input('leader_email'),
         ]);
 
-        if($request->hasFile('file-upload')) {
+        if ($request->hasFile('file-upload')) {
             $event->addMediaFromRequest('file-upload')
-                ->toMediaCollection('cover');;
+                ->toMediaCollection('cover');
         }
 
         return back()->with('saved', 'Record Successfully Updated!');
@@ -360,23 +352,21 @@ class EventController extends Controller
 
     public function updateAndSubmit(Request $request, Event $event_not)
     {
-
-        if(! $request->input('attendees')) {
+        if (! $request->input('attendees')) {
             $attendees = 0;
         } else {
             $attendees = $request->input('attendees');
         }
 
-        if($request->input('type') == 'online') {
+        if ($request->input('type') == 'online') {
             $is_online = true;
         } else {
             $is_online = false;
         }
 
-        if($request->input('target') == ''){
+        if ($request->input('target') == '') {
             $target = [];
-        } else
-        {
+        } else {
             $target = json_encode($request->input('target'));
         }
         $event = Event::find($request->input('event_number'));
@@ -397,9 +387,9 @@ class EventController extends Controller
             'status' => 'pending',
         ]);
 
-        if($request->hasFile('file-upload')) {
+        if ($request->hasFile('file-upload')) {
             $event->addMediaFromRequest('file-upload')
-                ->toMediaCollection('cover');;
+                ->toMediaCollection('cover');
         }
 
         $admin = User::where('email', 'admin@kerrymentalhealthandwellbeingfest.com')->first();
@@ -416,7 +406,6 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-
         $message = 'Event '.$event->name.' has been deleted';
         $event->delete();
 

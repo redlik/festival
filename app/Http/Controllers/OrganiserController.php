@@ -8,7 +8,6 @@ use App\Notifications\AccountActivation;
 use App\Notifications\AccountApproved;
 use App\Notifications\ApplicationSubmitted;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -19,7 +18,6 @@ class OrganiserController extends Controller
         $this->middleware('auth')->only('show', 'index', 'edit', 'update', 'destroy');
     }
 
-
     /**
      * Display a listing of the resource.
      *
@@ -29,6 +27,7 @@ class OrganiserController extends Controller
     {
         return abort(403);
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -62,7 +61,7 @@ class OrganiserController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'email' => 'required|unique:organisers',
-        ],[
+        ], [
             'email.unique' => 'Organiser with this email already exists',
         ]);
 
@@ -72,13 +71,13 @@ class OrganiserController extends Controller
                 ->withInput();
         }
 
-        if($request->input('hear_about') == 'Other') {
+        if ($request->input('hear_about') == 'Other') {
             $hear = $request->input('other');
         } else {
             $hear = $request->input('hear_about');
         }
 
-        $slug = rand(1001,9999)."-".Str::of($request->input('name'))->slug('-');
+        $slug = rand(1001, 9999).'-'.Str::of($request->input('name'))->slug('-');
         $organiser = Organiser::create([
             'name' => $request->input('name'),
             'slug' => $slug,
@@ -105,7 +104,6 @@ class OrganiserController extends Controller
         $admin->notify(new ApplicationSubmitted($organiser));
 
         return view('organiser.submitted', compact('organiser'));
-
     }
 
     /**
@@ -162,7 +160,7 @@ class OrganiserController extends Controller
     {
         $organiser->update(['status' => 'activated']);
 
-        $request->session()->flash('approved', $organiser->name . ' successfully approved.');
+        $request->session()->flash('approved', $organiser->name.' successfully approved.');
 
 //        $organiser->notify(new AccountApproved($organiser));
 

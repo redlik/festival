@@ -6,7 +6,6 @@ use App\Models\Attendee;
 use App\Models\Event;
 use App\Models\Organiser;
 use App\Models\Venue;
-use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
@@ -15,11 +14,11 @@ class PagesController extends Controller
         $events = Event::with('venue')->orderBy('start_date', 'asc')->get();
         $towns = Venue::has('event')->select('id', 'town')->get();
         $target = [
-            'teens' => "Teens",
-            'young' => "Young adults",
-            'older' => "Older adults",
-            'family' => "Family",
-            'workplace' => "Workplace",
+            'teens' => 'Teens',
+            'young' => 'Young adults',
+            'older' => 'Older adults',
+            'family' => 'Family',
+            'workplace' => 'Workplace',
         ];
 
         return view('pages.home', compact('events', 'towns', 'target'));
@@ -33,7 +32,7 @@ class PagesController extends Controller
 
         $organisers_count = Organiser::all()->count();
 
-        return view('admin.dashboard', compact('events',  'venues', 'attendees', 'organisers_count'));
+        return view('admin.dashboard', compact('events', 'venues', 'attendees', 'organisers_count'));
     }
 
     public function events()

@@ -47,7 +47,7 @@ class AttendeeController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|unique:attendees,email,NULL,id,event_id,'.$request->input('event'),
-        ],[
+        ], [
             'email.unique' => "Looks like you've already registered for this event",
         ]);
 
@@ -56,7 +56,6 @@ class AttendeeController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-
 
         $attendee = Attendee::create([
             'name' => $request->input('name'),
@@ -70,15 +69,13 @@ class AttendeeController extends Controller
         $organiser->notify(new NewAttendeeNotification($attendee));
 
         Mail::send('email.event-registration', ['attendee' => $attendee], function ($m) use ($attendee) {
-
             $m->from('admin@kerrymentalhealthandwellbeingfest.com', 'Kerry Fest Admins');
 
             $m->to($attendee->email, $attendee->name)
                 ->subject('Event registration');
-
         });
 
-        return redirect()->back()->with('registered', "Thank you for registering to the event");
+        return redirect()->back()->with('registered', 'Thank you for registering to the event');
     }
 
     /**
@@ -126,6 +123,6 @@ class AttendeeController extends Controller
         $message = 'Attendee '.$attendee->name.' has been unregistered from the event';
         $attendee->delete();
 
-        return redirect()->to(url()->previous() . '#attendees')->with('unregister', $message);
+        return redirect()->to(url()->previous().'#attendees')->with('unregister', $message);
     }
 }

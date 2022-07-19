@@ -8,8 +8,14 @@ use Livewire\Component;
 
 class EventList extends Component
 {
-    public $towns, $events, $target;
+    public $towns;
+
+    public $events;
+
+    public $target;
+
     public $selected_town = '';
+
     public $group = [];
 
     public $unique_towns = [];
@@ -18,12 +24,12 @@ class EventList extends Component
     {
         $this->events = $events = Event::with('venue')->approved()->get();
         $this->target = [
-            'everyone' => "Everyone",
-            'teens' => "Teens",
-            'young-adults' => "Young adults",
-            'older-adults' => "Older adults",
-            'family' => "Family",
-            'workplace' => "Workplace",
+            'everyone' => 'Everyone',
+            'teens' => 'Teens',
+            'young-adults' => 'Young adults',
+            'older-adults' => 'Older adults',
+            'family' => 'Family',
+            'workplace' => 'Workplace',
         ];
     }
 
@@ -37,7 +43,7 @@ class EventList extends Component
         $this->events = Event::when($this->selected_town != '', function ($query) {
             $query->whereHas('Venue', function ($q) {
                 $q->where('town', $this->selected_town);
-});
+            });
         })
             ->when($this->group, function ($query) {
                 $query->whereJsonContains('target', $this->group);

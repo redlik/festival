@@ -75,7 +75,6 @@ class VenueController extends Controller
         $venue->update($request->all());
 
         return back()->with('saved', 'Venue saved');
-
     }
 
     /**
@@ -86,10 +85,10 @@ class VenueController extends Controller
      */
     public function destroy(Venue $venue)
     {
-        $message = 'Venue '. $venue->name .' has been deleted';
+        $message = 'Venue '.$venue->name.' has been deleted';
 
         $venue->delete();
 
-        return redirect()->to(url()->previous() . '#venues')->with('venue_deleted', $message);
+        return redirect()->to(url()->previous().'#venues')->with('venue_deleted', $message);
     }
 }

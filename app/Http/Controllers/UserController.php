@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Attendee;
 use App\Models\Event;
 use App\Models\Organiser;
-use App\Models\Venue;
 use Auth;
-use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Crypt;
 
 class UserController extends Controller
 {
@@ -24,8 +20,7 @@ class UserController extends Controller
     {
         $events = Event::where('user_id', Auth::id())->orderBy('start_date', 'asc')->withCount('attendee')->with('attendee', 'venue', 'user.organiser')->get();
         $organiser = Organiser::where('user_id', Auth::id())->select('id')->first();
+
         return view('user.dashboard', compact('events', 'organiser'));
     }
-
-
 }

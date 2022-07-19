@@ -9,7 +9,9 @@ use Livewire\Component;
 class AttendeeList extends Component
 {
     public $attendees;
+
     public $events_with_attendees;
+
     public $selected_event;
 
     public function mount()

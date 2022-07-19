@@ -34,11 +34,13 @@ class Event extends Model implements hasMedia
         return $this->belongsTo(Venue::class);
     }
 
-    public function attendee(){
+    public function attendee()
+    {
         return $this->hasMany(Attendee::class);
     }
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
@@ -60,7 +62,6 @@ class Event extends Model implements hasMedia
             ->useDisk('covers')
             ->singleFile();
     }
-
 
     public function registerMediaConversions(Media $media = null): void
     {

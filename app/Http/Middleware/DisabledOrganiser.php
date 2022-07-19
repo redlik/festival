@@ -20,8 +20,9 @@ class DisabledOrganiser
     {
         if (Auth::user()) {
             $organiser = Organiser::where('user_id', Auth::id())->first();
-            if($organiser->status == 'disabled' ) {
+            if ($organiser->status == 'disabled') {
                 Auth::logout();
+
                 return redirect('/#messages')->with('disabled', 'The account has been disabled');
             }
         }

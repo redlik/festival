@@ -52,7 +52,7 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin'], func
 
 Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'venue'], function () {
     Route::get('edit/{venue}', [VenueController::class, 'edit'])->name('venue.edit');
-    Route::match(array('put','patch'),'update/{venue}', [VenueController::class, 'update'])->name('venue.update');
+    Route::match(['put', 'patch'], 'update/{venue}', [VenueController::class, 'update'])->name('venue.update');
     Route::delete('delete/{venue}', [VenueController::class, 'destroy'])->name('venue.delete');
 });
 

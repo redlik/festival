@@ -8,7 +8,21 @@ use Livewire\Component;
 
 class VenueEntry extends Component
 {
-    public $venue_id, $venue_name, $venue_address1, $venue_street, $venue_town, $venue_eircode, $venue_county, $venue_website;
+    public $venue_id;
+
+    public $venue_name;
+
+    public $venue_address1;
+
+    public $venue_street;
+
+    public $venue_town;
+
+    public $venue_eircode;
+
+    public $venue_county;
+
+    public $venue_website;
 
     public Venue $newVenue;
 
@@ -20,7 +34,7 @@ class VenueEntry extends Component
 
     public $showVenue = false;
 
-    protected $listeners = ['venueAdded'=> 'getVenues'];
+    protected $listeners = ['venueAdded' => 'getVenues'];
 
     protected $rules = [
         'venue_name' => 'required|string',
@@ -29,13 +43,13 @@ class VenueEntry extends Component
         'venue_street' => 'nullable|string|max:50',
         'venue_eircode' => 'required|string|max:7',
         'venue_website' => 'nullable|url|string|max:50',
-        ];
+    ];
 
-    public function mount($edit_venue = NULL)
+    public function mount($edit_venue = null)
     {
-       $this->venues = Venue::select('id', 'name', 'town')->orderBy('name', 'asc')->get();
-       $this->selected = 0;
-       $this->edit_venue = $edit_venue;
+        $this->venues = Venue::select('id', 'name', 'town')->orderBy('name', 'asc')->get();
+        $this->selected = 0;
+        $this->edit_venue = $edit_venue;
     }
 
     public function save()
