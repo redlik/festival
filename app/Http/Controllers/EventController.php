@@ -87,6 +87,7 @@ class EventController extends Controller
             'leader_phone' => $request->input('leader_phone'),
             'leader_email' => $request->input('leader_email'),
             'status' => 'pending',
+            'is_private' => $request->input('is_private'),
         ]);
 
         if ($request->hasFile('file-upload')) {
@@ -151,6 +152,7 @@ class EventController extends Controller
             'leader_phone' => $request->input('leader_phone'),
             'leader_email' => $request->input('leader_email'),
             'status' => 'draft',
+            'is_private' => $request->input('is_private'),
         ]);
 
         if ($request->hasFile('file-upload')) {
@@ -211,6 +213,7 @@ class EventController extends Controller
             'leader_phone' => $request->input('leader_phone'),
             'leader_email' => $request->input('leader_email'),
             'status' => 'draft',
+            'is_private' => $request->input('is_private'),
         ]);
 
         if ($request->hasFile('file-upload')) {
@@ -340,6 +343,7 @@ class EventController extends Controller
             'leader_name' => $request->input('leader_name'),
             'leader_phone' => $request->input('leader_phone'),
             'leader_email' => $request->input('leader_email'),
+            'is_private' => $request->input('is_private'),
         ]);
 
         if ($request->hasFile('file-upload')) {
@@ -385,6 +389,7 @@ class EventController extends Controller
             'leader_phone' => $request->input('leader_phone'),
             'leader_email' => $request->input('leader_email'),
             'status' => 'pending',
+            'is_private' => $request->input('is_private'),
         ]);
 
         if ($request->hasFile('file-upload')) {
