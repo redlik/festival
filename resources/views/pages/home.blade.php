@@ -40,12 +40,12 @@
                     <h2 class="text-2xl tracking-tight uppercase text-gray-700 md:text-4xl">
                         <span class="block">Organising an event?</span>
                     </h2>
-                    <span class="block text-2xl text-olive-600">Fill out the application form</span>
+                    <span class="block text-lg text-olive-600">Register here for the Kerry Mental Health and Wellbeing Fest FREE Information Session for new and existing event organisers, held on Wednesday, 27 July at 10:30.</span>
                 </div>
                 <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
                     <div class="inline-flex rounded-md shadow">
-                        <a href="/join-us" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-semibold rounded-md text-white bg-olive-600 hover:bg-olive-700 uppercase">
-                            Organiser registration
+                        <a href="https://www.eventbrite.ie/e/kerry-mental-health-wellbeing-fest-information-session-tickets-380419433767" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-semibold rounded-md text-white bg-olive-600 hover:bg-olive-700 uppercase" target="_blank">
+                            Organisers info session
                         </a>
                     </div>
                 </div>
