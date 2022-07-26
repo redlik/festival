@@ -85,8 +85,23 @@
                                     </div>
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    <div>{{ $event->venue->name }}</div>
-                                    <div>{{ $event->venue->town }}</div>
+                                    @if($event->is_private)
+                                        <span class="text-olive-400 bg-gray-100 rounded px-3 py-1 font-semibold"><i class="fa-solid fa-lock mr-1"></i> Private event</span>
+                                    @else
+                                        @if($event->limited == 1)
+                                            @if($event->attendees === $event->attendee_count)
+                                                <span class="font-semibold bg-red-100 text-red-700 rounded px-3 py-1">
+                                                <i class="fa-solid fa-user-lock mr-1 text-red-600"></i> {{ $event->attendee_count ?? '0' }} / {{ $event->attendees }}
+                                            </span>
+                                            @else
+                                                <span class="font-semibold bg-blue-100 text-indigo-700 rounded px-3 py-1">
+                                                <i class="fa-solid fa-user-lock mr-1 text-indigo-600"></i> {{ $event->attendee_count ?? '0' }} / {{ $event->attendees }}
+                                            </span>
+                                            @endif
+                                        @else
+                                            <span class="text-green-600 bg-green-100 rounded px-3 py-1 font-semibold"><i class="fa-solid fa-people-group mr-1"></i> {{ $event->attendee_count ?? '0' }}</span>
+                                        @endif
+                                    @endif
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     @if($event->limited == 1)

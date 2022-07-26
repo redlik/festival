@@ -65,20 +65,25 @@
                     </div>
                 </div>
             </div>
+                @if($event->is_private)
+                <div class="bg-gray-100 rounded border border-gray-300 text-gray-600 italic p-6 mt-8">
+                    Please note this is a private event that is not open to the public.
+                </div>
+                @else
                 <div class="bg-gray-100 rounded border border-gray-300 p-6 mt-8">
                     <h4 class="text-gray-600">Please fill in your details below to register for this event.</h4>
                     @if($event->limited != 0)
-                        @if($event->attendees === $event->attendees_count)
+                        @if($event->attendees <= $event->attendee_count)
                             <div>
-                                {{ $event->attendees - $event->attendees_count }} places left
+                                This event is fully booked
                                 @php
                                     $full = true;
                                 @endphp
                             </div>
                         @else
-                        <div>
-                            {{ $event->attendees - $event->attendees_count }} places left
-                        </div>
+                            <div>
+                                {{ $event->attendees - $event->attendees_count }} places left
+                            </div>
                         @endif
                     @endif
 
@@ -102,6 +107,9 @@
                             @csrf
                             @honeypot
                             <input type="hidden" name="event" value="{{ $event->id }}">
+                            @if($full)
+                            <input type="hidden" name="waiting" value="1">
+                            @endif
                             <div class="lg:flex items-start">
                                 <div class="grow mr-4 mb-4 md:mb-0">
                                     <div class="mt-1">
@@ -138,13 +146,13 @@
                                 <input type="checkbox" name="opt_in" value="1" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2">
                                 <label for="opt_in" class="font-medium text-gray-700">I agree to be contacted in future about the upcoming events.</label>
                             </div>
-                            {{ $full }}
                         </form>
                         <div class="text-gray-500 text-sm mt-4">
                             Your personal details won't be shared with anyone unauthorised. We only use it if the organiser of the event make some changes, like changing times, cancelling etc.
                         </div>
                     </div>
                 </div>
+            @endif
         </div>
     </div>
 </x-app-layout>
