@@ -62,7 +62,8 @@
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-700 font-bold">
                                     <a href="{{ route('event.preview', $event->slug) }}" class="hover:underline" title="Preview event page" target="_blank">
-                                        {{ $event->name }} <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs text-gray-400"></i>
+                                        {{ Str::of($event->name)->limit(25, ' (...)') }}
+                                        <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs text-gray-400"></i>
                                     </a>
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">

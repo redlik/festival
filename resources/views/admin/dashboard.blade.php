@@ -66,8 +66,7 @@
                             <tr>
                                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8">
                                     <a href="{{ route('admin.event.show', $event) }}" class="hover:underline">
-                                        {{ $event->name }}
-
+                                        {{ Str::of($event->name)->limit(20, ' (...)') }}
                                     </a>
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -83,6 +82,14 @@
                                     <div>
                                         {{ $event->user->organiser->org }}
                                     </div>
+                                </td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                    @if($event->type != "online")
+                                        <div>{{ $event->venue->name }}</div>
+                                        <div>{{ $event->venue->town }}</div>
+                                    @else
+                                        <div>Online Event</div>
+                                    @endif
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     @if($event->is_private)
@@ -101,13 +108,6 @@
                                         @else
                                             <span class="text-green-600 bg-green-100 rounded px-3 py-1 font-semibold"><i class="fa-solid fa-people-group mr-1"></i> {{ $event->attendee_count ?? '0' }}</span>
                                         @endif
-                                    @endif
-                                </td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    @if($event->limited == 1)
-                                        {{ $event->attendee_count ?? '0' }} / {{ $event->attendees }}
-                                    @else
-                                        <div>No limit</div>
                                     @endif
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
