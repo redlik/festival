@@ -45,19 +45,28 @@
                             <div class="font-light text-center">{{ \Carbon\Carbon::parse($event->start_date)->format('M') }}</div>
                             <div class="text-2xl text-black font-bold text-center">{{ \Carbon\Carbon::parse($event->start_date)->format('d') }}</div>
                         </div>
-                        <div>
+                        <div class="grow-0">
                             <div>{{ \Carbon\Carbon::parse($event->start_time)->format('H:i') }} @if($event->end_time)
                                     - {{ \Carbon\Carbon::parse($event->end_time)->format('H:i') }}
                                 @endif</div>
-                            <a href="{{ route('event.show-by-slug', $event->slug) }}">
-                                <p class="text-lg block text-sm font-bold text-gray-900 truncate pointer-events-none">{{ $event->name }}</p>
-                                @if($event->type === 'online')
-                                    <p class="block text-sm font-medium text-indigo-500 pointer-events-none">
-                                        <i class="fa-solid fa-video mr-1"></i> Online event</p>
-                                @else
-                                    <p class="block text-sm font-medium text-gray-500 pointer-events-none">{{ $event->venue->name }}, {{ $event->venue->town }}</p>
-                                @endif
-                            </a>
+                            <div>
+                                <a href="{{ route('event.show-by-slug', $event->slug) }}" title="{{ $event->name }}">
+                                    <div class="text-lg block text-sm font-bold text-gray-900 truncate-elipsis pointer-events-none">
+                                        <div class="hidden lg:block" >
+                                            {{ Str::of($event->name)->limit(25, '...') }}
+                                        </div>
+                                        <div class="lg:hidden">
+                                            {{ $event->name }}
+                                        </div>
+                                    </div>
+                                    @if($event->type === 'online')
+                                        <p class="block text-sm font-medium text-indigo-500 pointer-events-none">
+                                            <i class="fa-solid fa-video mr-1"></i> Online event</p>
+                                    @else
+                                        <p class="block text-sm font-medium text-gray-500 pointer-events-none">{{ $event->venue->name }}, {{ $event->venue->town }}</p>
+                                    @endif
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </li>
