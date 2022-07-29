@@ -55,12 +55,15 @@
                             <div class="mb-2"><strong>Facilitator:</strong> {{ $event->leader_name }}</div>
                         @endif
                         <div class="mb-2"><strong>Target:</strong>
-                            @foreach(json_decode($event->target) as $target_item)
-                                <div class="gray-pillow mr-1">
-                                    {{ ucfirst($target_item) }}
-                                </div>
-
-                            @endforeach
+                            @if($event->target === '[]')
+                                <span class="gray-pillow ml-4">Open to everyone</span>
+                            @else
+                                @foreach(json_decode($event->target) as $target_item)
+                                    <div class="gray-pillow mr-1">
+                                        {{ ucfirst($target_item) }}
+                                    </div>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>

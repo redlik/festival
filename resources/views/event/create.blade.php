@@ -111,11 +111,16 @@
                                 <label for="target" class="block text-sm font-medium sm:mt-px sm:pt-2 mb-4 md:mb-0 font-bold">
                                     Target group
                                 </label>
-                                <div class="mt-1 sm:mt-0 sm:col-span-2 md:flex">
+                                <div class="mt-1 sm:mt-0 sm:col-span-2 md:flex text-sm">
                                     <div class="flex items-center h-5 mr-8 mb-4 md:mb-0">
                                         <input id="everyone" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="everyone"
                                         @checked(is_array(old('target')) && in_array('everyone', old('target')))
                                         <label for="teens" class="font-medium text-gray-700">Everyone</label>
+                                    </div>
+                                    <div class="flex items-center h-5 mr-8 mb-4 md:mb-0">
+                                        <input id="children" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="children"
+                                        @checked(is_array(old('target')) && in_array('children', old('target')))
+                                        <label for="children" class="font-medium text-gray-700">Children</label>
                                     </div>
                                     <div class="flex items-center h-5 mr-8 mb-4 md:mb-0">
                                         <input id="teens" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="teens"
@@ -142,10 +147,9 @@
                             </div>
 
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start content-center sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="target" class="block text-sm font-medium sm:mt-px sm:pt-2">
+                                <label for="is_private" class="block text-sm font-medium sm:mt-px sm:pt-2">
                                     <div class="font-bold">Private event</div>
                                     <div class="text-sm text-gray-600">Events marked as private will be listed on the site but won't have the attendee registration form available. The 2 boxes below won't have any functionality enabled also.</div>
-
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2 flex items-center h-full">
                                     <div class="flex items-center h-5 mr-8 mb-4 md:mb-0">

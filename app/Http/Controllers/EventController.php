@@ -55,10 +55,10 @@ class EventController extends Controller
                 ->withInput();
         }
 
-        if ($request->input('target') == '') {
-            $target = [];
-        } else {
+        if ($request->input('target')) {
             $target = json_encode($request->input('target'));
+        } else {
+            $target = '[]';
         }
 
         if (! $request->input('attendees')) {
@@ -120,11 +120,12 @@ class EventController extends Controller
                 ->withInput();
         }
 
-        if ($request->input('target') == '') {
-            $target = [];
-        } else {
+        if ($request->input('target')) {
             $target = json_encode($request->input('target'));
+        } else {
+            $target = '[]';
         }
+
 
         if (! $request->input('attendees')) {
             $attendees = 0;
@@ -181,10 +182,10 @@ class EventController extends Controller
                 ->withInput();
         }
 
-        if ($request->input('target') == '') {
-            $target = [];
-        } else {
+        if ($request->input('target')) {
             $target = json_encode($request->input('target'));
+        } else {
+            $target = '[]';
         }
 
         if (! $request->input('attendees')) {
@@ -323,10 +324,10 @@ class EventController extends Controller
             $attendees = $request->input('attendees');
         }
 
-        if ($request->input('target') == '') {
-            $target = [];
-        } else {
+        if ($request->input('target')) {
             $target = json_encode($request->input('target'));
+        } else {
+            $target = '[]';
         }
 
         if ($request->input('name') != $event->name) {
@@ -375,11 +376,12 @@ class EventController extends Controller
             $is_online = false;
         }
 
-        if ($request->input('target') == '') {
-            $target = [];
-        } else {
+        if ($request->input('target')) {
             $target = json_encode($request->input('target'));
+        } else {
+            $target = '[]';
         }
+
         $event = Event::find($request->input('event_number'));
         $event->update([
             'name' => $request->input('name'),

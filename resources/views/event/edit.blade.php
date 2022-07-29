@@ -127,6 +127,14 @@
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2 flex">
                                     <div class="flex items-center h-5 mr-8">
+                                        <input id="children" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="children"
+                                               @if(in_array('children', json_decode($event->target)))
+                                                   checked
+                                            @endif
+                                        >
+                                        <label for="teens" class="font-medium text-gray-700">Children</label>
+                                    </div>
+                                    <div class="flex items-center h-5 mr-8">
                                         <input id="teens" aria-describedby="comments-description" name="target[]" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="teens"
                                                @if(in_array('teens', json_decode($event->target)))
                                                    checked
