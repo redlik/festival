@@ -81,6 +81,23 @@
                                     <input id="org" name="org" type="text" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" required value="{{ old('org') }}">
                                 </div>
                             </div>
+                            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start items-centre sm:border-t sm:border-gray-200 sm:pt-5">
+                                <label for="garda_vetting" class="block text-sm font-medium sm:mt-px sm:pt-2">
+                                    Garda Vetting
+                                    <div class="italic text-xs">If you are hosting an event with children or vulnerable adults, please tick the box to signify that you have Garda Vetting</div>
+                                </label>
+                                <div class="mt-1 sm:mt-0 sm:col-span-2">
+                                    <div class="relative flex items-centre h-full">
+                                        <div class="flex items-center h-5">
+                                            <input id="garda_vetting" aria-describedby="garda_vetting-description" name="garda_vetting" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" @checked(old('garda_vetting')) value="1">
+                                        </div>
+                                        <div class="ml-3 text-sm">
+                                            <label for="garda_vetting" class="font-semibold text-gray-700">Yes</label>
+                                            <span id="vetting-description" class="text-gray-700"><span class="sr-only">Garda vetting </span>, I have current Garda Vetting.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                                 <label for="hear_about" class="block text-sm font-medium sm:mt-px sm:pt-2">
                                     Where did you hear about us <span class="text-red-700">*</span>
@@ -276,13 +293,15 @@
             <h2 id="guidelines">Guidelines</h2>
             <h5 class="my-4">Guidelines for organisations and qualified individuals hosting events:</h5>
             <ul class="list-decimal list-inside">
-                <li class="mb-2">In order to ensure the Fest is accessible and inclusive for all, we ask that all events are free. In the spirit of this, we also ask that events are not used to raise funds or collect donations.</li>
+                <li class="mb-2">In order to ensure the Fest is accessible and inclusive for all, we ask that all events are
+                    <strong>free</strong>. In the spirit of this, we also ask that events are not used to raise funds or collect donations.</li>
                 <li class="mb-2">The Fest Committee cannot provide funding to cover costs such as venues or facilitators. However, we may be able to support in identifying free options for these kinds of expenses, depending on the location, so please get in touch with us at
                     <a href="mailto:kerrymhwfest20@gmail.com">kerrymhwfest20@gmail.com</a></li>
-                <li class="mb-2">The Fest Committee will promote the Fest, and your event(s) extensively in the weeks leading up to the Fest using a host of mediums.</li>
+                <li class="mb-2">The Fest Committee will however promote the Fest, and your event(s) extensively in the weeks leading up to the Fest using a host of mediums.</li>
+                <li>The programme of events for 2021 can be found <a href="https://www.healthykerry.ie/wp-content/uploads/2021/09/KerryWellfest-A5Brochure64673_WEB.pdf" class="text-indigo-600 hover:underline font-bold">here</a> – we would be delighted to facilitate events of a similar nature as well as events that will bring something new and different to the Fest</li>
                 <li class="mb-2">The programme of events for 2021 can be found <a href="https://www.healthykerry.ie/wp-content/uploads/2021/09/KerryWellfest-A5Brochure64673_WEB.pdf" class="text-indigo-600 hover:underline font-bold">here</a> – we would be delighted to facilitate events of a similar nature as well as events that will bring something new and different to the Fest.</li>
-                <li class="mb-2">It is the sole responsibility of the event host to ensure the provision of adequate insurance for all activities undertaken in the delivery of event(s).</li>
-                <li class="mb-2">If you are registering as a qualified practitioner and this is your first time participating in the Fest, we ask that you share a copy of your qualification(s) and your professional indemnity insurance with us when registering your event.</li>
+                <li class="mb-2">It is the sole responsibility of the event host to ensure the provision of adequate insurance for all activities undertaken in the delivery of event(s). If an organiser is bringing in an external facilitator, the organiser is responsible for ensuring the facilitator has appropriate insurance, qualifications and garda vetting (if working with children or vulnerable adults).</li>
+                <li class="mb-2">If you are registering as a qualified practitioner, we ask that you share a copy of your qualification(s) and your professional indemnity insurance with us when registering your event.</li>
                 <li class="mb-2">Event hosts are responsible for ensuring Garda Vetting is in place and is up-to-date for all event(s) that will engage children and/or vulnerable adults.</li>
                 <li class="mb-2">The management of registration for each event is the responsibility of the agency or individual hosting. Unfortunately, the Fest Committee does not have the capacity to manage registrations on behalf of hosts.</li>
                 <li class="mb-2">Please consider how you can make the event as accessible as possible for people of all abilities, considering where necessary those who are hearing or visually impaired, wheelchair users and neuro-diverse people.</li>
