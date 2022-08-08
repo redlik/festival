@@ -1,6 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
     </x-slot>
+    @push('extra_styles')
+        <script src="{{ asset('js/html5lightbox/jquery.js') }}"></script>
+        <script src="{{ asset('js/html5lightbox/html5lightbox.js') }}"></script>
+    @endpush
 
     <div id="hero" class="bg-center bg-gray-100 md:bg-[url('/img/home-hero.jpg')] bg-cover">
         <div class="max-w-7xl mx-auto px-0 lg:px-8 flex flex-wrap items-center pt-0 pb-0 lg:py-48">
@@ -40,12 +44,12 @@
                     <h2 class="text-2xl tracking-tight uppercase text-gray-700 md:text-4xl">
                         <span class="block">Organising an event?</span>
                     </h2>
-                    <span class="block text-lg text-olive-600">Register here for the Kerry Mental Health and Wellbeing Fest FREE Information Session for new and existing event organisers, held on Wednesday, 27 July at 10:30.</span>
+                    <span class="block text-lg text-olive-600">Watch this video of our brief online information session for event organisers to find out more about the Fest and the kind of events the Fest promotes.</span>
                 </div>
                 <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
                     <div class="inline-flex rounded-md shadow">
-                        <a href="https://www.eventbrite.ie/e/kerry-mental-health-wellbeing-fest-information-session-tickets-380419433767" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-semibold rounded-md text-white bg-olive-600 hover:bg-olive-700 uppercase" target="_blank">
-                            Organisers info session
+                        <a href="https://player.vimeo.com/video/736206154" class="html5lightbox" title="Introduction video">
+                            <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-semibold rounded-md text-white bg-olive-600 hover:bg-olive-700 uppercase">Information video</button>
                         </a>
                     </div>
                 </div>
