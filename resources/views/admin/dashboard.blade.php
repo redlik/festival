@@ -65,7 +65,7 @@
                         @forelse($events as $event)
                             <tr>
                                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8">
-                                    <a href="{{ route('admin.event.show', $event) }}" class="hover:underline">
+                                    <a href="{{ route('admin.event.show', $event) }}" class="hover:underline" title="{{ $event->name }}">
                                         {{ Str::of($event->name)->limit(40, ' (...)') }}
                                     </a>
                                 </td>
