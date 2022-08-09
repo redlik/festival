@@ -96,6 +96,7 @@ class OrganiserController extends Controller
             'instagram' => $request->input('instagram'),
             'linkedin' => $request->input('linkedin'),
             'events' => $request->input('events'),
+            'garda_vetting' => $request->input('garda_vetting'),
         ]);
 
         $organiser->notify(new AccountActivation($organiser));
