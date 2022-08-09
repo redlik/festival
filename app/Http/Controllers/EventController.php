@@ -269,7 +269,7 @@ class EventController extends Controller
     public function edit(Event $event)
     {
         if (Auth::user()->hasRole('admin')) {
-            return view('event.edit', compact('event'));
+            return view('admin.edit', compact('event'));
         }
 
         if (Auth::id() != $event->user_id) {
