@@ -69,7 +69,7 @@
                                     <div class="flex items-center mb-2">
                                         <label for="venue_eircode" class="w-48 block">EIRCODE: <span class="text-red-700">*</span></label>
                                         <input type="text" name="venue_eircode" id="venue_eircode" class="lg:ml-4 lg:w-64 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
-                                               wire:model="venue_eircode" maxlength="7">
+                                               wire:model="venue_eircode" maxlength="7" required>
                                     </div>
                                     @error('venue_eircode') <div class="text-xs text-red-600 mb-4">{{ $message }}</div> @enderror
                                     <div class="flex items-center mb-2">
