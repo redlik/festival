@@ -56,8 +56,8 @@
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Venue</th>
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Attendees</th>
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Status</th>
-                            <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6 lg:pr-8">Edit
-                                <span class="sr-only">Edit</span>
+                            <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6 lg:pr-8">Operations
+                                <span class="sr-only">Operations</span>
                             </th>
                         </tr>
                         </thead>
@@ -111,18 +111,30 @@
                                     @endif
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    {{ ucfirst($event->status) }}
+                                    @if($event->status == 'draft')
+                                       <span class="text-amber-600 font-semibold">{{ ucfirst($event->status) }}</span>
+                                    @endif
+                                    @if($event->status == 'published')
+                                        <span class="text-green-600 font-semibold">{{ ucfirst($event->status) }}</span>
+                                    @endif
+                                    @if($event->status == 'cancelled')
+                                        <span class="text-purple-600 font-semibold">{{ ucfirst($event->status) }}</span>
+                                    @endif
+                                    @if($event->status == 'pending')
+                                        <span class="text-sky-500 font-semibold">{{ ucfirst($event->status) }}</span>
+                                    @endif
                                 </td>
                                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-semibold sm:pr-6 lg:pr-8">
-                                    <a href="{{ route('admin.event.show', $event) }}" class="text-indigo-600 hover:text-indigo-900 mr-2">Details</a>
+                                    <a href="{{ route('admin.event.show', $event) }}" class="text-indigo-600 hover:text-indigo-900 mr-2" title="Event details"><i class="fa-solid fa-eye"></i></a>
+                                    <a href="{{ route('event.edit', $event) }}" class="text-green-600 hover:text-green-400 mr-2"><i class="fa-solid fa-pen-to-square"></i></a>
                                     @if($event->attendee_count > 0)
-                                        <div class="text-gray-500 inline-block cursor-not-allowed" title="Event has attendees, cannot be deleted">Delete</div>
+                                        <div class="text-gray-500 inline-block cursor-not-allowed" title="Event has attendees, cannot be deleted"><i class="fa-solid fa-trash-can"></i></div>
                                     @else
                                         <form method="POST" action="{{ route('event.destroy', $event) }}" class="inline-block"
                                               onsubmit="return confirm('Do you wish to delete the event completely?');">
                                             @csrf
                                             @method("DELETE")
-                                            <button type="submit" class="text-red-600 hover:text-red-900 hover:underline">Delete</button>
+                                            <button type="submit" class="text-red-600 hover:text-red-900 hover:underline"><i class="fa-solid fa-trash-can" title="Delete event"></i></button>
                                         </form>
                                     @endif
                                 </td>
