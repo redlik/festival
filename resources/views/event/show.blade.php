@@ -15,7 +15,7 @@
                     <img src="{{ $event->getFirstMediaUrl('cover') }}" alt="{{ $event->name }} event at Kerry Mental Health & Wellbeing Fest 2022">
                 </div>
                 <div class="col-span-5 md:col-span-3">
-                    <h4 class="font-bold text-xl">{{ $event->name }}</h4>
+                    <h4 class="font-bold text-xl mb-4">{{ $event->name }}</h4>
                     <div>
                         {{ $event->description }}
                     </div>
