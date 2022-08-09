@@ -262,12 +262,16 @@
                             </button>
                         </div>
                     </div>
+
+
+                </div>
             </form>
+            <div class="mt-4 rounded bg-yellow-100 p-2">
+                <p>Each event requires individual submission. If you are organising multiple events, please use this form for each one separately.</p>
+            </div>
 
         </div>
-        <div class="mt-4 rounded bg-yellow-100 p-2">
-            <p>Each event requires individual submission. If you are organising multiple events, please use this form for each one separately.</p>
-        </div>
+
     </div>
     @push("footer_styles")
         <script type="text/javascript">
