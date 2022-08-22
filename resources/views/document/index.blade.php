@@ -99,6 +99,8 @@
                                 <div class="mt-2">
                                     <p class="text-sm text-gray-500 mb-4">
                                         Please upload the document below, and if the document is related to any of your events select the appropriate box(es).
+                                        <br>
+                                        <strong>This will help organisers verify and approve your events much faster. Thank you!</strong>
                                     </p>
                                     <form action="{{ route('document.store') }}" method="POST" class="bg-gray-100 rounded p-2" enctype='multipart/form-data' id="doc-upload">
                                         @csrf
