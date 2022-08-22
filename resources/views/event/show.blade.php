@@ -30,6 +30,7 @@
                                 <span class="text-indigo-500 ml-4"><i class="fa-solid fa-video mr-1"></i> Online event</span>
                             @else
                                 {{ $event->venue->name }}, {{ $event->venue->town }}
+                                <span class="uppercase ml-1">{{ $event->venue->eircode }}</span>
                             @endif
                         </div>
                         <div class=""><strong>Organiser:</strong> {{ $event->user->organiser->org }}</div>
