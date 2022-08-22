@@ -105,11 +105,12 @@
                         @endif
 
                         <div class="p-4">
-                            @if($event->status != 'published')
+                            @if($event->status == 'pending')
                                 <a href="{{ route('admin.event.approve', $event->id) }}">
                                     <button class="button-primary">Approve event</button>
                                 </a>
-                            @else
+                            @endif
+                            @if($event->status == 'published')
                                 <a href="{{ route('admin.event.unpublish', $event->id) }}">
                                     <button class="button-primary bg-gray-600 hover:bg-gray-800">Unpublish event</button>
                                 </a>
