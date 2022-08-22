@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Document;
+use Auth;
 use Illuminate\Http\Request;
 
 class DocumentController extends Controller
@@ -14,7 +15,8 @@ class DocumentController extends Controller
      */
     public function index()
     {
-        //
+        $documents = Document::where('user_id', Auth::id())->get();
+
     }
 
     /**
