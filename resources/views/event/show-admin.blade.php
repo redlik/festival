@@ -7,7 +7,7 @@
 
     <div class="py-0 md:py-12">
         <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 bg-white rounded-lg shadow-lg scroll-smooth">
-            <div class="bg-white shadow overflow-hidden sm:rounded-lg pt-2">
+            <div class="">
                 @if (\Session::has('approved'))
                     <div class="bg-green-200 border border-gray-400 shadow rounded p-2 mb-8">
                         The event has been approved
@@ -118,6 +118,48 @@
                         </div>
                     </dl>
                 </div>
+            </div>
+            <div class="mt-8">
+                <h6>Documents attached</h6>
+                <div class="mt-4">
+                    <table class="min-w-full border-separate" style="border-spacing: 0">
+                        <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col" class="sticky top-0 z-10 border-b border-gray-300 bg-gray-50 bg-opacity-75 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter sm:pl-6 lg:pl-8">#</th>
+                            <th scope="col" class="sticky top-0 z-10 hidden border-b border-gray-300 bg-gray-50 bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter sm:table-cell">Name & events</th>
+                            <th scope="col" class="sticky top-0 z-10 hidden border-b border-gray-300 bg-gray-50 bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter lg:table-cell">File</th>
+                            <th scope="col" class="sticky top-0 z-10 hidden border-b border-gray-300 bg-gray-50 bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter lg:table-cell">Uploaded at</th>
+                            <th scope="col" class="sticky top-0 z-10 border-b border-gray-300 bg-gray-50 bg-opacity-75 py-3.5 pr-4 pl-3 backdrop-blur backdrop-filter text-sm text-right sm:pr-6 lg:pr-8">
+                                <span class="sr-only">Edit</span>Actions
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody class="bg-white">
+                            @foreach($event->document as $document)
+                                <tr>
+                                    <td class="whitespace-nowrap border-b border-gray-200 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8">{{ $loop->iteration  }}</td>
+                                    <td class="whitespace-nowrap border-b border-gray-200 px-3 py-4 text-sm text-gray-500 hidden sm:table-cell">
+                                        <div>{{ ucfirst($document->name) }}</div>
+                                    </td>
+                                    <td class="whitespace-nowrap border-b border-gray-200 px-3 py-4 text-sm text-gray-500 hidden lg:table-cell">
+                                        <a href="{{ $document->getFirstMediaUrl('docs') }}" class="text-indigo-500 hover:underline hover:text-indigo-800" target="_blank">Click to preview</a>
+                                    </td>
+                                    <td class="whitespace-nowrap border-b border-gray-200 px-3 py-4 text-sm text-gray-500 hidden lg:table-cell">{{ $document->created_at->format('d M y @ H:i') }}</td>
+                                    <td class="relative whitespace-nowrap border-b border-gray-200 py-4 pr-4 pl-3 text-right text-sm font-medium sm:pr-6 lg:pr-8">
+                                        <form action="{{ route('document.destroy', $document) }}"></form>
+                                        <form method="POST" action="{{ route('document.destroy', $document) }}" class="inline-block"
+                                              onsubmit="return confirm('Do you wish to delete the document?');">
+                                            @csrf
+                                            @method("DELETE")
+                                            <button type="submit" class="text-red-600 hover:text-red-900 hover:underline"><i class="fa-solid fa-trash-can text-xs" title="Delete event"></i> Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
         </div>
     </div>
