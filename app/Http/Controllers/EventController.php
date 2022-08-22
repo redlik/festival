@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\User;
+use App\Models\Venue;
 use App\Notifications\EventSubmitted;
 use Auth;
 use Illuminate\Http\Request;
@@ -269,7 +270,8 @@ class EventController extends Controller
     public function edit(Event $event)
     {
         if (Auth::user()->hasRole('admin')) {
-            return view('admin.edit', compact('event'));
+            $venues = Venue::all();
+            return view('admin.edit', compact('event', 'venues'));
         }
 
         if (Auth::id() != $event->user_id) {

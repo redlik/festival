@@ -69,4 +69,9 @@ class Event extends Model implements hasMedia
             ->width(368)
             ->height(232);
     }
+
+    public function document()
+    {
+        return $this->belongsToMany(Document::class);
+    }
 }
