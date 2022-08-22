@@ -5,13 +5,31 @@
                 Organiser Dashboard
             </h2>
             <div class="hidden lg:block absolute right-0 top-0">
-                <a href="{{ route('organiser.edit', $organiser) }}">
-                    <span class="text-sm text-gray-600 font-semibold hover:text-gray-400"><i class="fa-solid fa-pen-to-square mr-2"></i> Edit profile</span></a>
+                <div class="flex h-full items-center">
+                    <a href="{{ route('dashboard.documents') }}" class="text-blue-600 mr-8 text-sm font-semibold hover:underline hover:text-blue-300"><i class="fa-solid fa-file mr-1"></i>Documents</a>
+                    <a href="{{ route('organiser.edit', $organiser) }}">
+                        <span class="text-sm text-green-600 font-semibold hover:text-gray-400 hover:underline"><i class="fa-solid fa-pen-to-square mr-1 "></i> Edit profile</span></a>
+                </div>
             </div>
         </div>
     </x-slot>
 
-    <div class="px-4 sm:px-6 lg:px-8 py-6 bg-gray-100 z-10">
+    <div class="px-4 sm:px-6 lg:px-8 py-6 bg-gray-100 z-10" x-data="{docMessage: true}">
+        @if(Cookie::get('hide-document-reminder') != 'true')
+            <div x-show='docMessage' class="max-w-7xl mx-auto bg-gray-200 shadow-inner p-4 mt-6 rounded text-gray-700 flex justify-between">
+                <div>
+                    <div>If you are organising the event(s) for the first time please upload the necessary qualification documents
+                        <a href="{{ route('dashboard.documents') }}" class="underline font-bold">here</a></div>
+                    <div><button @click="docMessage = ! docMessage" class="underline font-medium mr-6">Hide this message for now</button>
+                        <a href="{{ route('dashboard.documents.hide') }}" class="underline font-medium mr-6">Dismiss the message, I've organised events previously.</a>
+                    </div>
+                </div>
+                <div>
+                    <button @click="docMessage = ! docMessage"><i class="fa-solid fa-square-xmark text-gray-400 text-lg"></i></button>
+                </div>
+            </div>
+        @endif
+
         <div class="max-w-7xl mx-auto">
 
             <div x-data="{ cancelModal : false, eventName : '', eventID : '' }">

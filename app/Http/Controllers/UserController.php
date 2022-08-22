@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\Models\Organiser;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class UserController extends Controller
 {
@@ -22,5 +23,12 @@ class UserController extends Controller
         $organiser = Organiser::where('user_id', Auth::id())->select('id')->first();
 
         return view('user.dashboard', compact('events', 'organiser'));
+    }
+
+    public function documentsHide()
+    {
+        $cookie = Cookie::make('hide-document-reminder', 'true', 1800);
+
+        return back()->withCookie($cookie);
     }
 }

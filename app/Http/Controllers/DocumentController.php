@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Document;
+use App\Models\Event;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -11,12 +12,14 @@ class DocumentController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function index()
     {
-        $documents = Document::where('user_id', Auth::id())->get();
+        $documents = Document::where('user_id', Auth::id())->orderBy('created_at', 'desc')->with('event')->get();
+        $events = Event::where('user_id', Auth::id())->get();
 
+        return view('document.index', compact('documents', 'events'));
     }
 
     /**
@@ -33,11 +36,27 @@ class DocumentController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+
+        $document = Document::create([
+            'name' => $request->input('name'),
+            'user_id' => Auth::id(),
+        ]);
+
+        foreach ($request->input('events') as $event) {
+            $document->event()->attach($event);
+        }
+
+
+        if ($request->hasFile('file')) {
+            $document->addMediaFromRequest('file')
+                ->toMediaCollection('docs');
+        }
+
+        return back();
     }
 
     /**
@@ -82,6 +101,9 @@ class DocumentController extends Controller
      */
     public function destroy(Document $document)
     {
-        //
+        $document->event()->detach();
+        $document->delete();
+
+        return back();
     }
 }

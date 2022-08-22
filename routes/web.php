@@ -57,7 +57,11 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'venue'], func
     Route::delete('delete/{venue}', [VenueController::class, 'destroy'])->name('venue.delete');
 });
 
-Route::get('/dashboard', [UserController::class, 'dashboard'])->middleware('auth', 'role:organiser', 'disabled')->name('dashboard');
+Route::group(['middleware' => ['auth', 'role:organiser', 'disabled'], 'prefix' => 'dashboard'], function () {
+    Route::get('/index', [UserController::class, 'dashboard'])->name('dashboard');
+    Route::get('/document-hide-cookie', [UserController::class, 'documentsHide'])->name('dashboard.documents.hide');
+    Route::get('/documents', [DocumentController::class, 'index'])->name('dashboard.documents');
+});
 
 Route::resource('organiser', OrganiserController::class);
 Route::resource('document', DocumentController::class)->middleware('auth');
