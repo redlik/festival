@@ -256,7 +256,7 @@ class EventController extends Controller
 
     public function showAdmin($event_id)
     {
-        $event = Event::has('document')->find($event_id);
+        $event = Event::with('document')->find($event_id);
 
         return view('event.show-admin', compact('event'));
     }
