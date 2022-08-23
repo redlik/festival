@@ -69,6 +69,9 @@
                                             <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-semibold sm:pr-6">
                                                 <a href="{{ route('organiser.show', $organiser) }}" class="text-indigo-600 hover:text-indigo-900 mr-2">View details</a>
                                                 @if($organiser->status == 'activated')
+                                                    <a href="{{ route('admin.organiser.docs', $organiser) }}" class="text-amber-600 hover:text-indigo-900 mr-2">Docs</a>
+                                                @endif
+                                                @if($organiser->status == 'activated')
                                                     <a href="{{ route('approved.disabled', $organiser) }}" class="text-green-600 hover:text-green-900 mr-2">Disable</a>
                                                 @endif
                                                 @if($organiser->status == 'disabled')

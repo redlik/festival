@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Document;
 use App\Models\Organiser;
 use App\Models\User;
 use App\Notifications\AccountActivation;
@@ -38,6 +39,13 @@ class OrganiserController extends Controller
         $organisers = Organiser::all();
 
         return view('organiser.index', compact('organisers'));
+    }
+
+    public function adminDocs(Organiser $organiser)
+    {
+        $documents = Document::where('user_id', $organiser->user_id)->with('event')->orderBy('created_at', 'desc')->get();
+
+        return view('organiser.docs-index', compact('documents'));
     }
 
     /**

@@ -45,6 +45,7 @@ Route::get('/organiser-submitted', function () {
 Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin'], function () {
     Route::get('dashboard', [PagesController::class, 'adminDashboard'])->name('admin.dashboard');
     Route::get('dashboard/organisers', [OrganiserController::class, 'adminIndex'])->name('admin.organisers');
+    Route::get('dashboard/organiser/docs/{organiser}', [OrganiserController::class, 'adminDocs'])->name('admin.organiser.docs');
     Route::get('event/{id}', [EventController::class, 'showAdmin'])->name('admin.event.show');
     Route::get('event/approval/{id}', [EventController::class, 'adminApproval'])->name('admin.event.approve');
     Route::get('event/unpublish/{id}', [EventController::class, 'adminUnpublish'])->name('admin.event.unpublish');
