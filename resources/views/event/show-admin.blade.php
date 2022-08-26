@@ -195,7 +195,7 @@
                                         <p class="text-sm text-gray-500 mb-4">
                                             Provide a short description what documents are required.
                                         </p>
-                                        <form action="" method="POST" class="bg-gray-100 rounded p-2" id="doc-request">
+                                        <form action="{{ route('admin.event.request-docs', $event) }}" method="POST" class="bg-gray-100 rounded p-2" id="doc-request">
                                             @csrf
                                             <div class="mb-4">
                                                 <label for="message" class="text-sm text-gray-600 font-semibold mb-2">Request details:</label>

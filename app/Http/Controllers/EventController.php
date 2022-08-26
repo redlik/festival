@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\User;
 use App\Models\Venue;
+use App\Notifications\EventDocumentRequest;
 use App\Notifications\EventSubmitted;
 use Auth;
 use Illuminate\Http\Request;
@@ -259,6 +260,18 @@ class EventController extends Controller
         $event = Event::with('document')->find($event_id);
 
         return view('event.show-admin', compact('event'));
+    }
+
+    public function adminRequestDocuments(Event $event, Request $request)
+    {
+        $event->message = $request->input('message');
+
+        $organiser = User::find($event->user_id);
+
+        $organiser->notify(new EventDocumentRequest($event));
+
+        return back();
+
     }
 
     /**
