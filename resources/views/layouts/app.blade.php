@@ -66,6 +66,8 @@
         {{--  Logos --}}
         <div class="flex flex-wrap justify-center lg:justify-between bg-white py-4 px-6">
             <img src="{{ asset('img/logos/mental-health.jpg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="Kerry Mental Health Association">
+            <img src="{{ asset('img/logos/kcc.png') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="Kerry County Council">
+            <img src="{{ asset('img/logos/healthy-kerry.png') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="Healthy Kerry">
             <img src="{{ asset('img/logos/connecting-for-life.jpg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="Connecting for Life Kerry">
             <img src="{{ asset('img/logos/hse.jpg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="Health Service Executive">
             <img src="{{ asset('img/logos/cork-kerry.jpg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="Cork Kerry Community Healthcare">
