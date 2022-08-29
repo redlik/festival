@@ -1024,9 +1024,6 @@ tr:nth-child(even) {
 .mb-2 {
   margin-bottom: 0.5rem;
 }
-.mr-6 {
-  margin-right: 1.5rem;
-}
 .ml-1 {
   margin-left: 0.25rem;
 }
@@ -1047,6 +1044,9 @@ tr:nth-child(even) {
 }
 .mb-1 {
   margin-bottom: 0.25rem;
+}
+.mr-6 {
+  margin-right: 1.5rem;
 }
 .ml-12 {
   margin-left: 3rem;
@@ -1548,9 +1548,9 @@ tr:nth-child(even) {
   --tw-bg-opacity: 1;
   background-color: rgb(254 202 202 / var(--tw-bg-opacity));
 }
-.bg-gray-200 {
+.bg-green-50 {
   --tw-bg-opacity: 1;
-  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+  background-color: rgb(240 253 244 / var(--tw-bg-opacity));
 }
 .bg-gray-500 {
   --tw-bg-opacity: 1;
@@ -1591,6 +1591,10 @@ tr:nth-child(even) {
 .bg-yellow-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(254 249 195 / var(--tw-bg-opacity));
+}
+.bg-gray-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
 .bg-olive-400 {
   --tw-bg-opacity: 1;
@@ -1907,6 +1911,10 @@ tr:nth-child(even) {
   --tw-text-opacity: 1;
   color: rgb(79 70 229 / var(--tw-text-opacity));
 }
+.text-amber-600 {
+  --tw-text-opacity: 1;
+  color: rgb(217 119 6 / var(--tw-text-opacity));
+}
 .text-green-600 {
   --tw-text-opacity: 1;
   color: rgb(22 163 74 / var(--tw-text-opacity));
@@ -1922,10 +1930,6 @@ tr:nth-child(even) {
 .text-indigo-700 {
   --tw-text-opacity: 1;
   color: rgb(67 56 202 / var(--tw-text-opacity));
-}
-.text-amber-600 {
-  --tw-text-opacity: 1;
-  color: rgb(217 119 6 / var(--tw-text-opacity));
 }
 .text-purple-600 {
   --tw-text-opacity: 1;
@@ -2192,13 +2196,13 @@ tr:nth-child(even) {
   --tw-bg-opacity: 1;
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
 }
-.hover\:bg-gray-300:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
-}
 .hover\:bg-olive-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(52 55 46 / var(--tw-bg-opacity));
+}
+.hover\:bg-gray-300:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
 }
 .hover\:bg-yellow-600:hover {
   --tw-bg-opacity: 1;

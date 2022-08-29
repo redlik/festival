@@ -15,20 +15,22 @@
     </x-slot>
 
     <div class="px-4 sm:px-6 lg:px-8 py-6 bg-gray-100 z-10" x-data="{docMessage: true}">
-        @if(Cookie::get('hide-document-reminder') != 'true')
-            <div x-show='docMessage' class="max-w-7xl mx-auto bg-gray-200 shadow-inner p-4 mt-6 rounded text-gray-700 flex justify-between">
+            <div x-show='docMessage' class="max-w-7xl mx-auto bg-green-50 shadow-inner p-4 mt-6 rounded text-green-700 flex justify-between">
                 <div>
-                    <div>If you are organising the event(s) for the first time please upload the necessary qualification documents
-                        <a href="{{ route('dashboard.documents') }}" class="underline font-bold">here</a></div>
-                    <div><button @click="docMessage = ! docMessage" class="underline font-medium mr-6">Hide this message for now</button>
-                        <a href="{{ route('dashboard.documents.hide') }}" class="underline font-medium mr-6">Dismiss the message, I've organised events previously.</a>
-                    </div>
+                    For each event you are adding, please upload the following documents here:
+                    <ul class="list-disc list-inside">
+                        <li>Relevant qualification,</li>
+                        <li>Public liability insurance,</li>
+                        <li>Garda vetting where relevant</li>
+                    </ul>
+                    <p class="text-green-700 mt-2">
+                        <a href="{{ route('dashboard.documents') }}" class="underline font-bold">Click here</a> for document section
+                    </p>
                 </div>
                 <div>
                     <button @click="docMessage = ! docMessage"><i class="fa-solid fa-square-xmark text-gray-400 text-lg"></i></button>
                 </div>
             </div>
-        @endif
 
         <div class="max-w-7xl mx-auto">
 

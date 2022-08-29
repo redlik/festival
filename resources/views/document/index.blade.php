@@ -106,11 +106,11 @@
                                         @csrf
                                         <div class="mb-4">
                                             <label for="name" class="text-sm text-gray-600">Name of the document</label>
-                                            <input type="text" name="name" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" required>
+                                            <input type="text" name="name" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md placeholder-gray-400" required placeholder="Garda vetting for John Smith">
                                             <div class="text-xs text-gray-600 mt-1">Use this field as a short description what the document is about.</div>
                                         </div>
                                         <div class="mb-4">
-                                            <input type="file" name="file"></div>
+                                            <input type="file" name="file" required></div>
                                         <div class="mb-4">
                                             <div class="font-bold text-gray-600 mb-1">Events:</div>
                                             @foreach($events as $event)
