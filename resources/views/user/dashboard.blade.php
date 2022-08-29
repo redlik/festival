@@ -17,7 +17,7 @@
     <div class="px-4 sm:px-6 lg:px-8 py-6 bg-gray-100 z-10" x-data="{docMessage: true}">
             <div x-show='docMessage' class="max-w-7xl mx-auto bg-green-50 shadow-inner p-4 mt-6 rounded text-green-700 flex justify-between">
                 <div>
-                    For each event you are adding, please upload the following documents here:
+                    For each event you are adding, please upload the following documents:
                     <ul class="list-disc list-inside">
                         <li>Relevant qualification,</li>
                         <li>Public liability insurance,</li>
