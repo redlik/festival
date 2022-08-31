@@ -42,7 +42,7 @@
                                     <div class="text-xs font-normal">If your event doesn't have the end time set, leave the field blank</div>
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                    <input id="start_date" name="start_date" type="date" class="lg:w-48 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" min="2022-10-06" max="2022-10-17" required
+                                    <input id="start_date" name="start_date" type="date" class="lg:w-48 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" min="2022-10-01" max="2022-10-31" required
                                            value="{{ old('start_date') }}">
                                     <input id="start_time" name="start_time" type="time" class="lg:ml-4 lg:w-48 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" required value="{{ old('start_time') }}">
                                     <input id="end_time" name="end_time" type="time" class="lg:ml-4 lg:w-48 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" value="{{ old('end_time') }}">

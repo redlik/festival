@@ -22,28 +22,30 @@
                     </button>
                 </div>
             </div>
+            <div>
+                @if(\Session::has('saved'))
+                    <div class="bg-green-100 border border-green-500 p-2 rounded mt-4">
+                        The changes has been saved.
+                        <a href="{{ route('admin.dashboard') }}" class="font-bold text-indigo-500 hover:underline"><< Click to return to Dashboard</a>
+                    </div>
+                @endif
+                @if ($errors->any())
+                    <div class="bg-red-200 rounded border border-red-400 pl-2">
+                        <ul class="list-disc list-inside">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+            </div>
             <form class="space-y-8 divide-y divide-gray-200" method="POST" action="{{ route('event.update', $event) }}" id="event-registration">
-                @csrf
-                @method('PATCH')
                 <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
-                    @if(\Session::has('saved'))
-                        <div class="bg-green-100 border border-green-500 p-2 rounded mt-4">
-                            The changes has been saved.
-                            <a href="{{ route('dashboard') }}" class="font-bold text-indigo-500 hover:underline"><< Click to return to Dashboard</a>
-                        </div>
-                    @endif
-                    @if ($errors->any())
-                        <div class="bg-red-200 rounded border border-red-400 pl-2">
-                            <ul class="list-disc list-inside">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    <input type="hidden" name="event_number" value="{{ $event->id }}">
                     <div>
                         <div class="mt-6 sm:mt-5 space-y-6 sm:space-y-5">
+                            @csrf
+                            @method('PATCH')
+                            <input type="hidden" name="event_number" value="{{ $event->id }}">
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                                 <label for="name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                                     Event Name (title)
@@ -68,6 +70,7 @@
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                                 <label for="type" class="block text-sm font-medium sm:mt-px sm:pt-2">
                                     Environment <span class="text-red-700">*</span>
+                                    <div class="text-xs">If you change from/to Online save the change first to refresh the list of venues below.</div>
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
                                     <select id="type" name="type" class="max-w-lg block focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md" required x-model="type">
@@ -78,12 +81,23 @@
                                 </div>
                             </div>
 
-                            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5
-                                        @if ($errors->has('venue')) bg-red-100 @endif">
-                                <label for="venue" class="block text-sm font-medium sm:mt-px sm:pt-2">
+                            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                                <label for="type" class="block text-sm font-medium sm:mt-px sm:pt-2">
                                     Venue <span class="text-red-700">*</span>
                                 </label>
-                                @livewire('venue-entry', ['edit_venue' => $event->venue_id])
+                                <div class="mt-1 sm:mt-0 sm:col-span-2">
+                                    <select id="venue" name="venue_id" class="max-w-lg block focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md" :disabled="(type == 'online') ? true : false">
+                                        @if($event->type == 'online')
+                                            <option value="">Online event, no venue</option>
+                                        @else
+                                            @foreach($venues as $venue)
+
+                                                    <option value="{{ $venue->id }}" @selected(old('venue_id' == $venue->id))>{{ $venue->name }}, {{ $venue->town }}</option>
+                                            @endforeach
+                                        @endif
+
+                                    </select>
+                                </div>
                             </div>
 
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
@@ -252,7 +266,9 @@
                         </div>
                     </div>
                 </div>
-                <input type="submit" class="button-secondary" value="Save changes">
+                <button formaction="{{ route('event.update', $event) }}" class="button-secondary" name="save">
+                    Save changes
+                </button>
             </form>
         </div>
     </div>
