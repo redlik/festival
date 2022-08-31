@@ -14,7 +14,7 @@ class Event extends Model implements hasMedia
     use InteractsWithMedia;
 
     protected $guarded = [];
-    protected $attributes = ['message' => ''];
+//    protected $attributes = ['message' => ''];
 
 //    protected $casts = [
 //        'target' => 'array'

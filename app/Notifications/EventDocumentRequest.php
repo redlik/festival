@@ -13,15 +13,17 @@ class EventDocumentRequest extends Notification
     use Queueable;
 
     private Event $event;
+    private string $message;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Event $event)
+    public function __construct(Event $event, $message)
     {
         $this->event = $event;
+        $this->message = $message;
     }
 
     /**
@@ -47,7 +49,7 @@ class EventDocumentRequest extends Notification
                     ->subject('Documents requested for '. $this->event->name)
                     ->greeting('Hello,')
                     ->line('The organisers are waiting to approve your event but they are missing some documents:')
-                    ->line($this->event->message)
+                    ->line($this->message)
                     ->action('Login to Dashboard', url(route('dashboard')))
                     ->line('Once the documents are uploaded you may notify the festival organisers to speed up the process.')
                     ->line('Thank you for your cooperation!');

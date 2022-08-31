@@ -264,11 +264,11 @@ class EventController extends Controller
 
     public function adminRequestDocuments(Event $event, Request $request)
     {
-        $event->message = $request->input('message');
+        $message = $request->input('message');
 
         $organiser = User::find($event->user_id);
 
-        $organiser->notify(new EventDocumentRequest($event));
+        $organiser->notify(new EventDocumentRequest($event, $message));
 
         return back();
 
