@@ -250,7 +250,7 @@ class EventController extends Controller
 
     public function preview($slug)
     {
-        $event = Event::where('slug', $slug)->first();
+        $event = Event::where('slug', $slug)->withCount('attendee')->first();
 
         return view('event.preview', compact('event'));
     }

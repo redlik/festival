@@ -86,7 +86,7 @@
                             </div>
                         @else
                             <div>
-                                {{ $event->attendees - $event->attendees_count }} places left
+                                {{ $event->attendees - $event->attendee_count }} places left
                             </div>
                         @endif
                     @endif
