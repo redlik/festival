@@ -91,8 +91,7 @@
                                             <option value="">Online event, no venue</option>
                                         @else
                                             @foreach($venues as $venue)
-
-                                                    <option value="{{ $venue->id }}" @selected(old('venue_id' == $venue->id))>{{ $venue->name }}, {{ $venue->town }}</option>
+                                                    <option value="{{ $venue->id }}" @selected($event->venue_id == $venue->id)>{{ $venue->name }}, {{ $venue->town }}</option>
                                             @endforeach
                                         @endif
 
