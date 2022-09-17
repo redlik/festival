@@ -48,7 +48,8 @@ class Event extends Model implements hasMedia
     public function scopeApproved($query)
     {
         return $query->where('status', 'published')
-            ->orderBy('start_date', 'asc');
+            ->orderBy('start_date', 'asc')
+            ->orderBy('start_time', 'asc');
     }
 
     public function cover()
