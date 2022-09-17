@@ -10,6 +10,10 @@ class EventList extends Component
 {
     public $towns;
 
+    public $days = [];
+
+    public $day = '';
+
     public $events;
 
     public $target;
@@ -41,11 +45,20 @@ class EventList extends Component
         })->select('town')->orderBy('town', 'asc')->get();
         $this->unique_towns = $this->towns->unique('town');
 
+        $this->days = Event::approved()
+            ->select('start_date')
+            ->get()
+            ->unique('start_date');
+        ray($this->days);
+
         $this->events = Event::when($this->selected_town != '', function ($query) {
             $query->whereHas('Venue', function ($q) {
                 $q->where('town', $this->selected_town);
             });
         })
+            ->when($this->day != '', function($q) {
+                $q->where('start_date', $this->day);
+              })
             ->when($this->group, function ($query) {
                 $query->whereJsonContains('target', $this->group);
             })

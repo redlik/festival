@@ -12,6 +12,15 @@
         <div x-cloak :class="filterShow ? 'hidden lg:block' : 'block'">
             <h5 class="hidden lg:block">Filter by</h5>
             <div class="my-6">
+                <label for="day" class="mb-2">Day of the events</label>
+                <select name="day" id="day" class="focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md" wire:model="day">
+                    <option value="" selected>All dates</option>
+                    @foreach($days as $day)
+                        <option value="{{ $day->start_date }}">{{ \Carbon\Carbon::parse($day->start_date)->format('jS M') }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="my-6">
                 <label for="town" class="mb-2">Town events take place</label>
                 <select name="town" id="town" class="focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md" wire:model="selected_town">
                     <option value="" selected>All towns</option>
