@@ -60,7 +60,7 @@ class VenueEntry extends Component
             'name' => $this->venue_name,
             'address1' => $this->venue_address1,
             'street' => $this->venue_street,
-            'town' => $this->venue_town,
+            'town' => trim($this->venue_town),
             'county' => 'Kerry',
             'eircode' => $this->venue_eircode,
             'website' => $this->venue_website,
