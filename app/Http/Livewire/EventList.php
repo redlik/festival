@@ -49,7 +49,6 @@ class EventList extends Component
             ->select('start_date')
             ->get()
             ->unique('start_date');
-        ray($this->days);
 
         $this->events = Event::when($this->selected_town != '', function ($query) {
             $query->whereHas('Venue', function ($q) {
