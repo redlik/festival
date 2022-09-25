@@ -11,8 +11,8 @@
             </select>
         </div>
         <div>
-            <button type="button" class="bg-yellow-300 text-olive-600 rounded px-2 py-1 hover:bg-yellow-600 hover:text-white">
-                <i class="fas fa-file-excel mr-2"></i> Export list</button>
+            <a href="{{ route('dashboard.attendee.export') }}" type="button" class="bg-yellow-300 text-olive-600 rounded px-2 py-1 hover:bg-yellow-600 hover:text-white">
+                <i class="fas fa-file-excel mr-2"></i> Export list</a>
         </div>
     </div>
     @if (\Session::has('unregister'))
@@ -26,6 +26,7 @@
             <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8">Name</th>
             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Event</th>
             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Registered on</th>
+            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Status</th>
             <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6 lg:pr-8">Edit
                 <span class="sr-only">Edit</span>
             </th>
@@ -43,6 +44,13 @@
                     {{ $attendee->event->name }}
                 </td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $attendee->created_at->format('d M Y H:i') }}</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 text-left">
+                    @if($attendee->waiting_status)
+                        <span class="rounded-lg px-2 py-1 bg-gray-100 text-gray-500">Waiting list</span>
+                    @else
+                        <span class="rounded-lg px-2 py-1 bg-green-100 text-green-700">Attendee</span>
+                    @endif
+                </td>
                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-semibold sm:pr-6 lg:pr-8">
                     <form action="{{ route('attendee.destroy', $attendee) }}" method="POST">
                         @csrf

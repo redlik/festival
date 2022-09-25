@@ -63,6 +63,8 @@ Route::group(['middleware' => ['auth', 'role:organiser', 'disabled'], 'prefix' =
     Route::get('/index', [UserController::class, 'dashboard'])->name('dashboard');
     Route::get('/document-hide-cookie', [UserController::class, 'documentsHide'])->name('dashboard.documents.hide');
     Route::get('/documents', [DocumentController::class, 'index'])->name('dashboard.documents');
+    Route::get('attendee-export', [AttendeeController::class, 'export'])->name('dashboard.attendee.export');
+
 });
 
 Route::resource('organiser', OrganiserController::class);
