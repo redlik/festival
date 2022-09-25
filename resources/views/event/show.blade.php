@@ -93,7 +93,7 @@
 
                     @if(\Session::has('registered'))
                         <div class="bg-gray-700 border border-gray-300 text-gray-100 p-2 rounded mt-4">
-                            Thank you for registering to the event!
+                            {{ \Session::get('registered') }}
                         </div>
                     @endif
 
