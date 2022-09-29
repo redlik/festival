@@ -29,6 +29,14 @@
                     @endforeach
                 </select>
             </div>
+            <div class="my-6">
+                <label for="type" class="mb-2">Event type</label>
+                <select name="type" id="type" class="focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md" wire:model="type">
+                    <option value="" selected>All events</option>
+                    <option value="inperson">In person</option>
+                    <option value="online">Online</option>
+                </select>
+            </div>
             <div class="mb-4">
                 <div class="mb-2 font-semibold">Target group</div>
                 @foreach($target as $key => $value)
