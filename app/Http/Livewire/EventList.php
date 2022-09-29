@@ -12,7 +12,7 @@ class EventList extends Component
 
     public $days = [];
 
-    public $day = '';
+    public $selected_day = '';
 
     public $events;
 
@@ -60,8 +60,8 @@ class EventList extends Component
                 $q->where('town', $this->selected_town);
             });
         })
-            ->when($this->day != '', function($q) {
-                $q->where('start_date', $this->day);
+            ->when($this->selected_day != '', function($q) {
+                $q->where('start_date', $this->selected_day);
               })
             ->when($this->type == 'inperson', function($q) {
                 $q->whereIn('type', $this->inperson);
