@@ -11,6 +11,11 @@ class AdminEvents extends Component
 
     public $pending;
 
+    public function mount()
+    {
+        $this->pending = '';
+    }
+
     public function render()
     {
         $this->events = $events = Event::orderBy('status', 'asc')->orderBy('start_date', 'asc')
