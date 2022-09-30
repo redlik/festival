@@ -50,56 +50,58 @@
     </div>
     <div class="w-full">
         @foreach($days as $single_day)
-            <div class="text-center text-xl mb-8">
+            <div class="mb-12">
                 @if($events->contains('start_date', $single_day->start_date))
-                    <h4 class="text-gray-600 mb-4 py-4 border-t border-b border-gray-300">{{ \Carbon\Carbon::parse($single_day->start_date)->format('jS F Y') }}</h4>
+                    <div class="text-center text-xl">
+                        <h4 class="text-gray-600 mb-4 py-4 border-t border-b border-gray-300">{{ \Carbon\Carbon::parse($single_day->start_date)->format('jS F Y') }}</h4>
+                    </div>
                 @endif
-            <ul role="list" class="grid gap-x-4 gap-y-8 sm:grid-cols-1 lg:grid-cols-3">
-                @forelse($events as $event)
-                    @if($event->start_date == $single_day->start_date)
-                        <li class="relative col-span-1">
-                            <div class="group block w-full h-[225px] rounded-lg bg-white focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
-                                <a href="{{ route('event.show-by-slug', $event->slug) }}">
-                                    <img src="{{ $event->getFirstMediaUrl('cover') }}" alt="{{ $event->name }} event at Kerry Mental Health & Wellbeing Fest 2022" class="object-scale-down object-center pointer-events-none bg-white w-full h-full group-hover:opacity-75">
-                                </a>
-                            </div>
-                            <div class="flex items-center py-2">
-                                <div class="mr-6">
-                                    <div class="font-light text-center">{{ \Carbon\Carbon::parse($event->start_date)->format('M') }}</div>
-                                    <div class="text-2xl text-black font-bold text-center">{{ \Carbon\Carbon::parse($event->start_date)->format('d') }}</div>
+                <ul role="list" class="grid gap-x-4 gap-y-8 sm:grid-cols-1 lg:grid-cols-3">
+                    @forelse($events as $event)
+                        @if($event->start_date == $single_day->start_date)
+                            <li class="relative col-span-1">
+                                <div class="group block w-full h-[225px] rounded-lg bg-white focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
+                                    <a href="{{ route('event.show-by-slug', $event->slug) }}">
+                                        <img src="{{ $event->getFirstMediaUrl('cover') }}" alt="{{ $event->name }} event at Kerry Mental Health & Wellbeing Fest 2022" class="object-scale-down object-center pointer-events-none bg-white w-full h-full group-hover:opacity-75">
+                                    </a>
                                 </div>
-                                <div class="grow-0">
-                                    <div>{{ \Carbon\Carbon::parse($event->start_time)->format('H:i') }} @if($event->end_time)
-                                            - {{ \Carbon\Carbon::parse($event->end_time)->format('H:i') }}
-                                        @endif</div>
-                                    <div>
-                                        <a href="{{ route('event.show-by-slug', $event->slug) }}" title="{{ $event->name }}">
-                                            <div class="text-lg block text-sm font-bold text-gray-900 truncate-elipsis pointer-events-none">
-                                                <div class="hidden lg:block" >
-                                                    {{ Str::of($event->name)->limit(25, '...') }}
+                                <div class="flex items-center py-2">
+                                    <div class="mr-6">
+                                        <div class="font-light text-center">{{ \Carbon\Carbon::parse($event->start_date)->format('M') }}</div>
+                                        <div class="text-2xl text-black font-bold text-center">{{ \Carbon\Carbon::parse($event->start_date)->format('d') }}</div>
+                                    </div>
+                                    <div class="grow-0">
+                                        <div>{{ \Carbon\Carbon::parse($event->start_time)->format('H:i') }} @if($event->end_time)
+                                                - {{ \Carbon\Carbon::parse($event->end_time)->format('H:i') }}
+                                            @endif</div>
+                                        <div>
+                                            <a href="{{ route('event.show-by-slug', $event->slug) }}" title="{{ $event->name }}">
+                                                <div class="text-lg block text-sm font-bold text-gray-900 truncate-elipsis pointer-events-none">
+                                                    <div class="hidden lg:block">
+                                                        {{ Str::of($event->name)->limit(25, '...') }}
+                                                    </div>
+                                                    <div class="lg:hidden">
+                                                        {{ $event->name }}
+                                                    </div>
                                                 </div>
-                                                <div class="lg:hidden">
-                                                    {{ $event->name }}
-                                                </div>
-                                            </div>
-                                            @if($event->type === 'online')
-                                                <p class="block text-sm font-medium text-indigo-500 pointer-events-none">
-                                                    <i class="fa-solid fa-video mr-1"></i> Online event</p>
-                                            @else
-                                                <p class="block text-sm font-medium text-gray-500 pointer-events-none">{{ $event->venue->name }}, {{ $event->venue->town }}</p>
-                                            @endif
-                                        </a>
+                                                @if($event->type === 'online')
+                                                    <p class="block text-sm font-medium text-indigo-500 pointer-events-none">
+                                                        <i class="fa-solid fa-video mr-1"></i> Online event</p>
+                                                @else
+                                                    <p class="block text-sm font-medium text-gray-500 pointer-events-none">{{ $event->venue->name }}, {{ $event->venue->town }}</p>
+                                                @endif
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
-                    @endif
-                @empty
-                    <div>
-                        <h4>No events found for this criteria</h4>
-                    </div>
-                @endforelse
-            </ul>
+                            </li>
+                        @endif
+                    @empty
+                        <div>
+                            <h4>No events found for this criteria</h4>
+                        </div>
+                    @endforelse
+                </ul>
             </div>
         @endforeach
     </div>
