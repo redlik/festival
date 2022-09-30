@@ -49,10 +49,11 @@
         </div>
     </div>
     <div class="w-full">
+        <div class="-mb-12"></div>
         @foreach($days as $single_day)
-            <div class="mb-12">
+            <div class="">
                 @if($events->contains('start_date', $single_day->start_date))
-                    <div class="text-center text-xl">
+                    <div class="text-center text-xl mt-12">
                         <h4 class="text-gray-600 mb-4 py-4 border-t border-b border-gray-300">{{ \Carbon\Carbon::parse($single_day->start_date)->format('jS F Y') }}</h4>
                     </div>
                 @endif
