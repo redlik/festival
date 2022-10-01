@@ -20,7 +20,7 @@ class AttendeeExport implements FromQuery, WithHeadings, WithTitle, ShouldAutoSi
     public function query()
     {
         $events = Event::where('user_id', Auth::id())->select('id')->get()->toArray();
-        return Attendee::query()->whereIn('event_id', $events)->select('name', 'event_id', 'created_at', 'waiting_status')->orderBy('event_id', 'asc')->orderBy('name', 'asc');
+        return Attendee::query()->whereIn('event_id', $events)->select('name', 'email', 'phone', 'event_id', 'created_at', 'waiting_status')->orderBy('event_id', 'asc')->orderBy('name', 'asc');
     }
 
 
@@ -39,6 +39,8 @@ class AttendeeExport implements FromQuery, WithHeadings, WithTitle, ShouldAutoSi
 
         return [
           $attendee->name,
+          $attendee->email,
+          $attendee->phone,
           $attendee->event->name,
           $attendee->created_at->format('Y-m-d'),
           $status,
@@ -49,6 +51,8 @@ class AttendeeExport implements FromQuery, WithHeadings, WithTitle, ShouldAutoSi
     {
         return [
             'Name',
+            'Email',
+            'Phone (opt)',
             'Event',
             'Registered on',
             'Status',
