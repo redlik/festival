@@ -75,20 +75,22 @@
                 </div>
                 @else
                 <div class="bg-gray-100 rounded border border-gray-300 p-6 mt-8">
-                    <h4 class="text-gray-600">Please fill in your details below to register for this event.</h4>
                     @if($event->limited != 0)
                         @if($event->attendees <= $event->attendee_count)
                             <div>
-                                This event is fully booked
+                                <h5 class="bg-red-100 rounded px-3 py-1 text-red-600 shadow font-medium">The event is fully booked but you can still enroll into a waiting list below.</h5>
                                 @php
                                     $full = true;
                                 @endphp
                             </div>
                         @else
+                            <h4 class="text-gray-600">Please fill in your details below to register for this event.</h4>
                             <div>
                                 {{ $event->attendees - $event->attendee_count }} places left
                             </div>
                         @endif
+                    @else
+                        <h4 class="text-gray-600">Please fill in your details below to register for this event.</h4>
                     @endif
 
                     @if(\Session::has('registered'))
