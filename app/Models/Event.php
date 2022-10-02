@@ -40,6 +40,11 @@ class Event extends Model implements hasMedia
         return $this->hasMany(Attendee::class);
     }
 
+    public function waiting()
+    {
+        return $this->hasMany(Attendee::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

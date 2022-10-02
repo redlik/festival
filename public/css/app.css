@@ -1219,6 +1219,9 @@ tr:nth-child(even) {
 .grow-0 {
   flex-grow: 0;
 }
+.table-auto {
+  table-layout: auto;
+}
 .border-separate {
   border-collapse: separate;
 }
@@ -1555,6 +1558,10 @@ tr:nth-child(even) {
   --tw-bg-opacity: 1;
   background-color: rgb(240 253 244 / var(--tw-bg-opacity));
 }
+.bg-amber-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(253 230 138 / var(--tw-bg-opacity));
+}
 .bg-blue-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(219 234 254 / var(--tw-bg-opacity));
@@ -1603,6 +1610,10 @@ tr:nth-child(even) {
   --tw-bg-opacity: 1;
   background-color: rgb(115 122 102 / var(--tw-bg-opacity));
 }
+.\!bg-amber-100 {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(254 243 199 / var(--tw-bg-opacity)) !important;
+}
 .bg-yellow-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(254 240 138 / var(--tw-bg-opacity));
@@ -1614,6 +1625,10 @@ tr:nth-child(even) {
 .bg-indigo-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(238 242 255 / var(--tw-bg-opacity));
+}
+.\!bg-amber-50 {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(255 251 235 / var(--tw-bg-opacity)) !important;
 }
 .bg-opacity-75 {
   --tw-bg-opacity: 0.75;
@@ -1961,6 +1976,10 @@ tr:nth-child(even) {
 .text-olive-400 {
   --tw-text-opacity: 1;
   color: rgb(115 122 102 / var(--tw-text-opacity));
+}
+.text-amber-700 {
+  --tw-text-opacity: 1;
+  color: rgb(180 83 9 / var(--tw-text-opacity));
 }
 .text-indigo-700 {
   --tw-text-opacity: 1;

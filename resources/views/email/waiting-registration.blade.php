@@ -61,7 +61,7 @@
                             <h2 style="margin: 0; margin-bottom: 24px; font-size: 24px; line-height: 24px; color: #64748b">Event registration</h2>
                             <h4 style="font-weight: 600; line-height: 4px; color: #374151">Hi {{ $attendee->name }},</h4>
                             <p style="margin: 0; margin-bottom: 24px; font-size: 16px; color: #334155">
-                                Thank you for registering to this event.
+                                We've found a spot for the event you've shown interest. Hope you can still attend.
                             </p>
                             <div style="margin-bottom: 16px; border-radius: 4px; background-color: #f1f5f9; padding: 8px">
                                 <h4 style="margin-top: 8px; margin-bottom: 8px; color: #4b5563">Event details:</h4>
@@ -82,7 +82,8 @@
                                     <div style="color: #4b5563">{{ $attendee->event->venue->name }}, {{ $attendee->event->venue->town }}</div>
                                 </div>
                             </div>
-                            <p style="margin-bottom: 32px; color: #475569">We look forward to seeing you at the event!</p>
+                            <p style="margin-bottom: 16px; color: #475569">We look forward to seeing you at the event! </p>
+                            <p style="margin-bottom: 32px; color: #475569">However, if you can't make it please notify the organiser right away. Thank you.</p>
                             <div style="margin-left: auto; margin-right: auto; width: 100%; text-align: center">
                                 <a href="{{ route('event.show-by-slug', $attendee->event->slug) }}" class="hover-bg-gray-500" style="text-decoration: none; border-radius: 4px; background-color: #374151; padding-left: 16px; padding-right: 16px; padding-top: 12px; padding-bottom: 12px; color: #fff; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)">Event details</a>
                             </div>

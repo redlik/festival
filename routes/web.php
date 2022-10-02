@@ -65,6 +65,7 @@ Route::group(['middleware' => ['auth', 'role:organiser', 'disabled'], 'prefix' =
     Route::get('/document-hide-cookie', [UserController::class, 'documentsHide'])->name('dashboard.documents.hide');
     Route::get('/documents', [DocumentController::class, 'index'])->name('dashboard.documents');
     Route::get('attendee-export', [AttendeeController::class, 'export'])->name('dashboard.attendee.export');
+    Route::get('attendee/register/{attendee}', [AttendeeController::class, 'registerWaiting'])->name('dashboard.attendee.waiting.register');
 
 });
 

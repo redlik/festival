@@ -17,7 +17,10 @@ class AttendeeList extends Component
     public function mount()
     {
         $selected_event = '';
-        $this->attendees = Auth::user()->attendees()->with('event')->get();
+        $this->attendees = Auth::user()->attendees()->with('event')
+            ->orderBy('event_id', 'asc')
+            ->orderBy('waiting_status', 'asc')
+            ->get();
         $this->events_with_attendees = Event::where('user_id', Auth::id())->has('attendee')->get();
     }
 
@@ -27,7 +30,10 @@ class AttendeeList extends Component
             ->when($this->selected_event != '', function ($query) {
                 $query->where('event_id', $this->selected_event);
             })
-            ->with('event')->get();
+            ->with('event')
+            ->orderBy('event_id', 'asc')
+            ->orderBy('waiting_status', 'asc')
+            ->get();
 
         return view('livewire.attendee-list');
     }
