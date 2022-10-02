@@ -85,15 +85,25 @@
                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-semibold sm:pr-6 lg:pr-8">
                     <a href="{{ route('admin.event.show', $event) }}" class="text-indigo-600 hover:text-indigo-900 mr-2" title="Event details"><i class="fa-solid fa-eye"></i></a>
                     <a href="{{ route('event.edit', $event) }}" class="text-green-600 hover:text-green-400 mr-2"><i class="fa-solid fa-pen-to-square"></i></a>
-                    @if($event->attendee_count > 0)
+                    @if($event->attendee_count > 0 && $event->status != 'cancelled')
                         <div class="text-gray-500 inline-block cursor-not-allowed" title="Event has attendees, cannot be deleted"><i class="fa-solid fa-trash-can"></i></div>
                     @else
-                        <form method="POST" action="{{ route('event.destroy', $event) }}" class="inline-block"
-                              onsubmit="return confirm('Do you wish to delete the event completely?');">
-                            @csrf
-                            @method("DELETE")
-                            <button type="submit" class="text-red-600 hover:text-red-900 hover:underline"><i class="fa-solid fa-trash-can" title="Delete event"></i></button>
-                        </form>
+                        @if($event->status == 'cancelled')
+                            <form method="POST" action="{{ route('event.destroy', $event) }}" class="inline-block"
+                                  onsubmit="return confirm('By removing cancelled event you will also remove any registered attendees.');">
+                                @csrf
+                                @method("DELETE")
+                                <button type="submit" class="text-red-600 hover:text-red-900 hover:underline"><i class="fa-solid fa-trash-can" title="Delete event"></i></button>
+                            </form>
+                        @else
+                            <form method="POST" action="{{ route('event.destroy', $event) }}" class="inline-block"
+                                  onsubmit="return confirm('Do you wish to delete the event completely?');">
+                                @csrf
+                                @method("DELETE")
+                                <button type="submit" class="text-red-600 hover:text-red-900 hover:underline"><i class="fa-solid fa-trash-can" title="Delete event"></i></button>
+                            </form>
+                        @endif
+
                     @endif
                 </td>
             </tr>

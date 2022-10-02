@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attendee;
 use App\Models\Event;
 use App\Models\User;
 use App\Models\Venue;
@@ -435,6 +436,13 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
+        if($event->status == 'cancelled') {
+            $attendees = Attendee::where('event_id', $event->id)->withTrashed()->get();
+            foreach ($attendees as $attendee) {
+                $attendee->forceDelete();
+            }
+        }
+
         $message = 'Event '.$event->name.' has been deleted';
         $event->delete();
 
