@@ -51,9 +51,8 @@ class AttendeeController extends Controller
         $message = 'Thank you for registering to the event';
 
         $validator = Validator::make($request->all(), [
-            'email' => 'required|unique:attendees,email,NULL,id,event_id,'.$request->input('event'),
-        ], [
-            'email.unique' => "Looks like you've already registered for this event",
+            'email' => 'required',
+            'name' => 'required',
         ]);
 
         if($request->input('waiting')) {
@@ -137,6 +136,24 @@ class AttendeeController extends Controller
         $attendee->delete();
 
         return redirect()->to(url()->previous().'#attendees')->with('unregister', $message);
+    }
+
+    public function registerWaiting(Attendee $attendee)
+    {
+        $attendee->update([
+            'waiting_status' => false,
+        ]);
+
+        Mail::send('email.waiting-registration', ['attendee' => $attendee], function ($m) use ($attendee) {
+            $m->from('admin@kerrymentalhealthandwellbeingfest.com', 'Kerry Fest Admins');
+
+            $m->to($attendee->email, $attendee->name)
+                ->subject('Event registration');
+        });
+
+        return redirect()->back()->withFragment('attendees');
+
+
     }
 
     public function export(Request $request)
