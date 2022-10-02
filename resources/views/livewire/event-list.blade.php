@@ -62,7 +62,7 @@
                         @if($event->start_date == $single_day->start_date)
                             <li class="relative col-span-1">
                                 <div class="group block w-full h-[225px] rounded-lg bg-white focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
-                                    <a href="{{ route('event.show-by-slug', $event->slug) }}">
+                                    <a href="{{ route('event.show-by-slug', $event->slug) }}" target="_blank">
                                         <img src="{{ $event->getFirstMediaUrl('cover') }}" alt="{{ $event->name }} event at Kerry Mental Health & Wellbeing Fest 2022" class="object-scale-down object-center pointer-events-none bg-white w-full h-full group-hover:opacity-75">
                                     </a>
                                 </div>
@@ -76,7 +76,7 @@
                                                 - {{ \Carbon\Carbon::parse($event->end_time)->format('H:i') }}
                                             @endif</div>
                                         <div>
-                                            <a href="{{ route('event.show-by-slug', $event->slug) }}" title="{{ $event->name }}">
+                                            <a href="{{ route('event.show-by-slug', $event->slug) }}" title="{{ $event->name }}" target="_blank">
                                                 <div class="text-lg block text-sm font-bold text-gray-900 truncate-elipsis pointer-events-none">
                                                     <div class="hidden lg:block">
                                                         {{ Str::of($event->name)->limit(25, '...') }}
