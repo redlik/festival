@@ -77,10 +77,17 @@
                                     <div style="width: 144px; font-weight: 600; color: #64748b">Date & time:</div>
                                     <div style="color: #4b5563">{{ \Carbon\Carbon::parse($attendee->event->start_date)->format('d M') }} @ {{ \Carbon\Carbon::parse($attendee->event->start_time)->format('H:i') }}</div>
                                 </div>
-                                <div style="margin-bottom: 8px; display: flex">
-                                    <div style="width: 144px; font-weight: 600; color: #64748b">Location:</div>
-                                    <div style="color: #4b5563">{{ $attendee->event->venue->name }}, {{ $attendee->event->venue->town }}</div>
-                                </div>
+                                @if($attendee->event->type == 'online')
+                                    <div style="margin-bottom: 8px; display: flex">
+                                        <div style="width: 144px; font-weight: 600; color: #64748b">Location:</div>
+                                        <div style="color: #4b5563">Online event.</div>
+                                    </div>
+                                @else
+                                    <div style="margin-bottom: 8px; display: flex">
+                                        <div style="width: 144px; font-weight: 600; color: #64748b">Location:</div>
+                                        <div style="color: #4b5563">{{ $attendee->event->venue->name }}, {{ $attendee->event->venue->town }}</div>
+                                    </div>
+                                @endif
                             </div>
                             <p style="margin-bottom: 16px; color: #475569">We look forward to seeing you at the event! </p>
                             <p style="margin-bottom: 32px; color: #475569">However, if you can't make it please notify the organiser right away. Thank you.</p>
