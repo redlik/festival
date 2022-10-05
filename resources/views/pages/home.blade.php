@@ -42,7 +42,7 @@
                 <div class="w-full lg:w-1/2 mb-4 lg:mb-0">
                     <h3 class="text-2xl mb-2">Schedule of the events</h3>
                     <p class="mb-6">Click on the thumbnail to view the full size schedule image or download print-ready PDF version below.</p>
-                    <a class="button-primary" href="{{asset('img/Kerrywellfest_POSTER_65835.pdf')}}"><i class="fa-solid fa-file-pdf"></i> Fest schedule</a>
+                    <a class="button-primary" href="{{asset('img/Kerrywellfest_POSTER_65835.pdf')}}" target="_blank"><i class="fa-solid fa-file-pdf"></i> Fest schedule</a>
                 </div>
                 <div class="w-full lg:w-1/2 h-48 flex justify-center">
                         <a href="#" @click="showPoster = true" class="h-full">
