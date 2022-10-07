@@ -80,12 +80,22 @@ class AttendeeController extends Controller
         $organiser = User::where('id', $attendee->event->user_id)->first();
         $organiser->notify(new NewAttendeeNotification($attendee));
 
-        Mail::send('email.event-registration', ['attendee' => $attendee], function ($m) use ($attendee) {
-            $m->from('admin@kerrymentalhealthandwellbeingfest.com', 'Kerry Fest Admins');
+        if($waiting) {
+            Mail::send('email.waiting-list', ['attendee' => $attendee], function ($m) use ($attendee) {
+                $m->from('admin@kerrymentalhealthandwellbeingfest.com', 'Kerry Fest Admins');
 
-            $m->to($attendee->email, $attendee->name)
-                ->subject('Event registration');
-        });
+                $m->to($attendee->email, $attendee->name)
+                    ->subject('Event waiting list registration');
+            });
+        } else {
+            Mail::send('email.event-registration', ['attendee' => $attendee], function ($m) use ($attendee) {
+                $m->from('admin@kerrymentalhealthandwellbeingfest.com', 'Kerry Fest Admins');
+
+                $m->to($attendee->email, $attendee->name)
+                    ->subject('Event registration');
+            });
+        }
+
 
         return redirect()->back()->with('registered', $message);
     }
