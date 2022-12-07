@@ -64,6 +64,7 @@
 
     <footer class="w-full mt-8">
         {{--  Logos --}}
+
         <div class="flex flex-wrap justify-center lg:justify-between bg-white py-4 px-6">
             <img src="{{ asset('img/logos/mental-health.jpg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="Kerry Mental Health Association">
             <img src="{{ asset('img/logos/kcc.png') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="Kerry County Council">
