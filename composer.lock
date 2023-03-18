@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0920962cb7b4e2a4d2bcab669bf5b0d2",
+    "content-hash": "db6fdd2c3707ed6b45cca30b6759b4f5",
     "packages": [
         {
             "name": "brick/math",
@@ -3023,6 +3023,53 @@
                 "source": "https://github.com/silexphp/Pimple/tree/v3.5.0"
             },
             "time": "2021-10-28T11:13:42+00:00"
+        },
+        {
+            "name": "plesk/ext-laravel-integration",
+            "version": "7.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/plesk/ext-laravel-integration.git",
+                "reference": "73dc4ea3f99e033396497f147aa033eb0602f943"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/plesk/ext-laravel-integration/zipball/73dc4ea3f99e033396497f147aa033eb0602f943",
+                "reference": "73dc4ea3f99e033396497f147aa033eb0602f943",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": ">=7.0.0",
+                "php": ">=7.4"
+            },
+            "type": "library",
+            "extra": {
+                "component": "package",
+                "laravel": {
+                    "providers": [
+                        "PleskExtLaravel\\Providers\\ConsoleServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PleskExtLaravel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Plesk Laravel Toolkit integration with Laravel applications.",
+            "keywords": [
+                "laravel",
+                "plesk"
+            ],
+            "support": {
+                "issues": "https://github.com/plesk/ext-laravel-integration/issues",
+                "source": "https://github.com/plesk/ext-laravel-integration/tree/7.0.0"
+            },
+            "time": "2023-01-20T09:40:57+00:00"
         },
         {
             "name": "predis/predis",
