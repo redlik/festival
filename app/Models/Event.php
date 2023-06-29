@@ -40,6 +40,11 @@ class Event extends Model implements hasMedia
         return $this->hasMany(Attendee::class);
     }
 
+    public function waiting()
+    {
+        return $this->hasMany(Attendee::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -48,7 +53,8 @@ class Event extends Model implements hasMedia
     public function scopeApproved($query)
     {
         return $query->where('status', 'published')
-            ->orderBy('start_date', 'asc');
+            ->orderBy('start_date', 'asc')
+            ->orderBy('start_time', 'asc');
     }
 
     public function cover()

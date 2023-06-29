@@ -26,13 +26,13 @@ class PagesController extends Controller
 
     public function adminDashboard()
     {
-        $events = Event::orderBy('start_date', 'asc')->withCount('attendee')->with('attendee', 'venue', 'user.organiser')->get();
+        $events_count = Event::count();
         $attendees = Attendee::with('event')->get();
         $venues = Venue::withCount('event')->get();
 
         $organisers_count = Organiser::all()->count();
 
-        return view('admin.dashboard', compact('events', 'venues', 'attendees', 'organisers_count'));
+        return view('admin.dashboard', compact('events_count', 'venues', 'attendees', 'organisers_count'));
     }
 
     public function events()

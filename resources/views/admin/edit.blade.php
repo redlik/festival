@@ -6,21 +6,13 @@
     </x-slot>
 
     <div class="py-0 md:py-12">
-        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 bg-white rounded-lg shadow-lg scroll-smooth" x-data="{ limit: {{ $event->limited }}, date : true, type: '{{ $event->type }}'}">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 bg-white rounded-lg shadow-lg scroll-smooth" x-data="{ limit: {{ $event->limited }}, type: '{{ $event->type }}'}">
             <div>
                 @if($event->status == 'published')
                     <div class="border border-gray-200 bg-yellow-50 rounded p-2 mb-4">
                         <strong>PLEASE NOTE:</strong> If this event is already listed on the main page, and you are making significant changes, such as changing the date, time or the location, please make sure to inform the organisers of the Festival and the registered attendees about it.
                     </div>
                 @endif
-            </div>
-            <div class="p-2 rounded bg-gray-100 border border-gray-500 flex justify-between" x-show="date">
-                <div><strong>PLEASE NOTE</strong> that edits to events can be made up to the <strong>19th August 2022.</strong></div>
-                <div>
-                    <button @click="date = ! date">
-                        <i class="fas fa-times-circle"></i>
-                    </button>
-                </div>
             </div>
             <div>
                 @if(\Session::has('saved'))
@@ -39,7 +31,7 @@
                     </div>
                 @endif
             </div>
-            <form class="space-y-8 divide-y divide-gray-200" method="POST" action="{{ route('event.update', $event) }}" id="event-registration">
+            <form class="space-y-8 divide-y divide-gray-200" method="POST" action="{{ route('event.update', $event) }}" id="event-registration" enctype="multipart/form-data">
                 <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
                     <div>
                         <div class="mt-6 sm:mt-5 space-y-6 sm:space-y-5">
@@ -91,11 +83,9 @@
                                             <option value="">Online event, no venue</option>
                                         @else
                                             @foreach($venues as $venue)
-
-                                                    <option value="{{ $venue->id }}" @selected(old('venue_id' == $venue->id))>{{ $venue->name }}, {{ $venue->town }}</option>
+                                                    <option value="{{ $venue->id }}" @selected($event->venue_id == $venue->id)>{{ $venue->name }}, {{ $venue->town }}</option>
                                             @endforeach
                                         @endif
-
                                     </select>
                                 </div>
                             </div>
@@ -109,7 +99,30 @@
                                     <p class="mt-2 text-sm text-gray-700 font-semibold"></p>
                                 </div>
                             </div>
-
+                            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                                <label for="cover-photo" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                                    <div>Cover photo</div>
+                                    <div class="text-xs text-red-500 font-semibold">If you're uploading new image, the old one will be replaced and deleted.</div>
+                                </label>
+                                <div class="mt-1 sm:mt-0 sm:col-span-2">
+                                    <div class="max-w-lg flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                        <div class="space-y-1 text-center">
+                                            <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                                                <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            </svg>
+                                            <div class="flex text-sm text-gray-600">
+                                                <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                                                    <div>Upload a cover photo</div>
+                                                    <input id="file-upload" name="file-upload" type="file">
+                                                </label>
+                                            </div>
+                                            <p class="text-xs text-gray-500">
+                                                PNG, JPG, GIF up to 10MB
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                                 <label for="target" class="block text-sm font-medium sm:mt-px sm:pt-2">
                                     Target group

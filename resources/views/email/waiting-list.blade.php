@@ -57,39 +57,13 @@
                     </tr>
                     <tr>
                         <td style="border-radius: 4px; background-color: #fff; padding: 24px; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05)">
-                            <h2 style="margin: 0; margin-bottom: 24px; font-size: 24px; line-height: 24px; color: #64748b">Event registration</h2>
+                            <h2 style="margin: 0; margin-bottom: 24px; font-size: 24px; line-height: 24px; color: #64748b">Event waiting list registration</h2>
                             <h4 style="font-weight: 600; line-height: 4px; color: #374151">Hi {{ $attendee->name }},</h4>
-                            <p style="margin: 0; margin-bottom: 24px; font-size: 16px; color: #334155">
-                                Thank you for registering to this event.
+                            <p style="margin: 0; margin-bottom: 24px; font-size: 16px; line-height: 24px; color: #334155">
+                                This event is fully booked, but you have been added to the waiting list. The event organiser will contact you directly if a space for the event becomes available.
+                                <br/>
+                                Thank you!
                             </p>
-                            <div style="margin-bottom: 16px; border-radius: 4px; background-color: #f1f5f9; padding: 8px">
-                                <h4 style="margin-top: 8px; margin-bottom: 8px; color: #4b5563">Event details:</h4>
-                                <div style="margin-bottom: 8px; display: flex">
-                                    <div style="width: 144px; font-weight: 600; color: #64748b">Name:</div>
-                                    <div style="color: #4b5563">{{ $attendee->event->name }}</div>
-                                </div>
-                                <div style="margin-bottom: 8px; display: flex">
-                                    <div style="width: 144px; font-weight: 600; color: #64748b">Organiser:</div>
-                                    <div style="color: #4b5563">{{ $attendee->event->user->organiser->org }}</div>
-                                </div>
-                                <div style="margin-bottom: 8px; display: flex">
-                                    <div style="width: 144px; font-weight: 600; color: #64748b">Date & time:</div>
-                                    <div style="color: #4b5563">{{ \Carbon\Carbon::parse($attendee->event->start_date)->format('d M') }} @ {{ \Carbon\Carbon::parse($attendee->event->start_time)->format('H:i') }}</div>
-                                </div>
-                                @if($attendee->event->type == 'online')
-                                    <div style="margin-bottom: 8px; display: flex">
-                                        <div style="width: 144px; font-weight: 600; color: #64748b">Location:</div>
-                                        <div style="color: #4b5563">Online event.</div>
-                                    </div>
-                                @else
-                                <div style="margin-bottom: 8px; display: flex">
-                                    <div style="width: 144px; font-weight: 600; color: #64748b">Location:</div>
-                                    <div style="color: #4b5563">{{ $attendee->event->venue->name }}, {{ $attendee->event->venue->town }}</div>
-                                </div>
-                                @endif
-
-                            </div>
-                            <p style="margin-bottom: 32px; color: #475569">We look forward to seeing you at the event!</p>
                             <div style="margin-left: auto; margin-right: auto; width: 100%; text-align: center">
                                 <a href="{{ route('event.show-by-slug', $attendee->event->slug) }}" class="hover-bg-gray-500" style="text-decoration: none; border-radius: 4px; background-color: #374151; padding-left: 16px; padding-right: 16px; padding-top: 12px; padding-bottom: 12px; color: #fff; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)">Event details</a>
                             </div>

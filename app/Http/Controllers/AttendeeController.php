@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\AttendeeExport;
 use App\Models\Attendee;
 use App\Models\User;
 use App\Notifications\NewAttendeeNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Honeypot\ProtectAgainstSpam;
 
 class AttendeeController extends Controller
@@ -45,11 +47,18 @@ class AttendeeController extends Controller
      */
     public function store(Request $request)
     {
+        $waiting = 0;
+        $message = 'Thank you for registering to the event';
+
         $validator = Validator::make($request->all(), [
-            'email' => 'required|unique:attendees,email,NULL,id,event_id,'.$request->input('event'),
-        ], [
-            'email.unique' => "Looks like you've already registered for this event",
+            'email' => 'required',
+            'name' => 'required',
         ]);
+
+        if($request->input('waiting')) {
+            $waiting = 1;
+            $message = "You've been added to the waiting list. If one of the attendees cancels we will get in touch.";
+        }
 
         if ($validator->fails()) {
             return redirect()->back()
@@ -63,19 +72,32 @@ class AttendeeController extends Controller
             'phone' => $request->input('phone'),
             'opt_in' => $request->input('opt_in'),
             'event_id' => $request->input('event'),
+            'waiting_status' => $waiting,
         ]);
+
+
 
         $organiser = User::where('id', $attendee->event->user_id)->first();
         $organiser->notify(new NewAttendeeNotification($attendee));
 
-        Mail::send('email.event-registration', ['attendee' => $attendee], function ($m) use ($attendee) {
-            $m->from('admin@kerrymentalhealthandwellbeingfest.com', 'Kerry Fest Admins');
+        if($waiting) {
+            Mail::send('email.waiting-list', ['attendee' => $attendee], function ($m) use ($attendee) {
+                $m->from('admin@kerrymentalhealthandwellbeingfest.com', 'Kerry Fest Admins');
 
-            $m->to($attendee->email, $attendee->name)
-                ->subject('Event registration');
-        });
+                $m->to($attendee->email, $attendee->name)
+                    ->subject('Event waiting list registration');
+            });
+        } else {
+            Mail::send('email.event-registration', ['attendee' => $attendee], function ($m) use ($attendee) {
+                $m->from('admin@kerrymentalhealthandwellbeingfest.com', 'Kerry Fest Admins');
 
-        return redirect()->back()->with('registered', 'Thank you for registering to the event');
+                $m->to($attendee->email, $attendee->name)
+                    ->subject('Event registration');
+            });
+        }
+
+
+        return redirect()->back()->with('registered', $message);
     }
 
     /**
@@ -124,5 +146,28 @@ class AttendeeController extends Controller
         $attendee->delete();
 
         return redirect()->to(url()->previous().'#attendees')->with('unregister', $message);
+    }
+
+    public function registerWaiting(Attendee $attendee)
+    {
+        $attendee->update([
+            'waiting_status' => false,
+        ]);
+
+        Mail::send('email.waiting-registration', ['attendee' => $attendee], function ($m) use ($attendee) {
+            $m->from('admin@kerrymentalhealthandwellbeingfest.com', 'Kerry Fest Admins');
+
+            $m->to($attendee->email, $attendee->name)
+                ->subject('Event registration');
+        });
+
+        return redirect()->back()->withFragment('attendees');
+
+
+    }
+
+    public function export(Request $request)
+    {
+        return Excel::download(new AttendeeExport(), 'attendee-list.xlsx');
     }
 }

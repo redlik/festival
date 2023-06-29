@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\OrganisersExport;
 use App\Models\Document;
 use App\Models\Organiser;
 use App\Models\User;
@@ -11,6 +12,7 @@ use App\Notifications\ApplicationSubmitted;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
 
 class OrganiserController extends Controller
 {
@@ -189,5 +191,10 @@ class OrganiserController extends Controller
         $message = 'Activation email sent to '.$organiser->email;
 
         return back()->with('resend', $message);
+    }
+
+    public function export()
+    {
+        return Excel::download(new OrganisersExport(), 'organisers-list.xlsx');
     }
 }

@@ -38,21 +38,44 @@
         </div>
     </div>
     <div class="bg-gray-200">
-            <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:py-8 lg:px-8 lg:flex lg:items-center lg:justify-between">
-
-                <div>
-                    <h2 class="text-2xl tracking-tight uppercase text-gray-700 md:text-4xl">
-                        <span class="block">Organising an event?</span>
-                    </h2>
-                    <span class="block text-lg text-olive-600">Watch this video of our brief online information session for event organisers to find out more about the Fest and the kind of events the Fest promotes.</span>
+            <div class="max-w-7xl mx-auto py-4 px-4 lg:flex lg:items-center" x-data="{ showPoster : false }">
+                <div class="w-full lg:w-1/2 mb-4 lg:mb-0">
+                    <h3 class="text-2xl mb-2">Schedule of the events</h3>
+                    <p class="mb-6">Click on the thumbnail to view the full size schedule image or download print-ready PDF version below.</p>
+                    <a class="button-primary" href="{{asset('img/Kerrywellfest_POSTER_65835.pdf')}}" target="_blank"><i class="fa-solid fa-file-pdf"></i> Fest schedule</a>
                 </div>
-                <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
-                    <div class="inline-flex rounded-md shadow">
-                        <a href="https://player.vimeo.com/video/736206154" class="html5lightbox" title="Introduction video">
-                            <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-semibold rounded-md text-white bg-olive-600 hover:bg-olive-700 uppercase">Information video</button>
+                <div class="w-full lg:w-1/2 h-48 flex justify-center">
+                        <a href="#" @click="showPoster = true" class="h-full">
+                            <img src="{{ asset('img/Kerrywellfest_POSTER_thumb.jpg') }}" alt="" class="shadow h-full hover:shadow-xl">
                         </a>
+                </div>
+            {{--Modal for schedule image--}}
+                <div @keydown.window.escape="showPoster = false" x-show="showPoster" class="fixed z-10 inset-0 overflow-y-auto">
+                    <div class="flex items-end justify-center min-h-screen w-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+
+                        <div x-show="showPoster" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" x-description="Background overlay, show/hide based on modal state." class="fixed inset-0 bg-gray-700 bg-opacity-75 transition-opacity" @click="showPoster = false" aria-hidden="true">
+                        </div>
+
+                        <!-- This element is to trick the browser into centering the modal contents. -->
+                        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">​</span>
+                        <div x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90" x-on:click.away="showPoster = false" class="p-2 fixed w-full h-100 inset-0 z-50 overflow-hidden flex justify-center items-center bg-black bg-opacity-75">
+                            <div @click.away="showPoster = false" class="flex flex-col max-w-7xl max-h-full overflow-auto">
+                                <div class="z-50">
+                                    <button @click="showPoster = false" class="float-right pt-2 pr-2 outline-none focus:outline-none">
+                                        <svg class="fill-current text-white " xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                                            <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="p-2">
+                                    <img src="{{asset('img/Kerrywellfest_POSTER_3000px.jpg')}}" alt="" class="w-full">
+                                </div>
+                            </div>
+
                     </div>
                 </div>
+
             </div>
     </div>
     <div class="bg-white">

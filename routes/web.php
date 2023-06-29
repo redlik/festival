@@ -45,6 +45,7 @@ Route::get('/organiser-submitted', function () {
 Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin'], function () {
     Route::get('dashboard', [PagesController::class, 'adminDashboard'])->name('admin.dashboard');
     Route::get('dashboard/organisers', [OrganiserController::class, 'adminIndex'])->name('admin.organisers');
+    Route::get('dashboard/organisers/export', [OrganiserController::class, 'export'])->name('admin.organisers.export');
     Route::get('dashboard/organiser/docs/{organiser}', [OrganiserController::class, 'adminDocs'])->name('admin.organiser.docs');
     Route::get('event/{id}', [EventController::class, 'showAdmin'])->name('admin.event.show');
     Route::get('event/approval/{id}', [EventController::class, 'adminApproval'])->name('admin.event.approve');
@@ -63,6 +64,9 @@ Route::group(['middleware' => ['auth', 'role:organiser', 'disabled'], 'prefix' =
     Route::get('/index', [UserController::class, 'dashboard'])->name('dashboard');
     Route::get('/document-hide-cookie', [UserController::class, 'documentsHide'])->name('dashboard.documents.hide');
     Route::get('/documents', [DocumentController::class, 'index'])->name('dashboard.documents');
+    Route::get('attendee-export', [AttendeeController::class, 'export'])->name('dashboard.attendee.export');
+    Route::get('attendee/register/{attendee}', [AttendeeController::class, 'registerWaiting'])->name('dashboard.attendee.waiting.register');
+
 });
 
 Route::resource('organiser', OrganiserController::class);
