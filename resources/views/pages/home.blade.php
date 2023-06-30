@@ -94,7 +94,7 @@
                     <span class="block">Organising an event in 2023?</span>
                 </h2>
                 <div class="block text-2xl text-olive-600 mt-2">Fill out the registration form</div>
-                <div class="text-xs mt-2">If you have already registered last year, you don't need to fill out the registration form. <br>Just use the login details to access the Dashboard.</div>
+                <div class="text-xs mt-2">If you have already registered last year, you don't need to fill out the registration form again. <br>Just use the login details to access the Dashboard.</div>
             </div>
             <div class="w-full lg:w-1/2 flex justify-center">
                 <div class="">
