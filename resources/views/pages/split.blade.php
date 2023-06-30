@@ -12,13 +12,14 @@
                     <div class="w-full lg:w-1/2 mt-8 lg:mt-0 text-center p-8">
                         <img src="{{ asset('img/organiser.png') }}" alt="" class="w-64 block mx-auto">
                         <h2>Organiser</h2>
-                        <p class="my-8">We would be delighted for you to get involved by hosting a free event(s) that promote the Five Ways to Wellbeing - whether you’re an educational body, organisation, agency, business, sports club, community group or qualified individual. </p>
+                        <p class="my-6">We would be delighted for you to get involved by hosting a free event(s) that promote the Five Ways to Wellbeing - whether you’re an educational body, organisation, agency, business, sports club, community group or qualified individual. </p>
+                        <p class="bg-gray-200 p-4 rounded text-sm my-6">If you already registered as an organiser last year, you don't need to register again. Just use the login details and start adding new events.</p>
                         <a href="{{ route('pages.join-us') }}" class="button-primary mt-8">Register as Organiser</a>
                     </div>
                     <div class="w-full lg:w-1/2 mt-8 lg:mt-0 text-center p-8">
                         <img src="{{ asset('img/attendee.png') }}" alt="" class="w-64 block mx-auto">
                         <h2>Attendee</h2>
-                        <p class="my-8">If you like to attend any of the events at the Festival, please create your account below. The account will allow you to track your event registrations, cancel them if needed and contact the organisers should you have any questions.</p>
+                        <p class="my-6">If you like to attend any of the events at the Festival, please create your account below. The account will allow you to track your event registrations, cancel them if needed and contact the organisers should you have any questions.</p>
                         <form method="POST" action="{{ route('register.admin') }}" class="text-left p-4 bg-white rounded shadow-inner">
                             @csrf
 
