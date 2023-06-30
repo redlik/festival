@@ -84,7 +84,7 @@
             </div>
     </div>
     <div class="bg-white">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 py-8 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 py-8 lg:flex items-center justify-between">
 {{--            <div class="">--}}
 {{--                <h3 class="uppercase text-2xl mb-4">Upcoming events</h3>--}}
 {{--            </div>--}}
@@ -96,12 +96,10 @@
                 <div class="block text-2xl text-olive-600 mt-2">Fill out the registration form</div>
                 <div class="text-xs mt-2">If you have already registered last year, you don't need to fill out the registration form again. <br>Just use the login details to access the Dashboard.</div>
             </div>
-            <div class="w-full lg:w-1/2 flex justify-center">
-                <div class="">
+            <div class="w-full lg:w-1/2 mt-6 lg:mt-0 flex justify-start lg:justify-center">
                     <a href="/join-us" class="button-primary">
                         Organiser registration
                     </a>
-                </div>
             </div>
         </div>
     </div>
