@@ -36,6 +36,9 @@ Route::get('/contact', function () {
 Route::get('/about', function () {
     return view('pages.about');
 })->name('pages.about');
+Route::get('/split', function () {
+    return view('pages.split');
+})->name('pages.split');
 Route::post('/contact', [ContactController::class, 'contactFormSent'])->middleware(ProtectAgainstSpam::class)->name('contact-form-sent');
 
 Route::get('/organiser-submitted', function () {
