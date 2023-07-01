@@ -84,7 +84,7 @@
             </div>
     </div>
     <div class="bg-white">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 py-8 lg:flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-4 py-8 lg:flex items-center justify-between">
 {{--            <div class="">--}}
 {{--                <h3 class="uppercase text-2xl mb-4">Upcoming events</h3>--}}
 {{--            </div>--}}
