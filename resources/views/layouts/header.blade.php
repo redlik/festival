@@ -67,7 +67,7 @@
             </div>
             <div class="absolute inset-y-0 right-0 hidden md:flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 @guest
-                    <a href="{{ route('pages.split') }}">
+                    <a href="{{ route('pages.join-us') }}">
                         <button type="button" class="button-green mr-4" aria-label="Organiser registration">
                             Registration
                         </button>
