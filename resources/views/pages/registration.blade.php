@@ -8,6 +8,7 @@
     <div class="py-0 md:py-12">
         <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 bg-white rounded-lg shadow-lg scroll-smooth">
             <div>
+                <div class="text-sm my-4 bg-red-100 text-red-600 p-3 rounded font-semibold">If you have already registered last year, you don't need to fill out the registration form again. Just use the login details to access the Dashboard.</div>
                 <p> Kerry Mental Health and Wellbeing Fest will take place from
                     <strong>7th – 14th October 2023</strong>. The key focus of the Fest is scheduling events that empower people to engage with the Five Ways to Wellbeing
                     <strong>(Connect | Give | Take Notice | Keep Learning | Be Active)</strong> as well as raising awareness of the available supports and services in the county. We aim to ensure the Fest has free events for people of all ages, backgrounds and abilities across the county. We would be delighted for you to get involved by hosting a free event(s) that promote the Five Ways to Wellbeing - whether you’re an educational body, organisation, agency, business, sports club, community group or qualified individual. </p>
@@ -18,7 +19,7 @@
                     <li><strong>Step 1</strong> – Register as an event organiser by filling in the short form below.</li>
                     <li><strong>Step 2</strong> - Activate your account by clicking on the link in the activation email that you will receive.</li>
                     <li><strong>Step 3</strong> - Create a password and then you are ready to add an event(s).
-                        <span class="underline">All events need to be submitted by Friday, 5th August to be considered.</span></li>
+                        <span class="underline">All events need to be submitted by Friday, 18th August to be considered.</span></li>
                     <li><strong>Step 4</strong> - The Fest Committee will review your event(s) prior to publishing them on the website.</li>
 
                 </ul>
