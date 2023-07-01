@@ -50,7 +50,7 @@
     </div>
     <div class="w-full">
         <div class="-mb-12"></div>
-        @foreach($days as $single_day)
+        @forelse($days as $single_day)
             <div class="">
                 @if($events->contains('start_date', $single_day->start_date))
                     <div class="text-center text-xl mt-12">
@@ -104,6 +104,10 @@
                     @endforelse
                 </ul>
             </div>
-        @endforeach
+        @empty
+            <div class="mt-12">
+                <h4 class="text-center text-2xl text-gray-500">New events for 2023 coming soon!</h4>
+            </div>
+        @endforelse
     </div>
 </div>
