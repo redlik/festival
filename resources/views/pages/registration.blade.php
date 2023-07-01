@@ -8,7 +8,9 @@
     <div class="py-0 md:py-12">
         <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 bg-white rounded-lg shadow-lg scroll-smooth">
             <div>
-                <div class="text-sm my-4 bg-red-100 text-red-600 p-3 rounded font-semibold">If you have already registered last year, you don't need to fill out the registration form again. Just use the login details to access the Dashboard.</div>
+                <div class="text-sm my-4 bg-red-100 text-red-600 p-3 rounded font-semibold">
+                    <p class="text-red-600">If you have already registered last year, you don't need to fill out the registration form again. Just use the login details to access the Dashboard.</p>
+                    <a href="{{ route('login') }}" class="font-bold hover:underline mt-2">Login here</a></div>
                 <p> Kerry Mental Health and Wellbeing Fest will take place from
                     <strong>7th – 14th October 2023</strong>. The key focus of the Fest is scheduling events that empower people to engage with the Five Ways to Wellbeing
                     <strong>(Connect | Give | Take Notice | Keep Learning | Be Active)</strong> as well as raising awareness of the available supports and services in the county. We aim to ensure the Fest has free events for people of all ages, backgrounds and abilities across the county. We would be delighted for you to get involved by hosting a free event(s) that promote the Five Ways to Wellbeing - whether you’re an educational body, organisation, agency, business, sports club, community group or qualified individual. </p>

@@ -94,7 +94,9 @@
                     <span class="block">Organising an event in 2023?</span>
                 </h2>
                 <div class="block text-2xl text-olive-600 mt-2">Fill out the registration form</div>
-                <p class="text-sm mt-2">If you have already registered last year, you don't need to fill out the registration form again. <br>Just use the login details to access the Dashboard.</p>
+                <p class="text-sm mt-2">If you have already registered last year, you don't need to fill out the registration form again. <br>Just use the login details to access the Dashboard.
+                    </p>
+                <a href="{{ route('login') }}" class="font-bold hover:underline mt-2">Login here</a>
             </div>
             <div class="w-full lg:w-1/2 mt-6 lg:mt-0 flex justify-start lg:justify-center">
                     <a href="/join-us" class="button-primary">
