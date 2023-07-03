@@ -21,7 +21,7 @@
                     <li><strong>Step 1</strong> – Register as an event organiser by filling in the short form below.</li>
                     <li><strong>Step 2</strong> - Activate your account by clicking on the link in the activation email that you will receive.</li>
                     <li><strong>Step 3</strong> - Create a password and then you are ready to add an event(s).
-                        <span class="underline">All events need to be submitted by Friday, 18th August to be considered.</span></li>
+                        <span class="underline">All events need to be submitted by Friday, 14th August to be considered.</span></li>
                     <li><strong>Step 4</strong> - The Fest Committee will review your event(s) prior to publishing them on the website.</li>
 
                 </ul>
@@ -302,7 +302,7 @@
                 <li class="mb-2">The Fest Committee cannot provide funding to cover costs such as venues or facilitators. However, we may be able to support in identifying free options for these kinds of expenses, depending on the location, so please get in touch with us at
                     <a href="mailto:kerrymhwfest20@gmail.com">kerrymhwfest20@gmail.com</a></li>
                 <li class="mb-2">The Fest Committee will however promote the Fest, and your event(s) extensively in the weeks leading up to the Fest using a host of mediums.</li>
-                <li>The programme of events for 2021 can be found <a href="https://www.healthykerry.ie/wp-content/uploads/2021/09/KerryWellfest-A5Brochure64673_WEB.pdf" class="text-indigo-600 hover:underline font-bold">here</a> – we would be delighted to facilitate events of a similar nature as well as events that will bring something new and different to the Fest</li>
+                <li>The programme of events for 2022 can be found <a href="{{ asset('img/Kerrywellfest_POSTER_65835.pdf') }}" class="text-indigo-600 hover:underline font-bold" target="_blank">here</a> – we would be delighted to facilitate events of a similar nature as well as events that will bring something new and different to the Fest</li>
                 <li class="mb-2">It is the sole responsibility of the event host to ensure the provision of adequate insurance for all activities undertaken in the delivery of event(s). If an organiser is bringing in an external facilitator, the organiser is responsible for ensuring the facilitator has appropriate insurance, qualifications and garda vetting (if working with children or vulnerable adults).</li>
                 <li class="mb-2">If you are registering as a qualified practitioner, we ask that you share a copy of your qualification(s) and your professional indemnity insurance with us when registering your event.</li>
                 <li class="mb-2">Event hosts are responsible for ensuring Garda Vetting is in place and is up-to-date for all event(s) that will engage children and/or vulnerable adults.</li>
