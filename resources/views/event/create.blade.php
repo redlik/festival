@@ -39,10 +39,10 @@
                                 <label for="start_date" class="block text-sm font-medium sm:mt-px sm:pt-2">
                                     <div class="font-bold">Event date, start and end time
                                         <span class="text-red-700">*</span></div>
-                                    <div class="text-xs font-normal">If your event doesn't have the end time set, leave the field blank</div>
+                                    <div class="text-xs font-normal text-gray-500">If your event doesn't have the end time set, leave the field blank<br><strong>Available dates between 7th and 14th October only</strong>.</div>
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                    <input id="start_date" name="start_date" type="date" class="lg:w-48 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" min="2022-10-01" max="2022-10-31" required
+                                    <input id="start_date" name="start_date" type="date" class="lg:w-48 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" min="2023-10-07" max="2023-10-14" required
                                            value="{{ old('start_date') }}">
                                     <input id="start_time" name="start_time" type="time" class="lg:ml-4 lg:w-48 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" required value="{{ old('start_time') }}">
                                     <input id="end_time" name="end_time" type="time" class="lg:ml-4 lg:w-48 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" value="{{ old('end_time') }}">
@@ -190,7 +190,7 @@
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                                 <label for="target" class="block text-sm font-medium sm:mt-px sm:pt-2">
                                     <div class="font-bold">COVID-19 Restrictions</div>
-                                    <div class="text-sm text-gray-600">Should Covid 19 restrictions change and you are currently planning an in-door event, is it possible for your event to be moved online or outdoors?</div>
+                                    <div class="text-sm text-gray-500">Should Covid 19 restrictions change and you are currently planning an in-door event, is it possible for your event to be moved online or outdoors?</div>
 
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2 flex">
@@ -208,7 +208,15 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                                <label for="phone" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2 font-bold">
+                                    Contact Phone <span class="text-red-600 align-super">*</span>
+                                    <div class="text-sm text-gray-500 font-normal">This phone number will be displayed on event's page for all event related queries.</div>
+                                </label>
+                                <div class="mt-1 sm:mt-0 sm:col-span-2">
+                                    <input type="text" name="phone" id="phone" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md" required value="{{ old('phone') }}">
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="pt-8 space-y-6 sm:pt-10 sm:space-y-5">
