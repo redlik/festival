@@ -15,7 +15,7 @@
                 @endif
             </div>
             <div class="p-2 rounded bg-gray-100 border border-gray-500 flex justify-between" x-show="date">
-                <div><strong>PLEASE NOTE</strong> that edits to events can be made up to the <strong>19th August 2022.</strong></div>
+                <div><strong>PLEASE NOTE</strong> that edits to events can be made up to the <strong>19th August 2023.</strong></div>
                 <div>
                     <button @click="date = ! date">
                         <i class="fas fa-times-circle"></i>
@@ -220,24 +220,12 @@
                                 </div>
                             </div>
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="target" class="block text-sm font-medium sm:mt-px sm:pt-2">
-                                    <div>COVID-19 Restrictions</div>
-                                    <div class="text-sm text-gray-600">Should Covid 19 restrictions change and you are currently planning an in-door event, is it possible for your event to be moved online or outdoors?</div>
-
+                                <label for="phone" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2 font-bold">
+                                    Contact Phone <span class="text-red-600 align-super">*</span>
+                                    <div class="text-sm text-gray-500 font-normal">This phone number will be displayed on event's page for all event related queries.</div>
                                 </label>
-                                <div class="mt-1 sm:mt-0 sm:col-span-2 flex">
-                                    <div class="flex items-center h-5 mr-8">
-                                        <input id="yes" name="covid" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="yes" @checked( $event->covid == 1)>
-                                        <label for="yes" class="font-medium text-gray-700">Yes</label>
-                                    </div>
-                                    <div class="flex items-center h-5 mr-8">
-                                        <input id="no" name="covid" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="no" @checked( $event->covid == 0)>
-                                        <label for="no" class="font-medium text-gray-700">No</label>
-                                    </div>
-                                    <div class="flex items-center h-5 mr-8">
-                                        <input id="na" name="covid" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="na" @checked( $event->covid == 'na')>
-                                        <label for="na" class="font-medium text-gray-700">Doesn't apply</label>
-                                    </div>
+                                <div class="mt-1 sm:mt-0 sm:col-span-2">
+                                    <input type="tel" name="phone" id="phone" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md" required value="{{$event->phone }}">
                                 </div>
                             </div>
 
@@ -302,7 +290,7 @@
 
         </div>
         <div class="border border-gray-200 bg-gray-50 rounded p-2 mt-4">
-            <strong>PLEASE NOTE:</strong> If this event is already listed on the main page and you are making significant changes, such as changing the date, time or the location, please make sure to inform the organisers of the Festival and the registered attendees about it.
+            <strong>PLEASE NOTE:</strong> If this event is already listed on the main page AND you are making significant changes, such as changing the date, time or the location, please make sure to inform the organisers of the Festival and the registered attendees about it.
         </div>
     </div>
     @push("footer_styles")

@@ -188,33 +188,12 @@
                                 </div>
                             </div>
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="target" class="block text-sm font-medium sm:mt-px sm:pt-2">
-                                    <div class="font-bold">COVID-19 Restrictions</div>
-                                    <div class="text-sm text-gray-500">Should Covid 19 restrictions change and you are currently planning an in-door event, is it possible for your event to be moved online or outdoors?</div>
-
-                                </label>
-                                <div class="mt-1 sm:mt-0 sm:col-span-2 flex">
-                                    <div class="flex items-center h-5 mr-8">
-                                        <input id="yes" name="covid" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="yes" @checked( old('covid', 'yes') )>
-                                        <label for="yes" class="font-medium text-gray-700">Yes</label>
-                                    </div>
-                                    <div class="flex items-center h-5 mr-8">
-                                        <input id="no" name="covid" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="no" checked @checked( old('covid', 'no') )>
-                                        <label for="no" class="font-medium text-gray-700">No</label>
-                                    </div>
-                                    <div class="flex items-center h-5 mr-8">
-                                        <input id="na" name="covid" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="na" @checked( old('covid', 'na') )>
-                                        <label for="na" class="font-medium text-gray-700">Doesn't apply</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                                 <label for="phone" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2 font-bold">
                                     Contact Phone <span class="text-red-600 align-super">*</span>
                                     <div class="text-sm text-gray-500 font-normal">This phone number will be displayed on event's page for all event related queries.</div>
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                    <input type="text" name="phone" id="phone" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md" required value="{{ old('phone') }}">
+                                    <input type="tel" name="phone" id="phone" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md" required value="{{ old('phone') }}">
                                 </div>
                             </div>
                         </div>
