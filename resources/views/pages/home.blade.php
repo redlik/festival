@@ -17,7 +17,7 @@
                 <img src="{{ asset('img/home-hero.jpg') }}" class="object-cover object-bottom h-full w-full" alt="">
             </div>
             <div class="w-full lg:w-1/2 p-4 lg:rounded-lg backdrop-blur" style="background-color: rgba(213, 208, 136, 0.95)">
-                <h1 class="text-2xl lg:text-4xl mb-4 fancy font-semibold">Welcome to Kerry Mental Health & Welbeing Fest 2023</h1>
+                <h1 class="text-2xl lg:text-4xl mb-4 fancy font-semibold">Welcome to Kerry Mental Health & Wellbeing Fest 2023</h1>
                 <div class="font-semibold lg:text-lg text-gray-800 mb-4">Held between Saturday, 7th – 14th October 2023 the Fest aims to raise awareness of the available supports and services in the county as well as empower people to engage with the ‘Five Ways to Wellbeing’ through offering a dynamic and interactive programme of events.</div>
                 <a href="{{ route('pages.about') }}">
                     <button class="button-primary">Read more</button>
