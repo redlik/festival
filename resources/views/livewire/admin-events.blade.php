@@ -1,5 +1,14 @@
 <div>
     <div class="flex justify-end">
+        <div class="text-xs text-gray-600 p-2 rounded bg-blue-100 mb-2">
+            <label for="date" class="mr-2">Show year of events</label>
+            <select name="date" id="date" wire:model="date"
+                    class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
+                <option value="" selected>All events</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+            </select>
+        </div>
         <div class="text-xs text-gray-500 p-2 rounded bg-yellow-100 mb-2">
             <input type="checkbox" name="pending" value='pending' id="pending" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" wire:model="pending">
             <label for="pending" class="ml-1">Show only pending</label>

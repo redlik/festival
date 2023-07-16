@@ -11,19 +11,28 @@ class AdminEvents extends Component
 
     public $pending;
 
+    public $date;
+
     public function mount()
     {
         $this->pending = '';
+        $this->date = '';
     }
 
     public function render()
     {
-        $this->events = $events = Event::orderBy('status', 'asc')->orderBy('start_date', 'asc')
+        ray($this->date);
+        $this->events = Event::orderBy('status', 'desc')
             ->when($this->pending == 'pending', function($q) {
                 $q->where('status', 'pending');
             })
+            ->when($this->date, function($q){
+                $q->where('start_date','>=', $this->date.'-01-01')
+                    ->where('start_date','<=', $this->date.'-12-31');
+            })
             ->withCount('attendee')
             ->with('attendee', 'venue', 'user.organiser')
+            ->orderBy(\DB::raw("DATE_FORMAT(start_date,'%d-%M-%Y')"), 'DESC')
             ->get();
 
         return view('livewire.admin-events');
