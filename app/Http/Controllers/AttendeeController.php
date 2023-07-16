@@ -170,4 +170,10 @@ class AttendeeController extends Controller
     {
         return Excel::download(new AttendeeExport(), 'attendee-list.xlsx');
     }
+
+    public function bookings()
+    {
+        $bookings = Attendee::orderBy('event_id', 'asc')->with('event')->get();
+        return view('attendee.bookings', compact('bookings'));
+    }
 }

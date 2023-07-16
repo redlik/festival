@@ -80,6 +80,7 @@ Route::get('event-cancel/{id}', [EventController::class, 'cancel'])->name('event
 Route::get('fest-event/{slug}', [EventController::class, 'showBySlug'])->name('event.show-by-slug');
 Route::get('event-preview/{slug}', [EventController::class, 'preview'])->middleware('auth')->name('event.preview');
 Route::resource('event', EventController::class)->middleware('auth');
+Route::get('attendee/bookings', [AttendeeController::class, 'bookings'])->name('attendee.bookings');
 Route::resource('attendee', AttendeeController::class);
 
 Route::get('approved/organiser/{organiser}', [OrganiserController::class, 'approved'])->name('approved.organiser');
@@ -87,5 +88,6 @@ Route::get('disabled/organiser/{organiser}', [OrganiserController::class, 'disab
 Route::get('activate', [UserController::class, 'activate'])->name('account.activate');
 
 Route::post('/register-admin', [RegisteredUserController::class, 'storeAdmin'])->name('register.admin');
+
 
 require __DIR__.'/auth.php';
