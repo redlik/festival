@@ -120,7 +120,7 @@
             </tr>
         @empty
             <tr colspan="4">
-                <td><h4>No events created</h4></td>
+                <td class="p-8"><h4>No events created</h4></td>
             </tr>
         @endforelse
 
