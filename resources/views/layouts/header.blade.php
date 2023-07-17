@@ -55,9 +55,14 @@
                     text-sm font-bold">Dashboard</a>
                         @endrole
 
+                        @hasanyrole('organiser|attendee')
+                        <a href="{{ route('attendee.bookings') }}" class="hover:bg-indigo-600 hover:text-white hover:bg-olive-600 px-3 py-2 rounded-md
+                    font-bold">Bookings</a>
+                        @endrole
+
                         @role('admin')
                         <a href="{{ route('admin.dashboard') }}" class="hover:text-white hover:bg-olive-600 px-3 py-2 rounded-md
-                    text-sm font-bold">Admin Dashboard</a>
+                    font-bold">Admin Dashboard</a>
                         @endrole
 
 

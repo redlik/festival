@@ -88,6 +88,7 @@ Route::get('disabled/organiser/{organiser}', [OrganiserController::class, 'disab
 Route::get('activate', [UserController::class, 'activate'])->name('account.activate');
 
 Route::post('/register-admin', [RegisteredUserController::class, 'storeAdmin'])->name('register.admin');
+Route::post('/register-attendee', [RegisteredUserController::class, 'storeAttendee'])->name('register.attendee');
 
 
 require __DIR__.'/auth.php';

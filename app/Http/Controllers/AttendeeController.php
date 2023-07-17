@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Honeypot\ProtectAgainstSpam;
+use Auth;
 
 class AttendeeController extends Controller
 {
@@ -173,7 +174,7 @@ class AttendeeController extends Controller
 
     public function bookings()
     {
-        $bookings = Attendee::orderBy('event_id', 'asc')->with('event')->get();
+        $bookings = Attendee::whereEmail(Auth::user()->email)->orderBy('event_id', 'asc')->with('event')->get();
         return view('attendee.bookings', compact('bookings'));
     }
 }
