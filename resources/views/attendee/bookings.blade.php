@@ -78,8 +78,10 @@
                                                 </td>
                                             </tr>
                                         @empty
-                                            <td colspan="5">
-                                                <h4>No bookings made</h4>
+                                            <td colspan="5" class="text-center p-4">
+                                                <h4>No bookings made, browse <a href="/events"
+                                                                                class="hover:underline hover:text-gray-500">the
+                                                        events list here</a></h4>
                                             </td>
                                         @endforelse
                                         </tbody>
