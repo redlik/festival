@@ -13,7 +13,7 @@
             <h5 class="hidden lg:block">Filter by</h5>
             <div class="my-6">
                 <label for="search" class="mb-2 w-full text-sm">Search by name</label>
-                <input type="search" name="search" id="search" class="focus:ring-indigo-500 text-indigo-600 border-gray-300 rounded w-full block p-1" wire:model="search">
+                <input type="search" name="search" id="search" class="focus:ring-olive-500 text-gray-600 border-gray-300 rounded w-full block p-1" wire:model.debounce.500ms="search">
                 @if($search !='')
                     <button wire:click="clear" class="text-xs font-semibold text-red-600 hover:underline mt-2">Clear</button>
                 @endif
@@ -105,7 +105,7 @@
                             </li>
                         @endif
                     @empty
-                        <div>
+                        <div class="p-12 col-span-3">
                             <h4>No events found for this criteria</h4>
                         </div>
                     @endforelse
