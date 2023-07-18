@@ -10,6 +10,7 @@ class EventList extends Component
 {
     public $towns;
 
+    public $search = '';
     public $days = [];
 
     public $selected_day = '';
@@ -42,6 +43,10 @@ class EventList extends Component
         ];
     }
 
+    public function clear()
+    {
+        $this->search = '';
+    }
     public function render()
     {
 
@@ -59,6 +64,8 @@ class EventList extends Component
             $query->whereHas('Venue', function ($q) {
                 $q->where('town', $this->selected_town);
             });
+        })  ->when($this->search != '', function($q) {
+            $q->where('name','LIKE', '%'.$this->search.'%');
         })
             ->when($this->selected_day != '', function($q) {
                 $q->where('start_date', $this->selected_day);

@@ -12,7 +12,14 @@
         <div x-cloak :class="filterShow ? 'hidden lg:block' : 'block'">
             <h5 class="hidden lg:block">Filter by</h5>
             <div class="my-6">
-                <label for="selected_day" class="mb-2">Day of the events</label>
+                <label for="search" class="mb-2 w-full text-sm">Search by name</label>
+                <input type="search" name="search" id="search" class="focus:ring-indigo-500 text-indigo-600 border-gray-300 rounded w-full block p-1" wire:model="search">
+                @if($search !='')
+                    <button wire:click="clear" class="text-xs font-semibold text-red-600 hover:underline mt-2">Clear</button>
+                @endif
+            </div>
+            <div class="my-6">
+                <label for="selected_day" class="mb-2 text-sm">Day of the events</label>
                 <select name="selected_day" id="selected_day" class="focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md" wire:model="selected_day">
                     <option value="" selected>All dates</option>
                     @foreach($days as $day)
@@ -21,7 +28,7 @@
                 </select>
             </div>
             <div class="my-6">
-                <label for="town" class="mb-2">Town events take place</label>
+                <label for="town" class="mb-2 text-sm">Town events take place</label>
                 <select name="town" id="town" class="focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md" wire:model="selected_town">
                     <option value="" selected>All towns</option>
                     @foreach($unique_towns as $town)
@@ -30,7 +37,7 @@
                 </select>
             </div>
             <div class="my-6">
-                <label for="type" class="mb-2">Event type</label>
+                <label for="type" class="mb-2 text-sm">Event type</label>
                 <select name="type" id="type" class="focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md" wire:model="type">
                     <option value="" selected>All events</option>
                     <option value="inperson">In person</option>
@@ -38,7 +45,7 @@
                 </select>
             </div>
             <div class="mb-4">
-                <div class="mb-2 font-semibold">Target group</div>
+                <div class="mb-2 font-semibold text-sm">Target group</div>
                 @foreach($target as $key => $value)
                     <div class="flex items-center h-5 mb-2">
                         <input id="{{ $key }}" name="{{ $key }}" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="{{ $key }}" wire:model="group">
