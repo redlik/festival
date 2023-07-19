@@ -75,6 +75,7 @@
                 </div>
                 @else
                 <div class="bg-gray-100 rounded border border-gray-300 p-6 mt-8">
+                    @auth
                     @if($event->start_date < \Carbon\Carbon::now())
                         <h5 class="text-gray-600">The registrations for this event are now closed.</h5>
                     @else
@@ -161,6 +162,14 @@
                             </div>
                         </div>
                     @endif
+                    @endauth
+                    @guest
+                    <div class="text-gray-600 font-medium">
+                        The registration for the event require a booking account, please register your <a href="{{ route('pages.split') }}#registration-form" class="font-bold hover:underline">account
+                            here</a>, or <a href="{{ route('login') }}" class="font-bold hover:underline">login</a> to make a booking.
+
+                    </div>
+                    @endguest
 
                 </div>
             @endif
