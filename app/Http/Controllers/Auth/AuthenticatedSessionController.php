@@ -36,6 +36,10 @@ class AuthenticatedSessionController extends Controller
             return redirect()->route('admin.dashboard');
         }
 
+        if (Auth::user()->hasRole('attendee')) {
+            return redirect()->route('events');
+        }
+
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
