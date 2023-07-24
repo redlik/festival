@@ -49,7 +49,7 @@
                         @endif
                             <div class="my-4 w-full">
 
-                                @if($places_left >= 6)
+                                @if($places_left >= 6 || $event->limited == 0)
                                     @php
                                         $number = 6;
                                     @endphp
@@ -65,7 +65,7 @@
                                             @endfor
                                         </select>
                                         <button class="button-primary">Book places</button>
-                                        <label for="number" class="text-sm block mt-2">Number of places you wish to book @json( (int) $tickets)</label>
+                                        <label for="number" class="text-sm block mt-2 font-bold">Number of places you wish to book @json( (int) $tickets)</label>
                                     </form>
 
 
@@ -78,7 +78,7 @@
                                 <input type="hidden" wire:model="waiting" value="1">
                             @endif
                             @for($j = 1; $j <= $people; $j++)
-                                <div class="lg:flex items-start">
+                                <div class="lg:flex items-start mb-6">
                                     <div class="grow mr-4 mb-4 md:mb-0">
                                         <div class="mt-1">
                                             <input type="text" wire:model="names.name-{{ $j }}" id="name-{{ $j }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" value={{ Auth::user()->name }}>
@@ -99,9 +99,6 @@
                                     </div>
                                 </div>
                             @endfor
-                            <div>
-                                Names: @json($names)
-                            </div>
                             <div class="pt-1">
                                 @if($full)
                                     <button class="button-primary" aria-label="Add to waiting list">
