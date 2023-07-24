@@ -104,11 +104,11 @@
                             </div>
                             <div class="pt-1">
                                 @if($full)
-                                    <button type="submit" class="button-primary" aria-label="Add to waiting list">
+                                    <button class="button-primary" aria-label="Add to waiting list">
                                         ADD TO WAITING LIST
                                     </button>
                                 @else
-                                    <button type="submit" class="button-primary" aria-label="Register as participant">
+                                    <button class="button-primary" aria-label="Register as participant">
                                         REGISTER
                                     </button>
                                 @endif

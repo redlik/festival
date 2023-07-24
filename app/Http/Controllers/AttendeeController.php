@@ -174,7 +174,6 @@ class AttendeeController extends Controller
 
     public function bookings()
     {
-        $bookings = Attendee::whereEmail(Auth::user()->email)->orderBy('event_id', 'asc')->with('event')->get();
-        return view('attendee.bookings', compact('bookings'));
+        return view('attendee.bookings');
     }
 }

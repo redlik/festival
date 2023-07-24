@@ -3,11 +3,14 @@
 namespace App\Http\Livewire;
 
 use App\Models\Attendee;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class BookingPanel extends Component
 {
     public $event;
+
+    public Attendee $attendee;
 
     public $tickets = 1;
 
@@ -20,6 +23,8 @@ class BookingPanel extends Component
     public $places_left;
 
     public $names = [];
+
+    public $message = '';
 
     public function mount()
     {
@@ -34,17 +39,18 @@ class BookingPanel extends Component
     public function register()
     {
         for($n = 1; $n <= $this->people; $n++) {
-            $attendee = Attendee::create([
+            $this->attendee = Attendee::create([
                 'name' => $this->names['name-'.$n],
-                'email' => $this->names['email-'.$n],
-                'phone' => $this->names['phone-'.$n],
+                'email' => $this->names['email-'.$n] ?? Auth::user()->email,
+                'phone' => $this->names['phone-'.$n] ?? '',
                 'opt_in' => $this->optin,
                 'event_id' => $this->event->id,
+                'user_id' => Auth::user()->id,
                 'waiting_status' => false,
             ]);
         }
 
-        return view('event.show');
+        $this->message = "Thank you for registering for the event!";
     }
     public function render()
     {
