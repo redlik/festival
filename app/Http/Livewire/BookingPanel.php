@@ -50,7 +50,13 @@ class BookingPanel extends Component
             ]);
         }
 
-        $this->message = "Thank you for registering for the event!";
+        $this->places_left = $this->places_left - $this->people;
+
+        $this->people = 1;
+        $this->tickets = 1;
+        $this->names = [];
+
+        session()->flash('registered', "Thank you for registering. See you at the event!") ;
     }
     public function render()
     {

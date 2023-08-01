@@ -24,7 +24,7 @@
                         @else
                             <h4 class="text-gray-600">Please fill in your details below to register for this event.</h4>
                             <div>
-                                {{ $event->attendees - $event->attendee_count }} places left
+                                {{ $places_left }} places left.
                             </div>
                         @endif
                     @else
@@ -47,7 +47,7 @@
                                 </ul>
                             </div>
                         @endif
-                            <div class="my-4 w-full">
+                            <div class="mt-4 mb-8 w-full">
 
                                 @if($places_left >= 6 || $event->limited == 0)
                                     @php
@@ -65,11 +65,7 @@
                                             @endfor
                                         </select>
                                         <button class="button-primary">Book places</button>
-                                        <label for="number" class="text-sm block mt-2 font-bold">Number of places you wish to book @json( (int) $tickets)</label>
                                     </form>
-
-
-
                             </div>
 
                         <form wire:submit.prevent="register">
@@ -87,16 +83,17 @@
                                     </div>
                                     <div class="grow mr-4 mb-4 md:mb-0">
                                         <div class="mt-1">
-                                            <input type="tel" wire:model="names.phone-{{ $j }}" id="phone-{{ $j }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="066 888 8888">
+                                            <input type="email" wire:model="names.email-{{ $j }}" id="email-{{ $j }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="you@example.com">
                                         </div>
-                                        <label for="phone-{{ $j }}" class="block text-sm font-medium text-gray-700 ml-3 mt-1">Phone</label>
+                                        <label for="email-{{ $j }}" class="block text-sm font-medium text-gray-700 ml-3 mt-1">Email (optional)</label>
                                     </div>
                                     <div class="grow mr-4 mb-4 md:mb-0">
                                         <div class="mt-1">
-                                            <input type="email" wire:model="names.email-{{ $j }}" id="email-{{ $j }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="you@example.com">
+                                            <input type="tel" wire:model="names.phone-{{ $j }}" id="phone-{{ $j }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="066 888 8888">
                                         </div>
-                                        <label for="email-{{ $j }}" class="block text-sm font-medium text-gray-700 ml-3 mt-1">Email</label>
+                                        <label for="phone-{{ $j }}" class="block text-sm font-medium text-gray-700 ml-3 mt-1">Phone (optional)</label>
                                     </div>
+
                                 </div>
                             @endfor
                             <div class="pt-1">
@@ -119,7 +116,7 @@
                             </div>
                         </form>
                         <div class="text-gray-500 text-sm mt-4">
-                            Your personal details won't be shared with anyone unauthorised. We only use it if the organiser of the event make some changes, like changing times, cancelling etc.
+                            Your personal details won't be shared with anyone unauthorised. We only use it if the organiser of the event makes some changes, such as changing dates & times, cancelling etc.
                         </div>
                     </div>
                 @endif
