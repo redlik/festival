@@ -32,6 +32,10 @@
         @apply text-lg;
     }
 
+    .filament-footer {
+        display: none;
+    }
+
 }
 
 @layer components {
@@ -117,7 +121,7 @@
         @apply inline-flex rounded-full bg-gray-200 px-2 text-xs font-semibold leading-5 text-gray-600
     }
 
-    input-box {
+    .input-box {
         @apply  block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
     }
 }
