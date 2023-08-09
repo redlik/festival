@@ -17,7 +17,7 @@ class VenueResource extends Resource
 {
     protected static ?string $model = Venue::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'far-building';
 
     protected static ?int $navigationSort = 4;
 
@@ -51,7 +51,7 @@ class VenueResource extends Resource
                 Tables\Columns\TextColumn::make('address1'),
                 Tables\Columns\TextColumn::make('street'),
                 Tables\Columns\TextColumn::make('town'),
-                Tables\Columns\TextColumn::make('county'),
+                Tables\Columns\TextColumn::make('events_count')->label('Events'),
                 Tables\Columns\TextColumn::make('eircode')->sortable()->searchable(),
             ])
             ->filters([
