@@ -2,7 +2,9 @@
 
 namespace App\Filament\Widgets;
 
+use App\Filament\Resources\AttendeeResource;
 use App\Filament\Resources\EventResource;
+use App\Filament\Resources\OrganiserResource;
 use App\Models\Attendee;
 use App\Models\Event;
 use App\Models\Organiser;
@@ -21,10 +23,12 @@ class StatsOverview extends BaseWidget
         return [
             Card::make('Events', Event::all()->count())
             ->descriptionIcon('heroicon-o-collection')
-            ->description("View all")
             ->url(EventResource::getUrl('index')),
-            Card::make('Attendees', Attendee::all()->count()),
-            Card::make('Organisers', Organiser::all()->count()),
+            Card::make('Attendees', Attendee::all()->count())
+                ->descriptionIcon('heroicon-o-user-circle')
+            ->url(AttendeeResource::getUrl('index')),
+            Card::make('Organisers', Organiser::all()->count())
+            ->url(OrganiserResource::getUrl('index')),
         ];
     }
 }
