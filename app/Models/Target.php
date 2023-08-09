@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Target extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+
+    public function event()
+    {
+        return $this->belongsToMany(Event::class);
+    }
+
 }

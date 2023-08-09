@@ -81,4 +81,9 @@ class Event extends Model implements hasMedia
     {
         return $this->belongsToMany(Document::class);
     }
+
+    public function target()
+    {
+        return $this->belongsToMany(Target::class);
+    }
 }
