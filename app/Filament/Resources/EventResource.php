@@ -3,25 +3,26 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\EventResource\Pages;
-use App\Filament\Resources\EventResource\RelationManagers;
-use App\Filament\Resources\EventresourceResource\RelationManagers\VenuesRelationManager;
+use App\Filament\Resources\EventResource\RelationManagers\VenuesRelationManager;
 use App\Models\Event;
 use Filament\Forms;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TimePicker;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Filament\Tables\Columns\BadgeColumn;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class EventResource extends Resource
 {
     protected static ?string $model = Event::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-pencil';
+    protected static ?string $navigationIcon = 'heroicon-o-gift';
     protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
@@ -29,8 +30,23 @@ class EventResource extends Resource
         return $form
             ->schema([
                 TextInput::make('name'),
-                Forms\Components\DatePicker::make('start_date')->minDate('2023-10-07')->maxDate('2023-10-14')
+                DatePicker::make('start_date')->minDate('2023-10-07')->maxDate('2023-10-14')
                     ->disabled(! auth()->user()->hasRole('admin')),
+                TimePicker::make('start_time')
+                    ->label('Start time')
+                    ->withoutSeconds(),
+                TimePicker::make('end_time')
+                    ->label('End time')
+                    ->withoutSeconds()
+                    ->after('start_time'),
+                Select::make('type')->label('Environment')->options([
+                    'indoor' => 'Indoor',
+                    'outdoor' => 'Outdoor',
+                    'online' => 'Online',
+                ]),
+                Select::make('venue_id')
+                ->relationship('venue', 'name')->required(),
+                MarkdownEditor::make('description')->required()->columnSpan(2),
             ]);
     }
 
@@ -43,6 +59,8 @@ class EventResource extends Resource
                     ->getStateUsing(function (Event $record): string {
                         return $record->start_date .' - '. $record->start_time;
                     }),
+                Tables\Columns\TextColumn::make('venue.name')
+                    ->label("Venue"),
                 BadgeColumn::make('status')
                     ->sortable()
                     ->colors([
