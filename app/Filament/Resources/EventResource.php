@@ -44,6 +44,9 @@ class EventResource extends Resource
                     'outdoor' => 'Outdoor',
                     'online' => 'Online',
                 ]),
+                Forms\Components\CheckboxList::make('target')
+                ->relationship('target', 'name')
+                ->columns(2),
                 Select::make('venue_id')
                 ->relationship('venue', 'name')->required(),
                 MarkdownEditor::make('description')->required()->columnSpan(2),
