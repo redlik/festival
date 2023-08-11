@@ -42,6 +42,15 @@
             @endif
         </div>
     </div>
+    <div class="bg-olive-600">
+        <div class="max-w-7xl mx-auto py-8 px-4 lg:px-0 text-white">
+           <h3 class="text-white mb-2">Online Information Session for Event Organisers - Wednesday, 9th August from 10.30am to 11.30am</h3>
+            <p class="text-white">
+                Join us online to hear about the benefits of being an event organiser for the Fest and to hear from past organisers. We will demonstrate how to register as an organiser on the website and how to add and manage your event(s). You can register for this information session at this link:
+                <a href="https://forms.gle/4MLyvep7XiXHx1nh7" target="_blank" class="font-bold hover:underline">https://forms.gle/4MLyvep7XiXHx1nh7</a>
+            </p>
+        </div>
+    </div>
     <div class="bg-white">
         <div class="max-w-7xl mx-auto py-4 px-4">
             <img src="{{ asset('img/nef-5-ways-to-wellbeing-wide.jpg') }}" alt="5 Ways to Wellbeing - Connect, Give, Take Notice, Keep Learning, Be Active" class="mx-auto w-full lg:w-3/4">

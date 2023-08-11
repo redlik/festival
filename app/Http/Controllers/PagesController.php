@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\AttendeeRegistration;
 use App\Models\Attendee;
 use App\Models\Event;
 use App\Models\Organiser;
@@ -11,6 +12,7 @@ class PagesController extends Controller
 {
     public function home()
     {
+        AttendeeRegistration::dispatch();
         $events = Event::with('venue')->orderBy('start_date', 'asc')->get();
         $towns = Venue::has('event')->select('id', 'town')->get();
         $target = [
