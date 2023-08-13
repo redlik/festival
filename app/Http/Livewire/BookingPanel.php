@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Jobs\BookingEmailToOrganiser;
 use App\Models\Attendee;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -49,6 +50,8 @@ class BookingPanel extends Component
                 'waiting_status' => false,
             ]);
         }
+
+        BookingEmailToOrganiser::dispatch($this->event, $this->people);
 
         $this->places_left = $this->places_left - $this->people;
 
