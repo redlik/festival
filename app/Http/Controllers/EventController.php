@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\EventCancelledNotification;
 use App\Models\Attendee;
 use App\Models\Event;
 use App\Models\User;
@@ -316,10 +317,13 @@ class EventController extends Controller
     {
         $event = Event::findOrFail($id);
 
+        foreach ($event->attendee as $attendee) {
+            EventCancelledNotification::dispatch($event, $attendee);
+        }
+
         if (Auth::id() != $event->user_id) {
             return abort(403);
         }
-
         $event->update([
             'status' => 'cancelled',
         ]);
