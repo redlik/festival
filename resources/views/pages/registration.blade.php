@@ -130,11 +130,11 @@
                                     <div class="h-full">
                                         <div class="flex items-center mb-2">
                                             <input id="indemnity_insurance_yes" aria-describedby="indemnity_insurance-description" name="indemnity_insurance" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" @checked(old('indemnity_insurance')) value="1" required>
-                                            <label for="garda_vetting_yes" class="ml-4 text-gray-700 text-sm">Yes, I have current Garda Vetting.</label>
+                                            <label for="garda_vetting_yes" class="ml-4 text-gray-700 text-sm">Yes, I have up-to-date Professional Indemnity insurance.</label>
                                         </div>
                                         <div class="flex items-center">
                                             <input id="indemnity_insurance_no" aria-describedby="indemnity_insurance-description" name="indemnity_insurance" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" @checked(old('indemnity_insurance')) value="0">
-                                            <label for="garda_vetting_no" class="ml-4 text-gray-700 text-sm">No, I do not have current Garda Vetting.</label>
+                                            <label for="garda_vetting_no" class="ml-4 text-gray-700 text-sm">No, I do not have up-to-date Professional Indemnity insurance.</label>
                                         </div>
                                     </div>
                                 </div>
