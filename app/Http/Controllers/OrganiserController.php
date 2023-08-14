@@ -107,6 +107,8 @@ class OrganiserController extends Controller
             'linkedin' => $request->input('linkedin'),
             'events' => $request->input('events'),
             'garda_vetting' => $request->input('garda_vetting'),
+            'indemnity_insurance' => $request->input('indemnity_insurance'),
+            'public_liability_insurance' => $request->input('public_liability_insurance'),
         ]);
 
         $organiser->notify(new AccountActivation($organiser));
