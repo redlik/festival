@@ -63,8 +63,6 @@ class BookingPanel extends Component
     }
     public function render()
     {
-        ray($this->names);
-        ray($this->people);
         return view('livewire.booking-panel');
     }
 }
