@@ -26,8 +26,13 @@ use Spatie\Honeypot\ProtectAgainstSpam;
 Route::get('/', [PagesController::class, 'home'])->name('home');
 
 Route::get('/join-us', function () {
-    return view('pages.registration');
+    return view('pages.split');
 })->name('pages.join-us');
+
+Route::get('/organiser-registration',
+    function () {
+        return view('pages.registration');
+    })->name('pages.organiser-registration');
 
 Route::get('/events', [PagesController::class, 'events'])->name('events');
 Route::get('/contact', function () {
