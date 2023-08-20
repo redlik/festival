@@ -82,7 +82,6 @@ class EventList extends Component
             ->select('start_date')
             ->get()
             ->unique('start_date');
-        ray($this->events);
         return view('livewire.event-list');
     }
 }
