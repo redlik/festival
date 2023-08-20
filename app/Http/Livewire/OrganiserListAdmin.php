@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Event;
 use App\Models\Organiser;
 use Livewire\Component;
 
@@ -35,7 +36,11 @@ class OrganiserListAdmin extends Component
         })->when($this->status != '', function($s) {
             $s->whereStatus($this->status);
         })
-            ->get();
+        ->orderBy('status', 'asc')
+        ->orderBy('created_at', 'desc')
+        ->withCount('events')
+        ->get();
+
         return view('livewire.organiser-list-admin');
     }
 }
