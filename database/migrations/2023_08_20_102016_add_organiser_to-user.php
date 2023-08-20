@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('organiser_id')->unsigned()->after('remember_token');
+            $table->integer('organiser_id')->unsigned()->nullable()->after('remember_token');
         });
     }
 
