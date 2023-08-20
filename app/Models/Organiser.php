@@ -16,4 +16,9 @@ class Organiser extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function events()
+    {
+        return $this->hasManyThrough(Event::class, User::class);
+    }
 }

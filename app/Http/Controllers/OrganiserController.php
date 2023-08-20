@@ -199,4 +199,19 @@ class OrganiserController extends Controller
     {
         return Excel::download(new OrganisersExport(), 'organisers-list.xlsx');
     }
+
+    public function assignOrganiserToUser()
+    {
+        $organisers = Organiser::all();
+
+        foreach ($organisers as $organiser) {
+            $user = User::where('id', $organiser->user_id );
+
+            $user->update([
+                'organiser_id' => $organiser->id,
+            ]);
+        }
+
+        echo('Users assigned');
+    }
 }

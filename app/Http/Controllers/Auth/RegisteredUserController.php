@@ -54,6 +54,10 @@ class RegisteredUserController extends Controller
             'status' => 'activated',
         ]);
 
+        $user->update([
+            'organiser_id' => $organiser->id,
+        ]);
+
         event(new Registered($user));
 
         Auth::login($user);
