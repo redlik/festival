@@ -16,6 +16,8 @@ class OrganiserListAdmin extends Component
 
     public $status;
 
+    public $zero_count = false;
+
     public function mount()
     {
        $this->organisers = Organiser::all();
@@ -39,6 +41,9 @@ class OrganiserListAdmin extends Component
         ->orderBy('status', 'asc')
         ->orderBy('created_at', 'desc')
         ->withCount('events')
+        ->when($this->zero_count, function($z){
+            $z->has('events', '=', 0);
+        })
         ->get();
 
         return view('livewire.organiser-list-admin');
