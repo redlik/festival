@@ -11,7 +11,7 @@ class AdminEvents extends Component
 
     public $pending;
 
-    public $date;
+    public $date = '';
 
     public $search = '';
 

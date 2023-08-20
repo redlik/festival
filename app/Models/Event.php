@@ -50,6 +50,11 @@ class Event extends Model implements hasMedia
         return $this->belongsTo(User::class);
     }
 
+    public function organiser()
+    {
+        return $this->hasOneThrough(Organiser::class, User::class);
+    }
+
     public function scopeApproved($query)
     {
         return $query->where('status', 'published')
