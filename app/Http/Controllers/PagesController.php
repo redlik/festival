@@ -33,8 +33,9 @@ class PagesController extends Controller
         $venues = Venue::withCount('event')->get();
 
         $organisers_count = Organiser::all()->count();
+        $new_organisers = Organiser::where('created_at','LIKE', '%'.now()->year.'%' )->count();
 
-        return view('admin.dashboard', compact('events_count', 'venues', 'attendees', 'organisers_count'));
+        return view('admin.dashboard', compact('events_count', 'venues', 'attendees', 'organisers_count', 'new_organisers'));
     }
 
     public function events()
