@@ -1,5 +1,5 @@
 <div>
-    <div class="sm:flex sm:items-center ml-4 gap-16 mb-6">
+    <div class="flex items-center justify-between gap-16 mb-4 bg-gray-100 px-4 py-2 rounded">
         <div class="flex items-center w-auto mr-8">
             <div>
                 <input type="search" wire:model.debounce.500ms="search" name="search"
@@ -8,40 +8,50 @@
                     <button wire:click="clear" class="text-xs font-semibold text-red-600 hover:underline mt-2 ml-2">Clear</button>
                 @endif
             </div>
-
         </div>
         <div class="flex items-center w-auto mr-8">
+            <label for="year" class="text-gray-700 text-sm mx-2 block w-full">Event's&nbspyear</label>
             <select name="year" id="year" wire:model="date"
                     class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
                 <option value="" selected>All events</option>
                 <option value="2023">2023</option>
                 <option value="2022">2022</option>
             </select>
-            <label for="year" class="text-gray-700 text-sm ml-4 block w-full">Event's Year</label>
         </div>
         <div class="flex items-center w-auto mr-8">
+            <select name="organiser" id="organiser" wire:model="organiser"
+                    class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
+                <option value="" selected>All organisers</option>
+                @foreach($organisers as $organiser)
+                    <option value="{{ $organiser->user->id }}">{{ $organiser->name }} - {{ $organiser->org }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="flex items-center w-auto mr-8">
+            <label for="year" class="text-gray-700 text-sm mx-2 block w-full">Status</label>
             <select name="year" id="year" wire:model="status"
                     class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
-                <option value="" selected>All events</option>
+                <option value="" selected>Every status</option>
                 <option value="published">Published</option>
                 <option value="pending">Pending</option>
                 <option value="draft">Draft</option>
                 <option value="cancelled">Cancelled</option>
                 <option value="archived">Archived</option>
             </select>
-            <label for="year" class="text-gray-700 text-sm ml-4 block w-full">Status</label>
         </div>
     </div>
+    <div class="text-sm font-semibold mb-4 ml-8">{{ $events->count() }} {{ \Illuminate\Support\Str::of('event')->plural($events->count())}} listed</div>
     <table class="min-w-full divide-y divide-gray-300">
         <thead class="bg-gray-100">
         <tr>
-            <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8">Name</th>
+            <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8">#</th>
+            <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900">Name</th>
             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Date & Time</th>
             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Organiser</th>
             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Venue</th>
             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Attendees</th>
             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Status</th>
-            <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6 lg:pr-8">Operations
+            <th scope="col" class="relative py-3.5 pl-3 pr-4 text-sm font-semibold sm:pr-6 lg:pr-8">Operations
                 <span class="sr-only">Operations</span>
             </th>
         </tr>
@@ -49,7 +59,9 @@
         <tbody class="divide-y divide-gray-200 bg-white">
         @forelse($events as $event)
             <tr>
-                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8">
+                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"> {{ $loop->iteration }}
+                </td>
+                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
                     <a href="{{ route('admin.event.show', $event) }}" class="hover:underline" title="{{ $event->name }}">
                         {{ Str::of($event->name)->limit(40, ' (...)') }}
                     </a>
@@ -135,11 +147,11 @@
                 </td>
             </tr>
         @empty
-            <tr colspan="4">
-                <td class="p-8"><h4>No events created</h4></td>
+            <tr >
+                <td colspan="7" class="p-8 text-center"><h4>No events created</h4></td>
             </tr>
         @endforelse
-
         </tbody>
     </table>
+    <div class="text-sm font-semibold mt-4 ml-8">{{ $events->count() }} {{ \Illuminate\Support\Str::of('event')->plural($events->count())}} listed</div>
 </div>
