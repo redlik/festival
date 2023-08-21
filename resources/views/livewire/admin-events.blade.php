@@ -14,8 +14,9 @@
             <select name="year" id="year" wire:model="date"
                     class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
                 <option value="" selected>All events</option>
-                <option value="2023">2023</option>
-                <option value="2022">2022</option>
+                @foreach($years as $year)
+                    <option value="{{ $year }}">{{ $year }}</option>
+                @endforeach
             </select>
         </div>
         <div class="flex items-center w-auto mr-8">

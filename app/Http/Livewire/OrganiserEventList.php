@@ -16,6 +16,8 @@ class OrganiserEventList extends Component
 
     public $status = '';
 
+
+
     public function clear()
     {
         $this->search = '';
@@ -23,8 +25,7 @@ class OrganiserEventList extends Component
 
     public function render()
     {
-
-        $this->events = Event::where('user_id', Auth::id())
+      $this->events = Event::where('user_id', Auth::id())
             ->when($this->search != '', function ($s) {
                 $s->where('name', 'LIKE', '%' . $this->search . '%');
             })

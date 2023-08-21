@@ -22,11 +22,17 @@ class AdminEvents extends Component
 
     public $organiser;
 
+    public $years = array();
+
     public function mount()
     {
         $this->pending = '';
-        $this->date = '';
         $this->organisers = Organiser::has('events')->get();
+        for ($i = now()->year; $i >= 2022; $i--) {
+            array_push($this->years, $i);
+            ray('Year ' . $i);
+        }
+        $this->date = now()->year;
     }
 
     public function clear()
@@ -44,8 +50,7 @@ class AdminEvents extends Component
                 $q->where('status', $this->status);
             })
             ->when($this->date, function($q){
-                $q->where('start_date','>=', $this->date.'-01-01')
-                    ->where('start_date','<=', $this->date.'-12-31');
+                $q->whereYear('start_date',$this->date);
             })
             ->withCount('attendee')
             ->when($this->organiser, function($o) {
