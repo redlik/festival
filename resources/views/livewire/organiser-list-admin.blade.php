@@ -13,7 +13,7 @@
         <div class="flex items-center w-auto mr-8">
             <select name="year" id="year" wire:model="year"
                     class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
-                <option value="" selected>All organisers</option>
+                <option value="" selected>All years</option>
                 <option value="2023">2023</option>
                 <option value="2022">2022</option>
             </select>
@@ -22,7 +22,7 @@
         <div class="flex items-center w-auto mr-8">
             <select name="year" id="year" wire:model="status"
                     class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
-                <option value="" selected>All organisers</option>
+                <option value="" selected>All statuses</option>
                 <option value="activated">Activated</option>
                 <option value="pending">Pending</option>
             </select>
