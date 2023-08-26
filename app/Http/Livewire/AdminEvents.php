@@ -30,7 +30,6 @@ class AdminEvents extends Component
         $this->organisers = Organiser::has('events')->get();
         for ($i = now()->year; $i >= 2022; $i--) {
             array_push($this->years, $i);
-            ray('Year ' . $i);
         }
         $this->date = now()->year;
     }
@@ -60,7 +59,6 @@ class AdminEvents extends Component
             ->orderBy(\DB::raw("DATE_FORMAT(start_date,'%d-%M-%Y')"), 'DESC')
             ->get();
 
-            ray($this->organiser);
         return view('livewire.admin-events');
     }
 }
