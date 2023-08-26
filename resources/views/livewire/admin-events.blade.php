@@ -32,7 +32,7 @@
             <label for="year" class="text-gray-700 text-sm mx-2 block w-full">Status</label>
             <select name="year" id="year" wire:model="status"
                     class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
-                <option value="" selected>Every status</option>
+                <option value="" selected>All events</option>
                 <option value="published">Published</option>
                 <option value="pending">Pending</option>
                 <option value="draft">Draft</option>
