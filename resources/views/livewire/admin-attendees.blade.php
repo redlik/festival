@@ -46,4 +46,7 @@
         @endforelse
         </tbody>
     </table>
+    <div>
+        {{ $attendees->links() }}
+    </div>
 </div>

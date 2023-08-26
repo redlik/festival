@@ -1328,6 +1328,11 @@ input-box:focus {
 .cursor-help {
   cursor: help;
 }
+.select-none {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
 .list-inside {
   list-style-position: inside;
 }
