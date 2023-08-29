@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Jobs\BookingEmailToAttendee;
 use App\Jobs\BookingEmailToOrganiser;
 use App\Models\Attendee;
 use Illuminate\Support\Facades\Auth;
@@ -52,6 +53,7 @@ class BookingPanel extends Component
         }
 
         BookingEmailToOrganiser::dispatch($this->event, $this->people);
+        BookingEmailToAttendee::dispatch(Auth::user(), $this->event, $this->names);
 
         $this->places_left = $this->places_left - $this->people;
 
