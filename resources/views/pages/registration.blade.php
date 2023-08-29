@@ -21,7 +21,7 @@
                     <li><strong>Step 1</strong> – Register as an event organiser by filling in the short form below.</li>
                     <li><strong>Step 2</strong> - Activate your account by clicking on the link in the activation email that you will receive.</li>
                     <li><strong>Step 3</strong> - Create a password and then you are ready to add an event(s).
-                        <span class="underline">All events need to be submitted by Friday, 14th August to be considered.</span></li>
+                        <span class="underline">All events need to be submitted by Thursday, 30th August to be considered.</span></li>
                     <li><strong>Step 4</strong> - The Fest Committee will review your event(s) prior to publishing them on the website.</li>
 
                 </ul>
