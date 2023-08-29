@@ -26,6 +26,7 @@
                         </dt>
                         <dd class="mt-1 text-3xl font-semibold text-gray-900">
                             {{ $events_count }}
+                            <span class="text-xl text-gray-500">({{ $new_events_count }})</span>
                         </dd>
                     </div>
 
