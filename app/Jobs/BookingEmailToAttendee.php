@@ -2,9 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Mail\EventCancelled;
-use App\Mail\EventCancelledEmail;
-use App\Models\Attendee;
 use App\Models\Event;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -12,26 +9,31 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Auth;
+use App\Models\User;
 use Illuminate\Support\Facades\Mail;
-
-class EventCancelledNotification implements ShouldQueue
+use App\Mail\BookingNotificationEmail;
+class BookingEmailToAttendee implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public Event $event;
+    private Event $event;
 
-    public Attendee $attendee;
+    private User $user;
+
+    private $names = [];
+
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Event $event, Attendee $attendee)
+    public function __construct($user, Event $event, $names)
     {
         $this->event = $event;
-
-        $this->attendee = $attendee;
+        $this->names = $names;
+        $this->user = $user;
     }
 
     /**
@@ -41,6 +43,6 @@ class EventCancelledNotification implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->attendee)->send(new EventCancelledEmail($this->event, $this->attendee));
+        Mail::to($this->user->email)->send(new BookingNotificationEmail($this->event, $this->names));
     }
 }

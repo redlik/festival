@@ -33,7 +33,6 @@ class BookingList extends Component
         $this->dropdown = Attendee::where('user_id',Auth::user()->id)->get();
         $this->uniques = array_unique($this->dropdown->pluck('event_id')->toArray());
         $this->events = Event::whereIn('id', $this->uniques)->orderBy('name', 'asc')->get();
-        ray($this->uniques);
 
         return view('livewire.booking-list');
     }

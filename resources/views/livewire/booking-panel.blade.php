@@ -77,9 +77,9 @@
                                 <div class="lg:flex items-start mb-6">
                                     <div class="grow mr-4 mb-4 md:mb-0">
                                         <div class="mt-1">
-                                            <input type="text" wire:model="names.name-{{ $j }}" id="name-{{ $j }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" value={{ Auth::user()->name }}>
+                                            <input type="text" wire:model="names.name-{{ $j }}" id="name-{{ $j }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" required>
                                         </div>
-                                        <label for="name-{{ $j }}" class="block text-sm font-medium text-gray-700 ml-3 mt-1">Name</label>
+                                        <label for="name-{{ $j }}" class="block text-sm font-medium text-gray-700 ml-3 mt-1">Name <span class="text-red-700">*</span></label>
                                     </div>
                                     <div class="grow mr-4 mb-4 md:mb-0">
                                         <div class="mt-1">
@@ -117,6 +117,9 @@
                         </form>
                         <div class="text-gray-500 text-sm mt-4">
                             Your personal details won't be shared with anyone unauthorised. We only use it if the organiser of the event makes some changes, such as changing dates & times, cancelling etc.
+                        </div>
+                        <div>
+                            Bookings left:
                         </div>
                     </div>
                 @endif

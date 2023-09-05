@@ -40,10 +40,12 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'organiser_id' => 0,
         ]);
 
         $user->assignRole('organiser');
@@ -52,6 +54,10 @@ class RegisteredUserController extends Controller
         $organiser->update([
             'user_id' => $user->id,
             'status' => 'activated',
+        ]);
+
+        $user->update([
+            'organiser_id' => $organiser->id,
         ]);
 
         event(new Registered($user));

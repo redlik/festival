@@ -44,11 +44,11 @@
     </div>
     <div class="bg-olive-600">
         <div class="max-w-7xl mx-auto py-8 px-4 lg:px-0 text-white">
-           <h3 class="text-white mb-2">Online Information Session for Event Organisers - Wednesday, 9th August from 10.30am to 11.30am</h3>
+           <h3 class="text-white mb-2">Online Information Session for Event Organisers</h3>
             <p class="text-white">
-                Join us online to hear about the benefits of being an event organiser for the Fest and to hear from past organisers. We will demonstrate how to register as an organiser on the website and how to add and manage your event(s). You can register for this information session at this link:
-                <a href="https://forms.gle/4MLyvep7XiXHx1nh7" target="_blank" class="font-bold hover:underline">https://forms.gle/4MLyvep7XiXHx1nh7</a>
+                Watch our online Information Session for event organisers held on 9th August 2023 here. You can learn more about the Fest, the types of events held previously, hear from current event organisers and access a demonstration of how to register on the website.
             </p>
+            <a href="https://vimeo.com/854902830/46cd78b329" target="_blank" class="text-white font-semibold underline mt-2">Click here to watch the video</a>
         </div>
     </div>
     <div class="bg-white">
@@ -69,10 +69,10 @@
                         </a>
                 </div>
             {{--Modal for schedule image--}}
-                <div @keydown.window.escape="showPoster = false" x-show="showPoster" class="fixed z-10 inset-0 overflow-y-auto">
+                <div @keydown.window.escape="showPoster = false" x-cloak x-show="showPoster" class="fixed z-10 inset-0 overflow-y-auto">
                     <div class="flex items-end justify-center min-h-screen w-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
 
-                        <div x-cloak x-show="showPoster" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" x-description="Background overlay, show/hide based on modal state." class="fixed inset-0 bg-gray-700 bg-opacity-75 transition-opacity" @click="showPoster = false" aria-hidden="true">
+                        <div x-show="showPoster" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" x-description="Background overlay, show/hide based on modal state." class="fixed inset-0 bg-gray-700 bg-opacity-75 transition-opacity" @click="showPoster = false" aria-hidden="true">
                         </div>
 
                         <!-- This element is to trick the browser into centering the modal contents. -->
