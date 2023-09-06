@@ -83,9 +83,12 @@
                     <div class="bg-gray-50 p-2 rounded mt-4 lg:mt-0">
                         <h5 class="text-gray-600">Contact organiser:</h5>
                         <div class="flex mt-3">
+                            <a href="tel:{{ $event->phone }}"
+                               title="Contact organiser"><i
+                                    class="fa-solid fa-phone-square-alt mr-6 text-green-500 text-xl"></i></a>
                             <a href="mailto:{{ $event->user->email }}?subject=Question about {{ $event->name }} event"
                                title="Contact organiser"><i
-                                    class="fa-solid fa-envelope mr-4 text-purple-500 text-xl"></i></a>
+                                    class="fa-solid fa-envelope mr-6 text-purple-500 text-xl"></i></a>
                             @if($event->user->organiser->website)
                                 <a href="{{ $event->user->organiser->website }}" target="_blank"
                                    title="Visit our website"><i
