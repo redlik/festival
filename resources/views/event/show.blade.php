@@ -15,10 +15,17 @@
                          class="rounded mx-auto">
                 </div>
                 <div class="col-span-5 md:col-span-3 flex flex-col justify-between gap-6">
-                    <div>
-                        <h4 class="font-bold text-2xl text-gray-600">{{ $event->name }}</h4>
-                        <div class="mt-2">
-                            {{ $event->description }}
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h4 class="font-bold text-2xl text-gray-600">{{ $event->name }}</h4>
+                            <div class="mt-2">
+                                {{ $event->description }}
+                            </div>
+                        </div>
+                        <div>
+                            @if($event->wheelchair_accessible)
+                                <img src="{{ asset('img/wheelchair.svg') }}" alt="" class="w-20">
+                            @endif
                         </div>
                     </div>
                     <div class="bg-gray-100 p-2 rounded shadow-sm">
@@ -70,15 +77,16 @@
                         </div>
                         <div class="mt-1">
                             @if($event->target === '[]')
-                                <span class="gray-pillow ml-4">Open to everyone</span>
+                                <span class="green-pillow mr-4">Open to everyone</span>
                             @else
                                 @foreach(json_decode($event->target) as $target_item)
-                                    <div class="gray-pillow mr-1">
+                                    <div class="gray-pillow mr-2">
                                         {{ ucfirst($target_item) }}
                                     </div>
                                 @endforeach
                             @endif
                         </div>
+
                     </div>
                     <div class="bg-gray-50 p-2 rounded mt-4 lg:mt-0">
                         <h5 class="text-gray-600">Contact organiser:</h5>
