@@ -1,4 +1,4 @@
-<div>
+<div class="mt-8 lg:mt-16">
     @php
         $full = false;
 
