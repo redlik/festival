@@ -91,6 +91,7 @@ class EventController extends Controller
             'leader_name' => $request->input('leader_name'),
             'leader_phone' => $request->input('leader_phone'),
             'leader_email' => $request->input('leader_email'),
+            'wheelchair_accessible' => $request->input('wheelchair_accessible'),
             'status' => 'pending',
             'is_private' => $request->input('is_private'),
         ]);
@@ -158,6 +159,7 @@ class EventController extends Controller
             'leader_name' => $request->input('leader_name'),
             'leader_phone' => $request->input('leader_phone'),
             'leader_email' => $request->input('leader_email'),
+            'wheelchair_accessible' => $request->input('wheelchair_accessible'),
             'status' => 'draft',
             'is_private' => $request->input('is_private'),
         ]);
@@ -220,6 +222,7 @@ class EventController extends Controller
             'leader_name' => $request->input('leader_name'),
             'leader_phone' => $request->input('leader_phone'),
             'leader_email' => $request->input('leader_email'),
+            'wheelchair_accessible' => $request->input('wheelchair_accessible'),
             'status' => 'draft',
             'is_private' => $request->input('is_private'),
         ]);
@@ -376,6 +379,7 @@ class EventController extends Controller
             'leader_name' => $request->input('leader_name'),
             'leader_phone' => $request->input('leader_phone'),
             'leader_email' => $request->input('leader_email'),
+            'wheelchair_accessible' => $request->input('wheelchair_accessible'),
             'is_private' => $request->input('is_private'),
         ]);
 
@@ -424,6 +428,7 @@ class EventController extends Controller
             'leader_name' => $request->input('leader_name'),
             'leader_phone' => $request->input('leader_phone'),
             'leader_email' => $request->input('leader_email'),
+            'wheelchair_accessible' => $request->input('wheelchair_accessible'),
             'status' => 'pending',
             'is_private' => $request->input('is_private'),
         ]);
