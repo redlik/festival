@@ -15,18 +15,18 @@
                          class="rounded mx-auto">
                 </div>
                 <div class="col-span-5 md:col-span-3 flex flex-col justify-between gap-6">
-                    <div class="flex justify-between items-center">
-                        <div>
+                    <div class="lg:flex justify-between items-start">
+                        <div class="w-full">
                             <h4 class="font-bold text-2xl text-gray-600">{{ $event->name }}</h4>
                             <div class="mt-2">
                                 {{ $event->description }}
                             </div>
                         </div>
-                        <div>
-                            @if($event->wheelchair_accessible)
+                        @if($event->wheelchair_accessible)
+                            <div class="w-full lg:w-24 lg:flex-shrink-0 lg:ml-8 mt-10">
                                 <img src="{{ asset('img/wheelchair.svg') }}" alt="" class="w-20">
-                            @endif
-                        </div>
+                            </div>
+                        @endif
                     </div>
                     <div class="bg-gray-100 p-2 rounded shadow-sm">
                         <h5 class="uppercase underline text-gray-600 mb-2">Event Details:</h5>
