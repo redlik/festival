@@ -2,9 +2,11 @@
 
 namespace App\Http\Livewire;
 
+use App\Exports\EventExport;
 use App\Models\Event;
 use App\Models\Organiser;
 use Livewire\Component;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminEvents extends Component
 {
@@ -60,5 +62,16 @@ class AdminEvents extends Component
             ->get();
 
         return view('livewire.admin-events');
+    }
+
+    public function export()
+    {
+        return Excel::download(new EventExport($this->events), 'events-export.xlsx');
+    }
+    public function exportAll()
+    {
+        $all_events = Event::all();
+
+        return Excel::download(new EventExport($all_events), 'all-events-export.xlsx');
     }
 }

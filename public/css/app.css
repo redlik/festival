@@ -938,6 +938,12 @@ input-box:focus {
 .bottom-0 {
   bottom: 0px;
 }
+.right-4 {
+  right: 1rem;
+}
+.right-2 {
+  right: 0.5rem;
+}
 .z-0 {
   z-index: 0;
 }
@@ -1222,6 +1228,9 @@ input-box:focus {
 }
 .w-11 {
   width: 2.75rem;
+}
+.w-32 {
+  width: 8rem;
 }
 .min-w-full {
   min-width: 100%;
@@ -1691,6 +1700,10 @@ input-box:focus {
 .bg-olive-400 {
   --tw-bg-opacity: 1;
   background-color: rgb(115 122 102 / var(--tw-bg-opacity));
+}
+.bg-red-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(252 165 165 / var(--tw-bg-opacity));
 }
 .bg-opacity-75 {
   --tw-bg-opacity: 0.75;

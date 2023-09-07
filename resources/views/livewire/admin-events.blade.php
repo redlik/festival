@@ -40,6 +40,25 @@
                 <option value="archived">Archived</option>
             </select>
         </div>
+        <div class="relative" x-data="{ menu : false }">
+            <button @click="menu = ! menu" class="w-8 text-center">
+                <i class="fas fa-ellipsis-v"></i>
+            </button>
+            <div class="absolute top-0 right-2 mt-10 bg-white p-2 rounded shadow-xl border border-gray-200 w-48 z-50"
+                 x-show="menu" x-transition.duration.300ms x-on:click.away="menu = false">
+                <a wire:click="export" class="bg-white hover:bg-gray-200 text-gray-900 flex items-center px-3 py-2 text-sm font-medium rounded-md cursor-pointer">
+                    <span class="truncate">
+                      Export selected events
+                    </span>
+                </a>
+                <hr class="my-2">
+                <a wire:click="exportAll" class="bg-white hover:bg-gray-200 text-gray-900 flex items-center px-3 py-2 text-sm font-medium rounded-md cursor-pointer">
+                    <span class="truncate">
+                      Export all events
+                    </span>
+                </a>
+            </div>
+        </div>
     </div>
     <div class="text-sm font-semibold mb-4 ml-8">{{ $events->count() }} {{ \Illuminate\Support\Str::of('event')->plural($events->count())}} listed</div>
     <table class="min-w-full divide-y divide-gray-300">
