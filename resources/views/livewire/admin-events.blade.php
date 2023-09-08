@@ -44,7 +44,7 @@
             <button @click="menu = ! menu" class="w-8 text-center">
                 <i class="fas fa-ellipsis-v"></i>
             </button>
-            <div class="absolute top-0 right-2 mt-10 bg-white p-2 rounded shadow-xl border border-gray-200 z-50 w-52"
+            <div class="absolute top-0 right-2 mt-10 bg-white p-2 rounded shadow-xl border border-gray-200 z-50 w-56"
                  x-show="menu" x-transition.duration.300ms x-on:click.away="menu = false">
                 <a wire:click="export" class="bg-white hover:bg-gray-200 text-gray-900 flex items-center px-3 py-2 text-sm font-medium rounded-md cursor-pointer">
                     <div class="block">
