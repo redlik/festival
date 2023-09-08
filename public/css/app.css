@@ -1232,6 +1232,9 @@ input-box:focus {
 .w-32 {
   width: 8rem;
 }
+.w-52 {
+  width: 13rem;
+}
 .min-w-full {
   min-width: 100%;
 }
