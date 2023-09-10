@@ -11,10 +11,16 @@ use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TimePicker;
+use Filament\Infolists;
+use Filament\Infolists\Infolist;
+use Filament\Infolists\Components\Section;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Enums\FiltersLayout;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Table;
 use Filament\Tables;
 use Filament\Tables\Columns\BadgeColumn;
 
@@ -31,7 +37,7 @@ class EventResource extends Resource
             ->schema([
                 TextInput::make('name'),
                 DatePicker::make('start_date')->minDate('2023-10-07')->maxDate('2023-10-14')
-                    ->disabled(! auth()->user()->hasRole('admin')),
+                    ->disabled(!auth()->user()->hasRole('admin')),
                 TimePicker::make('start_time')
                     ->label('Start time')
                     ->withoutSeconds(),
@@ -45,10 +51,10 @@ class EventResource extends Resource
                     'online' => 'Online',
                 ]),
                 Forms\Components\CheckboxList::make('target')
-                ->relationship('target', 'name')
-                ->columns(2),
+                    ->relationship('target', 'name')
+                    ->columns(2),
                 Select::make('venue_id')
-                ->relationship('venue', 'name')->required(),
+                    ->relationship('venue', 'name')->required(),
                 MarkdownEditor::make('description')->required()->columnSpan(2),
             ]);
     }
@@ -57,13 +63,28 @@ class EventResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')->sortable()->searchable()->label('Event name')->limit(30),
-                Tables\Columns\TextColumn::make('start_date')->sortable()->label('Event Date & Time')
+                TextColumn::make('name')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Event name')
+                    ->limit(30),
+                TextColumn::make('start_date')
+                    ->sortable()
+                    ->label('Event Date & Time')
                     ->getStateUsing(function (Event $record): string {
-                        return $record->start_date .' - '. $record->start_time;
+                        return $record->start_date . ' - ' . $record->start_time;
                     }),
-                Tables\Columns\TextColumn::make('venue.name')
-                    ->label("Venue"),
+                TextColumn::make('attendee_count')
+                ->counts('attendee')
+                ->label('Attendees')
+                ->toggleable()
+                ->sortable(),
+                TextColumn::make('user.organiser.name')
+                ->description('user.organiser.org')
+                ->toggleable(),
+                TextColumn::make('venue.name')
+                    ->label("Venue")
+                    ->toggleable(),
                 BadgeColumn::make('status')
                     ->sortable()
                     ->colors([
@@ -75,19 +96,44 @@ class EventResource extends Resource
                     ]),
             ])
             ->filters([
-                Tables\Filters\SelectFilter::make('status')->options([
+                SelectFilter::make('status')->options([
                     'draft' => 'Draft',
                     'pending' => "Pending",
                     'activated' => "Activated",
                 ]),
-            ])
+                SelectFilter::make('created_at')->options([
+                    '2023' => '2023',
+                    '2022' => '2022',
+                ])
+            ], layout: FiltersLayout::AboveContent)
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
             ])
-            ->defaultSort('name');
+            ->defaultSort('name')
+            ->filtersFormColumns(4);
+    }
+
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                Section::make('Details')
+                    ->description('Event details')
+                    ->schema([
+                        Infolists\Components\TextEntry::make('name')
+                        ,
+                    ]),
+                Section::make('Description')
+                    ->collapsible()
+                    ->schema([
+                        Infolists\Components\TextEntry::make('description')
+                            ->hiddenLabel(),
+                    ]),
+            ]);
     }
 
     public static function getRelations(): array
@@ -103,6 +149,7 @@ class EventResource extends Resource
             'index' => Pages\ListEvents::route('/'),
             'create' => Pages\CreateEvent::route('/create'),
             'edit' => Pages\EditEvent::route('/{record}/edit'),
+            'view' => Pages\ViewEvent::route('/{record}'),
         ];
     }
 }

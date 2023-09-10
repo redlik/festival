@@ -22,7 +22,7 @@ class StatsOverview extends BaseWidget
     {
         return [
             Card::make('Events', Event::all()->count())
-            ->descriptionIcon('heroicon-o-collection')
+            ->descriptionIcon('heroicon-o-rectangle-stack')
             ->url(EventResource::getUrl('index')),
             Card::make('Attendees', Attendee::all()->count())
                 ->descriptionIcon('heroicon-o-user-circle')
