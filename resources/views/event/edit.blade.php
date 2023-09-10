@@ -25,10 +25,10 @@
             <form class="space-y-8 divide-y divide-gray-200" method="POST" action="{{ route('event.update', $event) }}" id="event-registration" enctype="multipart/form-data">
                 <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
                     @if(\Session::has('saved'))
-                        <div class="bg-green-100 border border-green-500 p-2 rounded mt-4">
+                        <x-flash type="success">
                             The changes has been saved.
                             <a href="{{ route('dashboard') }}" class="font-bold text-indigo-500 hover:underline"><< Click to return to Dashboard</a>
-                        </div>
+                        </x-flash>
                     @endif
                     @if ($errors->any())
                         <div class="bg-red-200 rounded border border-red-400 pl-2">
