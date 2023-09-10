@@ -74,17 +74,19 @@ class EventResource extends Resource
                     ->getStateUsing(function (Event $record): string {
                         return $record->start_date . ' - ' . $record->start_time;
                     }),
-                TextColumn::make('attendee_count')
-                ->counts('attendee')
-                ->label('Attendees')
-                ->toggleable()
-                ->sortable(),
                 TextColumn::make('user.organiser.name')
-                ->description('user.organiser.org')
+                ->description(function (Event $record) {
+                    return $record->user->organiser->org;
+                })
                 ->toggleable(),
                 TextColumn::make('venue.name')
                     ->label("Venue")
                     ->toggleable(),
+                TextColumn::make('attendee_count')
+                    ->counts('attendee')
+                    ->label('Attendees')
+                    ->toggleable()
+                    ->sortable(),
                 BadgeColumn::make('status')
                     ->sortable()
                     ->colors([
