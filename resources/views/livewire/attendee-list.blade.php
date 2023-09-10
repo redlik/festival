@@ -3,7 +3,7 @@
     <div class="flex mb-4 items-center">
         <div class="mr-6">
             <label for="event_attendee text-sm text-gray-600 mr-2">View by event: </label>
-            <select name="event_attendee" id="event_attendee" class="focus:ring-indigo-500 focus:border-indigo-500 w-48 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md" wire:model="selected_event">
+            <select name="event_attendee" id="event_attendee" class="focus:ring-indigo-500 focus:border-indigo-500 w-48 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md" wire:model.live="selected_event">
                 <option value="" selected>All events</option>
             @foreach($events_with_attendees as $event_with_attendees)
                     <option value="{{ $event_with_attendees->id }}">{{ $event_with_attendees->name }}</option>

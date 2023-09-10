@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Jobs\BookingEmailToAttendee;
 use App\Jobs\BookingEmailToOrganiser;
@@ -33,12 +33,12 @@ class BookingPanel extends Component
         $this->places_left = $this->event->attendees - $this->event->attendee_count;
     }
 
-    public function tickets(): void
+    public function selected_tickets(): int
     {
-        $this->people = $this->tickets;
+        return $this->people = $this->tickets;
     }
 
-    public function register()
+    public function register(): void
     {
         for($n = 1; $n <= $this->people; $n++) {
             $this->attendee = Attendee::create([

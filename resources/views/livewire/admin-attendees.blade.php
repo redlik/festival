@@ -1,7 +1,7 @@
 <div>
     <div class="flex items-center gap-16 mb-4 bg-gray-100 px-4 py-2 rounded">
         <div class="w-full lg:w-1/4 flex-shrink-0">
-            <input type="search" wire:model.debounce.500ms="search" name="search"
+            <input type="search" wire:model.live.debounce.500ms="search" name="search"
                    class="focus:ring-olive-500 text-gray-600 border-gray-300 w-full rounded block px-2 py-1" placeholder="Search by attendee name">
             @if($search !='')
                 <button wire:click="clear" class="text-xs font-semibold text-red-600 hover:underline mt-2 ml-2">Clear</button>
@@ -9,7 +9,7 @@
         </div>
         <div class="w-full lg:w-1/4 flex-shrink-0">
             <label for="events" class="mr-2 text-sm text-gray-600">Filter by event</label>
-            <select name="events" wire:model="event"
+            <select name="events" wire:model.live="event"
             class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
                 <option value="">All events</option>
                 @foreach($events as $event)

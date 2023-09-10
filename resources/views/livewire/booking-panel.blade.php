@@ -1,8 +1,8 @@
-<div>
+<div class="mt-8 lg:mt-16">
     @php
         $full = false;
-
     @endphp
+
     @if($event->is_private)
         <div class="bg-gray-100 rounded border border-gray-300 text-gray-600 italic p-6 mt-8">
             Please note this is a private event that is not open to the public.
@@ -58,8 +58,8 @@
                                         $number = $places_left;
                                     @endphp
                                 @endif
-                                    <form wire:submit.prevent="tickets">
-                                        <select wire:model.defer="tickets" id='number' class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md mr-4">
+                                    <form wire:submit="selected_tickets">
+                                        <select wire:model="tickets" id='number' class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md mr-4">
                                             @for($i = 1; $i <= $number; $i++)
                                                 <option value="{{ $i }}">{{ $i }} {{ Str::plural('person', $i) }}</option>
                                             @endfor
@@ -68,28 +68,28 @@
                                     </form>
                             </div>
 
-                        <form wire:submit.prevent="register">
+                        <form wire:submit="register">
                             @honeypot
                             @if($full)
-                                <input type="hidden" wire:model="waiting" value="1">
+                                <input type="hidden" wire:model.live="waiting" value="1">
                             @endif
                             @for($j = 1; $j <= $people; $j++)
                                 <div class="lg:flex items-start mb-6">
                                     <div class="grow mr-4 mb-4 md:mb-0">
                                         <div class="mt-1">
-                                            <input type="text" wire:model="names.name-{{ $j }}" id="name-{{ $j }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" required>
+                                            <input type="text" wire:model.live="names.name-{{ $j }}" id="name-{{ $j }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" required>
                                         </div>
                                         <label for="name-{{ $j }}" class="block text-sm font-medium text-gray-700 ml-3 mt-1">Name <span class="text-red-700">*</span></label>
                                     </div>
                                     <div class="grow mr-4 mb-4 md:mb-0">
                                         <div class="mt-1">
-                                            <input type="email" wire:model="names.email-{{ $j }}" id="email-{{ $j }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="you@example.com">
+                                            <input type="email" wire:model.live="names.email-{{ $j }}" id="email-{{ $j }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="you@example.com">
                                         </div>
                                         <label for="email-{{ $j }}" class="block text-sm font-medium text-gray-700 ml-3 mt-1">Email (optional)</label>
                                     </div>
                                     <div class="grow mr-4 mb-4 md:mb-0">
                                         <div class="mt-1">
-                                            <input type="tel" wire:model="names.phone-{{ $j }}" id="phone-{{ $j }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="066 888 8888">
+                                            <input type="tel" wire:model.live="names.phone-{{ $j }}" id="phone-{{ $j }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="066 888 8888">
                                         </div>
                                         <label for="phone-{{ $j }}" class="block text-sm font-medium text-gray-700 ml-3 mt-1">Phone (optional)</label>
                                     </div>
@@ -111,7 +111,7 @@
 
 
                             <div class="mt-6 bg-gray-200 rounded p-2">
-                                <input type="checkbox" wire:model="optin" value="1" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2">
+                                <input type="checkbox" wire:model.live="optin" value="1" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2">
                                 <label for="opt_in" class="font-medium text-gray-700">I agree to be contacted in future about the upcoming events.</label>
                             </div>
                         </form>

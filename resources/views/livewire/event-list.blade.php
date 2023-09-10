@@ -13,7 +13,7 @@
             <h5 class="hidden lg:block">Filter by</h5>
             <div class="my-6">
                 <label for="search" class="mb-2 w-full text-sm">Search by name</label>
-                <input type="search" name="search" id="search" class="focus:ring-olive-500 text-gray-600 border-gray-300 rounded w-full block p-1" wire:model.lazy="search">
+                <input type="search" name="search" id="search" class="focus:ring-olive-500 text-gray-600 border-gray-300 rounded w-full block p-1" wire:model.blur="search">
 
                     <div class="flex justify-between">
                         <button class="text-xs font-bold text-gray-600 hover:underline mt-2 bg-gray-100 rounded px-3 py-1 hover:bg-gray-400 hover:text-white">Search</button>
@@ -25,7 +25,7 @@
             </div>
             <div class="my-6">
                 <label for="selected_day" class="mb-2 text-sm">Day of the events</label>
-                <select name="selected_day" id="selected_day" class="focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md" wire:model="selected_day">
+                <select name="selected_day" id="selected_day" class="focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md" wire:model.live="selected_day">
                     <option value="" selected>All dates</option>
                     @foreach($days as $day)
                         <option value="{{ $day->start_date }}">{{ \Carbon\Carbon::parse($day->start_date)->format('jS M') }}</option>
@@ -34,7 +34,7 @@
             </div>
             <div class="my-6">
                 <label for="town" class="mb-2 text-sm">Town events take place</label>
-                <select name="town" id="town" class="focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md" wire:model="selected_town">
+                <select name="town" id="town" class="focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md" wire:model.live="selected_town">
                     <option value="" selected>All towns</option>
                     @foreach($unique_towns as $town)
                         <option value="{{ $town->town }}">{{ $town->town }}</option>
@@ -43,7 +43,7 @@
             </div>
             <div class="my-6">
                 <label for="type" class="mb-2 text-sm">Event type</label>
-                <select name="type" id="type" class="focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md" wire:model="type">
+                <select name="type" id="type" class="focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md" wire:model.live="type">
                     <option value="" selected>All events</option>
                     <option value="inperson">In person</option>
                     <option value="online">Online</option>
@@ -53,7 +53,7 @@
                 <div class="mb-2 font-semibold text-sm">Target group</div>
                 @foreach($target as $key => $value)
                     <div class="flex items-center h-5 mb-2">
-                        <input id="{{ $key }}" name="{{ $key }}" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="{{ $key }}" wire:model="group">
+                        <input id="{{ $key }}" name="{{ $key }}" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="{{ $key }}" wire:model.live="group">
                         <label for="{{ $key }}" class="font-medium text-gray-700">{{ $value }}</label>
                     </div>
                 @endforeach

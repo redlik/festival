@@ -2,7 +2,7 @@
     <div class="flex items-center justify-between gap-16 mb-4 bg-gray-100 px-4 py-2 rounded">
         <div class="flex items-center w-auto mr-8">
             <div>
-                <input type="search" wire:model.debounce.500ms="search" name="search"
+                <input type="search" wire:model.live.debounce.500ms="search" name="search"
                        class="focus:ring-olive-500 text-gray-600 border-gray-300 rounded w-64 block px-2 py-1" placeholder="Search by event name">
                 @if($search !='')
                     <button wire:click="clear" class="text-xs font-semibold text-red-600 hover:underline mt-2 ml-2">Clear</button>
@@ -11,7 +11,7 @@
         </div>
         <div class="flex items-center w-auto mr-8">
             <label for="year" class="text-gray-700 text-sm mx-2 block w-full">Event's&nbspyear</label>
-            <select name="year" id="year" wire:model="date"
+            <select name="year" id="year" wire:model.live="date"
                     class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
                 <option value="" selected>All events</option>
                 @foreach($years as $year)
@@ -20,7 +20,7 @@
             </select>
         </div>
         <div class="flex items-center w-auto mr-8">
-            <select name="organiser" id="organiser" wire:model="organiser"
+            <select name="organiser" id="organiser" wire:model.live="organiser"
                     class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
                 <option value="" selected>All organisers</option>
                 @foreach($organisers as $organiser)
@@ -30,7 +30,7 @@
         </div>
         <div class="flex items-center w-auto mr-8">
             <label for="year" class="text-gray-700 text-sm mx-2 block w-full">Status</label>
-            <select name="year" id="year" wire:model="status"
+            <select name="year" id="year" wire:model.live="status"
                     class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
                 <option value="" selected>All events</option>
                 <option value="published">Published</option>
@@ -39,6 +39,25 @@
                 <option value="cancelled">Cancelled</option>
                 <option value="archived">Archived</option>
             </select>
+        </div>
+        <div class="relative" x-data="{ menu : false }">
+            <button @click="menu = ! menu" class="w-8 text-center">
+                <i class="fas fa-ellipsis-v"></i>
+            </button>
+            <div class="absolute top-0 right-2 mt-10 bg-white p-2 rounded shadow-xl border border-gray-200 z-50 w-56"
+                 x-show="menu" x-transition.duration.300ms x-on:click.away="menu = false">
+                <a wire:click="export" class="bg-white hover:bg-gray-200 text-gray-900 flex items-center px-3 py-2 text-sm font-medium rounded-md cursor-pointer">
+                    <div class="block">
+                      Export selected events ({{ $events->count() }})
+                    </div>
+                </a>
+                <hr class="my-2">
+                <a wire:click="exportAll" class="bg-white hover:bg-gray-200 text-gray-900 flex items-center px-3 py-2 text-sm font-medium rounded-md cursor-pointer">
+                    <div class="block">
+                      Export all events
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
     <div class="text-sm font-semibold mb-4 ml-8">{{ $events->count() }} {{ \Illuminate\Support\Str::of('event')->plural($events->count())}} listed</div>
