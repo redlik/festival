@@ -107,6 +107,8 @@ class OrganiserController extends Controller
             'linkedin' => $request->input('linkedin'),
             'events' => $request->input('events'),
             'garda_vetting' => $request->input('garda_vetting'),
+            'indemnity_insurance' => $request->input('indemnity_insurance'),
+            'public_liability_insurance' => $request->input('public_liability_insurance'),
         ]);
 
         $organiser->notify(new AccountActivation($organiser));
@@ -196,5 +198,20 @@ class OrganiserController extends Controller
     public function export()
     {
         return Excel::download(new OrganisersExport(), 'organisers-list.xlsx');
+    }
+
+    public function assignOrganiserToUser()
+    {
+        $organisers = Organiser::all();
+
+        foreach ($organisers as $organiser) {
+            $user = User::where('id', $organiser->user_id );
+
+            $user->update([
+                'organiser_id' => $organiser->id,
+            ]);
+        }
+
+        echo('Users assigned');
     }
 }

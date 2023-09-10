@@ -25,10 +25,10 @@
             <form class="space-y-8 divide-y divide-gray-200" method="POST" action="{{ route('event.update', $event) }}" id="event-registration" enctype="multipart/form-data">
                 <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
                     @if(\Session::has('saved'))
-                        <div class="bg-green-100 border border-green-500 p-2 rounded mt-4">
+                        <x-flash type="success">
                             The changes has been saved.
                             <a href="{{ route('dashboard') }}" class="font-bold text-indigo-500 hover:underline"><< Click to return to Dashboard</a>
-                        </div>
+                        </x-flash>
                     @endif
                     @if ($errors->any())
                         <div class="bg-red-200 rounded border border-red-400 pl-2">
@@ -221,11 +221,21 @@
                             </div>
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                                 <label for="phone" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2 font-bold">
+                                    Wheelchair Accessible
+                                    <div class="text-sm text-gray-500 font-normal">Tick the box if your venue is wheelchair accessible</div>
+                                </label>
+                                <div class="mt-1 sm:mt-0 sm:col-span-2 flex items-center h-full">
+                                    <input type="checkbox" name="wheelchair_accessible" id="wheelchair_accessible" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" value="1" @checked(old('wheelchair_accessible', $event->wheelchair_accessible))>
+                                    <label for="wheelchair_accessible" class="text-sm ml-2">Yes, this event is wheelchair accessible</label>
+                                </div>
+                            </div>
+                            <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                                <label for="phone" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2 font-bold">
                                     Contact Phone <span class="text-red-600 align-super">*</span>
                                     <div class="text-sm text-gray-500 font-normal">This phone number will be displayed on event's page for all event related queries.</div>
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                    <input type="tel" name="phone" id="phone" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md" required value="{{$event->phone }}">
+                                    <input type="tel" name="phone" id="phone" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md" required value="{{ $event->phone }}">
                                 </div>
                             </div>
 

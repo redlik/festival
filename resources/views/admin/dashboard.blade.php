@@ -16,6 +16,7 @@
                         </dt>
                         <dd class="mt-1 text-3xl font-semibold text-gray-900">
                             {{ $organisers_count }}
+                            <span class="text-xl text-gray-500">({{ $new_organisers }})</span>
                         </dd>
                     </div>
 
@@ -25,6 +26,7 @@
                         </dt>
                         <dd class="mt-1 text-3xl font-semibold text-gray-900">
                             {{ $events_count }}
+                            <span class="text-xl text-gray-500">({{ $new_events_count }})</span>
                         </dd>
                     </div>
 
@@ -33,7 +35,7 @@
                             <a href="#attendees" class="hover:underline hover:text-indigo-500">Attendees registered</a>
                         </dt>
                         <dd class="mt-1 text-3xl font-semibold text-gray-900">
-                            {{ $attendees->count() }}
+                            {{ $attendees_count }}
                         </dd>
                     </div>
 
@@ -108,34 +110,7 @@
                 </div>
                 <div class="p-6 border border-gray-200 rounded-lg mt-6 p-4 bg-white shadow-lg" id="attendees">
                     <h2 class="text-olive-300 mb-6">Attendees</h2>
-                    <table class="min-w-full divide-y divide-gray-300">
-                        <thead class="bg-gray-50">
-                        <tr>
-                            <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8">Name</th>
-                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Event</th>
-                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Registered on</th>
-                        </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-200 bg-white">
-                        @forelse($attendees as $attendee)
-                            <tr>
-                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8">
-                                    <div>{{ $attendee->name }}</div>
-                                    <div>E: {{ $attendee->email }}   T: {{ $attendee->phone }}</div>
-
-                                </td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    {{ $attendee->event->name }}
-                                </td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $attendee->created_at->format('d M Y H:i') }}</td>
-                            </tr>
-                        @empty
-                            <tr colspan="4">
-                                <td><h4>No attendees registered yet</h4></td>
-                            </tr>
-                        @endforelse
-                        </tbody>
-                    </table>
+                    @livewire('admin-attendees')
                 </div>
             </div>
 

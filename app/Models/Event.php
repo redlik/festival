@@ -14,21 +14,6 @@ class Event extends Model implements hasMedia
     use InteractsWithMedia;
 
     protected $guarded = [];
-//    protected $attributes = ['message' => ''];
-
-//    protected $casts = [
-//        'target' => 'array'
-//    ];
-
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
-//    public function getRouteKeyName(): string
-//    {
-//        return 'slug';
-//    }
 
     public function venue()
     {
@@ -48,6 +33,11 @@ class Event extends Model implements hasMedia
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function organiser()
+    {
+        return $this->hasOneThrough(Organiser::class, User::class);
     }
 
     public function scopeApproved($query)

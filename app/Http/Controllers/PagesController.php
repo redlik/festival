@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\AttendeeRegistration;
 use App\Models\Attendee;
 use App\Models\Event;
 use App\Models\Organiser;
@@ -11,6 +12,7 @@ class PagesController extends Controller
 {
     public function home()
     {
+        AttendeeRegistration::dispatch();
         $events = Event::with('venue')->orderBy('start_date', 'asc')->get();
         $towns = Venue::has('event')->select('id', 'town')->get();
         $target = [
@@ -27,12 +29,15 @@ class PagesController extends Controller
     public function adminDashboard()
     {
         $events_count = Event::count();
-        $attendees = Attendee::with('event')->get();
+        $new_events_count = Event::where('start_date','LIKE', '%'.now()->year.'%' )->count();
+
         $venues = Venue::withCount('event')->get();
+        $attendees_count = Attendee::count();
 
         $organisers_count = Organiser::all()->count();
+        $new_organisers = Organiser::where('created_at','LIKE', '%'.now()->year.'%' )->count();
 
-        return view('admin.dashboard', compact('events_count', 'venues', 'attendees', 'organisers_count'));
+        return view('admin.dashboard', compact('events_count', 'new_events_count', 'venues', 'organisers_count', 'new_organisers', 'attendees_count'));
     }
 
     public function events()

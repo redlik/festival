@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\EventCancelledNotification;
 use App\Models\Attendee;
 use App\Models\Event;
 use App\Models\User;
@@ -90,6 +91,7 @@ class EventController extends Controller
             'leader_name' => $request->input('leader_name'),
             'leader_phone' => $request->input('leader_phone'),
             'leader_email' => $request->input('leader_email'),
+            'wheelchair_accessible' => $request->input('wheelchair_accessible'),
             'status' => 'pending',
             'is_private' => $request->input('is_private'),
         ]);
@@ -157,6 +159,7 @@ class EventController extends Controller
             'leader_name' => $request->input('leader_name'),
             'leader_phone' => $request->input('leader_phone'),
             'leader_email' => $request->input('leader_email'),
+            'wheelchair_accessible' => $request->input('wheelchair_accessible'),
             'status' => 'draft',
             'is_private' => $request->input('is_private'),
         ]);
@@ -219,6 +222,7 @@ class EventController extends Controller
             'leader_name' => $request->input('leader_name'),
             'leader_phone' => $request->input('leader_phone'),
             'leader_email' => $request->input('leader_email'),
+            'wheelchair_accessible' => $request->input('wheelchair_accessible'),
             'status' => 'draft',
             'is_private' => $request->input('is_private'),
         ]);
@@ -316,10 +320,13 @@ class EventController extends Controller
     {
         $event = Event::findOrFail($id);
 
+        foreach ($event->attendee as $attendee) {
+            EventCancelledNotification::dispatch($event, $attendee);
+        }
+
         if (Auth::id() != $event->user_id) {
             return abort(403);
         }
-
         $event->update([
             'status' => 'cancelled',
         ]);
@@ -372,6 +379,7 @@ class EventController extends Controller
             'leader_name' => $request->input('leader_name'),
             'leader_phone' => $request->input('leader_phone'),
             'leader_email' => $request->input('leader_email'),
+            'wheelchair_accessible' => $request->input('wheelchair_accessible'),
             'is_private' => $request->input('is_private'),
         ]);
 
@@ -420,6 +428,7 @@ class EventController extends Controller
             'leader_name' => $request->input('leader_name'),
             'leader_phone' => $request->input('leader_phone'),
             'leader_email' => $request->input('leader_email'),
+            'wheelchair_accessible' => $request->input('wheelchair_accessible'),
             'status' => 'pending',
             'is_private' => $request->input('is_private'),
         ]);

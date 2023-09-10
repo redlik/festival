@@ -58,13 +58,37 @@
                                 </div>
                                 <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                     <dt class="text-sm font-medium text-gray-500">
+                                        Garda Vetting
+                                    </dt>
+                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                        {{ $organiser->garda_vetting ? 'Yes, I do' : 'No, I do not have one' }}
+                                    </dd>
+                                </div>
+                                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                    <dt class="text-sm font-medium text-gray-500">
+                                        Professional Indemnity Insurance
+                                    </dt>
+                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                        {{ $organiser->indemnity_insurance ? 'Yes, I do' : 'No, I do not have one' }}
+                                    </dd>
+                                </div>
+                                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                    <dt class="text-sm font-medium text-gray-500">
+                                        Public Liability Insurance
+                                    </dt>
+                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                        {{ $organiser->public_liability_insurance ? 'Yes, I do' : 'No, I do not have one' }}
+                                    </dd>
+                                </div>
+                                <div class="bg-white-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                    <dt class="text-sm font-medium text-gray-500">
                                         Proposed events
                                     </dt>
                                     <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                                         {!! nl2br(e($organiser->events))!!}
                                     </dd>
                                 </div>
-                                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                     <dt class="text-sm font-medium text-gray-500">
                                         Address
                                     </dt>
@@ -76,7 +100,7 @@
                                         {{ $organiser->eircode }}<br>
                                     </dd>
                                 </div>
-                                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                     <dt class="text-sm font-medium text-gray-500">
                                         Where did you her about us:
                                     </dt>
@@ -84,7 +108,7 @@
                                         {{ $organiser->hear_about }}
                                     </dd>
                                 </div>
-                                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                     <dt class="text-sm font-medium text-gray-500">
                                         Online details
                                     </dt>
