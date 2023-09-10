@@ -3,7 +3,7 @@
         <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
             <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                 <div class="w-full block p-4">
-                    <select wire:model="filter" id="filter" class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
+                    <select wire:model.live="filter" id="filter" class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
                         <option value="" selected>All Events</option>
                         @foreach($events as $event)
                             <option value="{{ $event->id }}">{{ $event->name }}</option>
