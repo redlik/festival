@@ -21,4 +21,9 @@ class Organiser extends Model
     {
         return $this->hasManyThrough(Event::class, User::class);
     }
+
+    public function hasEvents()
+    {
+        return $this->hasMany(Event::class);
+    }
 }

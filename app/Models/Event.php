@@ -76,4 +76,11 @@ class Event extends Model implements hasMedia
     {
         return $this->belongsToMany(Target::class);
     }
+
+    public function hasOrganiser()
+    {
+        return $this->belongsTo(Organiser::class, 'organiser_id');
+    }
+
+
 }

@@ -61,6 +61,7 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin'], func
     Route::post('event/request-docs/{event}', [EventController::class, 'adminRequestDocuments'])->name('admin.event.request-docs');
     Route::get('resend-activation/{organiser}', [OrganiserController::class, 'resendActivation'])->name('admin.resend-activation');
     Route::get('assign-users', [OrganiserController::class, 'assignOrganiserToUser'])->name('admin.assign.users');
+    Route::get('assign-orgs', [EventController::class, 'assignOrganisersToEvents'])->name('admin.assign.orgs');
 });
 
 Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'venue'], function () {
