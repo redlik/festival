@@ -1123,6 +1123,10 @@ tr:nth-child(even) {
   margin-top: -0.25rem;
   margin-bottom: -0.25rem;
 }
+.my-16 {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
 .ml-3 {
   margin-left: 0.75rem;
 }
@@ -1525,6 +1529,9 @@ tr:nth-child(even) {
 }
 .shrink-0 {
   flex-shrink: 0;
+}
+.flex-grow {
+  flex-grow: 1;
 }
 .grow-0 {
   flex-grow: 0;
@@ -3796,6 +3803,10 @@ tr:nth-child(even) {
     border-radius: 0.5rem;
   }
 
+  .sm\:rounded-xl {
+    border-radius: 0.75rem;
+  }
+
   .sm\:border-t {
     border-top-width: 1px;
   }
@@ -3841,6 +3852,11 @@ tr:nth-child(even) {
   .sm\:py-1 {
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
+  }
+
+  .sm\:px-12 {
+    padding-left: 3rem;
+    padding-right: 3rem;
   }
 
   .sm\:pl-6 {

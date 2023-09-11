@@ -91,7 +91,7 @@ class EventResource extends Resource
                     ->sortable()
                     ->colors([
                         'primary',
-                        'secondary' => 'draft',
+                        'gray' => 'draft',
                         'warning' => 'pending',
                         'success' => 'published',
                         'danger' => 'canceled',
@@ -99,14 +99,15 @@ class EventResource extends Resource
             ])
             ->filters([
                 SelectFilter::make('status')->options([
-                    'draft' => 'Draft',
+                    'draft' => 'Drafton',
                     'pending' => "Pending",
                     'activated' => "Activated",
                 ]),
-                SelectFilter::make('created_at')->options([
-                    '2023' => '2023',
-                    '2022' => '2022',
-                ])
+                SelectFilter::make('start_date')->options(
+                    Event::all()->pluck('start_date')
+                )
+                ->label('Event Year')
+                ->attribute('start_date'),
             ], layout: FiltersLayout::AboveContent)
             ->actions([
                 Tables\Actions\ViewAction::make(),
