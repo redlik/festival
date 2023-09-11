@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Jobs\EventCancelledNotification;
 use App\Models\Attendee;
 use App\Models\Event;
+use App\Models\Organiser;
 use App\Models\User;
 use App\Models\Venue;
 use App\Notifications\EventDocumentRequest;
@@ -463,5 +464,19 @@ class EventController extends Controller
         $event->delete();
 
         return back()->with('deleted', $message);
+    }
+
+    public function assignOrganisersToEvents()
+    {
+        $events = Event::all();
+
+        foreach ($events as $event) {
+            $organiser = Organiser::where('user_id', $event->user_id)->first();
+            $event->update([
+                'organiser_id' => $organiser->id,
+            ]);
+        }
+
+        echo('Orgs assigned');
     }
 }
