@@ -1,4 +1,4 @@
-<div class="lg:flex mt-6 lg:mt-0" id="event-list" x-data="{ filterShow : true }">
+<div class="lg:flex mt-8 lg:mt-0" id="event-list" x-data="{ filterShow : true }">
     <div class="bg-gray-200 mr-4 p-2 rounded-t w-full lg:w-auto mb-6">
         <div class="lg:hidden flex justify-between content-center">
             <div><h5>Filter events</h5></div>
@@ -10,7 +10,7 @@
             </div>
         </div>
         <div x-cloak :class="filterShow ? 'hidden lg:block' : 'block'">
-            <h5 class="hidden lg:block">Filter by</h5>
+            <h5 class="hidden lg:block text-olive-600">Filter events</h5>
             <div class="my-6">
                 <label for="search" class="mb-2 w-full text-sm">Search by name</label>
                 <input type="search" name="search" id="search" class="focus:ring-olive-500 text-gray-600 border-gray-300 rounded w-full block p-1" wire:model.lazy="search">

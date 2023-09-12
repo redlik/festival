@@ -11,16 +11,16 @@
         </style>
     @endpush
 
-    <div id="hero" class="bg-center bg-gray-100 md:bg-[url('/img/home-hero.jpg')] bg-cover">
-        <div class="max-w-7xl mx-auto px-0 lg:px-8 flex flex-wrap items-center pt-0 pb-0 lg:py-48">
+    <div id="hero" class="bg-center bg-gray-100 md:bg-[url('/img/home-hero-23.jpg')] bg-cover bg-no-repeat">
+        <div class="max-w-7xl mx-auto px-0 lg:px-8 flex flex-wrap items-end pt-0 lg:pb-12 lg:pt-[500px]">
             <div class="w-full lg:hidden">
-                <img src="{{ asset('img/home-hero.jpg') }}" class="object-cover object-bottom h-full w-full" alt="">
+                <img src="{{ asset('img/home-hero-23.jpg') }}" class="object-cover object-bottom h-full w-full" alt="">
             </div>
-            <div class="w-full lg:w-1/2 p-4 lg:rounded-lg backdrop-blur" style="background-color: rgba(213, 208, 136, 0.95)">
+            <div class="w-full lg:w-2/3 p-4 lg:rounded-lg backdrop-blur" style="background-color: rgba(213, 208, 136, 0.85)">
                 <h1 class="text-2xl lg:text-4xl mb-4 fancy font-semibold">Welcome to Kerry Mental Health & Wellbeing Fest 2023</h1>
                 <div class="font-semibold lg:text-lg text-gray-800 mb-4">Held between Saturday, 7th – 14th October 2023 the Fest aims to raise awareness of the available supports and services in the county as well as empower people to engage with the ‘Five Ways to Wellbeing’ through offering a dynamic and interactive programme of events.</div>
-                <a href="{{ route('pages.about') }}">
-                    <button class="button-primary">Read more</button>
+                <a href="{{ route('events') }}">
+                    <button class="button-primary">View Events</button>
                 </a>
             </div>
         </div>
@@ -42,21 +42,16 @@
             @endif
         </div>
     </div>
-    <div class="bg-olive-600">
-        <div class="max-w-7xl mx-auto py-8 px-4 lg:px-0 text-white">
-           <h3 class="text-white mb-2">Online Information Session for Event Organisers</h3>
-            <p class="text-white">
-                Watch our online Information Session for event organisers held on 9th August 2023 here. You can learn more about the Fest, the types of events held previously, hear from current event organisers and access a demonstration of how to register on the website.
-            </p>
-            <a href="https://vimeo.com/854902830/46cd78b329" target="_blank" class="text-white font-semibold underline mt-2">Click here to watch the video</a>
-        </div>
-    </div>
     <div class="bg-white">
-        <div class="max-w-7xl mx-auto py-4 px-4">
-            <img src="{{ asset('img/nef-5-ways-to-wellbeing-wide.jpg') }}" alt="5 Ways to Wellbeing - Connect, Give, Take Notice, Keep Learning, Be Active" class="mx-auto w-full lg:w-3/4">
+        <div class="max-w-7xl mx-auto px-4 py-8">
+            <div class="text-center">
+                <h3 class="uppercase text-3xl mb-6 text-olive-500">Upcoming events</h3>
+            </div>
+            @livewire('event-list')
         </div>
     </div>
-    <div class="bg-gray-200">
+
+    <div class="bg-gray-100">
             <div class="max-w-7xl mx-auto py-4 px-4 lg:flex lg:items-center" x-data="{ showPoster : false }">
                 <div class="w-full lg:w-1/2 mb-4 lg:mb-0">
                     <h3 class="text-2xl mb-2">Events of 2022 Kerry Mental & Wellbeing Health Festival</h3>
@@ -97,26 +92,5 @@
 
             </div>
     </div>
-    <div class="bg-white">
-        <div class="max-w-7xl mx-auto px-4 py-8 lg:flex items-center justify-between">
-{{--            <div class="">--}}
-{{--                <h3 class="uppercase text-2xl mb-4">Upcoming events</h3>--}}
-{{--            </div>--}}
-{{--            @livewire('event-list')--}}
-            <div class="w-full lg:w-1/2">
-                <h2 class="text-2xl tracking-tight uppercase text-gray-700 md:text-4xl">
-                    <span class="block">Organising an event in 2023?</span>
-                </h2>
-                <div class="block text-2xl text-olive-600 mt-2">Fill out the registration form</div>
-                <p class="text-sm mt-2">If you have already registered last year, you don't need to fill out the registration form again. <br>Just use the login details to access the Dashboard.
-                    </p>
-                <a href="{{ route('login') }}" class="font-bold hover:underline mt-2">Login here</a>
-            </div>
-            <div class="w-full lg:w-1/2 mt-6 lg:mt-0 flex justify-start lg:justify-center">
-                    <a href="/join-us" class="button-primary">
-                        Organiser registration
-                    </a>
-            </div>
-        </div>
     </div>
 </x-app-layout>
