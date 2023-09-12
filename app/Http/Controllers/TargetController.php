@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Target;
 use Illuminate\Http\Request;
+use Str;
 
 class TargetController extends Controller
 {
@@ -14,7 +15,10 @@ class TargetController extends Controller
      */
     public function index()
     {
-        //
+        $targets = Target::all();
+
+        return view('admin.target', compact('targets'));
+
     }
 
     /**
@@ -24,7 +28,7 @@ class TargetController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -35,7 +39,12 @@ class TargetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Target::create([
+            'name' => $request->input('name'),
+            'slug' => Str::slug($request->input('name')),
+        ]);
+
+        return redirect()->back->with('created', 'Target has been created');
     }
 
     /**
@@ -80,6 +89,6 @@ class TargetController extends Controller
      */
     public function destroy(Target $target)
     {
-        //
+
     }
 }

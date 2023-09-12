@@ -46,12 +46,14 @@
             </button>
             <div class="absolute top-0 right-2 mt-10 bg-white p-2 rounded shadow-xl border border-gray-200 z-50 w-56"
                  x-show="menu" x-transition.duration.300ms x-on:click.away="menu = false">
+                <a href="{{ route('target.index') }}" class="bg-white hover:bg-gray-200 text-gray-900 flex items-center px-3 py-2 text-sm font-medium rounded-md cursor-pointer">Target tags</a>
+                <hr class="my-2">
+                <div class="ml-3 font-bold mt-4 mb-2 text-gray-500">Exports</div>
                 <a wire:click="export" class="bg-white hover:bg-gray-200 text-gray-900 flex items-center px-3 py-2 text-sm font-medium rounded-md cursor-pointer">
                     <div class="block">
                       Export selected events ({{ $events->count() }})
                     </div>
                 </a>
-                <hr class="my-2">
                 <a wire:click="exportAll" class="bg-white hover:bg-gray-200 text-gray-900 flex items-center px-3 py-2 text-sm font-medium rounded-md cursor-pointer">
                     <div class="block">
                       Export all events
@@ -62,7 +64,7 @@
     </div>
     <div class="text-sm font-semibold mb-4 ml-8">{{ $events->count() }} {{ \Illuminate\Support\Str::of('event')->plural($events->count())}} listed</div>
     <table class="min-w-full divide-y divide-gray-300">
-        <thead class="bg-gray-100">
+        <thead class="bg-gray-100 rounded-l-lg">
         <tr>
             <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8">#</th>
             <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900">Name</th>

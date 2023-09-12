@@ -16,4 +16,9 @@ class Target extends Model
         return $this->belongsToMany(Event::class);
     }
 
+    public function getEventsAttribute()
+    {
+        return count($this->event);
+    }
+
 }

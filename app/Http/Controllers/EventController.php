@@ -6,6 +6,7 @@ use App\Jobs\EventCancelledNotification;
 use App\Models\Attendee;
 use App\Models\Event;
 use App\Models\Organiser;
+use App\Models\Target;
 use App\Models\User;
 use App\Models\Venue;
 use App\Notifications\EventDocumentRequest;
@@ -478,5 +479,19 @@ class EventController extends Controller
         }
 
         echo('Orgs assigned');
+    }
+
+    public function assignTargets()
+    {
+        $events = Event::all();
+
+        foreach ($events as $event) {
+            foreach(json_decode($event->target) as $target_item) {
+                $target = Target::whereSlug($target_item)->first();
+                $event->target()->attach($target);
+            }
+        }
+
+        echo('Targets assigned');
     }
 }
