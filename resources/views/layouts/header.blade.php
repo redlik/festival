@@ -145,10 +145,20 @@
             <a href="/about" class="text-gray-700 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</a>
 
             <a href="/contact" class="text-gray-700 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contact us</a>
+            @guest
+                <a href="/login" class="text-green-700 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-bold uppercase">Login</a>
+                <a href="/join-us" class="text-red-700 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-bold uppercase">Registration</a>
+            @endguest
+            @role('admin')
+            <a href="{{ route('admin.dashboard') }}" class="text-gray-700 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-bold ">Admin Dashboard</a>
+            @endrole
+            @role('organiser')
+            <a href="{{ route('dashboard') }}" class="text-gray-700 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-bold ">Dashboard</a>
+            @endrole
+            @hasanyrole('organiser|attendee')
+            <a href="{{ route('attendee.bookings') }}" class="text-gray-700 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-bold ">My Bookings</a>
+            @endrole
 
-            <a href="/login" class="text-green-700 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-bold uppercase">Login</a>
-
-            <a href="/join-us" class="text-red-700 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-bold uppercase">Registration</a>
         </div>
     </div>
 </nav>

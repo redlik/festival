@@ -5,13 +5,13 @@
         </h2>
     </x-slot>
 
-    <div class="py-0 md:py-12">
+    <div class="py-0 md:py-8">
         <div class="bg-gray-100">
             <div class="mx-auto w-full">
                 <div class="px-4 sm:px-6 lg:px-8">
                     <div class="text-center">
-                        <p class="mt-2 text-sm text-gray-700 font-medium">List of all bookings you've made for yourself
-                            and for other attendees, while using your login.</p>
+                        <p class="mt-8 md:mt-4 text-sm text-gray-700 font-medium">List of all bookings you've made for yourself
+                            and for other attendees under your account.</p>
                     </div>
                     @if (Session::has('deleted'))
                         <div

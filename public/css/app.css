@@ -3572,6 +3572,10 @@ input-box:focus {
     margin-bottom: 0px;
   }
 
+  .md\:mt-4 {
+    margin-top: 1rem;
+  }
+
   .md\:flex {
     display: flex;
   }
@@ -3631,6 +3635,19 @@ input-box:focus {
     padding-right: 1.5rem;
   }
 
+  .md\:py-8 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .md\:pb-0 {
+    padding-bottom: 0px;
+  }
+
+  .md\:pb-4 {
+    padding-bottom: 1rem;
+  }
+
   .md\:text-4xl {
     font-size: 2.25rem;
     line-height: 2.5rem;
@@ -3682,6 +3699,10 @@ input-box:focus {
 
   .lg\:mt-1 {
     margin-top: 0.25rem;
+  }
+
+  .lg\:mt-4 {
+    margin-top: 1rem;
   }
 
   .lg\:block {
@@ -3827,6 +3848,16 @@ input-box:focus {
     padding-bottom: 6rem;
   }
 
+  .lg\:px-0 {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .lg\:px-2 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
   .lg\:pl-8 {
     padding-left: 2rem;
   }
@@ -3849,6 +3880,10 @@ input-box:focus {
 
   .lg\:pt-\[500px\] {
     padding-top: 500px;
+  }
+
+  .lg\:pb-0 {
+    padding-bottom: 0px;
   }
 
   .lg\:text-4xl {
