@@ -1,8 +1,4 @@
 <div class="mt-8 lg:mt-16">
-    @php
-        $full = false;
-
-    @endphp
     @if($event->is_private)
         <div class="bg-gray-100 rounded border border-gray-300 text-gray-600 italic p-6 mt-8">
             Please note this is a private event that is not open to the public.
@@ -10,31 +6,28 @@
     @else
         <div class="bg-gray-100 rounded border border-gray-300 p-6 mt-8">
             @auth
+                @if(\Session::has('registered'))
+                    <div class="bg-green-100 border border-green-500 text-green-700 p-2 font-semibold rounded mb-6">
+                        {{ \Session::get('registered') }}
+                    </div>
+                @endif
+
                 @if($event->start_date < \Carbon\Carbon::now())
                     <h5 class="text-gray-600">The registrations for this event are now closed.</h5>
                 @else
                     @if($event->limited != 0)
-                        @if($event->attendees <= $event->attendee_count)
+                        @if($full)
                             <div>
-                                <h5 class="bg-red-100 rounded px-3 py-1 text-red-600 shadow font-medium">The event is fully booked, but you can still enroll into a waiting list below.</h5>
-                                @php
-                                    $full = true;
-                                @endphp
+                                <h5 class="bg-red-100 rounded px-3 py-1 text-red-600 shadow font-medium">The event is now fully booked, but you can still enroll into a waiting list below.</h5>
                             </div>
                         @else
                             <h4 class="text-gray-600">Please fill in your details below to register for this event.</h4>
-                            <div>
-                                {{ $places_left }} places left.
+                            <div class="px-4 py-1 mt-2 rounded-full bg-gray-300 text-olive-600 border border-olive-600 inline-block font-bold">
+                                {{ $places_left }} {{ \Illuminate\Support\Str::of('place')->plural($places_left)}} left
                             </div>
                         @endif
                     @else
                         <h4 class="text-gray-600">Please fill in your details below to register for this event.</h4>
-                    @endif
-
-                    @if(\Session::has('registered'))
-                        <div class="bg-gray-700 border border-gray-300 text-gray-100 p-2 rounded mt-4">
-                            {{ \Session::get('registered') }}
-                        </div>
                     @endif
 
                     <div class="my-6">
@@ -48,48 +41,49 @@
                             </div>
                         @endif
                             <div class="mt-4 mb-8 w-full">
-
-                                @if($places_left >= 6 || $event->limited == 0)
-                                    @php
-                                        $number = 6;
-                                    @endphp
-                                @else
-                                    @php
-                                        $number = $places_left;
-                                    @endphp
+                                @if(! $full)
+                                    <div class="flex items-center mb-4">
+                                    <div>
+                                        <button class="{{ $disabled_minus ? 'cursor-not-allowed' : 'cursor-pointer' }}" wire:click="minus">
+                                            <i class="fa-solid fa-circle-minus text-xl {{ $disabled_minus ? 'text-olive-300' : 'text-olive-600' }}"></i>
+                                        </button>
+                                    </div>
+                                    <div class="text-3xl font-bold text-olive-700 px-4">
+                                        {{ $tickets }}
+                                    </div>
+                                    <div>
+                                        <button class="{{ $disabled_plus ? 'cursor-not-allowed' : 'cursor-pointer' }}" wire:click="plus">
+                                            <i class="fa-solid fa-circle-plus text-xl {{ $disabled_plus ? 'text-olive-300' : 'text-olive-600' }}"></i>
+                                        </button>
+                                    </div>
+                                    <div class="ml-4 text-olive-600 text-sm font-semibold">
+                                        Select number of places you wish to book (max 6 per person)
+                                    </div>
+                                </div>
                                 @endif
-                                    <form wire:submit.prevent="tickets">
-                                        <select wire:model.defer="tickets" id='number' class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md mr-4">
-                                            @for($i = 1; $i <= $number; $i++)
-                                                <option value="{{ $i }}">{{ $i }} {{ Str::plural('person', $i) }}</option>
-                                            @endfor
-                                        </select>
-                                        <button class="button-primary">Book places</button>
-                                    </form>
                             </div>
-
                         <form wire:submit.prevent="register">
                             @honeypot
                             @if($full)
-                                <input type="hidden" wire:model="waiting" value="1">
+                                <input type="hidden" wire:model="waiting_status" value="1">
                             @endif
-                            @for($j = 1; $j <= $people; $j++)
+                            @for($j = 1; $j <= $tickets; $j++)
                                 <div class="lg:flex items-start mb-6">
                                     <div class="grow mr-4 mb-4 md:mb-0">
                                         <div class="mt-1">
-                                            <input type="text" wire:model="names.name-{{ $j }}" id="name-{{ $j }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" required>
+                                            <input type="text" wire:model.defer="names.name-{{ $j }}" id="name-{{ $j }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" required>
                                         </div>
                                         <label for="name-{{ $j }}" class="block text-sm font-medium text-gray-700 ml-3 mt-1">Name <span class="text-red-700">*</span></label>
                                     </div>
                                     <div class="grow mr-4 mb-4 md:mb-0">
                                         <div class="mt-1">
-                                            <input type="email" wire:model="names.email-{{ $j }}" id="email-{{ $j }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="you@example.com">
+                                            <input type="email" wire:model.defer="names.email-{{ $j }}" id="email-{{ $j }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="you@example.com">
                                         </div>
                                         <label for="email-{{ $j }}" class="block text-sm font-medium text-gray-700 ml-3 mt-1">Email (optional)</label>
                                     </div>
                                     <div class="grow mr-4 mb-4 md:mb-0">
                                         <div class="mt-1">
-                                            <input type="tel" wire:model="names.phone-{{ $j }}" id="phone-{{ $j }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="066 888 8888">
+                                            <input type="tel" wire:model.defer="names.phone-{{ $j }}" id="phone-{{ $j }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="066 888 8888">
                                         </div>
                                         <label for="phone-{{ $j }}" class="block text-sm font-medium text-gray-700 ml-3 mt-1">Phone (optional)</label>
                                     </div>
@@ -110,16 +104,13 @@
                             </div>
 
 
-                            <div class="mt-6 bg-gray-200 rounded p-2">
+                            <div class="mt-6">
                                 <input type="checkbox" wire:model="optin" value="1" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2">
                                 <label for="opt_in" class="font-medium text-gray-700">I agree to be contacted in future about the upcoming events.</label>
                             </div>
                         </form>
                         <div class="text-gray-500 text-sm mt-4">
                             Your personal details won't be shared with anyone unauthorised. We only use it if the organiser of the event makes some changes, such as changing dates & times, cancelling etc.
-                        </div>
-                        <div>
-                            Bookings left:
                         </div>
                     </div>
                 @endif
@@ -128,7 +119,6 @@
                 <div class="text-gray-600 font-medium">
                     The registration for the event require a booking account, please register your <a href="{{ route('pages.split') }}#registration-form" class="font-bold hover:underline">account
                         here</a>, or <a href="{{ route('login') }}" class="font-bold hover:underline">login</a> to make a booking.
-
                 </div>
             @endguest
 

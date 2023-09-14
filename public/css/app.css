@@ -2452,6 +2452,10 @@ input-box:focus {
   --tw-text-opacity: 1;
   color: rgb(37 99 235 / var(--tw-text-opacity));
 }
+.text-olive-700 {
+  --tw-text-opacity: 1;
+  color: rgb(52 55 46 / var(--tw-text-opacity));
+}
 .underline {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;

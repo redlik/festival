@@ -115,16 +115,18 @@
                         @if($event->limited == 1)
                             @if($event->attendees === $event->attendee_count)
                                 <span class="font-semibold bg-red-100 text-red-700 rounded px-3 py-1">
-                                                <i class="fa-solid fa-user-lock mr-1 text-red-600"></i> {{ $event->attendee_count ?? '0' }} / {{ $event->attendees }}
+                                                <i class="fa-solid fa-user-lock mr-1 text-red-600"></i> {{ $event->booked_count ?? '0' }} / {{ $event->attendees }}
                                             </span>
                             @else
                                 <span class="font-semibold bg-blue-100 text-indigo-700 rounded px-3 py-1">
-                                                <i class="fa-solid fa-user-lock mr-1 text-indigo-600"></i> {{ $event->attendee_count ?? '0' }} / {{ $event->attendees }}
+                                                <i class="fa-solid fa-user-lock mr-1 text-indigo-600"></i> {{ $event->booked->count() ?? '0' }} / {{ $event->attendees }}
                                             </span>
                             @endif
                         @else
-                            <span class="text-green-600 bg-green-100 rounded px-3 py-1 font-semibold"><i class="fa-solid fa-people-group mr-1"></i> {{ $event->attendee_count ?? '0' }}</span>
+                            <span class="text-green-600 bg-green-100 rounded px-3 py-1 font-semibold"><i class="fa-solid fa-people-group mr-1"></i> {{ $event->booked_count ?? '0' }}</span>
                         @endif
+                            <span class="text-orange-600 bg-orange-100 rounded px-3 py-1 font-semibold ml-3"><i class="fa-solid fa-hourglass mr-1" title="Number in waiting list"></i></i> {{ $event->waiting_count ?? '0' }}</span>
+
                     @endif
                 </td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">

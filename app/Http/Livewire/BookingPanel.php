@@ -20,26 +20,92 @@ class BookingPanel extends Component
 
     public $optin = false;
 
-    public $waiting = false;
+    public $waiting_status = false;
+
+    public $full = false;
+
+    public $disabled_minus = true;
+    public $disabled_plus = false;
 
     public $places_left;
 
     public $names = [];
 
-    public $message = '';
+    public $message = 'Thank you for registering. See you at the event!';
 
     public function mount()
     {
-        $this->places_left = $this->event->attendees - $this->event->attendee_count;
+        if($this->event->limited) {
+            $this->places_left = $this->event->attendees - $this->event->booked_count;
+        } else {
+            $this->places_left = 6;
+        }
+
+        if($this->places_left == 1) {
+            $this->disabled_plus = true;
+            $this->disabled_minus = true;
+        }
+        if($this->places_left <= 0 && $this->event->limited) {
+            $this->full = true;
+        }
     }
 
-    public function tickets(): void
+    public function minus()
     {
-        $this->people = $this->tickets;
+        if ($this->tickets == $this->places_left) {
+            $this->disabled_plus = true;
+        }
+
+        if($this->tickets <= 2) {
+            $this->disabled_minus = true;
+            $this->tickets = 1;
+        }
+        else {
+            $this->tickets--;
+            $this->disabled_plus = false;
+            $this->disabled_minus = false;
+        }
+    }
+
+    public function plus()
+    {
+        if ($this->tickets === $this->places_left) {
+            $this->disabled_minus = true;
+            $this->disabled_plus = true;
+            return;
+        }
+
+        if ($this->tickets >= ($this->places_left - 1)) {
+            $this->disabled_plus = true;
+            $this->disabled_minus = false;
+            $this->tickets = $this->places_left;
+        } elseif ($this->tickets >= 5 ) {
+            $this->disabled_plus = true;
+            $this->tickets = 6;
+
+        }
+        else {
+            $this->tickets++;
+            $this->disabled_minus = false;
+
+        }
+
+        if($this->tickets >= 6) {
+            $this->disabled_plus = true;
+            $this->tickets = 6;
+
+        }
     }
 
     public function register()
     {
+        $this->people = $this->tickets;
+
+        if($this->full) {
+            $this->waiting_status = true;
+            $this->message = "You've been added to the waiting list. If one of the attendees cancels we will get in touch.";
+        }
+
         for($n = 1; $n <= $this->people; $n++) {
             $this->attendee = Attendee::create([
                 'name' => $this->names['name-'.$n],
@@ -48,20 +114,35 @@ class BookingPanel extends Component
                 'opt_in' => $this->optin,
                 'event_id' => $this->event->id,
                 'user_id' => Auth::user()->id,
-                'waiting_status' => false,
+                'waiting_status' => $this->waiting_status,
             ]);
         }
 
         BookingEmailToOrganiser::dispatch($this->event, $this->people);
-        BookingEmailToAttendee::dispatch(Auth::user(), $this->event, $this->names);
+        BookingEmailToAttendee::dispatch(Auth::user(), $this->event, $this->names, $this->waiting_status);
 
-        $this->places_left = $this->places_left - $this->people;
+        if($this->waiting_status != true){
+            $this->places_left = $this->places_left - $this->people;
+        }
 
         $this->people = 1;
         $this->tickets = 1;
         $this->names = [];
 
-        session()->flash('registered', "Thank you for registering. See you at the event!") ;
+        if($this->places_left == 0) {
+            $this->full = true;
+        }
+
+        if($this->places_left <= 1) {
+            $this->disabled_minus = true;
+            $this->disabled_plus = true;
+        } else {
+            $this->disabled_minus = true;
+        }
+
+        session()->flash('registered', $this->message) ;
+
+        return redirect(request()->header('Referer'));
     }
     public function render()
     {

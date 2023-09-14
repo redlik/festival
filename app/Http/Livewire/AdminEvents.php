@@ -53,11 +53,11 @@ class AdminEvents extends Component
             ->when($this->date, function($q){
                 $q->whereYear('start_date',$this->date);
             })
-            ->withCount('attendee')
+            ->withCount('booked', 'waiting')
             ->when($this->organiser, function($o) {
                 $o->where('user_id', $this->organiser);
             })
-            ->with('attendee', 'venue', 'user.organiser')
+            ->with('booked', 'venue', 'user.organiser', 'waiting')
             ->orderBy(\DB::raw("DATE_FORMAT(start_date,'%d-%M-%Y')"), 'DESC')
             ->get();
 

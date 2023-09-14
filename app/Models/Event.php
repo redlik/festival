@@ -25,9 +25,14 @@ class Event extends Model implements hasMedia
         return $this->hasMany(Attendee::class);
     }
 
+    public function booked()
+    {
+        return $this->hasMany(Attendee::class)->where('waiting_status','=', false);
+    }
+
     public function waiting()
     {
-        return $this->hasMany(Attendee::class);
+        return $this->hasMany(Attendee::class)->where('waiting_status','=', true);
     }
 
     public function user()

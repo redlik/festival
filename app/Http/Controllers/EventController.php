@@ -251,7 +251,7 @@ class EventController extends Controller
 
     public function showBySlug($slug)
     {
-        $event = Event::where('slug', $slug)->withCount('attendee')->first();
+        $event = Event::where('slug', $slug)->withCount( 'booked')->first();
 
         return view('event.show', compact('event'));
     }
