@@ -28,6 +28,10 @@
                                 Date / Time
                             </th>
                             <th scope="col"
+                                class="sticky top-0 z-10  border-b border-gray-300 bg-gray-50 bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter">
+                                Booking type
+                            </th>
+                            <th scope="col"
                                 class="sticky top-0 z-10 border-b border-gray-300 bg-gray-50 bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter">
                                 Event Status
                             </th>
@@ -40,7 +44,7 @@
                         </thead>
                         <tbody class="bg-white">
                         @forelse($bookings as $booking)
-                            <tr>
+                            <tr class="hover:bg-gray-200">
                                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{ $booking->name }}</td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $booking->event->name }}</td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $booking->event->start_date }}
@@ -48,10 +52,15 @@
                                     {{ \Carbon\Carbon::parse($booking->event->start_time)
                                     ->format('H:i') }} </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                    {{ $booking->waiting_status ? 'Attendee' : 'Waiting List' }}
+                                </td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     @if($booking->event->status == 'published')
                                         <span>Scheduled</span>
                                     @else
+                                        <span class="text-red-700">
                                         {{ ucfirst($booking->event->status) }}
+                                        </span>
                                     @endif
                                 </td>
                                 <td class="whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-semibold sm:pr-6">
@@ -59,15 +68,9 @@
                                           onsubmit="return confirm('Do you wish to cancel this booking?');">
                                         @csrf
                                         @method('DELETE')
-                                        @if($booking->waiting_status)
-                                            <button type="submit" class="text-red-600 hover:text-red-900"><i
-                                                    class="fa-solid fa-trash-can"></i> Delete
-                                            </button>
-                                        @else
-                                            <button type="submit" class="text-red-600 hover:text-red-900">
+                                            <button type="submit" class="text-red-600 hover:text-red-900" title="Cancel this booking">
                                                 <i class="fa-solid fa-circle-minus"></i> Cancel
                                             </button>
-                                        @endif
                                     </form>
                                 </td>
                             </tr>
