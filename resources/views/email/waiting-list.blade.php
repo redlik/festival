@@ -67,7 +67,7 @@
                             <div style="margin-left: auto; margin-right: auto; width: 100%; text-align: center">
                                 <a href="{{ route('event.show-by-slug', $attendee->event->slug) }}" class="hover-bg-gray-500" style="text-decoration: none; border-radius: 4px; background-color: #374151; padding-left: 16px; padding-right: 16px; padding-top: 12px; padding-bottom: 12px; color: #fff; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)">Event details</a>
                             </div>
-                            <p style="margin-top: 32px; text-align: center; font-size: 12px; color: #94a3b8">Kerry Mental Health & Wellbeing Fest ©2022</p>
+                            <p style="margin-top: 32px; text-align: center; font-size: 12px; color: #94a3b8">Kerry Mental Health & Wellbeing Fest ©2023</p>
                         </td>
                     </tr>
                 </table>

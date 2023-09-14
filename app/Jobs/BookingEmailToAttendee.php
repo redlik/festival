@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Mail\WaitingListEmail;
 use App\Models\Event;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -23,17 +24,20 @@ class BookingEmailToAttendee implements ShouldQueue
 
     private $names = [];
 
+    private $waiting_status;
+
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($user, Event $event, $names)
+    public function __construct($user, Event $event, $names, $waiting_status)
     {
         $this->event = $event;
         $this->names = $names;
         $this->user = $user;
+        $this->waiting_status = $waiting_status;
     }
 
     /**
@@ -43,6 +47,12 @@ class BookingEmailToAttendee implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->user->email)->send(new BookingNotificationEmail($this->event, $this->names));
+        if(!$this->waiting_status){
+            Mail::to($this->user->email)->send(new BookingNotificationEmail($this->event, $this->names));
+        }
+        else {
+            Mail::to($this->user->email)->send(new WaitingListEmail($this->event, $this->names));
+
+        }
     }
 }

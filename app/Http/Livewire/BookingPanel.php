@@ -118,7 +118,7 @@ class BookingPanel extends Component
             ]);
         }
 
-        BookingEmailToOrganiser::dispatch($this->event, $this->people);
+        BookingEmailToOrganiser::dispatch($this->event, $this->people, $this->waiting_status);
         BookingEmailToAttendee::dispatch(Auth::user(), $this->event, $this->names, $this->waiting_status);
 
         if($this->waiting_status != true){

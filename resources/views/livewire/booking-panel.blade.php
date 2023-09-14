@@ -77,9 +77,14 @@
                                     </div>
                                     <div class="grow mr-4 mb-4 md:mb-0">
                                         <div class="mt-1">
-                                            <input type="email" wire:model.defer="names.email-{{ $j }}" id="email-{{ $j }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="you@example.com">
+                                            <input type="email" wire:model.defer="names.email-{{ $j }}" id="email-{{ $j }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="you@example.com"
+                                            @if($full)
+                                                required
+                                            @endif>
                                         </div>
-                                        <label for="email-{{ $j }}" class="block text-sm font-medium text-gray-700 ml-3 mt-1">Email (optional)</label>
+                                        <label for="email-{{ $j }}" class="block text-sm font-medium text-gray-700 ml-3 mt-1">Email
+                                            {{ $full ? '(required)' : '(optional)' }}
+                                        </label>
                                     </div>
                                     <div class="grow mr-4 mb-4 md:mb-0">
                                         <div class="mt-1">
