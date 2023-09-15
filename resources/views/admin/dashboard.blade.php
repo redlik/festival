@@ -5,7 +5,13 @@
         </h2>
     </x-slot>
 
-    <div class="px-4 sm:px-6 lg:px-8 py-6 bg-gray-100 z-10">
+    <div class="px-4 sm:px-6 lg:px-8 py-6 bg-gray-100 z-10"
+         x-data="{openTab: window.location.hash ? window.location.hash : '#events',
+                  activeClasses:
+                  'bg-gray-600 text-gray-100 rounded-full shadow-inner shadow outline-none',
+                  inactiveClasses:
+                  'text-gray-500 bg-gray-100 hover:text-gray-700 hover:bg-gray-200 rounded-full cursor-pointer'
+                }">
         <div class="w-full mx-auto">
             <div>
                 <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
@@ -41,8 +47,18 @@
 
                 </dl>
             </div>
+            <!---------- TABS ---------->
+            <div class="flex items-center justify-center gap-10 w-full mt-6">
+                <a @click="openTab = '#events'" :class="openTab === '#events' ? activeClasses : inactiveClasses" class="bg-white
+                            inline-block py-2 px-4 font-bold" >Events</a>
+                <a @click="openTab = '#venues'" :class="openTab === '#venues' ? activeClasses : inactiveClasses" class="bg-white
+                            inline-block py-2 px-4 font-bold" >Venues</a>
+                <a @click="openTab = '#attendees'" :class="openTab === '#attendees' ? activeClasses : inactiveClasses" class="bg-white
+                            inline-block py-2 px-4 font-bold" >Attendees</a>
+            </div>
+            <!---------- END TABS ---------->
             <div>
-                <div class="p-6 border border-gray-200 rounded-lg mt-6 p-4 bg-white shadow-lg" id="events">
+                <div class="p-6 border border-gray-200 rounded-lg mt-6 p-4 bg-white shadow-lg" id="events" x-show="openTab === '#events'">
                     <div class="flex justify-between mb-4">
                         <h2 class="text-green-600">Events</h2>
                     </div>
@@ -52,7 +68,7 @@
                     @livewire('admin-events')
 
                 </div>
-                <div class="p-6 border border-gray-200 rounded-lg mt-6 p-4 bg-white shadow-lg" id="venues">
+                <div class="p-6 border border-gray-200 rounded-lg mt-6 p-4 bg-white shadow-lg" id="venues" x-show="openTab === '#venues'">
                     <div class="flex justify-between">
                         <h2 class="text-purple-600 mb-6">Venues</h2>
                     </div>
@@ -108,7 +124,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="p-6 border border-gray-200 rounded-lg mt-6 p-4 bg-white shadow-lg" id="attendees">
+                <div class="p-6 border border-gray-200 rounded-lg mt-6 p-4 bg-white shadow-lg" id="attendees" x-show="openTab === '#attendees'">
                     <h2 class="text-olive-300 mb-6">Attendees</h2>
                     @livewire('admin-attendees')
                 </div>
