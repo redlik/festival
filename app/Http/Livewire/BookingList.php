@@ -13,6 +13,8 @@ class BookingList extends Component
 
     public $events;
 
+    public $waiting_only = false;
+
     public $uniques;
 
     public $filter = '';
@@ -27,6 +29,9 @@ class BookingList extends Component
         $this->bookings = Attendee::where('user_id',Auth::user()->id)
             ->when($this->filter != '', function($q){
                 return $q->where('event_id', $this->filter);
+            })
+            ->when($this->waiting_only, function ($w) {
+                return $w->where('waiting_status', 1);
             })
             ->orderBy('event_id', 'asc')
             ->with('event')->get();

@@ -2,14 +2,21 @@
     <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
             <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                <div class="w-full block p-4">
-                    <select wire:model="filter" id="filter" class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
-                        <option value="" selected>All Events</option>
-                        @foreach($events as $event)
-                            <option value="{{ $event->id }}">{{ $event->name }}</option>
-                        @endforeach
-                    </select>
-                    <label for="filter" class="ml-4">Filter by event</label>
+                <div class="w-full flex gap-12 items-center p-4">
+                    <div>
+                        <select wire:model="filter" id="filter"
+                                  class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
+                            <option value="" selected>All Events</option>
+                            @foreach($events as $event)
+                                <option value="{{ $event->id }}">{{ $event->name }}</option>
+                            @endforeach
+                        </select>
+                        <label for="filter" class="ml-2 text-sm text-gray-600">Filter by event</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" wire:model="waiting_only" name="waiting" class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-sm">
+                        <label for="waiting" class="ml-2 text-sm text-gray-600">Show only waiting list entries</label>
+                    </div>
                 </div>
                 <div class="overflow-x-auto w-full px-4 lg:px-2 pb-8 md:pb-4">
                     <table class="min-w-full divide-y divide-gray-300">
@@ -52,7 +59,7 @@
                                     {{ \Carbon\Carbon::parse($booking->event->start_time)
                                     ->format('H:i') }} </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    {{ $booking->waiting_status ? 'Attendee' : 'Waiting List' }}
+                                    {{ $booking->waiting_status ? 'Waiting List' : 'Attendee' }}
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     @if($booking->event->status == 'published')
@@ -75,7 +82,7 @@
                                 </td>
                             </tr>
                         @empty
-                            <td colspan="5" class="text-center p-4">
+                            <td colspan="6" class="text-center p-4">
                                 <h4>No bookings made, browse <a href="/events"
                                                                 class="hover:underline hover:text-gray-500">the
                                         events list here</a></h4>
