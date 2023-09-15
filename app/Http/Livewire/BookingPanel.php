@@ -52,25 +52,37 @@ class BookingPanel extends Component
 
     public function minus()
     {
-        if ($this->tickets == $this->places_left) {
+        if($this->tickets == 1 && $this->places_left == 1) {
+            $this->disabled_plus = true;
+            $this->disabled_minus = true;
+            return;
+        }
+
+        if ($this->tickets == $this->places_left && $this->places_left != 2) {
             $this->disabled_plus = true;
         }
 
         if($this->tickets <= 2) {
             $this->disabled_minus = true;
+            $this->disabled_plus = false;
             $this->tickets = 1;
         }
         else {
             $this->tickets--;
             $this->disabled_plus = false;
             $this->disabled_minus = false;
+            ray('-three');
+
+
         }
     }
 
     public function plus()
     {
         if ($this->tickets === $this->places_left) {
-            $this->disabled_minus = true;
+            if($this->places_left > 1) {
+                $this->disabled_minus = false;
+            }
             $this->disabled_plus = true;
             return;
         }
@@ -83,11 +95,11 @@ class BookingPanel extends Component
             $this->disabled_plus = true;
             $this->tickets = 6;
 
+
         }
         else {
             $this->tickets++;
             $this->disabled_minus = false;
-
         }
 
         if($this->tickets >= 6) {

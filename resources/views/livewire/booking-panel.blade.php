@@ -40,7 +40,7 @@
                                 </ul>
                             </div>
                         @endif
-                            <div class="mt-4 mb-8 w-full">
+                            <div class="mt-4 mb-4 w-full">
                                 @if(! $full)
                                     <div class="flex items-center mb-4">
                                     <div>
@@ -61,6 +61,9 @@
                                     </div>
                                 </div>
                                 @endif
+                            </div>
+                            <div class="mb-2 text-sm text-olive-400">
+                                If you are booking places on behalf of somebody you can add their phone or email below, otherwise we will save your login details with them.
                             </div>
                         <form wire:submit.prevent="register">
                             @honeypot
