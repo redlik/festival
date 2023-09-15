@@ -15,7 +15,7 @@
                     </div>
                     <div>
                         <input type="checkbox" wire:model="waiting_only" name="waiting" class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-sm">
-                        <label for="waiting" class="ml-2 text-sm text-gray-600">Show only waiting list entries</label>
+                        <label for="waiting" class="ml-2 text-sm text-gray-600">Show only <strong>Waiting List</strong> entries</label>
                     </div>
                 </div>
                 <div class="overflow-x-auto w-full px-4 lg:px-2 pb-8 md:pb-4">
