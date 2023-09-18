@@ -31,7 +31,7 @@ class AttendeeList extends Component
                 $query->where('event_id', $this->selected_event);
             })
             ->with('event')
-            ->orderBy('event_id', 'asc')
+            ->orderBy('created_at', 'desc')
             ->orderBy('waiting_status', 'asc')
             ->get();
 

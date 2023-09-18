@@ -14,7 +14,14 @@
         </div>
     </x-slot>
 
-    <div class="px-4 sm:px-6 lg:px-8 py-6 bg-gray-100 z-10" x-data="{docMessage: true}">
+    <div class="px-4 sm:px-6 lg:px-8 py-6 bg-gray-100 z-10"
+         x-data="{openTab: window.location.hash ? window.location.hash : '#events',
+                  activeClasses:
+                  'bg-gray-600 text-gray-100 rounded-full shadow-inner shadow outline-none',
+                  inactiveClasses:
+                  'text-gray-500 bg-gray-100 hover:text-gray-700 hover:bg-gray-200 rounded-full cursor-pointer',
+                  docMessage: true
+                }">
             <div x-show='docMessage' class="max-w-7xl mx-auto bg-green-50 shadow-inner p-4 mt-6 rounded text-green-700 flex justify-between">
                 <div>
                     For each event you are adding, please upload the following documents:
@@ -31,7 +38,24 @@
                     <button @click="docMessage = ! docMessage"><i class="fa-solid fa-square-xmark text-gray-400 text-lg"></i></button>
                 </div>
             </div>
-        @livewire('organiser-event-list', ['events' => $events])
+        <!---------- TABS ---------->
+        <div class="flex items-center justify-center gap-10 w-full mt-6">
+            <a @click="openTab = '#events'" :class="openTab === '#events' ? activeClasses : inactiveClasses" class="bg-white
+                            inline-block py-2 px-4 font-bold" >Events</a>
+            <a @click="openTab = '#attendees'" :class="openTab === '#attendees' ? activeClasses : inactiveClasses" class="bg-white
+                            inline-block py-2 px-4 font-bold" >Attendees</a>
+        </div>
+        <!---------- END TABS ---------->
+        <div x-show="openTab === '#events'">
+            @livewire('organiser-event-list', ['events' => $events])
+        </div>
+        <div x-show="openTab === '#attendees'">
+            <div class="p-6 border border-gray-200 rounded-lg mt-6 bg-white shadow-inner shadow-lg" id="attendees">
+                @livewire('attendee-list')
+            </div>
+        </div>
+
+
     </div>
 
 

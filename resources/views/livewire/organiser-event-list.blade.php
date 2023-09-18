@@ -1,5 +1,4 @@
-<div class="max-w-7xl mx-auto">
-
+<div class="">
     <div x-data="{ cancelModal : false, eventName : '', eventID : '' }">
         <div class="p-6 border border-gray-200 rounded-lg mt-6 bg-white shadow-inner shadow-lg" id="events">
             <div class="mb-4">
@@ -63,111 +62,132 @@
             @if (Session::has('cancelled'))
                 <div class="bg-red-100 border border-red-700 shadow rounded p-2 my-4 text-red-600">{{ Session::get('cancelled') }}</div>
             @endif
-            <table class="min-w-full divide-y divide-gray-300">
-                <thead class="bg-gray-100">
-                <tr>
-                    <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8">#</th>
-                    <th scope="col" class="py-3.5 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8">Name</th>
-                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Date & Time</th>
-                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Venue</th>
-                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Attendees</th>
-                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Status</th>
-                    <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6 lg:pr-8">Edit
-                        <span class="sr-only">Edit</span>
-                    </th>
-                </tr>
-                </thead>
-                <tbody class="divide-y divide-gray-200 bg-white">
-                @forelse($events as $event)
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-300">
+                    <thead class="bg-gray-100">
                     <tr>
-                        <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8">
-                            {{ $loop->iteration }}
-                        </td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-700 font-bold">
-                            <a href="{{ route('event.preview', $event->slug) }}" class="hover:underline" title="Preview event page" target="_blank">
-                                {{ Str::of($event->name)->limit(25, ' (...)') }}
-                                <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs text-gray-400"></i>
-                            </a>
-                        </td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                            <div>{{ $event->start_date }}</div>
-                            <div>{{ \Carbon\Carbon::parse($event->start_time)->format('H:i') }} - {{ \Carbon\Carbon::parse($event->end_time)->format('H:i') }}</div>
-                        </td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                            @if($event->venue_id == 0)
-                                <div class="text-indigo-600"><i class="fa-solid fa-video mr-2"></i> Online event</div>
-                            @else
-                                <div>
-                                    <div>{{ $event->venue->name }}</div>
-                                    <div>{{ $event->venue->town }}</div>
-                                </div>
-                            @endif
+                        <th scope="col"
+                            class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8">#
+                        </th>
+                        <th scope="col" class="py-3.5 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8">
+                            Name
+                        </th>
+                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Date & Time
+                        </th>
+                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Venue</th>
+                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Attendees</th>
+                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Status</th>
+                        <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6 lg:pr-8">Edit
+                            <span class="sr-only">Edit</span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200 bg-white">
+                    @forelse($events as $event)
+                        <tr>
+                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8">
+                                {{ $loop->iteration }}
+                            </td>
+                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-700 font-bold">
+                                <a href="{{ route('event.preview', $event->slug) }}" class="hover:underline"
+                                   title="Preview event page" target="_blank">
+                                    {{ Str::of($event->name)->limit(25, ' (...)') }}
+                                    <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs text-gray-400"></i>
+                                </a>
+                            </td>
+                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                <div>{{ $event->start_date }}</div>
+                                <div>{{ \Carbon\Carbon::parse($event->start_time)->format('H:i') }}
+                                    - {{ \Carbon\Carbon::parse($event->end_time)->format('H:i') }}</div>
+                            </td>
+                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                @if($event->venue_id == 0)
+                                    <div class="text-indigo-600"><i class="fa-solid fa-video mr-2"></i> Online event
+                                    </div>
+                                @else
+                                    <div>
+                                        <div>{{ $event->venue->name }}</div>
+                                        <div>{{ $event->venue->town }}</div>
+                                    </div>
+                                @endif
 
-                        </td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                            @if($event->is_private)
-                                <span class="text-olive-400 bg-gray-100 rounded px-3 py-1 font-semibold"><i class="fa-solid fa-lock mr-1"></i> Private event</span>
-                            @else
-                                @if($event->limited == 1)
-                                    @if($event->attendees <= $event->attendee_count)
-                                        <span class="font-semibold bg-red-100 text-red-700 rounded px-3 py-1">
-                                                <i class="fa-solid fa-user-lock mr-1 text-red-600"></i> {{ $event->attendee_count ?? '0' }} / {{ $event->attendees }}
-                                                </span>
+                            </td>
+                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                @if($event->is_private)
+                                    <span class="text-olive-400 bg-gray-100 rounded px-3 py-1 font-semibold"><i
+                                            class="fa-solid fa-lock mr-1"></i> Private event</span>
+                                @else
+                                    @if($event->limited == 1)
+                                        @if($event->attendees <= $event->attendee_count)
+                                            <span class="font-semibold bg-red-100 text-red-700 rounded px-3 py-1">
+                                                            <i class="fa-solid fa-user-lock mr-1 text-red-600"></i> {{ $event->attendee_count ?? '0' }} / {{ $event->attendees }}
+                                                            </span>
+                                        @else
+                                            <span class="font-semibold bg-blue-100 text-indigo-700 rounded px-3 py-1">
+                                                            <i class="fa-solid fa-user-lock mr-1 text-indigo-600"></i> {{ $event->attendee_count ?? '0' }} / {{ $event->attendees }}
+                                                        </span>
+                                        @endif
+                                        @if($event->waiting_count > 0)
+                                            <span
+                                                class="font-semibold bg-amber-200 text-amber-700 rounded px-3 py-1 ml-3"
+                                                title="Waiting list count">
+                                                            <i class="fa-solid fa-user-clock mr-1 text-amber-600"></i> {{ $event->waiting_count ?? '0' }}
+                                                            </span>
+                                        @endif
                                     @else
-                                        <span class="font-semibold bg-blue-100 text-indigo-700 rounded px-3 py-1">
-                                                <i class="fa-solid fa-user-lock mr-1 text-indigo-600"></i> {{ $event->attendee_count ?? '0' }} / {{ $event->attendees }}
-                                            </span>
+                                        <span class="text-green-600 bg-green-100 rounded px-3 py-1 font-semibold"><i
+                                                class="fa-solid fa-people-group mr-1"></i> {{ $event->attendee_count ?? '0' }}</span>
                                     @endif
-                                    @if($event->waiting_count > 0)
-                                        <span class="font-semibold bg-amber-200 text-amber-700 rounded px-3 py-1 ml-3" title="Waiting list count">
-                                                <i class="fa-solid fa-user-clock mr-1 text-amber-600"></i> {{ $event->waiting_count ?? '0' }}
-                                                </span>
+                                @endif
+                            </td>
+                            <td class="whitespace-nowrap px-3 py-4 text-sm">
+                                @if($event->status == 'cancelled')
+                                    <div class="text-purple-700">{{ ucfirst($event->status) }}</div>
+                                @else
+                                    <div class="text-gray-500"
+                                         @if($event->status == 'pending')
+                                             class="cursor-help" title="The event is awaiting approval"
+                                        @endif
+                                    >{{ ucfirst($event->status) }}</div>
+                                @endif
+                            </td>
+                            <td>
+                                @if($event->status != 'cancelled')
+                                    <a href="{{ route('event.edit', $event) }}"
+                                       class="text-indigo-600 hover:text-indigo-900 mr-2">Edit</a>
+                                    @if($event->attendee_count > 0)
+                                        <div class="text-gray-500 inline-block cursor-not-allowed"
+                                             title="Event has attendees, cannot be deleted">Delete
+                                        </div>
+                                    @else
+                                        <form method="POST" action="{{ route('event.destroy', $event) }}"
+                                              class="inline-block"
+                                              onsubmit="return confirm('Do you wish to delete the event completely?');">
+                                            @csrf
+                                            @method("DELETE")
+                                            <button type="submit"
+                                                    class="text-red-600 hover:text-red-900 hover:underline">Delete
+                                            </button>
+                                        </form>
+                                    @endif
+                                    @if($event->status == 'published')
+                                        <a @click="cancelModal = true, eventName = '{{ $event->name }}', eventID = {{ $event->id }}"
+                                           class="text-purple-600 cursor-pointer ml-2">Cancel</a>
                                     @endif
                                 @else
-                                    <span class="text-green-600 bg-green-100 rounded px-3 py-1 font-semibold"><i class="fa-solid fa-people-group mr-1"></i> {{ $event->attendee_count ?? '0' }}</span>
+                                    <div class="text-gray-600 text-sm">Event has been cancelled</div>
                                 @endif
-                            @endif
-                        </td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm">
-                            @if($event->status == 'cancelled')
-                                <div class="text-purple-700">{{ ucfirst($event->status) }}</div>
-                            @else
-                                <div class="text-gray-500"
-                                     @if($event->status == 'pending')
-                                         class="cursor-help" title="The event is awaiting approval"
-                                    @endif
-                                >{{ ucfirst($event->status) }}</div>
-                            @endif
-                        </td>
-                        <td>
-                            @if($event->status != 'cancelled')
-                                <a href="{{ route('event.edit', $event) }}" class="text-indigo-600 hover:text-indigo-900 mr-2">Edit</a>
-                                @if($event->attendee_count > 0)
-                                    <div class="text-gray-500 inline-block cursor-not-allowed" title="Event has attendees, cannot be deleted">Delete</div>
-                                @else
-                                    <form method="POST" action="{{ route('event.destroy', $event) }}" class="inline-block"
-                                          onsubmit="return confirm('Do you wish to delete the event completely?');">
-                                        @csrf
-                                        @method("DELETE")
-                                        <button type="submit" class="text-red-600 hover:text-red-900 hover:underline">Delete</button>
-                                    </form>
-                                @endif
-                                @if($event->status == 'published')
-                                    <a @click="cancelModal = true, eventName = '{{ $event->name }}', eventID = {{ $event->id }}" class="text-purple-600 cursor-pointer ml-2">Cancel</a>
-                                @endif
-                            @else
-                                <div class="text-gray-600 text-sm">Event has been cancelled</div>
-                            @endif
-                        </td>
-                    </tr>
-                @empty
-                    <tr colspan="4">
-                        <td><h4>No events created</h4></td>
-                    </tr>
-                @endforelse
+                            </td>
+                        </tr>
+                    @empty
+                        <tr colspan="4">
+                            <td><h4>No events created</h4></td>
+                        </tr>
+                    @endforelse
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
             <template @cancelModal.window="cancelModal = true" x-if="cancelModal">
                 <div @keydown.window.escape="cancelModal = false" x-show="cancelModal" class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" x-ref="dialog" aria-modal="true">
                     <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -215,9 +235,6 @@
                     </div>
                 </div>
             </template>
-        </div>
-        <div class="p-6 border border-gray-200 rounded-lg mt-6 bg-white shadow-inner shadow-lg" id="attendees">
-            @livewire('attendee-list')
         </div>
     </div>
 
