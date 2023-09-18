@@ -35,6 +35,7 @@ class AdminAttendees extends Component
             })
             ->when($this->event, function($e){
                 $e->whereEventId($this->event);
+                $this->resetPage();
             })
             ->paginate(20);
 
