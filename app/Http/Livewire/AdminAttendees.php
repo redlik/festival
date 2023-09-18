@@ -37,6 +37,7 @@ class AdminAttendees extends Component
                 $e->whereEventId($this->event);
                 $this->resetPage();
             })
+            ->orderBy('created_at', 'desc')
             ->paginate(20);
 
         return view('livewire.admin-attendees', compact('attendees'));
