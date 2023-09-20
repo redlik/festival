@@ -1,3 +1,6 @@
+<x-seobox>
+    About us - {{ config('app.name') }}
+</x-seobox>
 <x-app-layout>
     <x-slot name="header">
     </x-slot>

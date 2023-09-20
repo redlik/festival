@@ -1,3 +1,6 @@
+<x-seobox>
+    Welcome to Kerry Mental Health & Wellbeing Fest
+</x-seobox>
 <x-app-layout>
     <x-slot name="header">
     </x-slot>
