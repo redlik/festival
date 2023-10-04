@@ -10,8 +10,8 @@ Thank you for participating in Kerry Mental Health & Wellbeing Fest, below are t
 * {{ $value }}
 @endforeach
 
-<x-mail::button :url="''">
-Button Text
+<x-mail::button :url="$url">
+View event
 </x-mail::button>
 
 Thank you,<br>

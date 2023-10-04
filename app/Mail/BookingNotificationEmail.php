@@ -54,6 +54,7 @@ class BookingNotificationEmail extends Mailable
             with: [
                 'event' => $this->event,
                 'names' => $this->names,
+                'url' => route('event.show-by-slug', $this->event->slug),
             ]
         );
     }
