@@ -2,9 +2,12 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\BookingCancelledByAttendee;
 use App\Models\Attendee;
 use Livewire\Component;
 use App\Models\Event;
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 
 class BookingList extends Component
@@ -12,6 +15,8 @@ class BookingList extends Component
     public $bookings;
 
     public $events;
+
+    public $message;
 
     public $waiting_only = false;
 
@@ -21,8 +26,20 @@ class BookingList extends Component
 
     public $dropdown;
 
-    public function mount()
+    public function cancelBooking($booking)
     {
+        $attendee = Attendee::find($booking);
+        if($attendee->waiting_status) {
+            $this->message = 'The waiting list entry has been removed';
+        } else {
+            $this->message = 'The booking entry has been removed';
+        }
+        $event = Event::where('id', $attendee->event_id)->first();
+        $organiser = User::where('id', $attendee->event->user_id)->first();
+        Mail::to($organiser)->send(new BookingCancelledByAttendee($event, $attendee));
+        $attendee->delete();
+
+        session()->flash('cancelled', $this->message);
     }
     public function render()
     {

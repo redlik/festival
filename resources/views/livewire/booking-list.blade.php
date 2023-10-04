@@ -18,6 +18,14 @@
                         <label for="waiting" class="ml-2 text-sm text-gray-600">Show only <strong>Waiting List</strong> entries</label>
                     </div>
                 </div>
+                @if(session()->has('cancelled'))
+                    <div class="px-4">
+                        <div class="bg-red-100 px-4 py-2 rounded mb-4 text-red-600 text-sm">
+                            {{ session('cancelled') }}
+                        </div>
+                    </div>
+                @endif
+                <div></div>
                 <div class="overflow-x-auto w-full px-4 lg:px-2 pb-8 md:pb-4">
                     <table class="min-w-full divide-y divide-gray-300">
                         <thead class="bg-gray-50">
@@ -71,14 +79,9 @@
                                     @endif
                                 </td>
                                 <td class="whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-semibold sm:pr-6">
-                                    <form action="{{ route('attendee.destroy', $booking) }}" method="POST"
-                                          onsubmit="return confirm('Do you wish to cancel this booking?');">
-                                        @csrf
-                                        @method('DELETE')
-                                            <button type="submit" class="text-red-600 hover:text-red-900" title="Cancel this booking">
-                                                <i class="fa-solid fa-circle-minus"></i> Cancel
-                                            </button>
-                                    </form>
+                                    <button wire:click="cancelBooking({{ $booking->id }})" class="text-red-600 hover:text-red-900" title="Cancel this booking" onclick="return confirm('Are you sure you wish to cancel this booking?');">
+                                        <i class="fa-solid fa-circle-minus"></i> Cancel
+                                    </button>
                                 </td>
                             </tr>
                         @empty
