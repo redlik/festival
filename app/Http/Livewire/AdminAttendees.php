@@ -18,7 +18,7 @@ class AdminAttendees extends Component
 
     public function mount()
     {
-        $this->events = Event::has('attendee')->get();
+        $this->events = Event::has('attendee')->orderBy('name', 'asc')->get();
     }
 
     public function clear()

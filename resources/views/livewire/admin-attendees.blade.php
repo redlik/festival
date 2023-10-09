@@ -13,7 +13,7 @@
             class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
                 <option value="">All events</option>
                 @foreach($events as $event)
-                    <option value="{{ $event->id }}">{{ $event->name }}</option>
+                    <option value="{{ $event->id }}">{{ $event->name }} - {{ $event->start_date }}</option>
                 @endforeach
             </select>
         </div>
