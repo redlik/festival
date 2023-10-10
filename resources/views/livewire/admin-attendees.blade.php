@@ -23,6 +23,7 @@
         <tr>
             <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8">Name</th>
             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Event</th>
+            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Status</th>
             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Registered on</th>
         </tr>
         </thead>
@@ -34,8 +35,12 @@
                     <div>E: {{ $attendee->email }}   T: {{ $attendee->phone }}</div>
 
                 </td>
+
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                     {{ $attendee->event->name }}
+                </td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                    {{ $attendee->waiting_status ? 'Waiting list' : 'Attendee' }}
                 </td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $attendee->created_at->format('d M Y H:i') }}</td>
             </tr>
