@@ -20,8 +20,8 @@
                 <img src="{{ asset('img/home-hero-23.jpg') }}" class="object-cover object-bottom h-full w-full" alt="">
             </div>
             <div class="w-full lg:w-2/3 p-4 lg:rounded-lg backdrop-blur" style="background-color: rgba(213, 208, 136, 0.85)">
-                <h1 class="text-2xl lg:text-4xl mb-4 fancy font-semibold">Welcome to Kerry Mental Health & Wellbeing Fest 2023</h1>
-                <div class="font-semibold lg:text-lg text-gray-800 mb-4">Held between Saturday, 7th – 14th October 2023 the Fest aims to raise awareness of the available supports and services in the county as well as empower people to engage with the ‘Five Ways to Wellbeing’ through offering a dynamic and interactive programme of events.</div>
+                <h1 class="text-2xl lg:text-4xl mb-4 fancy font-semibold">Welcome to Kerry Mental Health & Wellbeing Fest 2024</h1>
+                <div class="font-semibold lg:text-lg text-gray-800 mb-4">Held between Saturday, 5th – 12th October 2024 the Fest aims to raise awareness of the available supports and services in the county as well as empower people to engage with the ‘Five Ways to Wellbeing’ through offering a dynamic and interactive programme of events.</div>
                 <a href="{{ route('events') }}">
                     <button class="button-primary">View Events</button>
                 </a>
@@ -57,9 +57,9 @@
     <div class="bg-gray-100">
             <div class="max-w-7xl mx-auto py-4 px-4 lg:flex lg:items-center" x-data="{ showPoster : false }">
                 <div class="w-full lg:w-1/2 mb-4 lg:mb-0">
-                    <h3 class="text-2xl mb-2">Events of 2022 Kerry Mental & Wellbeing Health Festival</h3>
+                    <h3 class="text-2xl mb-2">Events of 2023 Kerry Mental & Wellbeing Health Festival</h3>
                     <p class="mb-6">If you like to see what events you may expect, click on the thumbnail or download the PDF of the last year's programme.</p>
-                    <a class="button-primary" href="{{asset('img/Kerrywellfest_POSTER_65835.pdf')}}" target="_blank"><i class="fa-solid fa-file-pdf"></i> 2022 Fest schedule</a>
+                    <a class="button-primary" href="{{asset('img/Kerrywellfest_POSTER_65835.pdf')}}" target="_blank"><i class="fa-solid fa-file-pdf"></i> 2023 Fest schedule</a>
                 </div>
                 <div class="w-full lg:w-1/2 h-48 flex justify-center">
                         <a href="#" @click="showPoster = true" class="h-full">
