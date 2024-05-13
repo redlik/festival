@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Http\Livewire;
 
 use App\Models\Event;
-use Livewire\Component;
 use Auth;
+use Livewire\Component;
 
 class OrganiserEventList extends Component
 {

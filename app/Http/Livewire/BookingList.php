@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Http\Livewire;
 
 use App\Mail\BookingCancelledByAttendee;
 use App\Models\Attendee;
-use Livewire\Component;
 use App\Models\Event;
 use App\Models\User;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Livewire\Component;
 
 class BookingList extends Component
 {
