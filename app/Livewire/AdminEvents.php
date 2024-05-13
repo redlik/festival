@@ -1,15 +1,18 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Exports\EventExport;
 use App\Models\Event;
 use App\Models\Organiser;
 use Livewire\Component;
+use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel;
 
 class AdminEvents extends Component
 {
+    use WithPagination;
+
     public $events;
 
     public $pending;

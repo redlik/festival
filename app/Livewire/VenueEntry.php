@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Models\Venue;
 use Auth;
@@ -70,7 +70,7 @@ class VenueEntry extends Component
         $this->selected = $newVenue->id;
 
         $this->resetInputFields();
-        $this->emit('venueAdded');
+        $this->dispatch('venueAdded');
 
         $this->showVenue = false;
     }

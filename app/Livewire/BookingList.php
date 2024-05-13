@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Mail\BookingCancelledByAttendee;
 use App\Models\Attendee;
