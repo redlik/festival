@@ -7,7 +7,7 @@
             <div class="sm:flex sm:items-center ml-4 justify-between mb-6">
                 <div class="flex items-center w-auto mr-8">
                     <div>
-                        <input type="search" wire:model.debounce.500ms="search" name="search"
+                        <input type="search" wire:model.live.debounce.500ms="search" name="search"
                                class="focus:ring-olive-500 text-gray-600 border-gray-300 rounded w-64 block px-2 py-1" placeholder="Search by event name">
                         @if($search !='')
                             <button wire:click="clear" class="text-xs font-semibold text-red-600 hover:underline mt-2 ml-2">Clear</button>
@@ -16,7 +16,7 @@
 
                 </div>
                 <div class="flex items-center w-auto mr-8">
-                    <select name="year" id="year" wire:model="date"
+                    <select name="year" id="year" wire:model.live="date"
                             class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
                         <option value="" selected>All events</option>
                         <option value="2023">2023</option>
@@ -25,7 +25,7 @@
                     <label for="year" class="text-gray-700 text-sm ml-4 block w-full">Event's Year</label>
                 </div>
                 <div class="flex items-center w-auto mr-8">
-                    <select name="year" id="year" wire:model="status"
+                    <select name="year" id="year" wire:model.live="status"
                             class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
                         <option value="" selected>All events</option>
                         <option value="published">Published</option>

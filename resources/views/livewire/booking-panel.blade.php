@@ -65,22 +65,22 @@
                             <div class="mb-2 text-sm text-olive-400">
                                 If you are booking places on behalf of somebody you can add their phone or email below, otherwise we will save your login details with them.
                             </div>
-                        <form wire:submit.prevent="register">
+                        <form wire:submit="register">
                             @honeypot
                             @if($full)
-                                <input type="hidden" wire:model="waiting_status" value="1">
+                                <input type="hidden" wire:model.live="waiting_status" value="1">
                             @endif
                             @for($j = 1; $j <= $tickets; $j++)
                                 <div class="lg:flex items-start mb-6">
                                     <div class="grow mr-4 mb-4 md:mb-0">
                                         <div class="mt-1">
-                                            <input type="text" wire:model.defer="names.name-{{ $j }}" id="name-{{ $j }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" required>
+                                            <input type="text" wire:model="names.name-{{ $j }}" id="name-{{ $j }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" required>
                                         </div>
                                         <label for="name-{{ $j }}" class="block text-sm font-medium text-gray-700 ml-3 mt-1">Name <span class="text-red-700">*</span></label>
                                     </div>
                                     <div class="grow mr-4 mb-4 md:mb-0">
                                         <div class="mt-1">
-                                            <input type="email" wire:model.defer="names.email-{{ $j }}" id="email-{{ $j }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="you@example.com"
+                                            <input type="email" wire:model="names.email-{{ $j }}" id="email-{{ $j }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="you@example.com"
                                             @if($full)
                                                 required
                                             @endif>
@@ -91,7 +91,7 @@
                                     </div>
                                     <div class="grow mr-4 mb-4 md:mb-0">
                                         <div class="mt-1">
-                                            <input type="tel" wire:model.defer="names.phone-{{ $j }}" id="phone-{{ $j }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="066 888 8888">
+                                            <input type="tel" wire:model="names.phone-{{ $j }}" id="phone-{{ $j }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="066 888 8888">
                                         </div>
                                         <label for="phone-{{ $j }}" class="block text-sm font-medium text-gray-700 ml-3 mt-1">Phone (optional)</label>
                                     </div>
@@ -113,7 +113,7 @@
 
 
                             <div class="mt-6">
-                                <input type="checkbox" wire:model="optin" value="1" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2">
+                                <input type="checkbox" wire:model.live="optin" value="1" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2">
                                 <label for="opt_in" class="font-medium text-gray-700">I agree to be contacted in future about the upcoming events.</label>
                             </div>
                         </form>
