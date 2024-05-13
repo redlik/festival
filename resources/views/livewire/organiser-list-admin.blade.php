@@ -3,7 +3,7 @@
     <div class="sm:flex sm:items-center justify-between ml-4">
         <div class="flex items-center w-auto mr-8">
             <div>
-                <input type="search" wire:model="search" name="search"
+                <input type="search" wire:model.live="search" name="search"
                        class="focus:ring-olive-500 text-gray-600 border-gray-300 rounded w-64 block px-2 py-1" placeholder="Search by name or org">
                 @if($search !='')
                     <button wire:click="clear" class="text-xs font-semibold text-red-600 hover:underline mt-2 ml-2">Clear</button>
@@ -12,7 +12,7 @@
 
         </div>
         <div class="flex items-center w-auto mr-8">
-            <select name="year" id="year" wire:model="year"
+            <select name="year" id="year" wire:model.live="year"
                     class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
                 <option value="" selected>All years</option>
                 @foreach($years as $year)
@@ -22,7 +22,7 @@
             <label for="year" class="text-gray-700 text-sm ml-4 block w-full">Registration year</label>
         </div>
         <div class="flex items-center w-auto mr-8">
-            <select name="year" id="year" wire:model="status"
+            <select name="year" id="year" wire:model.live="status"
                     class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
                 <option value="" selected>All statuses</option>
                 <option value="activated">Activated</option>
@@ -31,7 +31,7 @@
             <label for="year" class="text-gray-700 text-sm ml-4 block w-full">Filter by status</label>
         </div>
         <div class="flex items-center w-auto mr-8">
-            <input type="checkbox" wire:model="zero_count" name="zero_count"
+            <input type="checkbox" wire:model.live="zero_count" name="zero_count"
             class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-sm">
             <label for="zero_count" class="ml-2">Organisers with no events</label>
         </div>

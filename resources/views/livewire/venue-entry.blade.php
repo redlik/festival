@@ -1,4 +1,4 @@
-<div class="mt-1 sm:mt-0 sm:col-span-2 livewired" x-data="{ showVenue: @entangle('showVenue').defer }">
+<div class="mt-1 sm:mt-0 sm:col-span-2 livewired" x-data="{ showVenue: @entangle('showVenue') }">
 
     <select id="venue" name="venue_id" class="max-w-lg block focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md" :disabled="(type == 'online') ? true : false">
         <option value="" disabled
@@ -41,41 +41,41 @@
                                 Add new venue
                             </h3>
                             <div class="mt-2">
-                                <form wire:submit.prevent="save" class="w-full">
+                                <form wire:submit="save" class="w-full">
                                     <div class="flex items-center mb-2">
                                         <label for="venue_name" class="w-48 block">Name: <span class="text-red-700">*</span></label>
                                         <input type="text" name="venue_name" id="venue_name"
                                                class="lg:ml-4 lg:w-64 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
-                                               wire:model.defer="venue_name">
+                                               wire:model="venue_name">
                                     </div>
                                     @error('venue_name') <div class="text-xs text-red-600 mb-4">{{ $message }}</div> @enderror
                                     <div class="flex items-center mb-2">
                                         <label for="venue_address1" class="w-48 block">Address:</label>
-                                        <input type="text" name="venue_address1" id="venue_address1" class="lg:ml-4 lg:w-64 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" wire:model="venue_address1">
+                                        <input type="text" name="venue_address1" id="venue_address1" class="lg:ml-4 lg:w-64 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" wire:model.live="venue_address1">
                                     </div>
                                     <div class="flex items-center mb-2">
                                         <label for="venue_street" class="w-48 block">Street:</label>
                                         <input type="text" name="venue_street" id="venue_street"
                                                class="lg:ml-4 lg:w-64 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
-                                               wire:model="venue_street">
+                                               wire:model.live="venue_street">
                                     </div>
                                     <div class="flex items-center mb-2">
                                         <label for="venue_town" class="w-48 block">Town: <span class="text-red-700">*</span></label>
                                         <input type="text" name="venue_town" id="venue_town"
                                                class="lg:ml-4 lg:w-64 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
-                                               wire:model="venue_town">
+                                               wire:model.live="venue_town">
                                     </div>
                                     @error('venue_town') <div class="text-xs text-red-600 mb-4">{{ $message }}</div> @enderror
                                     <div class="flex items-center mb-2">
                                         <label for="venue_eircode" class="w-48 block">EIRCODE: <span class="text-red-700">*</span></label>
                                         <input type="text" name="venue_eircode" id="venue_eircode" class="lg:ml-4 lg:w-64 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
-                                               wire:model="venue_eircode" maxlength="7">
+                                               wire:model.live="venue_eircode" maxlength="7">
                                     </div>
                                     @error('venue_eircode') <div class="text-xs text-red-600 mb-4">{{ $message }}</div> @enderror
                                     <div class="flex items-center mb-2">
                                         <label for="venue_website" class="w-48 block">Website:</label>
                                         <input type="url" name="venue_website" id="venue_website" class="lg:ml-4 lg:w-64 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
-                                               wire:model="venue_website">
+                                               wire:model.live="venue_website">
                                     </div>
                                     @error('venue_website') <div class="text-xs text-red-600 mb-4">{{ $message }}</div> @enderror
                                     <div class="w-full bg-gray-100 rounded border border-gray-300 p-2 text-gray-600 my-2 mb-4 text-sm">Once the venue is created don't forget to select it from the dropdown</div>

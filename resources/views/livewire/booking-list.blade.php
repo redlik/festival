@@ -4,7 +4,7 @@
             <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                 <div class="w-full flex gap-12 items-center p-4">
                     <div>
-                        <select wire:model="filter" id="filter"
+                        <select wire:model.live="filter" id="filter"
                                   class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
                             <option value="" selected>All Events</option>
                             @foreach($events as $event)
@@ -14,7 +14,7 @@
                         <label for="filter" class="ml-2 text-sm text-gray-600">Filter by event</label>
                     </div>
                     <div>
-                        <input type="checkbox" wire:model="waiting_only" name="waiting" class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-sm">
+                        <input type="checkbox" wire:model.live="waiting_only" name="waiting" class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-sm">
                         <label for="waiting" class="ml-2 text-sm text-gray-600">Show only <strong>Waiting List</strong> entries</label>
                     </div>
                 </div>
