@@ -13,12 +13,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
+use Spatie\Honeypot\ProtectAgainstSpam;
 
 class OrganiserController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth')->only('show', 'index', 'edit', 'update', 'destroy');
+        $this->middleware(ProtectAgainstSpam::class)->only('store');
     }
 
     /**
