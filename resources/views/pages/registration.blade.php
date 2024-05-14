@@ -15,7 +15,7 @@
                     <p class="text-red-600">If you have already registered last year, you don't need to fill out the registration form again. Just use the login details to access the Dashboard.</p>
                     <a href="{{ route('login') }}" class="font-bold hover:underline mt-2">Login here</a></div>
                 <p> Kerry Mental Health and Wellbeing Fest will take place from
-                    <strong>7th – 14th October 2023</strong>. The key focus of the Fest is scheduling events that empower people to engage with the Five Ways to Wellbeing
+                    <strong>5th – 12th October 2024</strong>. The key focus of the Fest is scheduling events that empower people to engage with the Five Ways to Wellbeing
                     <strong>(Connect | Give | Take Notice | Keep Learning | Be Active)</strong> as well as raising awareness of the available supports and services in the county. We aim to ensure the Fest has free events for people of all ages, backgrounds and abilities across the county. We would be delighted for you to get involved by hosting a free event(s) that promote the Five Ways to Wellbeing - whether you’re an educational body, organisation, agency, business, sports club, community group or qualified individual. </p>
             </div>
             <div class="my-8 p-4 rounded bg-gray-50">
@@ -340,15 +340,14 @@
                 <li class="mb-2">In order to ensure the Fest is accessible and inclusive for all, we ask that all events are
                     <strong>free</strong>. In the spirit of this, we also ask that events are not used to raise funds or collect donations.</li>
                 <li class="mb-2">The Fest Committee cannot provide funding to cover costs such as venues or facilitators. However, we may be able to support in identifying free options for these kinds of expenses, depending on the location, so please get in touch with us at
-                    <a href="mailto:kerrymhwfest20@gmail.com">kerrymhwfest20@gmail.com</a></li>
+                    <a href="mailto:kerrymhwfest20@gmail.com" class="font-bold underline">kerrymhwfest20@gmail.com</a></li>
                 <li class="mb-2">The Fest Committee will however promote the Fest, and your event(s) extensively in the weeks leading up to the Fest using a host of mediums.</li>
-                <li>The programme of events for 2022 can be found <a href="{{ asset('img/Kerrywellfest_POSTER_65835.pdf') }}" class="text-indigo-600 hover:underline font-bold" target="_blank">here</a> – we would be delighted to facilitate events of a similar nature as well as events that will bring something new and different to the Fest</li>
-                <li class="mb-2">It is the sole responsibility of the event host to ensure the provision of adequate insurance for all activities undertaken in the delivery of event(s). If an organiser is bringing in an external facilitator, the organiser is responsible for ensuring the facilitator has appropriate insurance, qualifications and garda vetting (if working with children or vulnerable adults).</li>
-                <li class="mb-2">If you are registering as a qualified practitioner, we ask that you share a copy of your qualification(s) and your professional indemnity insurance with us when registering your event.</li>
-                <li class="mb-2">Event hosts are responsible for ensuring Garda Vetting is in place and is up-to-date for all event(s) that will engage children and/or vulnerable adults.</li>
-                <li class="mb-2">The management of registration for each event is the responsibility of the agency or individual hosting. Unfortunately, the Fest Committee does not have the capacity to manage registrations on behalf of hosts.</li>
-                <li class="mb-2">Please consider how you can make the event as accessible as possible for people of all abilities, considering where necessary those who are hearing or visually impaired, wheelchair users and neuro-diverse people.</li>
-
+                <li>Please refer to the programme of events for last year's Fest (2023) which will remain on the website for the foreseeable future. We would be delighted to facilitate events of a similar nature as well as events that will bring something new and different to the Fest. We are particularly interested in events for adolescents and young adults, as they have been lacking in previous years.</li>
+                <li class="mb-2">It is the sole responsibility of the event host to ensure the provision of adequate insurance - for all activities undertaken in the delivery of event(s). If an event host is bringing in an external facilitator, the event host is responsible for ensuring the facilitator has appropriate insurance and qualifications in place.</li>
+                <li class="mb-2">Event hosts are also responsible for ensuring Garda Vetting is in place and is up-to-date for those facilitating the event(s) that will engage children and/or vulnerable adults.</li>
+                <li class="mb-2">You can confirm relevant insurance, qualifications and Garda Vetting are in place for your event(s) by ticking the appropriate boxes when registering as an organiser on the website.</li>
+                <li class="mb-2">The management of registration for each event is the responsibility of the agency or individual hosting. Unfortunately, the Fest Committee does not have the capacity to manage registrations on behalf of event hosts</li>
+                <li class="mb-2">Please consider how you can make the event as accessible as possible for people of all abilities, considering where necessary those who are hearing or visually impaired, wheelchair users and neurodivergent. Please tick the relevant box when creating your event on the website to indicate if you are using a wheel-chair accessible venue</li>
             </ul>
         </div>
         </div>
