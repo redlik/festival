@@ -67,10 +67,29 @@
     <div class="mt-8 flex flex-col">
         <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                <div
-                    class="text-sm font-semibold mb-4 ml-8">{{ $organisers->count() }} {{ \Illuminate\Support\Str::of('organiser')->plural($organisers->count())}}
-                    listed
+                <div class="flex justify-between mb-4 items-center">
+                    <div
+                        class="text-sm font-semibold ml-8">
+                        {{ $organisers->count() }}
+                        {{ \Illuminate\Support\Str::of('organiser')->plural($organisers->count())}}
+                        listed
+                    </div>
+                    <div
+                        @if(count($selectedOrganisers) > 0)
+                            class="text-center"
+                        @else
+                            class="hidden"
+                        @endif>
+                        <form wire:submit="bulkDelete">
+                            <button type="submit" class="inline-flex items-center
+                            justify-center rounded-md border border-transparent tracking-wide
+                            bg-red-500 px-8 py-2 text-sm font-bold text-white uppercase
+                            shadow-sm hover:bg-red-700 focus:outline-none
+                            focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Delete {{ count($selectedOrganisers) }}</button>
+                        </form>
+                    </div>
                 </div>
+
                 <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                     <table class="min-w-full divide-y divide-gray-300 table-auto">
                         <thead class="bg-gray-50">

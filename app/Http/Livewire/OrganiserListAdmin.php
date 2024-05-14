@@ -17,6 +17,8 @@ class OrganiserListAdmin extends Component
 
     public $status;
 
+    public $delete;
+
     public $zero_count = false;
 
     public $years = array();
@@ -55,5 +57,13 @@ class OrganiserListAdmin extends Component
             ->get();
 
         return view('livewire.organiser-list-admin');
+    }
+
+    public function bulkDelete()
+    {
+        $organisers = Organiser::whereIn('id', $this->selectedOrganisers)->get();
+        foreach ($organisers as $organiser) {
+            $organiser->delete();
+        }
     }
 }
