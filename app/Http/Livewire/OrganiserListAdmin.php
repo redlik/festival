@@ -7,6 +7,8 @@ use Livewire\Component;
 
 class OrganiserListAdmin extends Component
 {
+    public $selectedOrganisers = [];
+
     public $organisers;
 
     public $search;
@@ -35,9 +37,7 @@ class OrganiserListAdmin extends Component
 
     public function render()
     {
-
-
-
+        ray($this->selectedOrganisers);
         $this->organisers = Organiser::when($this->search != '', function ($q) {
             $q->where('name', 'LIKE', '%' . $this->search . '%')
                 ->orWhere('org', 'LIKE', '%' . $this->search . '%');

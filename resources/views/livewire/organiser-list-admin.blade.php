@@ -4,9 +4,12 @@
         <div class="flex items-center w-auto mr-8">
             <div>
                 <input type="search" wire:model.live="search" name="search"
-                       class="focus:ring-olive-500 text-gray-600 border-gray-300 rounded w-64 block px-2 py-1" placeholder="Search by name or org">
+                       class="focus:ring-olive-500 text-gray-600 border-gray-300 rounded w-64 block px-2 py-1"
+                       placeholder="Search by name or org">
                 @if($search !='')
-                    <button wire:click="clear" class="text-xs font-semibold text-red-600 hover:underline mt-2 ml-2">Clear</button>
+                    <button wire:click="clear" class="text-xs font-semibold text-red-600 hover:underline mt-2 ml-2">
+                        Clear
+                    </button>
                 @endif
             </div>
 
@@ -32,7 +35,7 @@
         </div>
         <div class="flex items-center w-auto mr-8">
             <input type="checkbox" wire:model.live="zero_count" name="zero_count"
-            class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-sm">
+                   class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-sm">
             <label for="zero_count" class="ml-2">Organisers with no events</label>
         </div>
         <div class="flex gap-4">
@@ -53,28 +56,59 @@
 
     </div>
     @if (Session::has('deleted'))
-        <div class="bg-red-100 border border-red-700 shadow rounded p-2 my-4 text-red-600">{{ Session::get('deleted') }}</div>
+        <div
+            class="bg-red-100 border border-red-700 shadow rounded p-2 my-4 text-red-600">{{ Session::get('deleted') }}</div>
     @endif
     @if (Session::has('resend'))
-        <div class="bg-green-100 border border-green-700 shadow-lg rounded p-2 my-4 text-green-700">{{ Session::get('resend') }}</div>
+        <div
+            class="bg-green-100 border border-green-700 shadow-lg rounded p-2 my-4 text-green-700">{{ Session::get('resend') }}</div>
     @endif
 
     <div class="mt-8 flex flex-col">
         <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                <div class="text-sm font-semibold mb-4 ml-8">{{ $organisers->count() }} {{ \Illuminate\Support\Str::of('organiser')->plural($organisers->count())}} listed</div>
+                <div
+                    class="text-sm font-semibold mb-4 ml-8">{{ $organisers->count() }} {{ \Illuminate\Support\Str::of('organiser')->plural($organisers->count())}}
+                    listed
+                </div>
                 <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                     <table class="min-w-full divide-y divide-gray-300 table-auto">
                         <thead class="bg-gray-50">
                         <tr>
-                            <th scope="col" class="sticky top-0 z-10 border-b border-gray-300 bg-gray-50 bg-opacity-75 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter sm:pl-6 lg:pl-8"">#</th>
-                            <th scope="col" class="sticky top-0 z-10 hidden border-b border-gray-300 bg-gray-50 bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter sm:table-cell">Name</th>
-                            <th scope="col" class="sticky top-0 z-10 hidden border-b border-gray-300 bg-gray-50 bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter sm:table-cell">Organisation</th>
-                            <th scope="col" class="sticky top-0 z-10 hidden border-b border-gray-300 bg-gray-50 bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter lg:table-cell">Contact details</th>
-                            <th scope="col" class="sticky top-0 z-10 border-b border-gray-300 bg-gray-50 bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter">Events</th>
-                            <th scope="col" class="sticky top-0 z-10 border-b border-gray-300 bg-gray-50 bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter">Reg. date</th>
-                            <th scope="col" class="sticky top-0 z-10 border-b border-gray-300 bg-gray-50 bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter">Status</th>
-                            <th scope="col" class="sticky top-0 z-10 border-b border-gray-300 bg-gray-50 bg-opacity-75 py-3.5 pr-4 pl-3 backdrop-blur backdrop-filter sm:pr-6 lg:pr-8 text-center">
+                            <th scope="col"
+                                class="sticky top-0 z-10 border-b border-gray-300 bg-gray-50 bg-opacity-75 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter sm:pl-6 lg:pl-8">
+                                D
+                            </th>
+                            <th scope="col"
+                                class="sticky top-0 z-10 hidden border-b border-gray-300 bg-gray-50 bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter sm:table-cell">
+                                #
+                            </th>
+                            <th scope="col"
+                                class="sticky top-0 z-10 hidden border-b border-gray-300 bg-gray-50 bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter sm:table-cell">
+                                Name
+                            </th>
+                            <th scope="col"
+                                class="sticky top-0 z-10 hidden border-b border-gray-300 bg-gray-50 bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter sm:table-cell">
+                                Organisation
+                            </th>
+                            <th scope="col"
+                                class="sticky top-0 z-10 hidden border-b border-gray-300 bg-gray-50 bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter lg:table-cell">
+                                Contact details
+                            </th>
+                            <th scope="col"
+                                class="sticky top-0 z-10 border-b border-gray-300 bg-gray-50 bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter">
+                                Events
+                            </th>
+                            <th scope="col"
+                                class="sticky top-0 z-10 border-b border-gray-300 bg-gray-50 bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter">
+                                Reg. date
+                            </th>
+                            <th scope="col"
+                                class="sticky top-0 z-10 border-b border-gray-300 bg-gray-50 bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter">
+                                Status
+                            </th>
+                            <th scope="col"
+                                class="sticky top-0 z-10 border-b border-gray-300 bg-gray-50 bg-opacity-75 py-3.5 pr-4 pl-3 backdrop-blur backdrop-filter sm:pr-6 lg:pr-8 text-center">
                                 <span class="sr-only">Operations</span>
                                 Operations
                             </th>
@@ -84,6 +118,17 @@
 
                         @forelse($organisers as $organiser)
                             <tr>
+                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                                    <input type="checkbox"
+                                           wire:model="selectedOrganisers"
+                                           @if($organiser->status != 'pending')
+                                               disabled
+                                           class="rounded border-gray-200 bg-gray-300 shadow"
+                                           title="Organiser activated, delete disabled"
+                                           @else
+                                           class="rounded border-gray-300 shadow"
+                                           @endif
+                                           value="{{ $organiser->id }}"></td>
                                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{ $loop->iteration }}</td>
                                 <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{ $organiser->name }}</td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $organiser->org }}</td>
@@ -100,7 +145,9 @@
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     @if($organiser->status == 'pending')
                                         <span class="gray-pillow">{{ ucfirst($organiser->status) }}</span>
-                                        <a href="{{ route('admin.resend-activation', $organiser) }}" title="Re-send activation email"><i class="fa-solid fa-rotate text-indigo-600 ml-2"></i></a>
+                                        <a href="{{ route('admin.resend-activation', $organiser) }}"
+                                           title="Re-send activation email"><i
+                                                class="fa-solid fa-rotate text-indigo-600 ml-2"></i></a>
 
                                     @endif
                                     @if($organiser->status == 'activated')
@@ -111,32 +158,41 @@
                                     @endif
                                 </td>
                                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-semibold sm:pr-6">
-                                    <a href="{{ route('organiser.show', $organiser) }}" class="text-indigo-600 hover:text-indigo-900 mr-2">View details</a>
+                                    <a href="{{ route('organiser.show', $organiser) }}"
+                                       class="text-indigo-600 hover:text-indigo-900 mr-2">View details</a>
                                     @if($organiser->status == 'activated')
-                                        <a href="{{ route('admin.organiser.docs', $organiser) }}" class="text-amber-600 hover:text-indigo-900 mr-2">Docs</a>
+                                        <a href="{{ route('admin.organiser.docs', $organiser) }}"
+                                           class="text-amber-600 hover:text-indigo-900 mr-2">Docs</a>
                                     @endif
                                     @if($organiser->status == 'activated')
-                                        <a href="{{ route('approved.disabled', $organiser) }}" class="text-green-600 hover:text-green-900 mr-2">Disable</a>
+                                        <a href="{{ route('approved.disabled', $organiser) }}"
+                                           class="text-green-600 hover:text-green-900 mr-2">Disable</a>
                                     @endif
                                     @if($organiser->status == 'disabled')
-                                        <a href="{{ route('approved.organiser', $organiser) }}" class="text-green-600 hover:text-green-900 mr-2">Enable</a>
+                                        <a href="{{ route('approved.organiser', $organiser) }}"
+                                           class="text-green-600 hover:text-green-900 mr-2">Enable</a>
                                     @endif
                                     @if($organiser->status == 'pending')
-                                        <form method="POST" action="{{ route('organiser.destroy', $organiser) }}" class="inline-block"
+                                        <form method="POST" action="{{ route('organiser.destroy', $organiser) }}"
+                                              class="inline-block"
                                               onsubmit="return confirm('Do you wish to delete the organiser completely?');">
                                             @csrf
                                             @method("DELETE")
-                                            <button type="submit" class="text-red-600 hover:text-red-900 hover:underline">Delete</button>
+                                            <button type="submit"
+                                                    class="text-red-600 hover:text-red-900 hover:underline">Delete
+                                            </button>
                                         </form>
                                     @else
-                                        <div class="text-gray-500 inline-block cursor-not-allowed" title="Organiser is already activated, cannot delete">Delete</div>
+                                        <div class="text-gray-500 inline-block cursor-not-allowed"
+                                             title="Organiser is already activated, cannot delete">Delete
+                                        </div>
 
                                     @endif
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td  colspan="5" class="p-4 text-xl text-center">No organisers submitted</td>
+                                <td colspan="5" class="p-4 text-xl text-center">No organisers submitted</td>
                             </tr>
                         @endforelse
 
