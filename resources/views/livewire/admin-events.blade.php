@@ -2,9 +2,9 @@
     <div class="flex items-center justify-between gap-16 mb-4 bg-gray-100 px-4 py-2 rounded">
         <div class="flex items-center w-auto mr-8">
             <div>
-                <input type="search" wire:model.live.debounce.500ms="search" name="search"
+                <input type="search" wire:model.live.debounce.500ms="searchEvent" name="search"
                        class="focus:ring-olive-500 text-gray-600 border-gray-300 rounded w-64 block px-2 py-1" placeholder="Search by event name">
-                @if($search !='')
+                @if($searchEvent !='')
                     <button wire:click="clear" class="text-xs font-semibold text-red-600 hover:underline mt-2 ml-2">Clear</button>
                 @endif
             </div>

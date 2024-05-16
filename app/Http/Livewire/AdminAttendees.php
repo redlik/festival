@@ -11,9 +11,14 @@ class AdminAttendees extends Component
 {
     use WithPagination;
 
-    public $search;
+    public $searchAttendee;
     public $events;
-    public $event;
+    public $attendeeEvent;
+
+    protected $queryString = [
+        'searchAttendee' => ['except' => ''],
+        'attendeeEvent' => ['except' => ''],
+    ];
 
     public function mount()
     {
@@ -22,18 +27,18 @@ class AdminAttendees extends Component
 
     public function clear()
     {
-        $this->search = '';
+        $this->searchAttendee = '';
     }
 
     public function render()
     {
         $attendees = Attendee::with('event')
-            ->when($this->search != '', function ($s) {
-                $s->where('name', 'LIKE', '%' . $this->search . '%');
+            ->when($this->searchAttendee != '', function ($s) {
+                $s->where('name', 'LIKE', '%' . $this->searchAttendee . '%');
                 $this->resetPage();
             })
-            ->when($this->event, function($e){
-                $e->whereEventId($this->event);
+            ->when($this->attendeeEvent, function($e){
+                $e->whereEventId($this->attendeeEvent);
                 $this->resetPage();
             })
             ->orderBy('created_at', 'desc')

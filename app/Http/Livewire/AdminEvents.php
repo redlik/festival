@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Exports\EventExport;
 use App\Models\Event;
 use App\Models\Organiser;
+use Illuminate\Http\Request;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel;
@@ -19,7 +20,7 @@ class AdminEvents extends Component
 
     public $date = '';
 
-    public $search = '';
+    public $searchEvent = '';
 
     public $status = '';
 
@@ -27,28 +28,37 @@ class AdminEvents extends Component
 
     public $organiser;
 
+    protected $queryString = [
+        'searchEvent' => ['except' => ''],
+        'date' => ['except' => ''],
+        'status' => ['except' => ''],
+        'organiser' => ['except' => ''],
+    ];
+
     public $years = array();
 
-    public function mount()
+    public function mount(Request $request)
     {
         $this->pending = '';
         $this->organisers = Organiser::has('events')->get();
         for ($i = now()->year; $i >= 2022; $i--) {
             array_push($this->years, $i);
         }
-        $this->date = now()->year;
+        if(!$request->filled('date')) {
+            $this->date = now()->year;
+        }
     }
 
     public function clear()
     {
-        $this->search = '';
+        $this->searchEvent = '';
     }
 
     public function render()
     {
         $this->events = Event::orderBy('status', 'desc')
-            ->when($this->search != '', function ($s) {
-                $s->where('name', 'LIKE', '%' . $this->search . '%');
+            ->when($this->searchEvent != '', function ($s) {
+                $s->where('name', 'LIKE', '%' . $this->searchEvent . '%');
             })
             ->when($this->status != '', function($q) {
                 $q->where('status', $this->status);
