@@ -49,11 +49,11 @@
             </div>
             <!---------- TABS ---------->
             <div class="flex items-center justify-center gap-10 w-full mt-6">
-                <a @click="openTab = '#events'" :class="openTab === '#events' ? activeClasses : inactiveClasses" class="bg-white
+                <a @click="openTab = '#events'" :class="openTab === '#events' ? activeClasses : inactiveClasses" class="
                             inline-block py-2 px-4 font-bold" >Events</a>
-                <a @click="openTab = '#venues'" :class="openTab === '#venues' ? activeClasses : inactiveClasses" class="bg-white
+                <a @click="openTab = '#venues'" :class="openTab === '#venues' ? activeClasses : inactiveClasses" class="
                             inline-block py-2 px-4 font-bold" >Venues</a>
-                <a @click="openTab = '#attendees'" :class="openTab === '#attendees' ? activeClasses : inactiveClasses" class="bg-white
+                <a @click="openTab = '#attendees'" :class="openTab === '#attendees' ? activeClasses : inactiveClasses" class="
                             inline-block py-2 px-4 font-bold" >Attendees</a>
             </div>
             <!---------- END TABS ---------->
