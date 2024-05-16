@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Organiser;
+use Illuminate\Http\Request;
 use Livewire\Component;
 
 class OrganiserListAdmin extends Component
@@ -19,17 +20,25 @@ class OrganiserListAdmin extends Component
 
     public $delete;
 
+    protected $queryString = [
+        'search' => ['except' => ''],
+        'year' => ['except' => ''],
+        'status',
+    ];
+
     public $zero_count = false;
 
     public $years = array();
-    public function mount()
+    public function mount(Request $request)
     {
         $this->organisers = Organiser::all();
         for ($i = now()->year; $i >= 2022; $i--) {
-            array_push($this->years, $i);
-            ray('Year ' . $i);
+            $this->years[] = $i;
         }
-        $this->year = now()->year;
+        if(!$request->filled('year')) {
+            $this->year = now()->year;
+        }
+
     }
 
     public function clear()
