@@ -46,13 +46,26 @@
         </div>
     </div>
     <div class="bg-white">
-        <div class="max-w-7xl mx-auto px-4 py-8">
-            <div class="text-center">
-                <h3 class="uppercase text-3xl mb-6 text-olive-500">Upcoming events</h3>
+        <div class="max-w-7xl mx-auto px-4 py-8 lg:flex items-center justify-between">
+            {{--            <div class="">--}}
+            {{--                <h3 class="uppercase text-2xl mb-4">Upcoming events</h3>--}}
+            {{--            </div>--}}
+            {{--            @livewire('event-list')--}}
+            <div class="w-full lg:w-1/2">
+                <h2 class="text-2xl tracking-tight uppercase text-gray-700 md:text-4xl">
+                    <span class="block">Organising an event in 2024?</span>
+                </h2>
+                <div class="block text-2xl text-olive-600 mt-2">Fill out the registration form</div>
+                <p class="text-sm mt-2 mb-4">If you have already registered last year, you don't need to fill out the registration form again. <br>Just use the login details to access the Dashboard.
+                </p>
+                <a href="{{ route('login') }}" class="font-bold mt-4 px-4 py-2 rounded bg-olive-50 text-olive-700 shadow hover:text-white hover:bg-olive-600">Login here</a>
             </div>
-            @livewire('event-list')
+            <div class="w-full lg:w-1/2 mt-6 lg:mt-0 flex justify-start lg:justify-center">
+                <a href="{{ route('pages.organiser-registration') }}" class="button-primary">
+                    Organiser registration
+                </a>
+            </div>
         </div>
-    </div>
 
     <div class="bg-gray-100">
             <div class="max-w-7xl mx-auto py-4 px-4 lg:flex lg:items-center" x-data="{ showPoster : false }">
@@ -76,7 +89,7 @@
                         <!-- This element is to trick the browser into centering the modal contents. -->
                         <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">​</span>
                         <div x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90" x-on:click.away="showPoster = false" class="p-2 fixed w-full h-100 inset-0 z-50 overflow-hidden flex justify-center items-center bg-black bg-opacity-75">
-                            <div @click.away="showPoster = false" class="flex flex-col max-w-7xl max-h-full overflow-auto">
+                            <div @click.away="showPoster = false" class="flex flex-col w-11/12 max-h-full p-8 overflow-auto">
                                 <div class="z-50">
                                     <button @click="showPoster = false" class="float-right pt-2 pr-2 outline-none focus:outline-none">
                                         <svg class="fill-current text-white " xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
@@ -86,7 +99,7 @@
                                     </button>
                                 </div>
                                 <div class="p-2">
-                                    <img src="{{asset('img/Kerrywellfest_POSTER_3000px.jpg')}}" alt="" class="w-full">
+                                    <img loading="lazy" src="{{asset('img/kerry_mh_and_wellbeing_fest_events__2023.png')}}" alt="" class="w-full h-full object-contain">
                                 </div>
                             </div>
 
