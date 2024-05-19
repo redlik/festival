@@ -13,14 +13,25 @@ use Maatwebsite\Excel\Concerns\WithTitle;
 
 class AttendeeExport implements FromQuery, WithHeadings, WithTitle, ShouldAutoSize, WithMapping
 {
+    private mixed $events;
+
     /**
     * @return \Illuminate\Database\Eloquent\Builder|\LaravelIdea\Helper\App\Models\_IH_Attendee_QB
      */
 
+    public function __construct($events)
+    {
+        $this->events = $events;
+    }
+
     public function query()
     {
-        $events = Event::where('user_id', Auth::id())->select('id')->get()->toArray();
-        return Attendee::query()->whereIn('event_id', $events)->select('name', 'email', 'phone', 'event_id', 'created_at', 'waiting_status')->orderBy('event_id', 'asc')->orderBy('name', 'asc');
+
+        return Attendee::query()
+            ->whereIn('event_id', $this->events)
+            ->select('name', 'email', 'phone', 'event_id', 'created_at', 'waiting_status')
+            ->orderBy('event_id', 'asc')
+            ->orderBy('name', 'asc');
     }
 
 
