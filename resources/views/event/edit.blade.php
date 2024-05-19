@@ -15,7 +15,7 @@
                 @endif
             </div>
             <div class="p-2 rounded bg-gray-100 border border-gray-500 flex justify-between" x-show="date">
-                <div><strong>PLEASE NOTE</strong> that edits to events can be made up to the <strong>19th August 2023.</strong></div>
+                <div><strong>PLEASE NOTE</strong> that edits to events can be made up to the <strong>19th August 2024.</strong></div>
                 <div>
                     <button @click="date = ! date">
                         <i class="fas fa-times-circle"></i>
@@ -60,7 +60,7 @@
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
                                     <input id="start_date" name="start_date" type="date" class="lg:w-48 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" required
-                                           min="2023-10-07" max="2023-10-14"
+                                           min="2024-10-05" max="2024-10-12"
                                            value="{{ $event->start_date }}">
                                     <input id="start_time" name="start_time" type="time" class="lg:ml-4 lg:w-48 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" required value="{{ $event->start_time }}">
                                     <input id="end_time" name="end_time" type="time" class="lg:ml-4 lg:w-48 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" value="{{ $event->end_time }}">
