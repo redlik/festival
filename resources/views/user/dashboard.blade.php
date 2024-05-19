@@ -19,7 +19,7 @@
                   activeClasses:
                   'bg-gray-600 text-gray-100 rounded-full shadow-inner shadow outline-none',
                   inactiveClasses:
-                  'text-gray-500 bg-gray-100 hover:text-gray-700 hover:bg-gray-200 rounded-full cursor-pointer',
+                  'text-gray-500 bg-gray-200 hover:text-gray-700 hover:bg-gray-200 rounded-full cursor-pointer',
                   docMessage: true
                 }">
             <div x-show='docMessage' class="max-w-7xl mx-auto bg-green-50 shadow-inner p-4 mt-6 rounded text-green-700 flex justify-between">
@@ -40,10 +40,10 @@
             </div>
         <!---------- TABS ---------->
         <div class="flex items-center justify-center gap-10 w-full mt-6">
-            <a @click="openTab = '#events'" :class="openTab === '#events' ? activeClasses : inactiveClasses" class="bg-white
-                            inline-block py-2 px-4 font-bold" >Events</a>
-            <a @click="openTab = '#attendees'" :class="openTab === '#attendees' ? activeClasses : inactiveClasses" class="bg-white
-                            inline-block py-2 px-4 font-bold" >Attendees</a>
+            <a @click="openTab = '#events'" :class="openTab === '#events' ? activeClasses : inactiveClasses"
+               class="inline-block py-2 px-4 font-bold" >Events</a>
+            <a @click="openTab = '#attendees'" :class="openTab === '#attendees' ? activeClasses : inactiveClasses"
+               class="inline-block py-2 px-4 font-bold" >Attendees</a>
         </div>
         <!---------- END TABS ---------->
         <div x-show="openTab === '#events'">
