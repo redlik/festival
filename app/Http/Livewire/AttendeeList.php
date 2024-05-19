@@ -22,10 +22,6 @@ class AttendeeList extends Component
     public function mount()
     {
         $selected_event = '';
-        $this->attendees = Auth::user()->attendees()->with('event')
-            ->orderBy('event_id', 'asc')
-            ->orderBy('waiting_status', 'asc')
-            ->get();
         $this->events_with_attendees = Event::where('user_id', Auth::id())->has('attendee')->get();
     }
 
