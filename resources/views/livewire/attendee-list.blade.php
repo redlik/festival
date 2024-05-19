@@ -2,7 +2,7 @@
     <h2 class="text-olive-300 mb-6 uppercase">Attendees</h2>
     <div class="flex mb-4 items-center">
         <div class="mr-6">
-            <label for="event_attendee text-sm text-gray-600 mr-2">View by event: </label>
+            <label for="event_attendee" class="text-sm text-gray-600 mr-4 font-semibold">View by event: </label>
             <select name="event_attendee" id="event_attendee" class="focus:ring-indigo-500 focus:border-indigo-500 w-48 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md" wire:model.live="selected_event">
                 <option value="" selected>All events</option>
             @foreach($events_with_attendees as $event_with_attendees)
@@ -11,8 +11,18 @@
             </select>
         </div>
         <div>
-            <a href="{{ route('dashboard.attendee.export') }}" type="button" class="bg-yellow-300 text-olive-600 rounded px-2 py-1 hover:bg-yellow-600 hover:text-white">
-                <i class="fas fa-file-excel mr-2"></i> Export list</a>
+            @if($selected_event)
+                <a wire:click="exportSelected" type="button"
+                   class="bg-yellow-400 text-olive-700 font-semibold
+                   rounded px-4 py-2 hover:bg-yellow-600 hover:text-white
+                   cursor-pointer">
+                    <i class="fas fa-file-excel mr-2"></i> Export Event Attendees</a>
+            @else
+                <a wire:click="exportAll" type="button" class="bg-yellow-300 text-olive-600 font-semibold
+                rounded px-4 py-2 hover:bg-yellow-600 hover:text-white
+                cursor-pointer">
+                    <i class="fas fa-file-excel mr-2"></i> Export All Attendees</a>
+            @endif
         </div>
     </div>
     @if (\Session::has('unregister'))
@@ -24,7 +34,8 @@
         <table class="min-w-full table-auto divide-y divide-gray-300">
             <thead class="bg-gray-50">
             <tr>
-                <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8">Name</th>
+                <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8">#</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Name</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Event</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Registered on</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Status</th>
@@ -41,13 +52,15 @@
                     <tr>
                         @endif
                         <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8">
+                           {{ $loop->iteration }}
+                        </td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                             <div>{{ $attendee->name }}</div>
                             <div class="text-xs text-gray-600">E: {{ $attendee->email }}
                                 @if($attendee->phone)
                                     T: {{ $attendee->phone }}
                                 @endif
                             </div>
-
                         </td>
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                             {{ $attendee->event->name }}

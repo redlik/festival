@@ -25,7 +25,6 @@ class EventExport implements FromCollection, WithHeadings, WithTitle, ShouldAuto
 
     public function collection()
     {
-        ray($this->events);
 
         return $this->events;
     }
