@@ -33,7 +33,76 @@
                                         Phone number <span class="text-red-700">*</span>
                                     </label>
                                     <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                        <input id="phone" name="phone" type="text" autocomplete="email" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" value="{{ $organiser->phone }}">
+                                        <input id="phone" name="phone" type="text" autocomplete="email"
+                                               class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
+                                               value="{{ $organiser->phone }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start items-centre sm:border-t sm:border-gray-200 sm:pt-5">
+                            <label for="garda_vetting" class="block text-sm font-medium sm:mt-px sm:pt-2">
+                                Garda Vetting
+                                <div class="italic text-xs mr-0 lg:mr-8">If you are hosting an event with children or vulnerable adults, please tick the box to signify that you have Garda Vetting.</div>
+                            </label>
+                            <div class="mt-4 lg:mt-1 sm:col-span-2 h-full">
+                                <div class="h-full">
+                                    <div class="flex items-center mb-2">
+                                        <input id="garda_vetting_yes" aria-describedby="garda_vetting-description"
+                                               name="garda_vetting" type="radio"
+                                               class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                                               @checked($organiser->garda_vetting) value="1" required>
+                                        <label for="garda_vetting_yes" class="ml-4 text-gray-700 text-sm">Yes, I have current Garda Vetting.</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input id="garda_vetting_no" aria-describedby="garda_vetting-description" name="garda_vetting" type="radio"
+                                               class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                                               @checked(!$organiser->garda_vetting) value="0">
+                                        <label for="garda_vetting_no" class="ml-4 text-gray-700 text-sm">No, I do not have current Garda Vetting.</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start items-centre sm:border-t sm:border-gray-200 sm:pt-5">
+                            <label for="garda_vetting" class="block text-sm font-medium sm:mt-px sm:pt-2">
+                                Public Liability Insurance
+                                <div class="italic text-xs">Do you have up-to-date public liability insurance?</div>
+                            </label>
+                            <div class="mt-4 lg:mt-1 sm:col-span-2 h-full">
+                                <div class="h-full">
+                                    <div class="flex items-center mb-2">
+                                        <input id="public_liability_yes" aria-describedby="public_liability-description" name="public_liability_insurance" type="radio"
+                                               class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                                               @checked($organiser->public_liability_insurance) value="1" required>
+                                        <label for="public_liability_yes" class="ml-4 text-gray-700 text-sm">Yes, I have Public Liability insurance.</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input id="public_liability_no" aria-describedby="public_liability-description" name="public_liability_insurance" type="radio"
+                                               class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                                               @checked(!$organiser->public_liability_insurance) value="0">
+                                        <label for="public_liability_no" class="ml-4 text-gray-700 text-sm">No, I do not have Public Liability insurance.</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start items-centre sm:border-t sm:border-gray-200 sm:pt-5">
+                            <label for="garda_vetting" class="block text-sm font-medium sm:mt-px sm:pt-2">
+                                Professional Indemnity Insurance
+                                <div class="italic text-xs">Do you have up-to-date professional indemnity insurance relevant to the event(s) you are delivering?</div>
+                            </label>
+                            <div class="mt-4 lg:mt-1 sm:col-span-2 h-full">
+                                <div class="h-full">
+                                    <div class="flex items-center mb-2">
+                                        <input id="indemnity_insurance_yes" aria-describedby="indemnity_insurance-description" name="indemnity_insurance" type="radio"
+                                               class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                                               @checked($organiser->indemnity_insurance) value="1" required>
+                                        <label for="garda_vetting_yes" class="ml-4 text-gray-700 text-sm">Yes, I have up-to-date Professional Indemnity insurance.</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input id="indemnity_insurance_no" aria-describedby="indemnity_insurance-description" name="indemnity_insurance" type="radio"
+                                               class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                                               @checked(!$organiser->indemnity_insurance) value="0">
+                                        <label for="garda_vetting_no" class="ml-4 text-gray-700 text-sm">No, I do not have up-to-date Professional Indemnity insurance.</label>
                                     </div>
                                 </div>
                             </div>
