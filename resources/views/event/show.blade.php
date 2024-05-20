@@ -51,7 +51,7 @@
                                 @if($event->type === 'online')
                                     <span class="text-indigo-500 ml-4"><i class="fa-solid fa-video mr-1"></i> Online event</span>
                                 @else
-                                    {{ $event->venue->name }}, {{ $event->venue->town }}
+                                    {{ $event->venue->name }}, {{ $event->venue->town }}{{ $event->venue->eircode ? ', '.$event->venue->eircode : '' }}
                                 @endif
                             </div>
                         </div>
@@ -91,39 +91,39 @@
                         </div>
 
                     </div>
-                    <div class="bg-gray-50 p-2 rounded mt-4 lg:mt-0">
+                    <div class="bg-gray-50 p-2 rounded mt-4 pb-6 lg:mt-0">
                         <h5 class="text-gray-600">Contact organiser:</h5>
-                        <div class="flex mt-3">
+                        <div class="flex mt-4">
                             <a href="tel:{{ $event->phone }}"
                                title="Contact organiser"><i
-                                    class="fa-solid fa-phone-square-alt mr-6 text-green-500 text-xl"></i></a>
+                                    class="fa-solid fa-phone-square-alt fa-xl mr-6 text-green-500 text-xl"></i></a>
                             <a href="mailto:{{ $event->user->email }}?subject=Question about {{ $event->name }} event"
                                title="Contact organiser"><i
-                                    class="fa-solid fa-envelope mr-6 text-purple-500 text-xl"></i></a>
+                                    class="fa-solid fa-envelope fa-xl mr-6 text-purple-500"></i></a>
                             @if($event->user->organiser->website)
                                 <a href="{{ $event->user->organiser->website }}" target="_blank"
                                    title="Visit our website"><i
-                                        class="fa-solid fa-globe mr-6 text-green-600 text-xl"></i></a>
+                                        class="fa-solid fa-globe fa-xl mr-6 text-green-600"></i></a>
                             @endif
                             @if($event->user->organiser->facebook)
                                 <a href="{{ $event->user->organiser->facebook }}" target="_blank"
                                    title="Visit our Facebook page"><i
-                                        class="fa-brands fa-facebook-square mr-6 text-indigo-600 text-xl"></i></a>
+                                        class="fa-brands fa-facebook-square fa-xl mr-6 text-indigo-600 text-xl"></i></a>
                             @endif
                             @if($event->user->organiser->twitter)
                                 <a href="{{ $event->user->organiser->twitter }}" target="_blank"
                                    title="Check our Twitter"><i
-                                        class="fa-brands fa-twitter-square mr-6 text-blue-500 text-xl"></i></a>
+                                        class="fa-brands fa-twitter-square fa-xl mr-6 text-blue-500 text-xl"></i></a>
                             @endif
                             @if($event->user->organiser->instagram)
                                 <a href="{{ $event->user->organiser->instagram }}" target="_blank"
                                    title="Check our Instagram"><i
-                                        class="fa-brands fa-instagram-square text-orange-600 text-xl mr-6"></i></a>
+                                        class="fa-brands fa-instagram-square fa-xl text-orange-600 text-xl mr-6"></i></a>
                             @endif
                             @if($event->user->organiser->linkedin)
                                 <a href="{{ $event->user->organiser->linkedin }}" target="_blank"
                                    title="Check our LinkedIn"><i
-                                        class="fa-brands fa-linkedin text-blue-700 text-xl"></i></a>
+                                        class="fa-brands fa-linkedin fa-xl text-blue-700 text-xl"></i></a>
                             @endif
                         </div>
                     </div>
