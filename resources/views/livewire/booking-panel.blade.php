@@ -62,9 +62,14 @@
                                 </div>
                                 @endif
                             </div>
+                            <div class="mb-2 text-sm font-bold text-gray-600">
+                                One row per one person, do not insert multiple names into one field. The registration will still count
+                                <span class="underline">as one</span>.
+                            </div>
                             <div class="mb-2 text-sm text-olive-400">
                                 If you are booking places on behalf of somebody you can add their phone or email below, otherwise we will save your login details with them.
                             </div>
+
                         <form wire:submit="register">
                             @honeypot
                             @if($full)

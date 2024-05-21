@@ -5,8 +5,10 @@ namespace App\Http\Livewire;
 use App\Jobs\BookingEmailToAttendee;
 use App\Jobs\BookingEmailToOrganiser;
 use App\Models\Attendee;
+use App\Models\Booking;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Illuminate\Support\Str;
 
 class BookingPanel extends Component
 {
@@ -118,6 +120,11 @@ class BookingPanel extends Component
             $this->message = "You've been added to the waiting list. If one of the attendees cancels we will get in touch.";
         }
 
+        $booking = Booking::create([
+            'event_id' => $this->event->id,
+            'long_id' => Str::uuid()->toString(),
+        ]);
+
         for($n = 1; $n <= $this->people; $n++) {
             $this->attendee = Attendee::create([
                 'name' => $this->names['name-'.$n],
@@ -125,6 +132,7 @@ class BookingPanel extends Component
                 'phone' => $this->names['phone-'.$n] ?? '',
                 'opt_in' => $this->optin,
                 'event_id' => $this->event->id,
+                'booking_id' => $booking->id,
                 'user_id' => Auth::user()->id,
                 'waiting_status' => $this->waiting_status,
             ]);
