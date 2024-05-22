@@ -60,11 +60,42 @@
             </div>
         </div>
     </div>
-    <div class="text-sm font-semibold mb-4 ml-8">{{ $events->count() }} {{ \Illuminate\Support\Str::of('event')->plural($events->count())}} listed</div>
+    <div class="flex justify-between mb-4 items-center">
+    <div class="text-sm font-semibold ml-8">{{ $events->count() }} {{ \Illuminate\Support\Str::of('event')->plural($events->count())}} listed</div>
+        <div
+            @if(count($selectedEvents) > 0)
+                class="flex justify-between items-center gap-12"
+            @else
+                class="hidden"
+            @endif><form wire:submit="changeStatus">
+                <select name="status" id="status" wire:model="selectedStatus"
+                class="focus:ring-olive-500 focus:border-olive-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md mr-2">
+                    <option value="" selected>Select status</option>
+                    <option value="draft">Draft</option>
+                    <option value="pending">Pending</option>
+                    <option value="published">Published</option>
+                    <option value="cancelled">Cancelled</option>
+                </select>
+                <button type="submit" class="inline-flex items-center
+                            justify-center rounded-md border border-transparent tracking-wide
+                            bg-olive-500 px-8 py-2 text-sm font-bold text-white uppercase
+                            shadow-sm hover:bg-olive-700 focus:outline-none
+                            focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Change status</button>
+            </form>
+            <form wire:submit="bulkDelete">
+                <button type="submit" class="inline-flex items-center
+                            justify-center rounded-md border border-transparent tracking-wide
+                            bg-red-500 px-8 py-2 text-sm font-bold text-white uppercase
+                            shadow-sm hover:bg-red-700 focus:outline-none
+                            focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Delete {{ count($selectedEvents) }}</button>
+            </form>
+        </div>
+    </div>
     <table class="min-w-full divide-y divide-gray-300">
         <thead class="bg-gray-100">
         <tr>
-            <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8">#</th>
+            <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8"></th>
+            <th scope="col" class="py-3.5 text-left text-sm font-semibold text-gray-900">#</th>
             <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900">Name</th>
             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Date & Time</th>
             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Organiser</th>
@@ -79,7 +110,13 @@
         <tbody class="divide-y divide-gray-200 bg-white">
         @forelse($events as $event)
             <tr>
-                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"> {{ $loop->iteration }}
+                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-center text-gray-900">
+                    <input type="checkbox" wire:model="selectedEvents"
+                           class="rounded border-gray-200 shadow"
+                           value="{{ $event->id }}">
+                </td>
+                <td class="whitespace-nowrap py-4 text-sm font-medium text-gray-900">
+                    {{ $loop->iteration }}
                 </td>
                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
                     <a href="{{ route('admin.event.show', $event) }}" class="hover:underline" title="{{ $event->name }}">

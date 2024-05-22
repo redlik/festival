@@ -20,9 +20,11 @@ class AdminEvents extends Component
 
     public $date = '';
 
+    public $selectedEvents = [];
     public $searchEvent = '';
 
     public $status = '';
+    public $selectedStatus;
 
     public $organisers;
 
@@ -47,6 +49,7 @@ class AdminEvents extends Component
         if(!$request->filled('date')) {
             $this->date = now()->year;
         }
+
     }
 
     public function clear()
@@ -56,23 +59,7 @@ class AdminEvents extends Component
 
     public function render()
     {
-        $this->events = Event::orderBy('status', 'desc')
-            ->when($this->searchEvent != '', function ($s) {
-                $s->where('name', 'LIKE', '%' . $this->searchEvent . '%');
-            })
-            ->when($this->status != '', function($q) {
-                $q->where('status', $this->status);
-            })
-            ->when($this->date, function($q){
-                $q->whereYear('start_date',$this->date);
-            })
-            ->withCount('booked', 'waiting')
-            ->when($this->organiser, function($o) {
-                $o->where('user_id', $this->organiser);
-            })
-            ->with('booked', 'venue', 'user.organiser', 'waiting')
-            ->orderBy(\DB::raw("DATE_FORMAT(start_date,'%d-%M-%Y')"), 'DESC')
-            ->get();
+        $this->getEvents();
 
         return view('livewire.admin-events');
     }
@@ -86,5 +73,47 @@ class AdminEvents extends Component
         $all_events = Event::all();
 
         return Excel::download(new EventExport($all_events), 'all-events-export.xlsx');
+    }
+
+    public function bulkDelete()
+    {
+        $events = Event::whereIn('id', $this->selectedEvents)->get();
+        foreach ($events as $event) {
+            $event->delete();
+        }
+    }
+
+    public function changeStatus()
+    {
+        $eventsForChange = Event::whereIn('id', $this->selectedEvents)->get();
+        foreach ($eventsForChange as $event) {
+            $event->update(['status' => $this->selectedStatus]);
+        }
+
+        return redirect(request()->header('Referer'));
+    }
+
+    /**
+     * @return void
+     */
+    public function getEvents(): void
+    {
+        $this->events = Event::orderBy('status', 'desc')
+            ->when($this->searchEvent != '', function ($s) {
+                $s->where('name', 'LIKE', '%' . $this->searchEvent . '%');
+            })
+            ->when($this->status != '', function ($q) {
+                $q->where('status', $this->status);
+            })
+            ->when($this->date, function ($q) {
+                $q->whereYear('start_date', $this->date);
+            })
+            ->withCount('booked', 'waiting')
+            ->when($this->organiser, function ($o) {
+                $o->where('user_id', $this->organiser);
+            })
+            ->with('booked', 'venue', 'user.organiser', 'waiting')
+            ->orderBy(\DB::raw("DATE_FORMAT(start_date,'%d-%M-%Y')"), 'DESC')
+            ->get();
     }
 }
