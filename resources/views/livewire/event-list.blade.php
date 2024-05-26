@@ -121,7 +121,7 @@
                 </div>
             @empty
                 <div class="mt-12">
-                    <h4 class="text-center text-2xl text-gray-500">New events for 2023 coming soon!</h4>
+                    <h4 class="text-center text-2xl text-gray-500">New events for 2024 coming soon!</h4>
                 </div>
             @endforelse
         @else
