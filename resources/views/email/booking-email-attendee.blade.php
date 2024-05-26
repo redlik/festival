@@ -5,6 +5,10 @@ Thank you for participating in Kerry Mental Health & Wellbeing Fest, below are t
 
 **Event:** {{ $event->name }} on {{ $event->start_date }} at {{ $event->start_time }}
 
+@if($event->type != 'online')
+**Venue:** {{ $event->venue->name }}, {{ $event->venue->town }}{{ $event->venue->eircode ? ', '.$event->venue->eircode : '' }}
+@endif
+
 **People booked for the event:**
 @foreach($names as $key => $value)
 * {{ $value }}
