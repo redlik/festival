@@ -41,7 +41,7 @@
         <div class="flex gap-4">
             <div class="mt-4 sm:mt-0 sm:flex-none">
                 <a wire:click="export" type="button"
-                   class="inline-flex items-center justify-center rounded-md border border-transparent bg-yellow-300 px-4 py-2 text-sm font-medium text-olive-600 shadow-sm hover:bg-yellow-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
+                   class="inline-flex items-center justify-center rounded-md border border-transparent bg-yellow-300 px-4 py-2 text-sm font-medium text-olive-600 shadow-sm hover:bg-yellow-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto cursor-pointer">
                     <i class="fas fa-file-excel mr-2"></i> Export list</a>
             </div>
             <div class="mt-4 sm:mt-0 sm:flex-none">

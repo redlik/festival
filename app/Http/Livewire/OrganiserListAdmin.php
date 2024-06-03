@@ -82,7 +82,7 @@ class OrganiserListAdmin extends Component
 
     public function export()
     {
-        $this->organisersToExport = Organiser::whereIn('id', $this->selectedOrganisers)
+        $this->organisersToExport = Organiser::whereIn('id', $this->organisers->select('id'))
             ->select('id')
             ->get();
         return Excel::download(new OrganisersExport($this->organisersToExport), 'organisers-list.xlsx');
