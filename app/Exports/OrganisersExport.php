@@ -11,12 +11,24 @@ use Maatwebsite\Excel\Concerns\WithTitle;
 
 class OrganisersExport implements FromQuery, WithHeadings, WithTitle, ShouldAutoSize, WithMapping
 {
+    private $organisers;
+
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
+
+    public function __construct($organisers)
+    {
+        $this->organisers = $organisers;
+    }
+
     public function query()
     {
-        return Organiser::query()->orderBy('status', 'asc')->orderBy('name', 'asc');
+        return Organiser::query()
+            ->wherein('id', $this->organisers)
+            ->select('name', 'org', 'email', 'phone', 'created_at', 'status')
+            ->orderBy('status', 'asc')
+            ->orderBy('name', 'asc');
     }
 
     public function map($organiser): array

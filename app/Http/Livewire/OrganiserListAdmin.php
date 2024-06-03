@@ -2,9 +2,12 @@
 
 namespace App\Http\Livewire;
 
+use App\Exports\OrganisersExport;
 use App\Models\Organiser;
 use Illuminate\Http\Request;
 use Livewire\Component;
+use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Facades\Excel;
 
 class OrganiserListAdmin extends Component
 {
@@ -19,6 +22,8 @@ class OrganiserListAdmin extends Component
     public $status;
 
     public $delete;
+
+    public $organisersToExport = [];
 
     protected $queryString = [
         'search' => ['except' => ''],
@@ -73,5 +78,13 @@ class OrganiserListAdmin extends Component
         foreach ($organisers as $organiser) {
             $organiser->delete();
         }
+    }
+
+    public function export()
+    {
+        $this->organisersToExport = Organiser::whereIn('id', $this->selectedOrganisers)
+            ->select('id')
+            ->get();
+        return Excel::download(new OrganisersExport($this->organisersToExport), 'organisers-list.xlsx');
     }
 }
