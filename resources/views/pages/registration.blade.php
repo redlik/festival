@@ -24,7 +24,7 @@
                     <li><strong>Step 1</strong> – Register as an event organiser by filling in the short form below.</li>
                     <li><strong>Step 2</strong> - Activate your account by clicking on the link in the activation email that you will receive.</li>
                     <li><strong>Step 3</strong> - Create a password and then you are ready to add an event(s).
-                        <span class="underline">All events need to be submitted by Thursday, 30th August to be considered.</span></li>
+                        <span class="underline">All events need to be submitted by Friday, 30th August to be considered.</span></li>
                     <li><strong>Step 4</strong> - The Fest Committee will review your event(s) prior to publishing them on the website.</li>
 
                 </ul>
@@ -342,7 +342,7 @@
                 <li class="mb-2">The Fest Committee cannot provide funding to cover costs such as venues or facilitators. However, we may be able to support in identifying free options for these kinds of expenses, depending on the location, so please get in touch with us at
                     <a href="mailto:kerrymhwfest20@gmail.com" class="font-bold underline">kerrymhwfest20@gmail.com</a></li>
                 <li class="mb-2">The Fest Committee will however promote the Fest, and your event(s) extensively in the weeks leading up to the Fest using a host of mediums.</li>
-                <li>Please refer to the programme of events for last year's Fest (2023) which will remain on the website for the foreseeable future. We would be delighted to facilitate events of a similar nature as well as events that will bring something new and different to the Fest. We are particularly interested in events for adolescents and young adults, as they have been lacking in previous years.</li>
+                <li>Please refer to the programme of events for last year's <a href="{{ asset('img/kerry_mh_and_wellbeing_fest_events__2023.pdf') }}" class="underline font-bold" target="_blank">Fest (2023)</a> which will remain on the website for the foreseeable future. We would be delighted to facilitate events of a similar nature as well as events that will bring something new and different to the Fest. We are particularly interested in events for adolescents and young adults, as they have been lacking in previous years.</li>
                 <li class="mb-2">It is the sole responsibility of the event host to ensure the provision of adequate insurance - for all activities undertaken in the delivery of event(s). If an event host is bringing in an external facilitator, the event host is responsible for ensuring the facilitator has appropriate insurance and qualifications in place.</li>
                 <li class="mb-2">Event hosts are also responsible for ensuring Garda Vetting is in place and is up-to-date for those facilitating the event(s) that will engage children and/or vulnerable adults.</li>
                 <li class="mb-2">You can confirm relevant insurance, qualifications and Garda Vetting are in place for your event(s) by ticking the appropriate boxes when registering as an organiser on the website.</li>
