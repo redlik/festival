@@ -68,7 +68,7 @@
             @else
                 class="hidden"
             @endif><form wire:submit="changeStatus">
-                <select name="status" id="status" wire:model="selectedStatus"
+                <select name="status" id="status" wire:model.live="selectedStatus"
                 class="focus:ring-olive-500 focus:border-olive-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md mr-2">
                     <option value="" selected>Select status</option>
                     <option value="draft">Draft</option>
@@ -111,7 +111,7 @@
         @forelse($events as $event)
             <tr>
                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-center text-gray-900">
-                    <input type="checkbox" wire:model="selectedEvents"
+                    <input type="checkbox" wire:model.live="selectedEvents"
                            class="rounded border-gray-200 shadow"
                            value="{{ $event->id }}">
                 </td>

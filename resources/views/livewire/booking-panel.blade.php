@@ -79,13 +79,13 @@
                                 <div class="lg:flex items-start mb-6">
                                     <div class="grow mr-4 mb-4 md:mb-0">
                                         <div class="mt-1">
-                                            <input type="text" wire:model="names.name-{{ $j }}" id="name-{{ $j }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" required>
+                                            <input type="text" wire:model.live="names.name-{{ $j }}" id="name-{{ $j }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" required>
                                         </div>
                                         <label for="name-{{ $j }}" class="block text-sm font-medium text-gray-700 ml-3 mt-1">Name <span class="text-red-700">*</span></label>
                                     </div>
                                     <div class="grow mr-4 mb-4 md:mb-0">
                                         <div class="mt-1">
-                                            <input type="email" wire:model="names.email-{{ $j }}" id="email-{{ $j }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="you@example.com"
+                                            <input type="email" wire:model.live="names.email-{{ $j }}" id="email-{{ $j }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="you@example.com"
                                             @if($full)
                                                 required
                                             @endif>
@@ -96,7 +96,7 @@
                                     </div>
                                     <div class="grow mr-4 mb-4 md:mb-0">
                                         <div class="mt-1">
-                                            <input type="tel" wire:model="names.phone-{{ $j }}" id="phone-{{ $j }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="066 888 8888">
+                                            <input type="tel" wire:model.live="names.phone-{{ $j }}" id="phone-{{ $j }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="066 888 8888">
                                         </div>
                                         <label for="phone-{{ $j }}" class="block text-sm font-medium text-gray-700 ml-3 mt-1">Phone (optional)</label>
                                     </div>

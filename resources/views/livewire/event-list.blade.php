@@ -15,7 +15,7 @@
                 <label for="search" class="mb-2 w-full text-sm">Search by name</label>
                 <input type="search" name="search" id="search"
                        class="focus:ring-olive-500 text-gray-600 border-gray-300 rounded w-full block p-1"
-                       wire:model.blur="search">
+                       wire:model.live.blur="search">
 
                 <div class="flex justify-between">
                     <button

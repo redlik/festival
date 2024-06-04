@@ -139,7 +139,7 @@
                             <tr>
                                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                                     <input type="checkbox"
-                                           wire:model="selectedOrganisers"
+                                           wire:model.live="selectedOrganisers"
                                            @if($organiser->status != 'pending')
                                                disabled
                                            class="rounded border-gray-200 bg-gray-300 shadow"

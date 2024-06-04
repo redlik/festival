@@ -1,4 +1,4 @@
-<div class="mt-1 sm:mt-0 sm:col-span-2 livewired" x-data="{ showVenue: @entangle('showVenue') }">
+<div class="mt-1 sm:mt-0 sm:col-span-2 livewired" x-data="{ showVenue: @entangle('showVenue').live }">
 
     <select id="venue" name="venue_id" class="max-w-lg block focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md" :disabled="(type == 'online') ? true : false">
         <option value="" disabled
@@ -46,7 +46,7 @@
                                         <label for="venue_name" class="w-48 block">Name: <span class="text-red-700">*</span></label>
                                         <input type="text" name="venue_name" id="venue_name"
                                                class="lg:ml-4 lg:w-64 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
-                                               wire:model="venue_name">
+                                               wire:model.live="venue_name">
                                     </div>
                                     @error('venue_name') <div class="text-xs text-red-600 mb-4">{{ $message }}</div> @enderror
                                     <div class="flex items-center mb-2">
