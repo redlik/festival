@@ -314,6 +314,7 @@
                                               class="mt-4">
                                             @csrf
                                             <input type="hidden" name="event" x-model="eventID">
+                                            <input type="hidden" name="eventName" x-model="eventName">
                                             <div class="w-full mb-4">
                                                 <label for="subject"
                                                        class="block text-sm font-semibold leading-6 text-gray-900">Subject

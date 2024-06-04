@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Exports\AttendeeExport;
+use App\Jobs\MessageEmailToAttendees;
 use App\Models\Attendee;
+use App\Models\Event;
 use App\Models\User;
 use App\Notifications\NewAttendeeNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
@@ -175,5 +178,19 @@ class AttendeeController extends Controller
     public function bookings()
     {
         return view('attendee.bookings');
+    }
+
+    public function messageToAttendees(Request $request)
+    {
+        $attendees = Attendee::where('event_id', $request->input('event'))->select('email')->distinct()->get()->toArray();
+        $event = Event::find($request->input('event'));
+        $message['subject'] = $request->input('subject');
+        $message['message'] = $request->input('message');
+        $message['event'] = $request->input('eventName');
+        $message['date'] = $event->start_date.' at '.\Carbon\Carbon::parse($event->start_time)->format('H:i');
+        foreach($attendees as $attendee) {
+            MessageEmailToAttendees::dispatch($attendee, $message);
+        }
+        return redirect()->back();
     }
 }
