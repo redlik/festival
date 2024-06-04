@@ -3,121 +3,125 @@
 @tailwind utilities;
 
 @layer base {
-    .fancy {
-        font-family: "Poppins", serif;
-    }
+  .fancy {
+    font-family: 'Poppins', serif;
+  }
 
-    body, p {
-        @apply text-gray-700
-    }
+  body,
+  p {
+    @apply text-gray-700;
+  }
 
-    h1, h2, h3, h4, h5, h6 {
-        font-weight: 600;
-        @apply text-gray-800 fancy;
-    }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 600;
+    @apply fancy text-gray-800;
+  }
 
-    h1 {
-        @apply text-3xl;
-    }
+  h1 {
+    @apply text-3xl;
+  }
 
-    h2 {
-        @apply text-2xl;
-    }
+  h2 {
+    @apply text-2xl;
+  }
 
-    h3 {
-        @apply text-xl;
-    }
+  h3 {
+    @apply text-xl;
+  }
 
-    h4 {
-        @apply text-lg;
-    }
-
+  h4 {
+    @apply text-lg;
+  }
 }
 
 @layer components {
-    .button {
-        @apply px-4 py-1 bg-red-600 text-white rounded shadow cursor-pointer
-    }
+  .button {
+    @apply cursor-pointer rounded bg-red-600 px-4 py-1 text-white shadow;
+  }
 
-    .button-primary {
-        @apply px-4 py-2 bg-olive-600 text-white rounded font-bold shadow cursor-pointer uppercase tracking-wide
-    }
+  .button-primary {
+    @apply cursor-pointer rounded bg-olive-600 px-4 py-2 font-bold uppercase tracking-wide text-white shadow;
+  }
 
-    .button-red {
-        @apply px-4 py-2 bg-red-700 text-white rounded font-bold shadow cursor-pointer uppercase tracking-wide
-    }
+  .button-red {
+    @apply cursor-pointer rounded bg-red-700 px-4 py-2 font-bold uppercase tracking-wide text-white shadow;
+  }
 
-    .button-red:hover {
-        @apply bg-red-400
-    }
+  .button-red:hover {
+    @apply bg-red-400;
+  }
 
-    .button-primary:hover {
-        @apply bg-olive-300 rounded shadow cursor-pointer
-    }
+  .button-primary:hover {
+    @apply cursor-pointer rounded bg-olive-300 shadow;
+  }
 
-    .button-secondary {
-        @apply px-4 py-2 bg-yellow-400 text-olive-400 rounded shadow cursor-pointer font-bold shadow cursor-pointer uppercase tracking-wide
-    }
+  .button-secondary {
+    @apply cursor-pointer rounded bg-yellow-400 px-4 py-2 font-bold uppercase tracking-wide text-olive-400 shadow;
+  }
 
-    .button-secondary:hover {
-        @apply bg-yellow-500 text-white
-    }
+  .button-secondary:hover {
+    @apply bg-yellow-500 text-white;
+  }
 
-    .button:hover {
-        @apply bg-red-900 text-yellow-100
-    }
-    .button-green {
-        @apply px-4 py-2 bg-apple-500 text-white rounded font-bold  shadow cursor-pointer uppercase tracking-wide
-    }
+  .button:hover {
+    @apply bg-red-900 text-yellow-100;
+  }
+  .button-green {
+    @apply cursor-pointer rounded bg-apple-500 px-4 py-2 font-bold uppercase tracking-wide text-white shadow;
+  }
 
-    .button-green:hover {
-        @apply bg-green-900 text-yellow-100
-    }
+  .button-green:hover {
+    @apply bg-green-900 text-yellow-100;
+  }
 
-    .button-blue {
-        @apply px-4 py-2 bg-indigo-600 text-white rounded shadow
-    }
+  .button-blue {
+    @apply rounded bg-indigo-600 px-4 py-2 text-white shadow;
+  }
 
-    .toggle-checkbox:checked {
-        @apply: right-0 border-green-400;
-        right: 0;
-        border-color: #68D391;
-    }
-    .toggle-checkbox:checked + .toggle-label {
-        @apply: bg-green-400;
-        background-color: #68D391;
-    }
+  .toggle-checkbox:checked {
+    @apply: right-0 border-green-400;
+    right: 0;
+    border-color: #68d391;
+  }
+  .toggle-checkbox:checked + .toggle-label {
+    @apply: bg-green-400;
+    background-color: #68d391;
+  }
 
-    .button-blue:hover {
-        @apply bg-indigo-900 text-yellow-100;
-    }
+  .button-blue:hover {
+    @apply bg-indigo-900 text-yellow-100;
+  }
 
-    .text-link {
-        @apply font-bold text-olive-400
-    }
+  .text-link {
+    @apply font-bold text-olive-400;
+  }
 
-    .text-link:hover {
-        @apply underline
-    }
+  .text-link:hover {
+    @apply underline;
+  }
 
-    tr:nth-child(even)
-    {
-        @apply bg-gray-50;
-    }
+  tr:nth-child(even) {
+    @apply bg-gray-50;
+  }
 
-    .green-pillow {
-        @apply inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800;
-    }
+  .green-pillow {
+    @apply inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800;
+  }
 
-    .red-pillow {
-        @apply inline-flex rounded-full bg-red-600 px-2 text-xs font-semibold leading-5 text-white
-    }
+  .red-pillow {
+    @apply inline-flex rounded-full bg-red-600 px-2 text-xs font-semibold leading-5 text-white;
+  }
 
-    .gray-pillow {
-        @apply inline-flex rounded-full bg-gray-200 px-2 text-xs font-semibold leading-5 text-gray-600
-    }
+  .gray-pillow {
+    @apply inline-flex rounded-full bg-gray-200 px-2 text-xs font-semibold leading-5 text-gray-600;
+  }
 
-    input-box {
-        @apply  block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
-    }
+  input-box {
+    @apply block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
+  }
 }

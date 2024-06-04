@@ -17,7 +17,6 @@ class OrganiserEventList extends Component
     public $status = '';
 
 
-
     public function clear()
     {
         $this->search = '';
