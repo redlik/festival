@@ -41,7 +41,7 @@ class VenueEntry extends Component
         'venue_address1' => 'nullable|string|max:50',
         'venue_town' => 'required|string|max:50',
         'venue_street' => 'nullable|string|max:50',
-        'venue_eircode' => 'required|string|max:7',
+        'venue_eircode' => 'required|string|max:10',
         'venue_website' => 'nullable|url|string|max:50',
     ];
 
