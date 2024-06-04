@@ -139,7 +139,7 @@ class BookingPanel extends Component
         }
 
         BookingEmailToOrganiser::dispatch($this->event, $this->people, $this->waiting_status);
-        BookingEmailToAttendee::dispatch(Auth::user(), $this->event, $this->names, $this->waiting_status);
+        BookingEmailToAttendee::dispatch(Auth::user(), $this->event, $this->names, $this->waiting_status, $booking);
 
         if($this->waiting_status != true){
             $this->places_left = $this->places_left - $this->people;

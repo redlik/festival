@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Booking;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -17,17 +18,19 @@ class BookingNotificationEmail extends Mailable
     public Event $event;
 
     public array $names = [];
+    private Booking $booking;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Event $event, $names)
+    public function __construct(Event $event, $names, Booking $booking)
     {
 
         $this->event = $event;
         $this->names = $names;
+        $this->booking = $booking;
     }
 
     /**
@@ -49,11 +52,15 @@ class BookingNotificationEmail extends Mailable
      */
     public function content()
     {
+        $number_of_people = count($this->names)/3;
+
         return new Content(
             markdown: 'email.booking-email-attendee',
             with: [
                 'event' => $this->event,
                 'names' => $this->names,
+                'count' => $number_of_people,
+                'booking' => $this->booking,
                 'url' => route('event.show-by-slug', $this->event->slug),
             ]
         );
