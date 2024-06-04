@@ -75,9 +75,9 @@ Route::group(['middleware' => ['auth', 'role:organiser', 'disabled'], 'prefix' =
     Route::get('/documents', [DocumentController::class, 'index'])->name('dashboard.documents');
     Route::get('attendee-export', [AttendeeController::class, 'export'])->name('dashboard.attendee.export');
     Route::get('attendee/register/{attendee}', [AttendeeController::class, 'registerWaiting'])->name('dashboard.attendee.waiting.register');
-
 });
 
+Route::post('/message-to-attendees', [AttendeeController::class, 'messageToAttendees'])->name('message.attendees');
 Route::resource('organiser', OrganiserController::class);
 Route::resource('document', DocumentController::class)->middleware('auth');
 Route::post('event-save-draft', [EventController::class, 'saveDraft'])->name('event.save-draft')->middleware('auth');
