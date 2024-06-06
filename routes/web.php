@@ -78,6 +78,7 @@ Route::group(['middleware' => ['auth', 'role:organiser', 'disabled'], 'prefix' =
 });
 
 Route::post('/message-to-attendees', [AttendeeController::class, 'messageToAttendees'])->name('message.attendees');
+Route::get('booking-cancellation/{uuid}', [PagesController::class, 'booking_cancellation'])->name('booking.cancel');
 Route::resource('organiser', OrganiserController::class);
 Route::resource('document', DocumentController::class)->middleware('auth');
 Route::post('event-save-draft', [EventController::class, 'saveDraft'])->name('event.save-draft')->middleware('auth');

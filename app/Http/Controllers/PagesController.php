@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Jobs\AttendeeRegistration;
 use App\Models\Attendee;
+use App\Models\Booking;
 use App\Models\Event;
 use App\Models\Organiser;
 use App\Models\Venue;
@@ -42,5 +43,12 @@ class PagesController extends Controller
     public function events()
     {
         return view('pages.events');
+    }
+
+    public function booking_cancellation($uuid)
+    {
+        $booking = Booking::where('long_id', $uuid)->first();
+        $attendees = Attendee::where('booking_id', $booking->id)->get();
+        return view('pages.booking-cancellation', compact('booking', 'attendees'));
     }
 }

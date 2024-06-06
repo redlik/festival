@@ -20,7 +20,7 @@ Thank you for participating in Kerry Mental Health & Wellbeing Fest, below are t
 View event
 </x-mail::button>
 
-To cancel your booking click here: <a href="">Cancel booking</a>
+To cancel your booking click here: <a href="{{ route('booking.cancel', $booking->long_id) }}">Cancel booking</a>
 
 Please be mindful that the Fest would simply not be possible without kind people all over Kerry who generously donate their time, energy and expertise to host events for free. As such in the spirit of respect, **please cancel in advance of the event if you cannot make it**. Often events will have waiting lists with people keen to take a spot!
 
