@@ -22,22 +22,7 @@
                   'text-gray-500 bg-gray-200 hover:text-gray-700 hover:bg-gray-200 rounded-full cursor-pointer',
                   docMessage: true
                 }">
-            <div x-show='docMessage' class="max-w-7xl mx-auto bg-green-50 shadow-inner p-4 mt-6 rounded text-green-700 flex justify-between">
-                <div>
-                    For each event you are adding, please upload the following documents:
-                    <ul class="list-disc list-inside">
-                        <li>Relevant qualification,</li>
-                        <li>Public liability insurance,</li>
-                        <li>Garda vetting where relevant</li>
-                    </ul>
-                    <p class="text-green-700 mt-2">
-                        <a href="{{ route('dashboard.documents') }}" class="underline font-bold">Click here</a> for document section
-                    </p>
-                </div>
-                <div>
-                    <button @click="docMessage = ! docMessage"><i class="fa-solid fa-square-xmark text-gray-400 text-lg"></i></button>
-                </div>
-            </div>
+
         <!---------- TABS ---------->
         <div class="flex items-center justify-center gap-10 w-full mt-6">
             <a @click="openTab = '#events'" :class="openTab === '#events' ? activeClasses : inactiveClasses"
