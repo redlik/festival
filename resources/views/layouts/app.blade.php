@@ -73,6 +73,7 @@
             <img src="{{ asset('img/logos/healthy-kerry.png') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="Healthy Kerry">
             <img src="{{ asset('img/logos/mtu-logo.svg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="Munster Technological University">
             <img src="{{ asset('img/logos/kdys.png') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="KDYS">
+            <img src="{{ asset('img/logos/kerry-library.png') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="Kerry Library">
             <img src="{{ asset('img/logos/nffrc.png') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="National Family Resource Centre">
             <img src="{{ asset('img/logos/connecting-for-life.jpg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="Connecting for Life Kerry">
             <img src="{{ asset('img/logos/hse.jpg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="Health Service Executive">
