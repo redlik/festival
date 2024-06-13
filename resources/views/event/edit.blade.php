@@ -6,21 +6,13 @@
     </x-slot>
 
     <div class="py-0 md:py-12">
-        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 bg-white rounded-lg shadow-lg scroll-smooth" x-data="{ limit: {{ $event->limited }}, date : true, type: '{{ $event->type }}'}">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 bg-white rounded-lg shadow-lg scroll-smooth" x-data="{ limit: {{ $event->limited }}, type: '{{ $event->type }}'}">
             <div>
                 @if($event->status == 'published')
                     <div class="border border-gray-200 bg-yellow-50 rounded p-2 mb-4">
                         <strong>PLEASE NOTE:</strong> If this event is already listed on the main page, and you are making significant changes, such as changing the date, time or the location, please make sure to inform the organisers of the Festival and the registered attendees about it.
                     </div>
                 @endif
-            </div>
-            <div class="p-2 rounded bg-gray-100 border border-gray-500 flex justify-between" x-show="date">
-                <div><strong>PLEASE NOTE</strong> that edits to events can be made up to the <strong>19th August 2024.</strong></div>
-                <div>
-                    <button @click="date = ! date">
-                        <i class="fas fa-times-circle"></i>
-                    </button>
-                </div>
             </div>
             <form class="space-y-8 divide-y divide-gray-200" method="POST" action="{{ route('event.update', $event) }}" id="event-registration" enctype="multipart/form-data">
                 <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
@@ -45,7 +37,7 @@
                         @method('PATCH')
                         <div class="mt-6 sm:mt-5 space-y-6 sm:space-y-5">
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                                <label for="name" class="block text-sm font-bold text-gray-700 sm:mt-px sm:pt-2">
                                     Event Name (title)
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
@@ -54,9 +46,9 @@
                             </div>
 
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="start_date" class="block text-sm font-medium sm:mt-px sm:pt-2">
+                                <label for="start_date" class="block text-sm font-bold sm:mt-px sm:pt-2">
                                     Event date, start and end time <span class="text-red-700">*</span>
-                                    <div class="text-xs">If your event doesn't have the end time set, leave the field blank</div>
+                                    <div class="text-xs font-normal">If your event doesn't have the end time set, leave the field blank</div>
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
                                     <input id="start_date" name="start_date" type="date" class="lg:w-48 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" required
@@ -68,7 +60,7 @@
                             </div>
 
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="type" class="block text-sm font-medium sm:mt-px sm:pt-2">
+                                <label for="type" class="block text-sm font-bold sm:mt-px sm:pt-2">
                                     Environment <span class="text-red-700">*</span>
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
@@ -82,14 +74,14 @@
 
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5
                                         @if ($errors->has('venue')) bg-red-100 @endif">
-                                <label for="venue" class="block text-sm font-medium sm:mt-px sm:pt-2">
+                                <label for="venue" class="block text-sm font-bold sm:mt-px sm:pt-2">
                                     Venue <span class="text-red-700">*</span>
                                 </label>
                                 @livewire('venue-entry', ['edit_venue' => $event->venue_id])
                             </div>
 
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="description" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                                <label for="description" class="block text-sm font-bold text-gray-700 sm:mt-px sm:pt-2">
                                     Event(s) details <span class="text-red-700">*</span>
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
@@ -100,7 +92,7 @@
 
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                                 <label for="cover-photo" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                                    <div>Cover photo</div>
+                                    <div class="font-bold">Cover photo</div>
                                     <div class="text-xs text-red-500 font-semibold">If you're uploading new image, the old one will be replaced and deleted.</div>
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
@@ -122,9 +114,55 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <div
+                                class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center sm:border-t sm:border-gray-200 sm:pt-5">
+                                <label for="target" class="block text-sm sm:mt-px sm:pt-2 mb-4 md:mb-0 font-bold">
+                                    5 Ways to Wellbeing <span class="text-red-600">*</span>
+                                    <div class="text-sm font-normal text-gray-600 mt-1">Select the main theme of your
+                                        event
+                                    </div>
+                                </label>
+                                <div class="mt-1 sm:mt-0 sm:col-span-2 md:flex text-sm items-center">
+                                    <div class="flex items-center h-5 mr-8 mb-4 md:mb-0">
+                                        <input id="connect" aria-describedby="comments-description" name="theme"
+                                               type="radio"
+                                               class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2"
+                                               value="connect" @checked($event->theme == 'connect') required>
+                                        <label for="connect" class="font-medium text-gray-700">Connect</label>
+                                    </div>
+                                    <div class="flex items-center h-5 mr-8 mb-4 md:mb-0">
+                                        <input id="be_active" aria-describedby="comments-description" name="theme"
+                                               type="radio"
+                                               class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2"
+                                               value="be_active" @checked($event->theme == 'be_active')>
+                                        <label for="be_active" class="font-medium text-gray-700">Be Active</label>
+                                    </div>
+                                    <div class="flex items-center h-5 mr-8 mb-4 md:mb-0">
+                                        <input id="take_notice" aria-describedby="comments-description" name="theme"
+                                               type="radio"
+                                               class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2"
+                                               value="take_notice" @checked($event->theme == 'take_notice')>
+                                        <label for="take_notice" class="font-medium text-gray-700">Take Notice</label>
+                                    </div>
+                                    <div class="flex items-center h-5 mr-8 mb-4 md:mb-0">
+                                        <input id="keep_learning" aria-describedby="comments-description" name="theme"
+                                               type="radio"
+                                               class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2"
+                                               value="keep_learning" @checked($event->theme == 'keep_learning')>
+                                        <label for="keep_learning" class="font-medium text-gray-700">Keep
+                                            Learning</label>
+                                    </div>
+                                    <div class="flex items-center h-5 mr-8 mb-4 md:mb-0">
+                                        <input id="give" aria-describedby="comments-description" name="theme"
+                                               type="radio"
+                                               class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2"
+                                               value="give" @checked($event->theme == 'give')>
+                                        <label for="give" class="font-medium text-gray-700">Give</label>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="target" class="block text-sm font-medium sm:mt-px sm:pt-2">
+                                <label for="target" class="block text-sm font-bold sm:mt-px sm:pt-2">
                                     Target group
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2 flex">
@@ -192,26 +230,26 @@
                             </div>
 
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="target" class="block text-sm font-medium sm:mt-px sm:pt-2">
+                                <label for="target" class="block text-sm font-bold sm:mt-px sm:pt-2">
                                     <div>Limited spaces</div>
-                                    <div class="text-sm text-gray-600">If this event has limited number of spaces, select YES and enter the limit in the box below</div>
+                                    <div class="text-sm text-gray-600 font-normal">If this event has limited number of spaces, select YES and enter the limit in the box below</div>
 
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2 flex">
                                     <div class="flex items-center h-5 mr-8">
                                         <input x-model="limit" id="yes" name="limited" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="1" {{ $event->limited == 1 ? 'checked' : '' }}>
-                                        <label for="yes" class="font-medium text-gray-700">Yes</label>
+                                        <label for="yes" class="font-bold text-gray-700">Yes</label>
                                     </div>
                                     <div class="flex items-center h-5 mr-8">
                                         <input x-model="limit" id="no" name="limited" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="0" {{ $event->limited == 0 ? 'checked' : '' }}>
-                                        <label for="no" class="font-medium text-gray-700">No</label>
+                                        <label for="no" class="font-bold text-gray-700">No</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="attendees" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                                <label for="attendees" class="block text-sm font-bold text-gray-700 sm:mt-px sm:pt-2">
                                     <div>Number of attendees</div>
-                                    <div class="text-sm text-gray-500">If you selected YES above please enter the maximum number of attendees this event can accept.</div>
+                                    <div class="text-sm text-gray-500 font-normal">If you selected YES above please enter the maximum number of attendees this event can accept.</div>
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
                                     <input type="number" name="attendees" id="attendees"
@@ -220,7 +258,7 @@
                                 </div>
                             </div>
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="phone" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2 font-bold">
+                                <label for="phone" class="block text-sm font-bold text-gray-700 sm:mt-px sm:pt-2 font-bold">
                                     Wheelchair Accessible
                                     <div class="text-sm text-gray-500 font-normal">Tick the box if your venue is wheelchair accessible</div>
                                 </label>
@@ -230,7 +268,7 @@
                                 </div>
                             </div>
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="phone" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2 font-bold">
+                                <label for="phone" class="block text-sm font-bold text-gray-700 sm:mt-px sm:pt-2 font-bold">
                                     Contact Phone <span class="text-red-600 align-super">*</span>
                                     <div class="text-sm text-gray-500 font-normal">This phone number will be displayed on event's page for all event related queries.</div>
                                 </label>
@@ -243,14 +281,14 @@
                     </div>
                     <div class="pt-8 space-y-6 sm:pt-10 sm:space-y-5">
                         <div>
-                            <h3 class="text-lg leading-6 font-medium text-gray-900">
+                            <h3 class="text-lg leading-6 font-bold text-gray-900">
                                 Event facilitator
                             </h3>
                         </div>
                         <div class="space-y-6 sm:space-y-5">
 
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="leader_name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                                <label for="leader_name" class="block text-sm font-bold text-gray-700 sm:mt-px sm:pt-2">
                                     Facilitator's name
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
@@ -259,7 +297,7 @@
                             </div>
 
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="leader_phone" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                                <label for="leader_phone" class="block text-sm font-bold text-gray-700 sm:mt-px sm:pt-2">
                                     Phone
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
@@ -268,7 +306,7 @@
                             </div>
 
                             <div class=" sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="leader_email" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                                <label for="leader_email" class="block text-sm font-bold text-gray-700 sm:mt-px sm:pt-2">
                                     Email
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">

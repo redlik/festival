@@ -157,28 +157,28 @@
                                         <input id="connect" aria-describedby="comments-description" name="theme"
                                                type="radio"
                                                class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2"
-                                               value="1" @checked(old('theme')) required>
+                                               value="connect" @checked(old('theme')) required>
                                         <label for="connect" class="font-medium text-gray-700">Connect</label>
                                     </div>
                                     <div class="flex items-center h-5 mr-8 mb-4 md:mb-0">
                                         <input id="be_active" aria-describedby="comments-description" name="theme"
                                                type="radio"
                                                class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2"
-                                               value="1" @checked(old('theme'))>
+                                               value="be_active" @checked(old('theme'))>
                                         <label for="be_active" class="font-medium text-gray-700">Be Active</label>
                                     </div>
                                     <div class="flex items-center h-5 mr-8 mb-4 md:mb-0">
                                         <input id="take_notice" aria-describedby="comments-description" name="theme"
                                                type="radio"
                                                class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2"
-                                               value="1" @checked(old('theme'))>
+                                               value="take_notice" @checked(old('theme'))>
                                         <label for="take_notice" class="font-medium text-gray-700">Take Notice</label>
                                     </div>
                                     <div class="flex items-center h-5 mr-8 mb-4 md:mb-0">
                                         <input id="keep_learning" aria-describedby="comments-description" name="theme"
                                                type="radio"
                                                class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2"
-                                               value="1" @checked(old('theme'))>
+                                               value="keep_learning" @checked(old('theme'))>
                                         <label for="keep_learning" class="font-medium text-gray-700">Keep
                                             Learning</label>
                                     </div>
@@ -186,7 +186,7 @@
                                         <input id="give" aria-describedby="comments-description" name="theme"
                                                type="radio"
                                                class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2"
-                                               value="1" @checked(old('theme'))>
+                                               value="give" @checked(old('theme'))>
                                         <label for="give" class="font-medium text-gray-700">Give</label>
                                     </div>
                                 </div>
