@@ -52,7 +52,7 @@
         </div>
     </div>
     <div class="bg-white">
-        <div class="max-w-7xl mx-auto px-4 py-8 lg:flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-4 py-12 lg:flex items-center justify-between">
             {{--            <div class="">--}}
             {{--                <h3 class="uppercase text-2xl mb-4">Upcoming events</h3>--}}
             {{--            </div>--}}
@@ -66,7 +66,7 @@
                     registration form again. <br>Just use the login details to access the Dashboard.
                 </p>
                 <a href="{{ route('login') }}"
-                   class="font-bold mt-4 px-4 py-2 rounded bg-olive-50 text-olive-700 shadow hover:text-white hover:bg-olive-600">Login
+                   class="font-bold my-4 px-4 py-2 rounded bg-olive-50 text-olive-700 shadow hover:text-white hover:bg-olive-600">Login
                     here</a>
             </div>
             <div class="w-full lg:w-1/2 mt-6 lg:mt-0 flex justify-start lg:justify-center">
@@ -76,7 +76,7 @@
             </div>
         </div>
 
-        <div class="bg-gray-100">
+        <div class="bg-gray-100 py-8">
             <div class="max-w-7xl mx-auto py-4 px-4 lg:flex lg:items-center" x-data="{ showPoster : false }">
                 <div class="w-full lg:w-1/2 mb-4 lg:mb-0">
                     <h3 class="text-2xl mb-2">Events of 2023 Kerry Mental & Wellbeing Health Festival</h3>
