@@ -193,4 +193,18 @@ class AttendeeController extends Controller
         }
         return redirect()->back();
     }
+
+    public function deleteByYear($year)
+    {
+        $attendees = Attendee::whereYear('created_at', $year)->get();
+        if ($attendees->count() < 1) {
+            echo('There are no attendees left to delete');
+            die();
+        } else {
+            foreach ($attendees as $attendee) {
+                $attendee->delete();
+            }
+        }
+        return view('admin.attendees-delete-by-year', compact('attendees', 'year'));
+    }
 }
