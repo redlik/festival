@@ -67,11 +67,12 @@
     <footer class="w-full mt-8">
         {{--  Logos --}}
 
-        <div class="flex flex-wrap justify-center bg-white py-4 px-6 gap-10">
+        <div class="flex flex-wrap justify-center bg-white py-8 px-6 gap-10">
             <img src="{{ asset('img/logos/mental-health.jpg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="Kerry Mental Health Association">
             <img src="{{ asset('img/logos/kcc.png') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="Kerry County Council">
             <img src="{{ asset('img/logos/healthy-kerry.png') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="Healthy Kerry">
             <img src="{{ asset('img/logos/mtu-logo.svg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="Munster Technological University">
+            <img src="{{ asset('img/logos/mtu-su.webp') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="MTU Students Union">
             <img src="{{ asset('img/logos/kdys.png') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="KDYS">
             <img src="{{ asset('img/logos/kerry-library.png') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="Kerry Library">
             <img src="{{ asset('img/logos/nffrc.png') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="National Family Resource Centre">
