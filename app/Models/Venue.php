@@ -15,4 +15,11 @@ class Venue extends Model
     {
         return $this->hasMany(Event::class);
     }
+
+    public function address(): string
+    {
+        $address = $this->name. ' ' . $this->address1 . ' ' . $this->street . ' ' . $this->town . ' ' . $this->county . ' ' . $this->eircode;
+
+        return preg_replace('/\s+/', '+', $address);
+    }
 }
