@@ -22,6 +22,7 @@
                     <select name="year" id="year" wire:model.live="date"
                             class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
                         <option value="" selected>All events</option>
+                        <option value="2024">2024</option>
                         <option value="2023">2023</option>
                         <option value="2022">2022</option>
                     </select>
