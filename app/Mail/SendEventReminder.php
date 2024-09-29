@@ -3,18 +3,22 @@
 namespace App\Mail;
 
 use App\Models\Event;
+use App\Models\Venue;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Collection;
 
 class SendEventReminder extends Mailable
 {
     use Queueable, SerializesModels;
 
     public Event $event;
+
+    public $venue = null;
 
     /**
      * Create a new message instance.
@@ -30,7 +34,7 @@ class SendEventReminder extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Event Reminder',
+            subject: $this->event->name.' - Event Reminder',
         );
     }
 
@@ -43,9 +47,19 @@ class SendEventReminder extends Mailable
             markdown: 'email.sendeventreminder',
             with: [
                 'event' => $this->event,
+                'venue' => $this->getVenue() ?? null,
                 'url' => route('event.show-by-slug', $this->event->slug)
             ]
         );
+    }
+
+    public function getVenue()
+    {
+        ray($this->event->type);
+        if ($this->event->type != 'online') {
+            $this->venue = Venue::find($this->event->venue_id);
+        }
+        return $this->venue;
     }
 
     /**
