@@ -10,6 +10,7 @@ use App\Models\Venue;
 use App\Notifications\EventDocumentRequest;
 use App\Notifications\EventSubmitted;
 use Auth;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -253,6 +254,7 @@ class EventController extends Controller
 
     public function showBySlug($slug)
     {
+
         $event = Event::where('slug', $slug)->withCount( 'booked')->first();
 
         return view('event.show', compact('event'));
@@ -446,6 +448,21 @@ class EventController extends Controller
         $admin->notify(new EventSubmitted($event));
 
         return redirect()->route('dashboard')->with('event_submitted', 'Event submitted');
+    }
+
+    public function eventsReminder()
+    {
+
+        $events = Event::where('start_date', Carbon::now()->addDays(3)->format('Y-m-d'))->pluck('id')->toArray();
+
+        $attendees = Attendee::whereIn('event_id', $events)
+            ->where('waiting_status', false)
+            ->get();
+
+        foreach ($attendees as $attendee) {
+
+        }
+
     }
 
     /**

@@ -25,6 +25,8 @@ use Spatie\Honeypot\ProtectAgainstSpam;
 
 Route::get('/', [PagesController::class, 'home'])->name('home');
 
+Route::get('/reminders', [EventController::class, 'eventsReminder'])->name('reminders');
+
 Route::get('/join-us', function () {
     return view('pages.split');
 })->name('pages.join-us');
