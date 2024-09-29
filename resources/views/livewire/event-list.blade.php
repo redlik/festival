@@ -83,7 +83,7 @@
                 <div class="">
                     @if($events->contains('start_date', $single_day->start_date))
                         <div class="text-center text-xl mt-12">
-                            <h4 class="text-gray-600 mb-4 py-4 border-t border-b border-gray-300">{{ \Carbon\Carbon::parse($single_day->start_date)->format('jS F Y') }}</h4>
+                            <h4 class="text-yellow-800 text-2xl mb-4 py-4 border-t-2 bg-yellow-200 border-yellow-600">{{ \Carbon\Carbon::parse($single_day->start_date)->format('jS F Y') }}</h4>
                         </div>
                     @endif
                     <ul role="list" class="grid gap-x-4 gap-y-8 sm:grid-cols-1 lg:grid-cols-3">

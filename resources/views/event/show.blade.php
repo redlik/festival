@@ -51,7 +51,17 @@
                                 @if($event->type === 'online')
                                     <span class="text-indigo-500 ml-4"><i class="fa-solid fa-video mr-1"></i> Online event</span>
                                 @else
-                                    {{ $event->venue->name }}, {{ $event->venue->town }}{{ $event->venue->eircode ? ', '.$event->venue->eircode : '' }}
+                                    <div class="flex gap-4">
+                                        <div>
+                                            {{ $event->venue->name }}, {{ $event->venue->town }}{{ $event->venue->eircode ? ', '.$event->venue->eircode : '' }}
+                                        </div>
+                                        <div>
+                                            <a href="https://www.google.com/maps/search/?api=1&query={{ $event->venue->address() }}" target="_blank" title="Show location on Google Maps">
+                                                <i class="fa-solid fa-map-location-dot text-olive-500"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+
                                 @endif
                             </div>
                         </div>
