@@ -1,10 +1,10 @@
 <x-mail::message>
-# Introduction
+# Hello
 
-The body of your message.
+We'd like to remind you that on {{ $event->start_date }} at {{ $event->start_time }} the event {{ $event->name }} will take place.
 
-<x-mail::button :url="''">
-Button Text
+<x-mail::button :url="$url">
+View Event Details
 </x-mail::button>
 
 Thanks,<br>

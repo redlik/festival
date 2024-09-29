@@ -43,7 +43,7 @@ class SendEventReminder extends Mailable
             markdown: 'email.sendeventreminder',
             with: [
                 'event' => $this->event,
-                'url' => route('event.show-by-slug', $this->event)
+                'url' => route('event.show-by-slug', $this->event->slug)
             ]
         );
     }

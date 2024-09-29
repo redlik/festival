@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\EventCancelledNotification;
+use App\Jobs\EventReminderJob;
 use App\Models\Attendee;
 use App\Models\Event;
 use App\Models\User;
@@ -453,14 +454,19 @@ class EventController extends Controller
     public function eventsReminder()
     {
 
-        $events = Event::where('start_date', Carbon::now()->addDays(3)->format('Y-m-d'))->pluck('id')->toArray();
+        $events = Event::where('start_date', Carbon::now()->addDays(3)->format('Y-m-d'))->get();
 
-        $attendees = Attendee::whereIn('event_id', $events)
+        $ids = $events->pluck('id')->toArray();
+
+        $attendees = Attendee::whereIn('event_id', $ids)
             ->where('waiting_status', false)
             ->get();
 
         foreach ($attendees as $attendee) {
-
+            $event = $events->filter(function ($event) use ($attendee) {
+                return $event->id == $attendee->event_id;
+            })->first();
+            EventReminderJob::dispatch($attendee->email, $event);
         }
 
     }
