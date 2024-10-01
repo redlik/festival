@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Booking;
 use App\Models\Event;
 use App\Models\Venue;
 use Illuminate\Bus\Queueable;
@@ -18,14 +19,17 @@ class SendEventReminder extends Mailable
 
     public Event $event;
 
+    public Booking $booking;
+
     public $venue = null;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($event)
+    public function __construct($event, $booking)
     {
         $this->event = $event;
+        $this->booking = $booking;
     }
 
     /**
@@ -48,6 +52,7 @@ class SendEventReminder extends Mailable
             with: [
                 'event' => $this->event,
                 'venue' => $this->getVenue() ?? null,
+                'booking' => $this->booking,
                 'url' => route('event.show-by-slug', $this->event->slug)
             ]
         );

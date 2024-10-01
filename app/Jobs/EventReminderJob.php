@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Mail\SendEventReminder;
+use App\Models\Booking;
 use App\Models\Event;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -19,14 +20,17 @@ class EventReminderJob implements ShouldQueue
 
     public Event $event;
 
+    public Booking $booking;
+
     /**
      * Create a new job instance.
      */
-    public function __construct($attendeeEmail, $event)
+    public function __construct($attendeeEmail, $event, $booking)
     {
 
         $this->attendeeEmail = $attendeeEmail;
         $this->event = $event;
+        $this->booking = $booking;
     }
 
     /**
@@ -34,6 +38,6 @@ class EventReminderJob implements ShouldQueue
      */
     public function handle(): void
     {
-        Mail::to($this->attendeeEmail)->send(new SendEventReminder($this->event));
+        Mail::to($this->attendeeEmail)->send(new SendEventReminder($this->event, $this->booking));
     }
 }

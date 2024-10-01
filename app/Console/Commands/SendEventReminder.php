@@ -4,9 +4,11 @@ namespace App\Console\Commands;
 
 use App\Jobs\EventReminderJob;
 use App\Models\Attendee;
+use App\Models\Booking;
 use App\Models\Event;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 
 class SendEventReminder extends Command
 {
@@ -37,11 +39,14 @@ class SendEventReminder extends Command
             ->where('waiting_status', false)
             ->get();
 
+        Log::info('Sending reminder to {count} attendees', ['count' => $attendees->count()]);
+
         foreach ($attendees as $attendee) {
             $event = $events->filter(function ($event) use ($attendee) {
                 return $event->id == $attendee->event_id;
             })->first();
-            EventReminderJob::dispatch($attendee->email, $event);
+            $booking = Booking::where('id', $attendee->booking_id)->first();
+            EventReminderJob::dispatch($attendee->email, $event, $booking);
         }
     }
 }

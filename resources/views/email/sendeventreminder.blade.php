@@ -16,7 +16,8 @@ Just a little reminder that our upcoming event **{{ $event->name }}** on **{{ $e
 View Event Details
 </x-mail::button>
 
-*If you can't make it, please consider cancelling your booking so other can attend.*
+**If you cannot attend your event, please cancel your registration as soon as possible, so that the facilitator is aware and your space can be filled.**<br>
+**To cancel your booking click here: <a href="{{ route('booking.cancel', $booking->long_id) }}">Cancel booking</a>**
 
 Thank you,<br>
 {{ config('app.name') }}
