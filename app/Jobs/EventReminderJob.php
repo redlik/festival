@@ -10,6 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class EventReminderJob implements ShouldQueue
@@ -38,6 +39,7 @@ class EventReminderJob implements ShouldQueue
      */
     public function handle(): void
     {
-        Mail::to($this->attendeeEmail)->send(new SendEventReminder($this->event, $this->booking));
+        Log::info('Email to {email} will be sent today', ['email' => $this->attendeeEmail]);
+//        Mail::to($this->attendeeEmail)->send(new SendEventReminder($this->event, $this->booking));
     }
 }
