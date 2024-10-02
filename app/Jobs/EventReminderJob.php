@@ -40,6 +40,6 @@ class EventReminderJob implements ShouldQueue
     public function handle(): void
     {
         Log::info('Email to {email} will be sent today', ['email' => $this->attendeeEmail]);
-//        Mail::to($this->attendeeEmail)->send(new SendEventReminder($this->event, $this->booking));
+        Mail::to($this->attendeeEmail)->send(new SendEventReminder($this->event, $this->booking));
     }
 }
