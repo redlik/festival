@@ -24,6 +24,9 @@
                         <h2 id="registration-form">Attendee</h2>
                         <p class="my-6">If you like to attend any of the events at the Festival, please create your account below. The account will allow you to track your event registrations, cancel them if needed and contact the organisers should you have any questions.</p>
                         @guest
+                            <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
+
                             <form method="POST" action="{{ route('register.attendee') }}" class="text-left p-4 bg-white rounded shadow-inner">
                                 @csrf
 
