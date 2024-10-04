@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Notifications\NewAttendeeNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
@@ -189,7 +190,11 @@ class AttendeeController extends Controller
         $message['event'] = $request->input('eventName');
         $message['date'] = $event->start_date.' at '.\Carbon\Carbon::parse($event->start_time)->format('H:i');
         foreach($attendees as $attendee) {
-            MessageEmailToAttendees::dispatch($attendee, $message);
+            if ($attendee->email != '') {
+                MessageEmailToAttendees::dispatch($attendee, $message);
+            } else {
+                Log::info('Empty email field');
+            }
         }
         return redirect()->back();
     }
