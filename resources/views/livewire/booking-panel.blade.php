@@ -12,7 +12,7 @@
                     </div>
                 @endif
 
-                @if($event->start_date < \Carbon\Carbon::now())
+                @if($event->start_date." ".$event->start_time < \Carbon\Carbon::now())
                     <h5 class="text-gray-600">The registrations for this event are now closed.</h5>
                 @else
                     @if($event->limited != 0)
