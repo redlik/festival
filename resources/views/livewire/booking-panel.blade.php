@@ -130,7 +130,7 @@
             @endauth
             @guest
                 <div class="text-gray-600 font-medium">
-                    The registration for the event require a booking account, please register your <a href="{{ route('pages.split') }}#registration-form" class="font-bold hover:underline">account
+                    The registration for the event requires a booking account, please register your <a href="{{ route('pages.split') }}#registration-form" class="font-bold hover:underline">account
                         here</a>, or <a href="{{ route('login') }}" class="font-bold hover:underline">login</a> to make a booking.
                 </div>
             @endguest
