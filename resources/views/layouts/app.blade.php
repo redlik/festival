@@ -19,7 +19,10 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}?ver=1.0">
-    <script src="https://kit.fontawesome.com/087ab91f74.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ asset('css/fontawesome/css/fontawesome.min.css') }}?ver=6.0">
+    <link rel="stylesheet" href="{{ asset('css/fontawesome/css/brands.min.css') }}?ver=6.0">
+    <link rel="stylesheet" href="{{ asset('css/fontawesome/css/solid.min.css') }}?ver=6.0">
+{{--    <script src="https://kit.fontawesome.com/087ab91f74.js" crossorigin="anonymous"></script>--}}
     @stack('extra_styles')
     @livewireStyles
 
