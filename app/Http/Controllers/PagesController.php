@@ -23,7 +23,7 @@ class PagesController extends Controller
             'workplace' => 'Workplace',
         ];
 
-        return view('pages.home', compact('events', 'towns', 'target'));
+        return view('pages.home-after', compact('events', 'towns', 'target'));
     }
 
     public function adminDashboard()
