@@ -37,6 +37,7 @@ class SendEventReminder extends Command
 
         $attendees = Attendee::whereIn('event_id', $ids)
             ->where('waiting_status', false)
+//            ->where('email' != '')
             ->get();
 
         Log::info('Sending reminder to {count} attendees', ['count' => $attendees->count()]);

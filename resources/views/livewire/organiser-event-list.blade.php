@@ -21,6 +21,7 @@
                 <div class="flex items-center w-auto mr-8">
                     <select name="year" id="year" wire:model.live="date"
                             class="focus:ring-indigo-500 focus:border-indigo-500 shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md">
+                        {{--//@todo: add another year --}}
                         <option value="" selected>All events</option>
                         <option value="2024">2024</option>
                         <option value="2023">2023</option>
