@@ -52,6 +52,7 @@ Route::get('/organiser-submitted', function () {
 
 Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin'], function () {
     Route::get('dashboard', [PagesController::class, 'adminDashboard'])->name('admin.dashboard');
+    Route::get('settings', [PagesController::class, 'adminSettings'])->name('admin.settings');
     Route::get('dashboard/organisers', [OrganiserController::class, 'adminIndex'])->name('admin.organisers');
     Route::get('dashboard/organisers/export', [OrganiserController::class, 'export'])->name('admin.organisers.export');
     Route::get('dashboard/organiser/docs/{organiser}', [OrganiserController::class, 'adminDocs'])->name('admin.organiser.docs');

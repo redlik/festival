@@ -10,4 +10,6 @@ class Setting extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    protected $fillable = ['setting_name', 'setting_value'];
 }
