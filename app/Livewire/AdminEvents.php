@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Exports\EventExport;
+use App\Helpers\EventDates;
 use App\Models\Event;
 use App\Models\Organiser;
 use Illuminate\Http\Request;
@@ -15,6 +16,8 @@ class AdminEvents extends Component
     use WithPagination;
 
     public $events;
+
+    public $events_dates;
 
     public $pending;
 
@@ -49,6 +52,8 @@ class AdminEvents extends Component
         if(!$request->filled('date')) {
             $this->date = now()->year;
         }
+
+        $this->events_dates = EventDates::getEventsDates();
 
     }
 
@@ -113,7 +118,7 @@ class AdminEvents extends Component
                 $o->where('user_id', $this->organiser);
             })
             ->with('booked', 'venue', 'user.organiser', 'waiting')
-            ->orderBy(\DB::raw("DATE_FORMAT(start_date,'%d-%M-%Y')"), 'DESC')
+            ->orderBy(\DB::raw("DATE_FORMAT(start_date,'%Y-%M-%d')"), 'DESC')
             ->get();
     }
 }

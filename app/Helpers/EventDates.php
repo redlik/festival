@@ -7,12 +7,12 @@ use Illuminate\Support\Facades\Cache;
 
 class EventDates
 {
-  public function getEventsDates() : array
+  public static function getEventsDates() : array
   {
     if (!Cache::has('events_dates')) {
       $events_dates = Event::selectRaw('YEAR(start_date) as year')
         ->distinct()
-        ->orderBy('year')
+        ->orderBy('year', 'desc')
         ->pluck('year')
         ->toArray();
       Cache::put('events_dates', $events_dates, now()->addDays(30));
