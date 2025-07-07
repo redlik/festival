@@ -80,8 +80,8 @@
             <img src="{{ asset('img/logos/kerry-library.png') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="Kerry Library">
             <img src="{{ asset('img/logos/nffrc.png') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="National Family Resource Centre">
             <img src="{{ asset('img/logos/connecting-for-life.jpg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="Connecting for Life Kerry">
-            <img src="{{ asset('img/logos/hse.jpg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="Health Service Executive">
-            <img src="{{ asset('img/logos/cork-kerry.jpg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="Cork Kerry Community Healthcare">
+            <img src="{{ asset('img/logos/HSE-South-West.png') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="Health Service Executive">
+{{--            <img src="{{ asset('img/logos/cork-kerry.jpg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="Cork Kerry Community Healthcare">--}}
             <img src="{{ asset('img/logos/jigsaw.jpg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="Jigsaw Kerry">
             <img src="{{ asset('img/logos/kerry-sports-partnership.jpg') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="Kerry Sports Partnership">
             <img src="{{ asset('img/logos/kerry-volunteer.png') }}" class="w-auto h-12 object-center px-1 mt-2 lg:mt-0" alt="Kerry Volunteer Centre">
