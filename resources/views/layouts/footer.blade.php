@@ -42,7 +42,7 @@
 </div>
 <div class="bg-gray-900 flex text-gray-100 text-sm py-2">
     <div class="max-w-7xl mx-auto flex justify-between text-gray-300 text-sm">
-        <div>© All rights reserved</div>
-        <div>Collage Creative 2022</div>
+        <div>© All rights reserved - </div>
+        <div>&nbspCollage Creative {{ now()->year }}</div>
     </div>
 </div>
