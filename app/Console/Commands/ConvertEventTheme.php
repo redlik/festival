@@ -31,7 +31,6 @@ class ConvertEventTheme extends Command
           if (!is_array(json_decode($event->theme))) {
             $event->theme = explode(',', $event->theme);
             $event->update();
-            ray($event->theme);
             $this->info('Event ' . $event->id . ' updated');
           }
         }
