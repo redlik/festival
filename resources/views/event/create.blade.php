@@ -148,45 +148,45 @@
                                 class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center sm:border-t sm:border-gray-200 sm:pt-5">
                                 <label for="target" class="block text-sm sm:mt-px sm:pt-2 mb-4 md:mb-0 font-bold">
                                     5 Ways to Wellbeing <span class="text-red-600">*</span>
-                                    <div class="text-sm font-normal text-gray-600 mt-1">Select the main theme of your
-                                        event
+                                    <div class="text-sm font-normal text-gray-600 mt-1">Please select one or more themes that best describe your event
                                     </div>
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2 md:flex text-sm items-center">
                                     <div class="flex items-center h-5 mr-8 mb-4 md:mb-0">
-                                        <input id="connect" aria-describedby="comments-description" name="theme"
-                                               type="radio"
+                                        <input id="connect" aria-describedby="comments-description" name="theme[]"
+                                               type="checkbox"
                                                class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2"
-                                               value="connect" @checked(old('theme')) required>
+                                               value="connect" @checked(is_array(old('theme')) && in_array('connect', old('theme'))) required>
                                         <label for="connect" class="font-medium text-gray-700">Connect</label>
                                     </div>
                                     <div class="flex items-center h-5 mr-8 mb-4 md:mb-0">
-                                        <input id="be_active" aria-describedby="comments-description" name="theme"
-                                               type="radio"
+                                        <input id="be_active" aria-describedby="comments-description" name="theme[]"
+                                               type="checkbox"
                                                class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2"
-                                               value="be_active" @checked(old('theme'))>
+                                               value="be_active" @checked(is_array(old('theme')) && in_array('be_active', old('theme')))>
                                         <label for="be_active" class="font-medium text-gray-700">Be Active</label>
                                     </div>
                                     <div class="flex items-center h-5 mr-8 mb-4 md:mb-0">
-                                        <input id="take_notice" aria-describedby="comments-description" name="theme"
-                                               type="radio"
+                                        <input id="take_notice" aria-describedby="comments-description" name="theme[]"
+                                               type="checkbox"
                                                class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2"
-                                               value="take_notice" @checked(old('theme'))>
+                                               value="take_notice" @checked(is_array(old('theme')) && in_array('take_notice', old('theme')))>
                                         <label for="take_notice" class="font-medium text-gray-700">Take Notice</label>
                                     </div>
                                     <div class="flex items-center h-5 mr-8 mb-4 md:mb-0">
-                                        <input id="keep_learning" aria-describedby="comments-description" name="theme"
-                                               type="radio"
+                                        <input id="keep_learning" aria-describedby="comments-description" name="theme[]"
+                                               type="checkbox"
                                                class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2"
-                                               value="keep_learning" @checked(old('theme'))>
+                                               value="keep_learning" @checked(is_array(old('theme')) && in_array('keep_learning', old('theme')))>
                                         <label for="keep_learning" class="font-medium text-gray-700">Keep
                                             Learning</label>
                                     </div>
                                     <div class="flex items-center h-5 mr-8 mb-4 md:mb-0">
-                                        <input id="give" aria-describedby="comments-description" name="theme"
-                                               type="radio"
+                                        <input id="give" aria-describedby="comments-description" name="theme[]"
+                                               type="checkbox"
                                                class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2"
-                                               value="give" @checked(old('theme'))>
+                                               value="give"
+                                          @checked(is_array(old('theme')) && in_array('give', old('theme')))>
                                         <label for="give" class="font-medium text-gray-700">Give</label>
                                     </div>
                                 </div>
