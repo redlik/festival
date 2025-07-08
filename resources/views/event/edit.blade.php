@@ -128,7 +128,7 @@
                                                class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2"
                                                value="connect" @if(in_array('connect', json_decode($event->theme)))
                                                  checked
-                                               @endif required>
+                                               @endif >
                                         <label for="connect" class="font-medium text-gray-700">Connect</label>
                                     </div>
                                     <div class="flex items-center h-5 mr-8 mb-4 md:mb-0">

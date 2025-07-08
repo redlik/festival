@@ -156,7 +156,7 @@
                                         <input id="connect" aria-describedby="comments-description" name="theme[]"
                                                type="checkbox"
                                                class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2"
-                                               value="connect" @checked(is_array(old('theme')) && in_array('connect', old('theme'))) required>
+                                               value="connect" @checked(is_array(old('theme')) && in_array('connect', old('theme'))) >
                                         <label for="connect" class="font-medium text-gray-700">Connect</label>
                                     </div>
                                     <div class="flex items-center h-5 mr-8 mb-4 md:mb-0">
