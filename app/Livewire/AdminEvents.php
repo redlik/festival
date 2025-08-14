@@ -6,6 +6,7 @@ use App\Exports\EventExport;
 use App\Helpers\EventDates;
 use App\Models\Event;
 use App\Models\Organiser;
+use DB;
 use Illuminate\Http\Request;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -32,6 +33,8 @@ class AdminEvents extends Component
     public $organisers;
 
     public $organiser;
+
+    public $event;
 
     protected $queryString = [
         'searchEvent' => ['except' => ''],
@@ -118,7 +121,19 @@ class AdminEvents extends Component
                 $o->where('user_id', $this->organiser);
             })
             ->with('booked', 'venue', 'user.organiser', 'waiting')
-            ->orderBy(\DB::raw("DATE_FORMAT(start_date,'%Y-%M-%d')"), 'DESC')
+            ->orderBy(DB::raw("DATE_FORMAT(start_date,'%Y-%M-%d')"), 'DESC')
             ->get();
     }
+
+  public function publishEvent($event)
+  {
+      $this->event=Event::find($event);
+      $this->event->update(['status' => 'published']);
+    }
+
+  public function unpublishEvent($event)
+  {
+    $this->event=Event::find($event);
+    $this->event->update(['status' => 'draft']);
+  }
 }

@@ -181,6 +181,12 @@
                     @endif
                 </td>
                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-semibold sm:pr-6 lg:pr-8">
+                  @if($event->status == 'draft' || $event->status == 'pending')
+                    <a wire:click="publishEvent({{ $event->id }})" class="text-green-700 hover:text-green-500 mr-2 cursor-pointer" title="Approve event"><i class="fa-solid fa-circle-up"></i></a>
+                  @endif
+                  @if($event->status == 'published')
+                    <a wire:click="unpublishEvent({{ $event->id }})" class="text-red-600 hover:text-red-400 mr-2 cursor-pointer" title="Unpublish event"><i class="fa-solid fa-circle-down"></i></a>
+                  @endif
                     <a href="{{ route('admin.event.show', $event) }}" class="text-indigo-600 hover:text-indigo-900 mr-2" title="Event details"><i class="fa-solid fa-eye"></i></a>
                     <a href="{{ route('event.edit', $event) }}" class="text-green-600 hover:text-green-400 mr-2"><i class="fa-solid fa-pen-to-square"></i></a>
                     @if($event->attendee_count > 0 && $event->status != 'cancelled')
