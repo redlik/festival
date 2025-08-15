@@ -115,7 +115,7 @@
                                         available
                                     </div>
                                     <div class="text-xs text-gray-500 mb-4 md:mb-0">If you are uploading images with
-                                        recognisable people, by clicking submit you are indicting you have their
+                                        recognisable people, by clicking submit, you are indicating you have their
                                         permission to use.
                                     </div>
                                 </label>
@@ -134,7 +134,7 @@
                                                 <label for="file-upload"
                                                        class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                                                     <div>Upload a cover photo</div>
-                                                    <input id="file-upload" name="file-upload" type="file" required>
+                                                    <input id="file-upload" name="file-upload" type="file" accept="image/png, image/jpeg, image/jpg, image/gif" required>
                                                 </label>
                                             </div>
                                             <p class="text-xs text-gray-500">
