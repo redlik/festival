@@ -14,7 +14,7 @@
                 <div class="col-span-5 md:col-span-2">
                     <img src="{{ $event->getFirstMediaUrl('cover') }}"
                          alt="{{ $event->name }} event at Kerry Mental Health & Wellbeing Fest 2023"
-                         style="max-height: 470px;object-fit: contain;"
+                         style="height: 470px;object-fit: contain;"
                          class="rounded mx-auto">
                 </div>
                 <div class="col-span-5 md:col-span-3 flex flex-col justify-between gap-6">
