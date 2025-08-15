@@ -7,6 +7,7 @@ use App\Models\Attendee;
 use App\Models\Booking;
 use App\Models\Event;
 use App\Models\Organiser;
+use App\Models\Setting;
 use App\Models\Venue;
 
 class PagesController extends Controller
@@ -42,7 +43,8 @@ class PagesController extends Controller
 
     public function events()
     {
-        return view('pages.events');
+        $booking_start_date = json_decode(Setting::where('setting_name', 'booking_start_date')->first()->setting_value);
+        return view('pages.events', compact('booking_start_date'));
     }
 
   public function adminSettings()
