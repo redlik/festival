@@ -45,6 +45,11 @@ class PagesController extends Controller
         return view('pages.events');
     }
 
+  public function adminSettings()
+  {
+    return view('admin.settings');
+    }
+
     public function booking_cancellation($uuid)
     {
         $booking = Booking::where('long_id', $uuid)->with('event', 'event.venue')->first();

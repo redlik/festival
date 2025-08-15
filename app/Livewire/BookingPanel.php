@@ -6,6 +6,7 @@ use App\Jobs\BookingEmailToAttendee;
 use App\Jobs\BookingEmailToOrganiser;
 use App\Models\Attendee;
 use App\Models\Booking;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Illuminate\Support\Str;
@@ -15,6 +16,8 @@ class BookingPanel extends Component
     public $event;
 
     public Attendee $attendee;
+
+    public $booking_start_date;
 
     public $tickets = 1;
 
@@ -50,6 +53,9 @@ class BookingPanel extends Component
         if($this->places_left <= 0 && $this->event->limited) {
             $this->full = true;
         }
+
+      $this->booking_start_date = json_decode(Setting::where('setting_name', 'booking_start_date')->first()->setting_value) ?? date('d-m-Y');
+
     }
 
     public function minus()

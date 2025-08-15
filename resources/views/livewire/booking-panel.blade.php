@@ -3,7 +3,11 @@
         <div class="bg-gray-100 rounded border border-gray-300 text-gray-600 italic p-6 mt-8">
             Please note this is a private event that is not open to the public.
         </div>
-    @else
+  @elseif(\Carbon\Carbon::now() < $booking_start_date)
+    <div class="bg-gray-100 rounded border border-gray-300 p-6 mt-8">
+      The bookings for this event will be available from {{ \Carbon\Carbon::parse($booking_start_date)->format('dS M Y') }}
+    </div>
+  @else
         <div class="bg-gray-100 rounded border border-gray-300 p-6 mt-8">
             @auth
                 @if(\Session::has('registered'))

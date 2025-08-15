@@ -8,7 +8,7 @@
     <div class="py-0 md:py-12">
         <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 bg-white rounded-lg shadow-lg scroll-smooth">
           <div>
-            <h3>Booking start date</h3>
+            <h3 class="mb-2">Booking start date</h3>
             @livewire('booking-date-form')
           </div>
 
