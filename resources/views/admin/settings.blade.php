@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
-            Settings
+            Settings <a href="{{ route('admin.dashboard') }}" class="text-amber-800 cursor-pointer hover:text-amber-500 ml-4" title="Admin Dashboard"><i class="fa-solid fa-clipboard-user"></i></a>
         </h2>
     </x-slot>
 
