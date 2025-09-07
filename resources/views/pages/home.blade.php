@@ -28,7 +28,7 @@
             </div>
         </div>
     </div>
-  @if(json_decode(cache('homepage_banner'))->visibility)
+  @if(\Illuminate\Support\Facades\Cache::get('homepage_banner') && json_decode(cache('homepage_banner'))->visibility)
     <div class="w-full bg-yellow-300 ">
       <div class="max-w-7xl mx-auto sm:p-6 lg:p-8 text-lg font-semibold text-center">
         {{ json_decode(cache('homepage_banner'))->text }}
