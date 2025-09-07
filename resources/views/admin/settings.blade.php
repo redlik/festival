@@ -11,6 +11,11 @@
             <h3 class="mb-2">Booking start date</h3>
             @livewire('booking-date-form')
           </div>
+          <hr class="border border-gray-200 mt-8 w-full">
+          <div class="mt-8">
+            <h3 class="mb-2">Homepage banner</h3>
+            @livewire('homepage-banner')
+          </div>
 
         </div>
     </div>
