@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 
 class ContactController extends Controller
 {
@@ -15,7 +16,7 @@ class ContactController extends Controller
             $m->to('admin@kerrymentalhealthandwellbeingfest.com', 'Kerry Fest Admins')
                 ->subject('Contact form query');
         });
-
+        Log::info('The email from '.$request->email.' has been sent.');
         $request->session()->flash('status', 'Thank you for contacting us, we will respond to the enquiry as soon as we can!');
 
         return back();
