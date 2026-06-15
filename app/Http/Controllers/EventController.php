@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Venue;
 use App\Notifications\EventDocumentRequest;
 use App\Notifications\EventSubmitted;
+use App\Services\FestivalService;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -35,7 +36,10 @@ class EventController extends Controller
    */
   public function create()
   {
-    return view('event.create');
+    $start_date = FestivalService::festival_start_date();
+    $end_date = FestivalService::festival_end_date();
+
+    return view('event.create', compact('start_date', 'end_date'));
   }
 
   /**
@@ -301,16 +305,19 @@ class EventController extends Controller
    */
   public function edit(Event $event)
   {
+    $start_date = FestivalService::festival_start_date();
+    $end_date = FestivalService::festival_end_date();
+
     if (Auth::user()->hasRole('admin')) {
       $venues = Venue::all();
-      return view('admin.edit', compact('event', 'venues'));
+      return view('admin.edit', compact('event', 'venues', 'start_date', 'end_date'));
     }
 
     if (Auth::id() != $event->user_id) {
       return abort(403);
     }
 
-    return view('event.edit', compact('event'));
+    return view('event.edit', compact('event', 'start_date', 'end_date'));
   }
 
   public function adminApproval($event_id)
