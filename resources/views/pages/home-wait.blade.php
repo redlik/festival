@@ -22,8 +22,8 @@
             <div class="w-full lg:w-2/3 p-4 lg:rounded-lg backdrop-blur"
                  style="background-color: rgba(213, 208, 136, 0.85)">
                 <h1 class="text-2xl lg:text-4xl mb-4 fancy font-semibold">Welcome to Kerry Mental Health & Wellbeing
-                    Fest 2025</h1>
-                <div class="font-semibold lg:text-lg text-gray-800 mb-4">Held between Saturday, 4th – 11th October 2025
+                    Fest {{ \Carbon\Carbon::parse($start_date)->format('Y') }}</h1>
+                <div class="font-semibold lg:text-lg text-gray-800 mb-4">Held between {{ \Carbon\Carbon::parse($start_date)->format('l, jS') }} - {{ \Carbon\Carbon::parse($end_date)->format('l, jS M Y') }}
                     the Fest aims to raise awareness of the available supports and services in the county as well as
                     empower people to engage with the ‘Five Ways to Wellbeing’ through offering a dynamic and
                     interactive programme of events.
@@ -59,7 +59,7 @@
             {{--            @livewire('event-list')--}}
             <div class="w-full lg:w-1/2">
                 <h2 class="text-2xl tracking-tight uppercase text-gray-700 md:text-4xl">
-                    <span class="block">Organising an event in 2025?</span>
+                    <span class="block">Organising an event in {{ \Carbon\Carbon::parse($start_date)->format('Y') }}?</span>
                 </h2>
                 <div class="block text-2xl text-olive-600 mt-2">Fill out the registration form</div>
                 <p class="text-sm mt-2 mb-4">If you have already registered last year, you don't need to fill out the

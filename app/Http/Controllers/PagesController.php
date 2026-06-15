@@ -9,10 +9,11 @@ use App\Models\Event;
 use App\Models\Organiser;
 use App\Models\Setting;
 use App\Models\Venue;
+use App\Services\FestivalService;
 
 class PagesController extends Controller
 {
-    public function home()
+    public function home(FestivalService $festivalService)
     {
         $events = Event::with('venue')->orderBy('start_date', 'asc')->get();
         $towns = Venue::has('event')->select('id', 'town')->get();
@@ -24,7 +25,10 @@ class PagesController extends Controller
             'workplace' => 'Workplace',
         ];
 
-        return view('pages.home', compact('events', 'towns', 'target'));
+        $start_date = $festivalService->festival_start_date();
+        $end_date = $festivalService->festival_end_date();
+
+        return view('pages.home-wait', compact('events', 'towns', 'target', 'start_date', 'end_date'));
     }
 
     public function adminDashboard()
