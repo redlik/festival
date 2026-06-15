@@ -2,10 +2,11 @@
 
 namespace App\Services;
 
+use Carbon\CarbonPeriod;
 use Illuminate\Support\Facades\Cache;
 class FestivalService
 {
-  public function festival_start_date()
+  public static function festival_start_date()
   {
     if (Cache::has('festival_start_date')) {
       return Cache::get('festival_start_date');
@@ -17,7 +18,7 @@ class FestivalService
     }
   }
 
-  public function festival_end_date()
+  public static function festival_end_date()
   {
     if (Cache::has('festival_end_date')) {
       return Cache::get('festival_end_date');
@@ -27,5 +28,19 @@ class FestivalService
         return $end_date;
       });
     }
+  }
+
+  public static function generateDropDownDates()
+  {
+    $start_date = self::festival_start_date();
+    $end_date = self::festival_end_date();
+
+    $period = CarbonPeriod::create($start_date, '1 day', $end_date);
+
+    $datesArray = [];
+    foreach ($period as $date) {
+      $datesArray[] = $date->format('Y-m-d');
+    }
+    return $datesArray;
   }
 }
