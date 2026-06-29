@@ -86,7 +86,7 @@
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
                                     <div id="description-editor" class="max-w-lg bg-white border border-gray-300 rounded-md" style="min-height: 150px;"></div>
-                                    <textarea id="description" name="description" class="hidden" required></textarea>
+                                    <textarea id="description" name="description" class="hidden"></textarea>
                                 </div>
                             </div>
 
@@ -368,7 +368,7 @@
                 }
             });
 
-            quill.root.innerHTML = {!! json_encode($event->description) !!};
+            quill.clipboard.dangerouslyPasteHTML({!! json_encode($event->description ?? '') !!});
 
             document.getElementById('event-registration').addEventListener('submit', function(e) {
                 var text = quill.getText().trim();
