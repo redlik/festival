@@ -21,7 +21,7 @@
                     <div>
                         <h4 class="font-bold text-2xl text-gray-600">{{ $event->name }}</h4>
                         <div class="mt-2">
-                            {{ $event->description }}
+                            {!! $event->description !!}
                         </div>
                     </div>
                     <div class="bg-gray-100 p-2 rounded shadow-sm">
