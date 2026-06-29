@@ -31,23 +31,31 @@ class SendEventReminder extends Command
      */
     public function handle()
     {
-        $events = Event::where('start_date', Carbon::now()->addDays(3)->format('Y-m-d'))->get();
+        foreach ([7, 3, 1] as $daysUntil) {
+            $events = Event::where('start_date', Carbon::now()->addDays($daysUntil)->format('Y-m-d'))->get();
 
-        $ids = $events->pluck('id')->toArray();
+            if ($events->isEmpty()) {
+                continue;
+            }
 
-        $attendees = Attendee::whereIn('event_id', $ids)
-            ->where('waiting_status', false)
-//            ->where('email' != '')
-            ->get();
+            $ids = $events->pluck('id')->toArray();
 
-        Log::info('Sending reminder to {count} attendees', ['count' => $attendees->count()]);
+            $attendees = Attendee::whereIn('event_id', $ids)
+                ->where('waiting_status', false)
+                ->get();
 
-        foreach ($attendees as $attendee) {
-            $event = $events->filter(function ($event) use ($attendee) {
-                return $event->id == $attendee->event_id;
-            })->first();
-            $booking = Booking::where('id', $attendee->booking_id)->first();
-            EventReminderJob::dispatch($attendee->email, $event, $booking);
+            Log::info('Sending {days}-day reminder to {count} attendees', [
+                'days' => $daysUntil,
+                'count' => $attendees->count(),
+            ]);
+
+            foreach ($attendees as $attendee) {
+                $event = $events->filter(function ($event) use ($attendee) {
+                    return $event->id == $attendee->event_id;
+                })->first();
+                $booking = Booking::where('id', $attendee->booking_id)->first();
+                EventReminderJob::dispatch($attendee->email, $event, $booking, $daysUntil);
+            }
         }
     }
 }

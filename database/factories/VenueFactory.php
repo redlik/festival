@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\User;
+use App\Models\Venue;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -15,6 +16,8 @@ class VenueFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+    protected $model = Venue::class;
     public function definition()
     {
         $user = User::where('email', 'organiser@kerryfest.com')->first();
