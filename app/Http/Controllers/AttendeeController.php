@@ -183,7 +183,9 @@ class AttendeeController extends Controller
 
     public function messageToAttendees(Request $request)
     {
-        $attendees = Attendee::where('event_id', $request->input('event'))->select('email')->distinct()->get()->toArray();
+        $attendees = Attendee::where('event_id', $request->input('event'))
+          ->where('waiting_status', false)
+          ->select('email')->distinct()->get()->toArray();
         $event = Event::find($request->input('event'));
         $message['subject'] = $request->input('subject');
         $message['message'] = $request->input('message');
