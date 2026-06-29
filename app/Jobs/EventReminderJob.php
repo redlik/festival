@@ -23,15 +23,17 @@ class EventReminderJob implements ShouldQueue
 
     public Booking $booking;
 
+    public int $daysUntil;
+
     /**
      * Create a new job instance.
      */
-    public function __construct($attendeeEmail, $event, $booking)
+    public function __construct($attendeeEmail, $event, $booking, int $daysUntil)
     {
-
         $this->attendeeEmail = $attendeeEmail;
         $this->event = $event;
         $this->booking = $booking;
+        $this->daysUntil = $daysUntil;
     }
 
     /**
@@ -41,7 +43,7 @@ class EventReminderJob implements ShouldQueue
     {
         if ($this->attendeeEmail) {
             Log::info('Email to {email} will be sent today', ['email' => $this->attendeeEmail]);
-            Mail::to($this->attendeeEmail)->send(new SendEventReminder($this->event, $this->booking));
+            Mail::to($this->attendeeEmail)->send(new SendEventReminder($this->event, $this->booking, $this->daysUntil));
         } else {
             Log::info('Empty email field');
         }

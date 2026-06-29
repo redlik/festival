@@ -1,7 +1,11 @@
 <x-mail::message>
 # Hello
 
-Just a little reminder that our upcoming event **{{ $event->name }}** on **{{ $event->start_date }}** at **{{ \Carbon\Carbon::parse($event->start_time)->format('H:i') }}** is only three days away.
+@if($daysUntil === 1)
+Just a little reminder that our upcoming event **{{ $event->name }}** on **{{ $event->start_date }}** at **{{ \Carbon\Carbon::parse($event->start_time)->format('H:i') }}** is **tomorrow**.
+@else
+Just a little reminder that our upcoming event **{{ $event->name }}** on **{{ $event->start_date }}** at **{{ \Carbon\Carbon::parse($event->start_time)->format('H:i') }}** is only **{{ $daysUntil }} days** away.
+@endif
 
 @if($venue)
 ## Event location

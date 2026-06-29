@@ -21,15 +21,18 @@ class SendEventReminder extends Mailable
 
     public Booking $booking;
 
+    public int $daysUntil;
+
     public $venue = null;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($event, $booking)
+    public function __construct($event, $booking, int $daysUntil)
     {
         $this->event = $event;
         $this->booking = $booking;
+        $this->daysUntil = $daysUntil;
     }
 
     /**
@@ -38,7 +41,7 @@ class SendEventReminder extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: $this->event->name.' - Event Reminder',
+            subject: $this->event->name.' - Event Reminder ('.$this->daysUntil.' day'.($this->daysUntil === 1 ? '' : 's').' to go)',
         );
     }
 
@@ -53,6 +56,7 @@ class SendEventReminder extends Mailable
                 'event' => $this->event,
                 'venue' => $this->getVenue() ?? null,
                 'booking' => $this->booking,
+                'daysUntil' => $this->daysUntil,
                 'url' => route('event.show-by-slug', $this->event->slug)
             ]
         );
