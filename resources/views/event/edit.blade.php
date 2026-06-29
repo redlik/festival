@@ -85,8 +85,8 @@
                                     Event(s) details <span class="text-red-700">*</span>
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                    <textarea id="description" name="description" rows="3" class="max-w-lg shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md" required>{{ $event->description }}</textarea>
-                                    <p class="mt-2 text-sm text-gray-700 font-semibold"></p>
+                                    <div id="description-editor" class="max-w-lg bg-white border border-gray-300 rounded-md" style="min-height: 150px;"></div>
+                                    <textarea id="description" name="description" class="hidden" required></textarea>
                                 </div>
                             </div>
 
@@ -350,10 +350,38 @@
             <strong>PLEASE NOTE:</strong> If this event is already listed on the main page AND you are making significant changes, such as changing the date, time or the location, please make sure to inform the organisers of the Festival and the registered attendees about it.
         </div>
     </div>
+    @push("extra_styles")
+        <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+    @endpush
     @push("footer_styles")
+        <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
         <script type="text/javascript">
-            document.addEventListener('keypress', function (e) {
-                if (e.keyCode === 13 || e.which === 13) {
+            var quill = new Quill('#description-editor', {
+                theme: 'snow',
+                modules: {
+                    toolbar: [
+                        ['bold', 'italic', 'underline'],
+                        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                        ['link'],
+                        ['clean']
+                    ]
+                }
+            });
+
+            quill.root.innerHTML = {!! json_encode($event->description) !!};
+
+            document.getElementById('event-registration').addEventListener('submit', function(e) {
+                var text = quill.getText().trim();
+                if (text.length === 0) {
+                    e.preventDefault();
+                    document.getElementById('description-editor').style.borderColor = '#f87171';
+                    return;
+                }
+                document.getElementById('description').value = quill.root.innerHTML;
+            });
+
+            document.addEventListener('keypress', function(e) {
+                if ((e.keyCode === 13 || e.which === 13) && !e.target.closest('.ql-editor')) {
                     e.preventDefault();
                     return false;
                 }
