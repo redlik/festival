@@ -98,7 +98,7 @@
                                 </label>
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
                                     <div id="description-editor" class="max-w-lg bg-white border border-gray-300 rounded-md" style="min-height: 150px;"></div>
-                                    <textarea id="description" name="description" class="hidden" required></textarea>
+                                    <textarea id="description" name="description" class="hidden"></textarea>
                                     <p class="mt-2 text-sm text-gray-700 font-semibold">This will be used to describe
                                         the events to the public in promotional material - please provide two to three
                                         sentences.</p>
@@ -440,7 +440,7 @@
             });
 
             @if(old('description'))
-            quill.root.innerHTML = {!! json_encode(old('description')) !!};
+            quill.clipboard.dangerouslyPasteHTML({!! json_encode(old('description')) !!});
             @endif
 
             document.getElementById('event-registration').addEventListener('submit', function(e) {
