@@ -21,7 +21,7 @@
                     <div class="lg:flex justify-between items-start">
                         <div class="w-full">
                             <h4 class="font-bold text-2xl text-gray-600">{{ $event->name }}</h4>
-                            <div class="mt-2">
+                            <div class="mt-2 event-description">
                                 {!! $event->description !!}
                             </div>
                         </div>
