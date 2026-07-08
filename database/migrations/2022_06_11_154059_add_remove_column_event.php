@@ -15,7 +15,13 @@ return new class extends Migration
     {
         Schema::table('events', function (Blueprint $table) {
             $table->dropColumn('category');
+        });
+
+        Schema::table('events', function (Blueprint $table) {
             $table->dropColumn('end_date');
+        });
+
+        Schema::table('events', function (Blueprint $table) {
             $table->string('leader_email')->after('venue_id')->nullable();
             $table->string('leader_phone')->after('venue_id')->nullable();
             $table->string('leader_name')->after('venue_id')->nullable();

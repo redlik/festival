@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('events', function (Blueprint $table) {
-            $table->dropForeign(['venue_id']);
-        });
+        if (Schema::getConnection()->getDriverName() !== 'sqlite') {
+            Schema::table('events', function (Blueprint $table) {
+                $table->dropForeign(['venue_id']);
+            });
+        }
     }
 
     /**
