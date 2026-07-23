@@ -130,7 +130,7 @@
                                 </div>
                                 <div class="p-2">
                                     <img loading="lazy"
-                                         src="{{asset('img/kerry_mh_and_wellbeing_fest_events__2023.png')}}" alt=""
+                                         src="{{asset('img/kmhwf-2025-thumb.jpg')}}" alt=""
                                          class="w-full h-full object-contain">
                                 </div>
                             </div>
