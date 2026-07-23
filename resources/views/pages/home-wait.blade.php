@@ -29,7 +29,7 @@
                     interactive programme of events.
                 </div>
                 <a href="{{asset('img/Kerrywellfest2024.pdf')}}" target="_blank"">
-                    <button class="button-primary">View events of 2024</button>
+                    <button class="button-primary">View events of 2025</button>
                 </a>
             </div>
         </div>
