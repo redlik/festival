@@ -28,7 +28,7 @@
                     empower people to engage with the ‘Five Ways to Wellbeing’ through offering a dynamic and
                     interactive programme of events.
                 </div>
-                <a href="{{asset('img/Kerrywellfest2024.pdf')}}" target="_blank"">
+                <a href="{{asset('img/kmhwf-2025.pdf')}}" target="_blank"">
                     <button class="button-primary">View events of 2025</button>
                 </a>
             </div>
