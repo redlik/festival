@@ -79,15 +79,15 @@
         <div class="bg-gray-100 py-8">
             <div class="max-w-7xl mx-auto py-4 px-4 lg:flex lg:items-center" x-data="{ showPoster : false }">
                 <div class="w-full lg:w-1/2 mb-4 lg:mb-0">
-                    <h3 class="text-2xl mb-2">Events of 2024 Kerry Mental & Wellbeing Health Festival</h3>
+                    <h3 class="text-2xl mb-2">Events of 2025 Kerry Mental & Wellbeing Health Festival</h3>
                     <p class="mb-6">If you like to see what events you may expect, click on the thumbnail or download
                         the PDF of the last year's programme.</p>
-                    <a class="button-primary" href="{{asset('img/Kerrywellfest2024.pdf')}}"
-                       target="_blank"><i class="fa-solid fa-file-pdf"></i> 2024 Fest schedule</a>
+                    <a class="button-primary" href="{{asset('img/kmhwf-2025.pdf')}}"
+                       target="_blank"><i class="fa-solid fa-file-pdf"></i> 2025 Fest schedule</a>
                 </div>
                 <div class="w-full lg:w-1/2 h-48 flex justify-center">
                     <a href="#" @click="showPoster = true" class="h-full">
-                        <img src="{{ asset('img/kerrywellfest2024-thumb.jpg') }}" alt=""
+                        <img src="{{ asset('img/kmhwf-2025-thumb.jpg') }}" alt=""
                              class="shadow h-full hover:shadow-xl">
                     </a>
                 </div>
