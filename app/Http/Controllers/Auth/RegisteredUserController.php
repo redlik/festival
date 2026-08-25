@@ -34,21 +34,41 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $existingUser = User::where('email', $request->email)->first();
+        $keepPassword = $existingUser && $request->boolean('keep_password');
+
+        $rules = [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users', 'exists:organisers,email'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+            'email' => ['required', 'string', 'email', 'max:255', 'exists:organisers,email'],
+        ];
 
+        if (! $keepPassword) {
+            $rules['password'] = ['required', 'confirmed', Rules\Password::defaults()];
+        }
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'organiser_id' => 0,
-        ]);
+        $request->validate($rules);
 
-        $user->assignRole('organiser');
+        if ($existingUser) {
+            $data = ['name' => $request->name];
+
+            if (! $keepPassword) {
+                $data['password'] = Hash::make($request->password);
+            }
+
+            $existingUser->update($data);
+            $user = $existingUser;
+        } else {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'organiser_id' => 0,
+            ]);
+        }
+
+        if (! $user->hasRole('organiser')) {
+            $user->assignRole('organiser');
+        }
 
         $organiser = Organiser::where('email', $user->email)->first();
         $organiser->update([

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\Organiser;
+use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
@@ -14,7 +15,9 @@ class UserController extends Controller
     {
         $user = Organiser::find($request->get('account'));
 
-        return view('user.registration', compact('user'));
+        $existingAccount = User::where('email', $user->email)->exists();
+
+        return view('user.registration', compact('user', 'existingAccount'));
     }
 
     public function dashboard()
