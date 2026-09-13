@@ -28,7 +28,7 @@ class PagesController extends Controller
         $start_date = FestivalService::festival_start_date();
         $end_date = FestivalService::festival_end_date();
 
-        return view('pages.home-wait', compact('events', 'towns', 'target', 'start_date', 'end_date'));
+        return view('pages.home', compact('events', 'towns', 'target', 'start_date', 'end_date'));
     }
 
     public function adminDashboard()

@@ -61,47 +61,4 @@
             @livewire('event-list')
         </div>
     </div>
-
-    <div class="bg-gray-100">
-            <div class="max-w-7xl mx-auto py-4 px-4 lg:flex lg:items-center" x-data="{ showPoster : false }">
-                <div class="w-full lg:w-1/2 mb-4 lg:mb-0">
-                    <h3 class="text-2xl mb-2">Events of 2024 Kerry Mental & Wellbeing Health Festival</h3>
-                    <p class="mb-6">Click to view this year's Festival schedule.</p>
-                    <a class="button-primary" href="{{asset('img/Kerrywellfest2024.pdf')}}" target="_blank"><i class="fa-solid fa-file-pdf"></i> 2024 Fest schedule</a>
-                </div>
-                <div class="w-full lg:w-1/2 h-48 flex justify-center">
-                        <a href="#" @click="showPoster = true" class="h-full">
-                            <img src="{{ asset('img/kerrywellfest2024-thumb.jpg') }}" alt="" class="shadow h-full hover:shadow-xl">
-                        </a>
-                </div>
-            {{--Modal for schedule image--}}
-                <div @keydown.window.escape="showPoster = false" x-cloak x-show="showPoster" class="fixed z-10 inset-0 overflow-y-auto">
-                    <div class="flex items-end justify-center min-h-screen w-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-
-                        <div x-show="showPoster" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" x-description="Background overlay, show/hide based on modal state." class="fixed inset-0 bg-gray-700 bg-opacity-75 transition-opacity" @click="showPoster = false" aria-hidden="true">
-                        </div>
-
-                        <!-- This element is to trick the browser into centering the modal contents. -->
-                        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">​</span>
-                        <div x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90" x-on:click.away="showPoster = false" class="p-2 fixed w-full h-100 inset-0 z-50 overflow-hidden flex justify-center items-center bg-black bg-opacity-75">
-                            <div @click.away="showPoster = false" class="flex flex-col max-w-7xl max-h-full overflow-auto">
-                                <div class="z-50">
-                                    <button @click="showPoster = false" class="float-right pt-2 pr-2 outline-none focus:outline-none">
-                                        <svg class="fill-current text-white " xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
-                                            <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
-                                            </path>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <div class="p-2">
-                                    <img src="{{asset('img/Kerrywellfest2024-hires.jpg')}}" alt="" class="w-full">
-                                </div>
-                            </div>
-
-                    </div>
-                </div>
-
-            </div>
-    </div>
-    </div>
 </x-app-layout>
