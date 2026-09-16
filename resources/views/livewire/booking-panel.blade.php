@@ -1,5 +1,12 @@
 <div class="mt-8 lg:mt-16">
-    @if($event->is_private)
+    @if($event->is_external_booking)
+        <div class="bg-gray-100 rounded border border-gray-300 p-6 mt-8">
+            <h4 class="text-gray-600 mb-4">This event is booked through an external website.</h4>
+            <a href="{{ $event->external_booking_url }}" target="_blank" rel="noopener noreferrer" class="button-primary inline-block">
+                BOOK NOW
+            </a>
+        </div>
+    @elseif($event->is_private)
         <div class="bg-gray-100 rounded border border-gray-300 text-gray-600 italic p-6 mt-8">
             Please note this is a private event that is not open to the public.
         </div>

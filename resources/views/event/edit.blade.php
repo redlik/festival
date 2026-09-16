@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="py-0 md:py-12">
-        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 bg-white rounded-lg shadow-lg scroll-smooth" x-data="{ limit: {{ $event->limited }}, type: '{{ $event->type }}'}">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 bg-white rounded-lg shadow-lg scroll-smooth" x-data="{ limit: {{ $event->limited }}, type: '{{ $event->type }}', visibility: '{{ $event->is_external_booking ? 'external' : ($event->is_private ? 'private' : 'public') }}' }">
             <div>
                 @if($event->status == 'published')
                     <div class="border border-gray-200 bg-yellow-50 rounded p-2 mb-4">
@@ -225,15 +225,41 @@
                             </div>
 
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start content-center sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label for="target" class="block text-sm font-medium sm:mt-px sm:pt-2">
-                                    <div class="font-bold">Private event</div>
-                                    <div class="text-sm text-gray-600">Events marked as private will be listed on the site but won't have the attendee registration form available. The 2 boxes below won't have any functionality enabled also.</div>
-
+                                <label for="visibility" class="block text-sm font-medium sm:mt-px sm:pt-2">
+                                    <div class="font-bold">Event visibility</div>
+                                    <div class="text-sm text-gray-600">Public events allow on-site booking. Private
+                                        events are listed but have no registration form. External booking events link
+                                        out to a booking page hosted elsewhere.
+                                    </div>
                                 </label>
-                                <div class="mt-1 sm:mt-0 sm:col-span-2 flex items-center h-full">
-                                    <div class="flex items-center h-5 mr-8 mb-4 md:mb-0">
-                                        <input id="is_private" aria-describedby="comments-description" name="is_private" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="1" {{ $event->is_private == 1 ? 'checked' : '' }}>
-                                        <label for="is_private" class="font-medium text-gray-700">Private event</label>
+                                <div class="mt-1 sm:mt-0 sm:col-span-2">
+                                    <div class="flex flex-wrap items-center">
+                                        <div class="flex items-center h-5 mr-8 mb-4 md:mb-0">
+                                            <input x-model="visibility" id="visibility_public" name="visibility" type="radio"
+                                                   class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2"
+                                                   value="public" {{ (!$event->is_private && !$event->is_external_booking) ? 'checked' : '' }}>
+                                            <label for="visibility_public" class="font-medium text-gray-700">Public</label>
+                                        </div>
+                                        <div class="flex items-center h-5 mr-8 mb-4 md:mb-0">
+                                            <input x-model="visibility" id="visibility_private" name="visibility" type="radio"
+                                                   class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2"
+                                                   value="private" {{ $event->is_private ? 'checked' : '' }}>
+                                            <label for="visibility_private" class="font-medium text-gray-700">Private</label>
+                                        </div>
+                                        <div class="flex items-center h-5 mr-8 mb-4 md:mb-0">
+                                            <input x-model="visibility" id="visibility_external" name="visibility" type="radio"
+                                                   class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2"
+                                                   value="external" {{ $event->is_external_booking ? 'checked' : '' }}>
+                                            <label for="visibility_external" class="font-medium text-gray-700">External booking</label>
+                                        </div>
+                                    </div>
+                                    <div x-show="visibility == 'external'" class="mt-2">
+                                        <input type="url" name="external_booking_url" id="external_booking_url"
+                                               x-bind:required="visibility == 'external'"
+                                               class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                                               placeholder="https://example.com/book"
+                                               value="{{ old('external_booking_url', $event->external_booking_url) }}">
+                                        <p class="text-sm text-gray-500 mt-1">Attendees will be sent to this URL to book instead of using the on-site form.</p>
                                     </div>
                                 </div>
                             </div>
