@@ -50,12 +50,12 @@ class EventController extends Controller
    */
   public function store(Request $request)
   {
-    $validator = Validator::make($request->all(), [
+    $validator = Validator::make($request->all(), array_merge([
       'name' => 'required|max:255',
       'venue_id' => 'required_if:type,indoor,outdoor',
       'start_time' => 'required',
       'end_time' => 'nullable|after:start_time',
-    ], [
+    ], $this->visibilityValidationRules()), [
       'end_time.after' => 'The end time should be set after the start time',
     ]);
 
@@ -79,7 +79,7 @@ class EventController extends Controller
 
     $slug = rand(1001, 9999) . '-'. Str::of($request->input('name'))->slug('-');
 
-    $event = Event::create([
+    $event = Event::create(array_merge([
       'name' => $request->input('name'),
       'slug' => $slug,
       'start_date' => $request->input('start_date'),
@@ -100,8 +100,7 @@ class EventController extends Controller
       'leader_email' => $request->input('leader_email'),
       'wheelchair_accessible' => $request->input('wheelchair_accessible'),
       'status' => 'pending',
-      'is_private' => $request->input('is_private'),
-    ]);
+    ], $this->visibilityFields($request)));
 
     if ($request->hasFile('file-upload')) {
       $event->addMediaFromRequest('file-upload')
@@ -117,12 +116,12 @@ class EventController extends Controller
 
   public function saveDraft(Request $request)
   {
-    $validator = Validator::make($request->all(), [
+    $validator = Validator::make($request->all(), array_merge([
       'name' => 'required|max:255',
       'venue_id' => 'required_if:type,indoor,outdoor',
       'start_time' => 'required',
       'end_time' => 'nullable|after:start_time',
-    ], [
+    ], $this->visibilityValidationRules(false)), [
       'end_time.after' => 'The end time should be set after the start time',
       'venue_id.required_if' => "Don't forget to select a venue",
     ]);
@@ -153,7 +152,7 @@ class EventController extends Controller
 
     $slug = rand(1001, 9999) . '-' . Str::of($request->input('name'))->slug('-');
 
-    $event = Event::create([
+    $event = Event::create(array_merge([
       'name' => $request->input('name'),
       'slug' => $slug,
       'start_date' => $request->input('start_date'),
@@ -174,8 +173,7 @@ class EventController extends Controller
       'leader_email' => $request->input('leader_email'),
       'wheelchair_accessible' => $request->input('wheelchair_accessible'),
       'status' => 'draft',
-      'is_private' => $request->input('is_private'),
-    ]);
+    ], $this->visibilityFields($request)));
 
     if ($request->hasFile('file-upload')) {
       $event->addMediaFromRequest('file-upload')
@@ -187,12 +185,12 @@ class EventController extends Controller
 
   public function saveAndSubmit(Request $request, Event $event)
   {
-    $validator = Validator::make($request->all(), [
+    $validator = Validator::make($request->all(), array_merge([
       'name' => 'required|max:255',
       'venue_id' => 'required',
       'start_time' => 'required',
       'end_time' => 'nullable|after:start_time',
-    ], [
+    ], $this->visibilityValidationRules()), [
       'end_time.after' => 'The end time should be set after the start time',
       'venue_id.required' => "Don't forget to select a venue",
     ]);
@@ -217,7 +215,7 @@ class EventController extends Controller
 
     $slug = rand(1001, 9999) . '-' . Str::of($request->input('name'))->slug('-');
 
-    $event = Event::create([
+    $event = Event::create(array_merge([
       'name' => $request->input('name'),
       'slug' => $slug,
       'start_date' => $request->input('start_date'),
@@ -238,8 +236,7 @@ class EventController extends Controller
       'leader_email' => $request->input('leader_email'),
       'wheelchair_accessible' => $request->input('wheelchair_accessible'),
       'status' => 'draft',
-      'is_private' => $request->input('is_private'),
-    ]);
+    ], $this->visibilityFields($request)));
 
     if ($request->hasFile('file-upload')) {
       $event->addMediaFromRequest('file-upload')
@@ -380,7 +377,7 @@ class EventController extends Controller
       $slug = $event->slug;
     }
 
-    $event->update([
+    $event->update(array_merge([
       'name' => $request->input('name'),
       'slug' => $slug,
       'start_date' => $request->input('start_date'),
@@ -399,8 +396,7 @@ class EventController extends Controller
       'leader_phone' => $request->input('leader_phone'),
       'leader_email' => $request->input('leader_email'),
       'wheelchair_accessible' => $request->input('wheelchair_accessible'),
-      'is_private' => $request->input('is_private'),
-    ]);
+    ], $this->visibilityFields($request)));
 
     if ($request->hasFile('file-upload')) {
       $event->addMediaFromRequest('file-upload')
@@ -431,7 +427,7 @@ class EventController extends Controller
     }
 
     $event = Event::find($request->input('event_number'));
-    $event->update([
+    $event->update(array_merge([
       'name' => $request->input('name'),
       'start_date' => $request->input('start_date'),
       'start_time' => $request->input('start_time'),
@@ -450,8 +446,7 @@ class EventController extends Controller
       'leader_email' => $request->input('leader_email'),
       'wheelchair_accessible' => $request->input('wheelchair_accessible'),
       'status' => 'pending',
-      'is_private' => $request->input('is_private'),
-    ]);
+    ], $this->visibilityFields($request)));
 
     if ($request->hasFile('file-upload')) {
       $event->addMediaFromRequest('file-upload')
@@ -514,5 +509,30 @@ class EventController extends Controller
     }
 
     return $theme;
+  }
+
+  /**
+   * Resolve the event's visibility ('public', 'private' or 'external') submitted by the
+   * event form into the is_private / is_external_booking / external_booking_url columns.
+   */
+  private function visibilityFields(Request $request): array
+  {
+    $visibility = $request->input('visibility', $request->boolean('is_private') ? 'private' : 'public');
+
+    return [
+      'is_private' => $visibility === 'private',
+      'is_external_booking' => $visibility === 'external',
+      'external_booking_url' => $visibility === 'external' ? $request->input('external_booking_url') : null,
+    ];
+  }
+
+  private function visibilityValidationRules(bool $requireUrlWhenExternal = true): array
+  {
+    return [
+      'visibility' => 'nullable|in:public,private,external',
+      'external_booking_url' => $requireUrlWhenExternal
+        ? 'nullable|required_if:visibility,external|url|max:2048'
+        : 'nullable|url|max:2048',
+    ];
   }
 }

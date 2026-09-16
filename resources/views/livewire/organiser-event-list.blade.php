@@ -123,7 +123,10 @@
 
                             </td>
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                @if($event->is_private)
+                                @if($event->is_external_booking)
+                                    <span class="text-olive-400 bg-gray-100 rounded px-3 py-1 font-semibold"><i
+                                            class="fa-solid fa-arrow-up-right-from-square mr-1"></i> External booking</span>
+                                @elseif($event->is_private)
                                     <span class="text-olive-400 bg-gray-100 rounded px-3 py-1 font-semibold"><i
                                             class="fa-solid fa-lock mr-1"></i> Private event</span>
                                 @else
