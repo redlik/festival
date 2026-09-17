@@ -292,6 +292,18 @@
                                            class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md" min="0" value="{{ $event->attendees ?? 0 }}" placeholder="0">
                                 </div>
                             </div>
+                            <div x-show="limit == '1'" class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                                <label for="disable_waiting_list" class="block text-sm font-bold text-gray-700 sm:mt-px sm:pt-2">
+                                    <div>Disable waiting list</div>
+                                    <div class="text-sm text-gray-500 font-normal">If ticked, once the event is fully booked attendees won't be offered a waiting list — they'll just see a message that bookings are closed.</div>
+                                </label>
+                                <div class="mt-1 sm:mt-0 sm:col-span-2 flex items-center h-full">
+                                    <div class="flex items-center h-5 mr-8 mb-4 md:mb-0">
+                                        <input id="disable_waiting_list" aria-describedby="comments-description" name="disable_waiting_list" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2" value="1" {{ $event->disable_waiting_list == 1 ? 'checked' : '' }}>
+                                        <label for="disable_waiting_list" class="font-medium text-gray-700">Disable waiting list</label>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                                 <label for="phone" class="block text-sm font-bold text-gray-700 sm:mt-px sm:pt-2 font-bold">
                                     Wheelchair Accessible

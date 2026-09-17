@@ -119,6 +119,10 @@ class BookingPanel extends Component
 
     public function register()
     {
+        if ($this->full && $this->event->disable_waiting_list) {
+            return;
+        }
+
         $this->people = $this->tickets;
 
         if($this->full) {
