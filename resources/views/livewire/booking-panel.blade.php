@@ -3,6 +3,12 @@
         <div class="bg-gray-100 rounded border border-gray-300 text-gray-600 italic p-6 mt-8">
             Please note this is a private event that is not open to the public.
         </div>
+    @elseif($full && $event->disable_waiting_list)
+        <div class="bg-gray-100 rounded border border-gray-300 p-6 mt-8 text-center">
+            <i class="fa-solid fa-calendar-xmark text-3xl text-olive-400 mb-3"></i>
+            <h4 class="text-gray-700 font-semibold text-lg">This event is fully booked</h4>
+            <p class="text-gray-500 mt-1">We're sorry, bookings are no longer being accepted for this event. We hope to see you at another one soon!</p>
+        </div>
   @elseif(\Carbon\Carbon::now() < $booking_start_date)
     <div class="bg-gray-100 rounded border border-gray-300 p-6 mt-8">
       The bookings for this event will be available from {{ \Carbon\Carbon::parse($booking_start_date)->format('dS M Y') }}
