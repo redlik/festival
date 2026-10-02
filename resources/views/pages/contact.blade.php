@@ -38,6 +38,9 @@
                 <p class="mt-4 text-lg leading-6 text-gray-500">
                     If you have any questions regarding the festival, the organisers or any of the events, please fill out the from below and we will get back to you as soon as we can. Thank you!
                 </p>
+                <p class="mt-4 text-lg leading-6 text-gray-500">
+                    Phone: <a href="tel:0870061772" class="font-medium text-gray-700 underline">087-0061772</a>
+                </p>
             </div>
 
             <div class="mt-12">

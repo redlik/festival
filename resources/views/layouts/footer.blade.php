@@ -19,6 +19,8 @@
             <ul class="text-gray-200 text-sm mt-2">
                 <li class="mb-2"><span class="inline-block w-16 font-bold">Email:</span>
                     <a href="mailto:kerrymhwfest20@gmail.com ">kerrymhwfest20@gmail.com </a></li>
+                <li class="mb-2"><span class="inline-block w-16 font-bold">Phone:</span>
+                    <a href="tel:0870061772">087-0061772</a></li>
             </ul>
         </div>
         <div class="w-full md:w-1/3 px-4">
