@@ -64,7 +64,6 @@ class SendEventReminder extends Mailable
 
     public function getVenue()
     {
-        ray($this->event->type);
         if ($this->event->type != 'online') {
             $this->venue = Venue::find($this->event->venue_id);
         }
