@@ -32,9 +32,16 @@ class SendEventReminder extends Command
     public function handle()
     {
         foreach ([7, 3, 1] as $daysUntil) {
-            $events = Event::where('start_date', Carbon::now()->addDays($daysUntil)->format('Y-m-d'))->get();
+            $events = Event::where('status', 'published')
+                ->where('start_date',Carbon::now()->addDays($daysUntil)->format('Y-m-d'))->get();
 
             if ($events->isEmpty()) {
+                Log::info('Sending {days}-day reminder to {count} attendees for {events} events', [
+                    'days' => $daysUntil,
+                    'count' => 0,
+                    'events' => 0,
+                ]);
+
                 continue;
             }
 
@@ -44,9 +51,10 @@ class SendEventReminder extends Command
                 ->where('waiting_status', false)
                 ->get();
 
-            Log::info('Sending {days}-day reminder to {count} attendees', [
+            Log::info('Sending {days}-day reminder to {count} attendees for {events} events', [
                 'days' => $daysUntil,
                 'count' => $attendees->count(),
+                'events' => $events->count(),
             ]);
 
             foreach ($attendees as $attendee) {
