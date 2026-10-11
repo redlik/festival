@@ -192,7 +192,6 @@ class AttendeeController extends Controller
         $message['event'] = $request->input('eventName');
         $message['date'] = $event->start_date.' at '.\Carbon\Carbon::parse($event->start_time)->format('H:i');
         foreach($attendees as $attendee) {
-            ray($attendee);
             if ($attendee['email'] != '') {
                 MessageEmailToAttendees::dispatch($attendee, $message);
             } else {

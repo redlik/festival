@@ -79,7 +79,6 @@ class BookingPanel extends Component
             $this->tickets--;
             $this->disabled_plus = false;
             $this->disabled_minus = false;
-            ray('-three');
 
 
         }
